@@ -32,22 +32,22 @@ class SpecialChar private constructor(names: MutableList<Text>, val key: String)
 
     override fun expand(): String = values[key] ?: throw Exception(
         "Invalid Special Char Code Discovered during expand at Special Char Variable:" +
-                "{${names.getOrNull(0) ?: "@nameless"}}"
+                "{${names?.getOrNull(0) ?: "@nameless"}}"
     )
 
     override fun expand(divider: String): String = values[key] ?: throw Exception(
         "Invalid Special Char Code Discovered during expand at Special Char Variable:{" +
-                "${names.getOrNull(0) ?: "@nameless"}}"
+                "${names?.getOrNull(0) ?: "@nameless"}}"
     )
 
     override fun insert(v: Variable, i: Int): Variable =
-        throw Exception("You can not insert into special character:{${names.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You can not insert into special character:{${names?.getOrNull(0) ?: "@nameless"}")
 
-    override fun get(path: MutableList<String>): Variable =
-        throw Exception("No Variable to get in Special Variable:{${names.getOrNull(0) ?: "@nameless"}")
+    override fun get(path: ListOf): Variable =
+        throw Exception("No Variable to get in Special Variable:{${names?.getOrNull(0) ?: "@nameless"}")
 
-    override fun delete(path: MutableList<String>) =
-        throw Exception("You cannot delete Variable from Special Variable:{${names.getOrNull(0) ?: "@nameless"}")
+    override fun delete(path: ListOf) =
+        throw Exception("You cannot delete Variable from Special Variable:{${names?.getOrNull(0) ?: "@nameless"}")
 
     override fun visit(v: Visitor, mod: String): Variable = v.accept(this, mod)
 }

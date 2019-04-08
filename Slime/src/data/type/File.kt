@@ -4,7 +4,7 @@ import data.Type
 import data.Variable
 import data.Visitor
 
-class File(names:MutableList<Text>,val content:MutableMap<Text,Variable>) :Variable(Type.File,names){
+class File(names:MutableList<Text>?,val content:MutableMap<Text,Variable>) :Variable(Type.File,names){
     override fun toListOf(): ListOf =ListOf(mutableListOf(), listOf(Type.List,Type.Unknown),content.values.toMutableList())
 
     override fun copy(): File {
@@ -28,15 +28,15 @@ class File(names:MutableList<Text>,val content:MutableMap<Text,Variable>) :Varia
         return result
     }
 
-    override fun insert(v: Variable, i: Int): Variable =throw Exception("You can not insert into File:${names.getOrNull(0)?:"@nameless"}")
+    override fun insert(v: Variable, i: Int): Variable =throw Exception("You can not insert into File:${names?.getOrNull(0)?:"@nameless"}")
 
 
-    override fun get(path: MutableList<String>): Variable =
+    override fun get(path: ListOf): Variable =
         when {
-            path.isEmpty() -> this
-            path.size==1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.isEmpty() -> this
+            path.content.size==1 -> {
+                val next = (path.content[0]as Text).content
+                path.content.removeAt(0)
                 try {
                     content.values.toList()[next.toInt()]
                 } catch (e: java.lang.Exception) {
@@ -46,8 +46,8 @@ class File(names:MutableList<Text>,val content:MutableMap<Text,Variable>) :Varia
                 }
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     content.values.toList()[next.toInt()].get(path)
                 } catch (e: java.lang.Exception) {
@@ -58,25 +58,25 @@ class File(names:MutableList<Text>,val content:MutableMap<Text,Variable>) :Varia
             }
         }
 
-    override fun delete(path: MutableList<String>) {
+    override fun delete(path: ListOf) {
         when {
-            path.isEmpty() -> throw java.lang.Exception(
-                "path shouldn't be empty when deleting from Template: ${names.getOrNull(0) ?: "@nameless"}"
+            path.content.isEmpty() -> throw java.lang.Exception(
+                "path shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
-            path.size == 1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.size == 1 -> {
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
-                    content.values.toList()[i].delete(mutableListOf("@content"))
+                    content.values.toList()[i].delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
                 } catch (e: java.lang.Exception) {
-                    content[Text(mutableListOf(),next)]?.delete(mutableListOf("@content"))
+                    content[Text(mutableListOf(),next)]?.delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
                 }
 
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
                     content.values.toList()[i].delete(path)

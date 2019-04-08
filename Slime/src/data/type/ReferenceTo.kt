@@ -20,10 +20,10 @@ class ReferenceTo(names:MutableList<Text>): Variable(Type.Refe,names) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun get(path: MutableList<String>): Variable {
+    override fun get(path: ListOf): Variable {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-    override fun delete(path: MutableList<String>) {
+    override fun delete(path: ListOf) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

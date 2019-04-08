@@ -2,7 +2,7 @@ parser grammar SlimeParser;
 
 options { tokenVocab=SlimeLexer; }
 
-all: (text|refe|slot|spec|temp|dele|expa|inse|decl|dele|refe|text_outor)*;
+file: (text|refe|slot|spec|temp|dele|expa|inse|decl|dele|refe|text_outor)*;
 
 text: text_head text_body text_tail;
 text_head:(OB_TEXT|OLB_TEXT|LB_TEXT|
@@ -61,7 +61,7 @@ expa_head:(OB_EXPA|OLB_EXPA|LB_EXPA|
            OB_EXPA_O_O|OLB_EXPA_O_O|LB_EXPA_O_O|
            OB_EXPA_L_O|OLB_EXPA_L_O|LB_EXPA_L_O);
 expa_body:(expa_body_part (SC_B_O|SC_O_O|SC_L_O))* expa_body_part;
-expa_body_part:(vari ((CL_B_O|CL_O_O|CL_L_O) temp|(CL_B_O|CL_O_O|CL_L_O) spec)?|(OB_IMPORT|OL_IMPORT|L_IMPORT) variName);
+expa_body_part:(vari ((CL_B_O|CL_O_O|CL_L_O) temp|(CL_B_O|CL_O_O|CL_L_O) spec)?|(OB_IMPORT|OL_IMPORT|L_IMPORT) variPath);
 expa_tail:(CB_EXPA|NL_OPER|NW_OPER);
 
 inse: inse_head inse_body inse_tail;
@@ -70,8 +70,8 @@ inse_head:(OB_INSE|OLB_INSE|LB_INSE|
            OB_INSE_O_O|OLB_INSE_O_O|LB_INSE_O_O|
            OB_INSE_L_O|OLB_INSE_L_O|LB_INSE_L_O);
 inse_body:(inse_body_part (SC_B_O|SC_O_O|SC_L_O))* inse_body_part;
-inse_body_part: variName (INOP_B_O|INOP_O_O|INOP_L_O) vari ((CL_B_O|CL_O_O|CL_L_O) inse_element((CO_B_O|CO_O_O|CO_L_O) inse_element)*)?| (OB_IMPORT|OL_IMPORT|L_IMPORT) variName;
-inse_element: variName (INOP_B_O|INOP_O_O|INOP_L_O) variName;
+inse_body_part: variPath (INOP_B_O|INOP_O_O|INOP_L_O) vari ((CL_B_O|CL_O_O|CL_L_O) inse_element((CO_B_O|CO_O_O|CO_L_O) inse_element)*)?| (OB_IMPORT|OL_IMPORT|L_IMPORT) variPath;
+inse_element: variPath (INOP_B_O|INOP_O_O|INOP_L_O) variPath;
 inse_tail:(CB_INSE|NL_OPER|NW_OPER);
 
 dele: dele_head dele_body dele_tail;
@@ -99,10 +99,9 @@ decl_tail:(CB_DECL|NL_OPER|NW_OPER);
 
 nameValue:(listName (CL_B_O|CL_O_O|CL_L_O) vari);
 nameType:(listName (PE_B_O|PE_O_O|PE_L_O) typeName);
-vari: variNameIndx|variName|decl|temp|spec|refe|inse|text;
+vari: variPath|decl|temp|spec|slot|refe|inse|text;
 listName: (NAME_B_O CO_B_O|NAME_O_O CO_O_O|NAME_L_O CO_L_O)* (NAME_B_O|NAME_O_O|NAME_L_O);
-variName: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_L_O PE_L_O)* (NAME_B_O|NAME_O_O|NAME_L_O);
-variNameIndx: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_L_O PE_L_O|INTE_B_O PE_B_O|INTE_O_O PE_O_O|INTE_L_O PE_L_O)*
+variPath: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_L_O PE_L_O|INTE_B_O PE_B_O|INTE_O_O PE_O_O|INTE_L_O PE_L_O)*
               (NAME_B_O|NAME_O_O|NAME_L_O|INTE_B_O|INTE_O_O|INTE_L_O);
 typeName: (NAME_B_O CL_B_O|NAME_O_O CL_O_O|NAME_L_O CL_L_O|NAME_L_R CL_L_R|NAME_O_R CL_O_R|NAME_B_R CL_B_R)*
           (NAME_B_O|NAME_O_O|NAME_L_O|NAME_B_R|NAME_O_R|NAME_L_R);

@@ -11,11 +11,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#all}.
+	 * Visit a parse tree produced by {@link SlimeParser#file}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAll(SlimeParser.AllContext ctx);
+	T visitFile(SlimeParser.FileContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#text}.
 	 * @param ctx the parse tree
@@ -293,17 +293,11 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitListName(SlimeParser.ListNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#variName}.
+	 * Visit a parse tree produced by {@link SlimeParser#variPath}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariName(SlimeParser.VariNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SlimeParser#variNameIndx}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariNameIndx(SlimeParser.VariNameIndxContext ctx);
+	T visitVariPath(SlimeParser.VariPathContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#typeName}.
 	 * @param ctx the parse tree

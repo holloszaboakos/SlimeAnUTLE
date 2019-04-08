@@ -8,15 +8,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface SlimeParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#all}.
+	 * Enter a parse tree produced by {@link SlimeParser#file}.
 	 * @param ctx the parse tree
 	 */
-	void enterAll(SlimeParser.AllContext ctx);
+	void enterFile(SlimeParser.FileContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#all}.
+	 * Exit a parse tree produced by {@link SlimeParser#file}.
 	 * @param ctx the parse tree
 	 */
-	void exitAll(SlimeParser.AllContext ctx);
+	void exitFile(SlimeParser.FileContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#text}.
 	 * @param ctx the parse tree
@@ -478,25 +478,15 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitListName(SlimeParser.ListNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#variName}.
+	 * Enter a parse tree produced by {@link SlimeParser#variPath}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariName(SlimeParser.VariNameContext ctx);
+	void enterVariPath(SlimeParser.VariPathContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#variName}.
+	 * Exit a parse tree produced by {@link SlimeParser#variPath}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariName(SlimeParser.VariNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SlimeParser#variNameIndx}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariNameIndx(SlimeParser.VariNameIndxContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SlimeParser#variNameIndx}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariNameIndx(SlimeParser.VariNameIndxContext ctx);
+	void exitVariPath(SlimeParser.VariPathContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#typeName}.
 	 * @param ctx the parse tree

@@ -1,5 +1,5 @@
 package data
 
-enum class Type {
-    List,Refe,Slot,Spec,Type,Inst,Temp,Text,File,Unknown
+enum class Type(var n:String) {
+    List("List"),Refe("Refe"),Slot("Slot"),Spec("Spec"),SType("SType"),SInst("SInst"),Temp("Temp"),Text("Text"),File("File"),Unknown("Unknown");
 }

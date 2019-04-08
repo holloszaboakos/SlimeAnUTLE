@@ -4,7 +4,7 @@ import data.*
 import java.lang.Exception
 
 class Template(
-    names: MutableList<Text>,
+    names: MutableList<Text>?,
     val slots: MutableMap<Int, Slot>,
     val specials: MutableMap<Int, SpecialChar>,
     val texts: MutableMap<Int, Text>
@@ -32,7 +32,7 @@ class Template(
         for (k in slots.keys)
             slotCopy[k] = (slots[k]?.copy() ?: throw Exception(""))
         return Template(
-            MutableList(names.size) { i -> names[i] },
+            names?.toMutableList(),
             slotCopy,
             specials.toMutableMap(),
             texts.toMutableMap()
@@ -40,8 +40,8 @@ class Template(
     }
 
     fun getSlotsByName(name: String): Slot {
-        return slots.values.firstOrNull { it.names.any {t-> t.content==name } }
-            ?: throw Exception("there is no Slot called $name in Templlate: ${names.getOrNull(0) ?: "@nameless"} ")
+        return slots.values.firstOrNull { it.names?.any {t-> t.content==name }?:false }
+            ?: throw Exception("there is no Slot called $name in Templlate: ${names?.getOrNull(0) ?: "@nameless"} ")
     }
 
     override fun expand(): String {
@@ -62,12 +62,12 @@ class Template(
 
     override fun insert(v: Variable, i: Int): Variable = v.visit(this, "@insert")
 
-    override fun get(path: MutableList<String>): Variable =
+    override fun get(path: ListOf): Variable =
         when {
-            path.isEmpty() -> this
-            path.size==1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.isEmpty() -> this
+            path.content.size==1 -> {
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     slots[next.toInt()]?:throw Exception("Wrong index")
                 } catch (e: Exception) {
@@ -75,8 +75,8 @@ class Template(
                 }
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     slots[next.toInt()]?.get(path)?:throw Exception("Wrong index")
                 } catch (e: Exception) {
@@ -85,25 +85,25 @@ class Template(
             }
         }
 
-    override fun delete(path: MutableList<String>) {
+    override fun delete(path: ListOf) {
         when {
-            path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from Template: ${names.getOrNull(0) ?: "@nameless"}"
+            path.content.isEmpty() -> throw Exception(
+                "path shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
-            path.size == 1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.size == 1 -> {
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
-                    slots[i]?.delete(mutableListOf("@content"))
+                    slots[i]?.delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
                 } catch (e: Exception) {
-                    getSlotsByName(next).delete(mutableListOf("@content"))
+                    getSlotsByName(next).delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
                 }
 
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
                     slots[i]?.delete(path)
@@ -135,7 +135,7 @@ class Template(
                 result
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Template: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -150,18 +150,18 @@ class Template(
         val result: Template = when (mode) {
             "@insert" -> copy()
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Template: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
         }
         for (i in h.slots.keys)
             result.slots[i + size] =
-                h.slots[i] ?: throw Error("Wrong slot index at Template: ${names.getOrNull(0) ?: "@nameless"}")
+                h.slots[i] ?: throw Error("Wrong slot index at Template: ${names?.getOrNull(0) ?: "@nameless"}")
         for (i in h.specials.keys)
             result.specials[i + size] =
-                h.specials[i] ?: throw Error("Wrong special index at Template: ${names.getOrNull(0) ?: "@nameless"}")
+                h.specials[i] ?: throw Error("Wrong special index at Template: ${names?.getOrNull(0) ?: "@nameless"}")
         for (i in h.texts.keys)
             result.texts[i + size] =
-                h.texts[i] ?: throw Error("Wrong text index at Template: ${names.getOrNull(0) ?: "@nameless"}")
+                h.texts[i] ?: throw Error("Wrong text index at Template: ${names?.getOrNull(0) ?: "@nameless"}")
         return result
     }
 
@@ -171,7 +171,7 @@ class Template(
                 val result = copy();result.texts[slots.size + specials.size + texts.size] = h;result
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Template: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
         }
 

@@ -3,7 +3,7 @@ package data.type
 import data.*
 import java.lang.Exception
 
-data class StructType(override val names: MutableList<Text>, val attributes: List<NameType>) : Variable(Type.Type,names){
+data class StructType(override val names: MutableList<Text>?, val attributes: List<NameType>) : Variable(Type.SType,names){
 
     data class NameType(val name: String, val type: List<Type>)
 
@@ -17,7 +17,7 @@ data class StructType(override val names: MutableList<Text>, val attributes: Lis
     }
 
     override fun expand(): String {
-        var result = "struct ${names.getOrNull(0) ?: "@nameless"}{\n"
+        var result = "struct ${names?.getOrNull(0) ?: "@nameless"}{\n"
         for (a in attributes)
             result += "\t${a.name}:${a.type}\n"
         result += "}\n"
@@ -25,7 +25,7 @@ data class StructType(override val names: MutableList<Text>, val attributes: Lis
     }
 
     override fun expand(divider: String): String {
-        var result = "struct ${names.getOrNull(0) ?: "@nameless"}{$divider"
+        var result = "struct ${names?.getOrNull(0) ?: "@nameless"}{$divider"
         for (a in attributes)
             result += "\t${a.name}:${a.type}$divider"
         result += "}$divider"
@@ -33,13 +33,13 @@ data class StructType(override val names: MutableList<Text>, val attributes: Lis
     }
 
     override fun insert(v: Variable, i: Int): Variable =
-        throw Exception("You can not insert into a Structure Type Variable")
+        throw Exception("You can not insert into a Structure SType Variable")
 
-    override fun get(path: MutableList<String>): Variable =
-        throw Exception("You can not get from a Structure Type Variable")
+    override fun get(path: ListOf): Variable =
+        throw Exception("You can not get from a Structure SType Variable")
 
-    override fun delete(path: MutableList<String>) : Unit =
-        throw Exception("You can not delete from a Structure Type Variable")
+    override fun delete(path: ListOf) : Unit =
+        throw Exception("You can not delete from a Structure SType Variable")
 
     override fun visit(v: Visitor, mod: String): Variable = v.accept(this, mod)
 }

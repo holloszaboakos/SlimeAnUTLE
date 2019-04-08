@@ -2,16 +2,15 @@ package data.type
 
 import data.*
 import java.lang.Exception
-import kotlin.math.E
 
-class StructInstance(override val names: MutableList<Text>, val meta: StructType) : Variable(Type.Inst, names) {
+class StructInstance(override val names: MutableList<Text>?, val meta: StructType) : Variable(Type.SInst, names) {
 
     val content: MutableList<Variable?> = MutableList(meta.attributes.size) { null }
 
     override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List, type), mutableListOf(this))
 
     override fun copy(): StructInstance {
-        val result = StructInstance(names.toMutableList(), meta)
+        val result = StructInstance(names?.toMutableList(), meta)
         for (d in content)
             if (d != null) result.content[content.indexOf(d)] = d
         return result
@@ -36,53 +35,60 @@ class StructInstance(override val names: MutableList<Text>, val meta: StructType
         return this
     }
 
-    override fun get(path: MutableList<String>): Variable =
+    override fun get(path: ListOf): Variable =
         when {
-            path.isEmpty() -> this
-            path.size==1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.isEmpty() -> this
+            path.content.size == 1 -> {
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
-                    content[next.toInt()]?:throw Exception("Wrong index")
+                    content[next.toInt()] ?: throw Exception("Wrong index")
                 } catch (e: Exception) {
-                    content[meta.attributes.indexOf(meta.attributes.first{ it.name == next })]?:throw Exception("Wrong variable name")
+                    content[meta.attributes.indexOf(meta.attributes.first { it.name == next })]
+                        ?: throw Exception("Wrong variable name")
                 }
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
-                    content[next.toInt()]?.get(path)?:throw Exception("Wrong index")
+                    content[next.toInt()]?.get(path) ?: throw Exception("Wrong index")
                 } catch (e: Exception) {
-                    content[meta.attributes.indexOf(meta.attributes.first{ it.name == next })]?.get(path)?:throw Exception("Wrong variable name")
+                    content[meta.attributes.indexOf(meta.attributes.first { it.name == next })]?.get(path)
+                        ?: throw Exception("Wrong variable name")
                 }
             }
         }
 
-    override fun delete(path: MutableList<String>) {
+    override fun delete(path: ListOf) {
         when {
-            path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from Template: ${names.getOrNull(0) ?: "@nameless"}"
+            path.content.isEmpty() -> throw Exception(
+                "path.content shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
-            path.size == 1 -> {
-                val next = path[0]
-                path.removeAt(0)
+            path.content.size == 1 -> {
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
-                    content[i]?.delete(mutableListOf("@content"))
+                    content[i]?.delete(ListOf(mutableListOf(Type.List, Type.Text), mutableListOf(Text("@content"))))
                 } catch (e: Exception) {
-                    content[meta.attributes.indexOf(meta.attributes.first{ it.name == next })]?.delete(mutableListOf("@content"))
+                    content[meta.attributes.indexOf(meta.attributes.first { it.name == next })]?.delete(
+                        ListOf(
+                            mutableListOf(Type.List, Type.Text),
+                            mutableListOf(Text("@content"))
+                        )
+                    )
                 }
 
             }
             else -> {
-                val next = path[0]
-                path.removeAt(0)
+                val next = (path.content[0] as Text).content
+                path.content.removeAt(0)
                 try {
                     val i = next.toInt()
                     content[i]?.delete(path)
                 } catch (e: Exception) {
-                    content[meta.attributes.indexOf(meta.attributes.first{ it.name == next })]?.delete(path)
+                    content[meta.attributes.indexOf(meta.attributes.first { it.name == next })]?.delete(path)
                 }
 
             }
