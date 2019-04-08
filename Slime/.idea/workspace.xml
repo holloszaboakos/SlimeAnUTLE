@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../SlimeLex.g4" beforeDir="false" afterPath="$PROJECT_DIR$/../SlimeLex.g4" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/parser/SlimeLexer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="22" selection-start-column="22" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/.name">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/kotlinc.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SpecialChar.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding>
+                <element signature="e#19#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/Text.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+              <folding>
+                <element signature="e#19#59#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/StructType.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>LONLY_BRACKET_SLOT</find>
+      <find>SPEC</find>
+      <find>SLOT</find>
+      <find>EXPA</find>
+      <find>INSE</find>
+      <find>_L_OPER</find>
+      <find>_OPER</find>
+      <find>OPER|</find>
+      <find>_tale</find>
+      <find>OPER :</find>
+      <find>STRI_;</find>
+      <find>ski_</find>
+      <find>_SKIP</find>
+      <find>visit</find>
+      <find>copy</find>
+      <find>insert</find>
+      <find>&quot;insert</find>
+      <find>&quot;add</find>
+      <find>&quot;content</find>
+      <find>RULE_DIV_action</find>
+      <find>frag</find>
+      <find>STRI</find>
+      <find>TEXT_OUTOR</find>
+      <find>_SLSP</find>
+      <find>_STRI</find>
+      <find>_T|</find>
+      <find>CB_</find>
+      <find>_TEMP :</find>
+      <find>TypeContext</find>
+      <find>decl</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>LY</replace>
+      <replace>SLOT</replace>
+      <replace>SKIP</replace>
+      <replace>REFE</replace>
+      <replace>EXPA</replace>
+      <replace>INSE</replace>
+      <replace>DELE</replace>
+      <replace>DECL</replace>
+      <replace>_L_O</replace>
+      <replace>O|</replace>
+      <replace>NL_OPER</replace>
+      <replace>_TEMP</replace>
+      <replace>_tail</replace>
+      <replace>O :</replace>
+      <replace>stri</replace>
+      <replace>STRI;</replace>
+      <replace>stri_</replace>
+      <replace>_STRI</replace>
+      <replace>&quot;@insert</replace>
+      <replace>&quot;@add</replace>
+      <replace>&quot;@content</replace>
+      <replace>TEXT</replace>
+      <replace>}?</replace>
+      <replace>_B_O :</replace>
+      <replace>_B_S</replace>
+      <replace>_TEXT</replace>
+      <replace>_B_O</replace>
+      <replace>B_T :</replace>
+      <replace>_TEMP_</replace>
+      <replace>_B_T :</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/lola.kt" />
+        <option value="$PROJECT_DIR$/grammer.g4" />
+        <option value="$PROJECT_DIR$/grammar.g4" />
+        <option value="$PROJECT_DIR$/src/Main.kt" />
+        <option value="$PROJECT_DIR$/Slime.g4" />
+        <option value="$PROJECT_DIR$/src/Experiment.g4" />
+        <option value="$PROJECT_DIR$/src/Exp2.g4" />
+        <option value="$PROJECT_DIR$/src/gen_by_ANTLR/SlimeBaseListener.java" />
+        <option value="$PROJECT_DIR$/src/data/StructType.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/Visitor.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/Reference.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/Text.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/StructType.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SpecialChar.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/ReferenceOf.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/ReferenceTo.kt" />
+        <option value="$PROJECT_DIR$/src/data/Variable.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/StructInstance.kt" />
+        <option value="$PROJECT_DIR$/src/data/DataTree.kt" />
+        <option value="$PROJECT_DIR$/src/data/Type.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/File.kt" />
+        <option value="$PROJECT_DIR$/src/data/Visitor.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/Template.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/Slot.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/ListOf.kt" />
+        <option value="$PROJECT_DIR$/src/Slime_parser.g4" />
+        <option value="$PROJECT_DIR$/src/Slime_lexer.g4" />
+        <option value="$PROJECT_DIR$/src/SlimeParser.g4" />
+        <option value="$PROJECT_DIR$/src/SlimeLexer.g4" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="289" />
+    <option name="y" value="27" />
+    <option name="width" value="927" />
+    <option name="height" value="1053" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Slime" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Slime" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Slime" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="libraries" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Slime" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Slime" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="parser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="$PROJECT_DIR$/Slime.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/Slime.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/Slime.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/Slime.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/Slime.g4::/package" value="gen_by_ANTLR" />
+    <property name="$PROJECT_DIR$/g.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/g.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/g.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/g.g4::/language" value="Java" />
+    <property name="$PROJECT_DIR$/g.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/grammer.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/grammer.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/grammer.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/grammer.g4::/language" value="Java" />
+    <property name="$PROJECT_DIR$/grammer.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/src/SlimeLexer.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeLexer.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeLexer.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeLexer.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/src/SlimeLexer.g4::/package" value="parser" />
+    <property name="$PROJECT_DIR$/src/SlimeParser.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeParser.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeParser.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/src/SlimeParser.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/src/SlimeParser.g4::/package" value="parser" />
+    <property name="$PROJECT_DIR$/src/Slime_lexer.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_lexer.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_lexer.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_lexer.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/src/Slime_lexer.g4::/package" value="parser" />
+    <property name="$PROJECT_DIR$/src/Slime_parser.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_parser.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_parser.g4::/gen-visitor" value="true" />
+    <property name="$PROJECT_DIR$/src/Slime_parser.g4::/output-dir" value="$PROJECT_DIR$/src" />
+    <property name="$PROJECT_DIR$/src/Slime_parser.g4::/package" value="parser" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="data" />
+      <recent name="data.type" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="Slime" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="" />
+      <created>1554299139853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554299139853</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31780365" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32897604" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Tool Output" order="8" sideWeight="0.49916804" visible="true" weight="0.28976035" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50083196" side_tool="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.4997227" weight="0.41503268" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.23311546" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27287853" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Tool Output" order="8" sideWeight="0.49916804" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50083196" side_tool="true" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.4997227" weight="0.35969663" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout-to-restore>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/gVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/Slime.g4" />
+    <entry file="file://$PROJECT_DIR$/src/gen_by_ANTLR/SlimeBaseListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/Slime_lexer.tokens" />
+    <entry file="file://$PROJECT_DIR$/src/data/Type.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/File.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="90" column="58" lean-forward="true" selection-start-line="90" selection-start-column="58" selection-end-line="92" selection-end-column="5" />
+          <folding>
+            <element signature="e#19#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/Slot.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="104" column="31" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="31" />
+          <folding>
+            <element signature="e#19#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/ReferenceTo.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/Visitor.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/Template.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/StructInstance.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/Variable.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/DataTree.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/ListOf.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Slime_parserVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7488">
+          <caret line="312" column="1" selection-start-line="312" selection-start-column="1" selection-end-line="312" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Slime_parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.name">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/kotlinc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/Slime_lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6432">
+          <caret line="276" column="31" selection-start-line="276" selection-start-column="31" selection-end-line="276" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SpecialChar.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="e#19#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/Text.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <element signature="e#19#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/StructType.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/SlimeLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>UTLE</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>antlr-4.7.2-complete</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
