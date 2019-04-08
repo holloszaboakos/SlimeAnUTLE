@@ -192,6 +192,13 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitExpa_body_part(SlimeParser.Expa_body_partContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitExpa_tail(SlimeParser.Expa_tailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

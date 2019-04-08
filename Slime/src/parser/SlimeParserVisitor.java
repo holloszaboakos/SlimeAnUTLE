@@ -161,6 +161,12 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpa_body(SlimeParser.Expa_bodyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SlimeParser#expa_tail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

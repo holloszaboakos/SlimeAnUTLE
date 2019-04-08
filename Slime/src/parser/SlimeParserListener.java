@@ -258,6 +258,16 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitExpa_body(SlimeParser.Expa_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SlimeParser#expa_tail}.
 	 * @param ctx the parse tree
 	 */

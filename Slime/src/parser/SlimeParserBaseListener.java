@@ -316,6 +316,18 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExpa_body_part(SlimeParser.Expa_body_partContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpa_body_part(SlimeParser.Expa_body_partContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpa_tail(SlimeParser.Expa_tailContext ctx) { }
 	/**
 	 * {@inheritDoc}

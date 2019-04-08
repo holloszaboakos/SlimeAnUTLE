@@ -60,7 +60,8 @@ expa_head:(OB_EXPA|OLB_EXPA|LB_EXPA|
            OB_EXPA_B_O|OLB_EXPA_B_O|LB_EXPA_B_O|
            OB_EXPA_O_O|OLB_EXPA_O_O|LB_EXPA_O_O|
            OB_EXPA_L_O|OLB_EXPA_L_O|LB_EXPA_L_O);
-expa_body:(vari ((CL_B_O|CL_O_O|CL_L_O) temp|(CL_B_O|CL_O_O|CL_L_O) spec)?|(OB_IMPORT|OL_IMPORT|L_IMPORT) variName);
+expa_body:(expa_body_part (SC_B_O|SC_O_O|SC_L_O))* expa_body_part;
+expa_body_part:(vari ((CL_B_O|CL_O_O|CL_L_O) temp|(CL_B_O|CL_O_O|CL_L_O) spec)?|(OB_IMPORT|OL_IMPORT|L_IMPORT) variName);
 expa_tail:(CB_EXPA|NL_OPER|NW_OPER);
 
 inse: inse_head inse_body inse_tail;
@@ -87,7 +88,7 @@ decl_head: (OB_DECL|OLB_DECL|LB_DECL|
             OB_DECL_B_O|OLB_DECL_B_O|LB_DECL_B_O|
             OB_DECL_O_O|OLB_DECL_O_O|LB_DECL_O_O|
             OB_DECL_L_O|OLB_DECL_L_O|LB_DECL_L_O) ;
-decl_neck:listName? (CL_B_O|CL_O_O|CL_L_O) typeName EQOP_B_O;
+decl_neck:listName? (CL_B_O|CL_O_O|CL_L_O) typeName (EQOP_B_O|EQOP_O_O|EQOP_L_O);
 decl_body: (decl_body_part (SC_B_O|SC_O_O|SC_L_O))* decl_body_part;
 decl_body_part: decl_neck( (listName)|
                  ((nameType (CO_B_O|CO_O_O|CO_L_O))* nameType)|
