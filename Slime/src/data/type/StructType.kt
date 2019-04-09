@@ -3,17 +3,15 @@ package data.type
 import data.*
 import java.lang.Exception
 
-data class StructType(override val names: MutableList<Text>?, val attributes: List<NameType>) : Variable(Type.SType,names){
+data class StructType( val attributes: List<NameType>,override val names: MutableList<Text>?=null) : Variable(Type.SType,names){
 
     data class NameType(val name: String, val type: List<Type>)
-
-    override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List,type), mutableListOf(this))
 
     override fun copy(): StructType {
         val attributesCopy= mutableListOf<NameType>()
         for (a in attributes)
             attributesCopy.add(NameType(a.name,a.type.toList()))
-        return StructType(mutableListOf(),attributesCopy)
+        return StructType(attributesCopy)
     }
 
     override fun expand(): String {
@@ -32,13 +30,13 @@ data class StructType(override val names: MutableList<Text>?, val attributes: Li
         return result
     }
 
-    override fun insert(v: Variable, i: Int): Variable =
-        throw Exception("You can not insert into a Structure SType Variable")
+    override fun add(v: Variable, i: Int): Variable =
+        throw Exception("You can not add into a Structure SType Variable")
 
-    override fun get(path: ListOf): Variable =
+    override fun get(path: ListOf<Text>): Variable =
         throw Exception("You can not get from a Structure SType Variable")
 
-    override fun delete(path: ListOf) : Unit =
+    override fun delete(path: ListOf<Text>) : Unit =
         throw Exception("You can not delete from a Structure SType Variable")
 
     override fun visit(v: Visitor, mod: String): Variable = v.accept(this, mod)

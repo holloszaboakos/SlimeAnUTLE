@@ -4,10 +4,10 @@ import data.*
 import java.lang.Exception
 
 class Template(
-    names: MutableList<Text>?,
     val slots: MutableMap<Int, Slot>,
-    val specials: MutableMap<Int, SpecialChar>,
-    val texts: MutableMap<Int, Text>
+    val specials: MutableMap<Int, Special>,
+    val texts: MutableMap<Int, Text>,
+    names: MutableList<Text>?=null
 ) : Variable(Type.Temp,names), Visitor {
 
     val all:List<Variable>
@@ -25,14 +25,11 @@ class Template(
         all=tmp.toList()
     }
 
-    override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List,type), mutableListOf(this))
-
     override fun copy(): Template {
         val slotCopy = mutableMapOf<Int, Slot>()
         for (k in slots.keys)
             slotCopy[k] = (slots[k]?.copy() ?: throw Exception(""))
         return Template(
-            names?.toMutableList(),
             slotCopy,
             specials.toMutableMap(),
             texts.toMutableMap()
@@ -60,13 +57,13 @@ class Template(
         return result
     }
 
-    override fun insert(v: Variable, i: Int): Variable = v.visit(this, "@insert")
+    override fun add(v: Variable, i: Int): Variable = v.visit(this, "@add")
 
-    override fun get(path: ListOf): Variable =
+    override fun get(path: ListOf<Text>): Variable =
         when {
             path.content.isEmpty() -> this
             path.content.size==1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     slots[next.toInt()]?:throw Exception("Wrong index")
@@ -75,7 +72,7 @@ class Template(
                 }
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     slots[next.toInt()]?.get(path)?:throw Exception("Wrong index")
@@ -85,24 +82,24 @@ class Template(
             }
         }
 
-    override fun delete(path: ListOf) {
+    override fun delete(path: ListOf<Text>) {
         when {
             path.content.isEmpty() -> throw Exception(
                 "path shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
             path.content.size == 1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     val i = next.toInt()
-                    slots[i]?.delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
+                    slots[i]?.delete(ListOf(mutableListOf(Text("@content"))))
                 } catch (e: Exception) {
-                    getSlotsByName(next).delete(ListOf(mutableListOf(Type.List,Type.Text),mutableListOf(Text("@content"))))
+                    getSlotsByName(next).delete(ListOf(mutableListOf(Text("@content"))))
                 }
 
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     val i = next.toInt()
@@ -120,16 +117,16 @@ class Template(
     override fun accept(h: Slot, mode: String): Variable {
         var result: Template = this
         when (mode) {
-            "@insert" -> {
+            "@add" -> {
                 result = copy();result.slots[slots.size + specials.size + texts.size] = h
             }
         }
         return result
     }
 
-    override fun accept(h: SpecialChar, mode: String): Variable =
+    override fun accept(h: Special, mode: String): Variable =
         when (mode) {
-            "@insert" -> {
+            "@add" -> {
                 val result = copy()
                 result.specials[slots.size + specials.size + texts.size] = h
                 result
@@ -148,7 +145,7 @@ class Template(
     override fun accept(h: Template, mode: String): Variable {
         val size = slots.size + specials.size + texts.size
         val result: Template = when (mode) {
-            "@insert" -> copy()
+            "@add" -> copy()
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
@@ -167,7 +164,7 @@ class Template(
 
     override fun accept(h: Text, mode: String): Variable =
         when (mode) {
-            "@insert" -> {
+            "@add" -> {
                 val result = copy();result.texts[slots.size + specials.size + texts.size] = h;result
             }
             else -> throw Exception(
@@ -178,7 +175,7 @@ class Template(
     override fun accept(h: ReferenceTo, mode: String)
             : Variable = throw Exception("TODO")
 
-    override fun accept(h: ListOf, mode: String)
+    override fun accept(h: ListOf<*>, mode: String)
             : Variable = throw Exception("TODO")
 
     override fun accept(h: File, mode: String)

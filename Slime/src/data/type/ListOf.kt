@@ -3,15 +3,18 @@ package data.type
 import data.*
 import java.lang.Exception
 
-class ListOf(names: MutableList<Text>?, val ofType: List<Type>, val content: MutableList<Variable>) :
+
+@Suppress("UNCHECKED_CAST")
+class ListOf<T:Variable>(val content: MutableList<T>,names: MutableList<Text>?=null):
     Variable(Type.List, names) {
 
-    constructor(ofType: List<Type>, content: MutableList<Variable>) : this(null, ofType, content) {}
+    override fun add(v: Variable, i: Int): Variable {
+        content.add(v as T)
+        return this
+    }
 
-    override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List, type), mutableListOf(this))
-
-    override fun copy(): ListOf {
-        val result = ListOf(names?.toMutableList(), ofType.toList(), content.toMutableList())
+    override fun copy(): ListOf<T> {
+        val result = ListOf(content.toMutableList())
         for (c in content)
             result.content.add(c)
         return result
@@ -32,58 +35,35 @@ class ListOf(names: MutableList<Text>?, val ofType: List<Type>, val content: Mut
         return result
     }
 
-    override fun insert(v: Variable, i: Int): Variable {
-        if (ofType.size == 1) {
-            if (v.type == ofType[0])
-                if (i > 0) content[i] = v
-                else content.add(v)
-            else throw Exception("This List can not contain variable of this type: ${v.type}")
-        }
-        var vari = v
-        for (t in 1..(ofType.size - 1)) {
-            if (vari.type != ofType[t])
-                throw Exception("This List can not contain variable of this type: ${v.type}")
-            when (ofType[t]) {
-                Type.List -> vari = (vari as ListOf).content[0]
-                else -> {
-                    println("lol")
-                }
-            }
-        }
-        if (i != -1) content[i] = v
-        else content.add(v)
-        return this
-    }
-
-    override fun get(path: ListOf): Variable =
+    override fun get(path: ListOf<Text>): Variable =
         when {
             path.content.isEmpty() -> this
             path.content.size == 1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 content[next.toInt()]
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 content[next.toInt()].get(path)
             }
         }
 
-    override fun delete(path: ListOf) {
+    override fun delete(path: ListOf<Text>) {
         when {
             path.content.isEmpty() -> throw Exception(
                 "path shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
             path.content.size == 1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 val i = next.toInt()
-                content[i].delete(ListOf(mutableListOf(Type.List, Type.Text), mutableListOf(Text("@content"))))
+                content[i].delete(ListOf(mutableListOf(Text("@content"))))
 
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 val i = next.toInt()
                 content[i].delete(path)

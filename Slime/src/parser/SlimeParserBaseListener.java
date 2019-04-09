@@ -40,37 +40,37 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterText_head(SlimeParser.Text_headContext ctx) { }
+	@Override public void enterTextHead(SlimeParser.TextHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitText_head(SlimeParser.Text_headContext ctx) { }
+	@Override public void exitTextHead(SlimeParser.TextHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterText_body(SlimeParser.Text_bodyContext ctx) { }
+	@Override public void enterTextBody(SlimeParser.TextBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitText_body(SlimeParser.Text_bodyContext ctx) { }
+	@Override public void exitTextBody(SlimeParser.TextBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterText_tail(SlimeParser.Text_tailContext ctx) { }
+	@Override public void enterTextTail(SlimeParser.TextTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitText_tail(SlimeParser.Text_tailContext ctx) { }
+	@Override public void exitTextTail(SlimeParser.TextTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,37 +88,37 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRefe_head(SlimeParser.Refe_headContext ctx) { }
+	@Override public void enterRefeHead(SlimeParser.RefeHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRefe_head(SlimeParser.Refe_headContext ctx) { }
+	@Override public void exitRefeHead(SlimeParser.RefeHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRefe_body(SlimeParser.Refe_bodyContext ctx) { }
+	@Override public void enterRefeBody(SlimeParser.RefeBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRefe_body(SlimeParser.Refe_bodyContext ctx) { }
+	@Override public void exitRefeBody(SlimeParser.RefeBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRefe_tail(SlimeParser.Refe_tailContext ctx) { }
+	@Override public void enterRefeTail(SlimeParser.RefeTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRefe_tail(SlimeParser.Refe_tailContext ctx) { }
+	@Override public void exitRefeTail(SlimeParser.RefeTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,25 +136,25 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSlot_head(SlimeParser.Slot_headContext ctx) { }
+	@Override public void enterSlotHead(SlimeParser.SlotHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSlot_head(SlimeParser.Slot_headContext ctx) { }
+	@Override public void exitSlotHead(SlimeParser.SlotHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSlot_tail(SlimeParser.Slot_tailContext ctx) { }
+	@Override public void enterSlotTail(SlimeParser.SlotTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSlot_tail(SlimeParser.Slot_tailContext ctx) { }
+	@Override public void exitSlotTail(SlimeParser.SlotTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -172,37 +172,37 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpec_head(SlimeParser.Spec_headContext ctx) { }
+	@Override public void enterSpecHead(SlimeParser.SpecHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSpec_head(SlimeParser.Spec_headContext ctx) { }
+	@Override public void exitSpecHead(SlimeParser.SpecHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpec_tail(SlimeParser.Spec_tailContext ctx) { }
+	@Override public void enterSpecTail(SlimeParser.SpecTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSpec_tail(SlimeParser.Spec_tailContext ctx) { }
+	@Override public void exitSpecTail(SlimeParser.SpecTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSpsl_body(SlimeParser.Spsl_bodyContext ctx) { }
+	@Override public void enterSpslBody(SlimeParser.SpslBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSpsl_body(SlimeParser.Spsl_bodyContext ctx) { }
+	@Override public void exitSpslBody(SlimeParser.SpslBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -220,61 +220,61 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTemp_head(SlimeParser.Temp_headContext ctx) { }
+	@Override public void enterTempHead(SlimeParser.TempHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTemp_head(SlimeParser.Temp_headContext ctx) { }
+	@Override public void exitTempHead(SlimeParser.TempHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTemp_body(SlimeParser.Temp_bodyContext ctx) { }
+	@Override public void enterTempBody(SlimeParser.TempBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTemp_body(SlimeParser.Temp_bodyContext ctx) { }
+	@Override public void exitTempBody(SlimeParser.TempBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTemp_tail(SlimeParser.Temp_tailContext ctx) { }
+	@Override public void enterTempBodyPart(SlimeParser.TempBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTemp_tail(SlimeParser.Temp_tailContext ctx) { }
+	@Override public void exitTempBodyPart(SlimeParser.TempBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTemp_line(SlimeParser.Temp_lineContext ctx) { }
+	@Override public void enterTempTail(SlimeParser.TempTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTemp_line(SlimeParser.Temp_lineContext ctx) { }
+	@Override public void exitTempTail(SlimeParser.TempTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTemp_text(SlimeParser.Temp_textContext ctx) { }
+	@Override public void enterTempText(SlimeParser.TempTextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTemp_text(SlimeParser.Temp_textContext ctx) { }
+	@Override public void exitTempText(SlimeParser.TempTextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -292,121 +292,121 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpa_head(SlimeParser.Expa_headContext ctx) { }
+	@Override public void enterExpaHead(SlimeParser.ExpaHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpa_head(SlimeParser.Expa_headContext ctx) { }
+	@Override public void exitExpaHead(SlimeParser.ExpaHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpa_body(SlimeParser.Expa_bodyContext ctx) { }
+	@Override public void enterExpaBody(SlimeParser.ExpaBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpa_body(SlimeParser.Expa_bodyContext ctx) { }
+	@Override public void exitExpaBody(SlimeParser.ExpaBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpa_body_part(SlimeParser.Expa_body_partContext ctx) { }
+	@Override public void enterExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpa_body_part(SlimeParser.Expa_body_partContext ctx) { }
+	@Override public void exitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpa_tail(SlimeParser.Expa_tailContext ctx) { }
+	@Override public void enterExpaTail(SlimeParser.ExpaTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpa_tail(SlimeParser.Expa_tailContext ctx) { }
+	@Override public void exitExpaTail(SlimeParser.ExpaTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse(SlimeParser.InseContext ctx) { }
+	@Override public void enterPlus(SlimeParser.PlusContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse(SlimeParser.InseContext ctx) { }
+	@Override public void exitPlus(SlimeParser.PlusContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse_head(SlimeParser.Inse_headContext ctx) { }
+	@Override public void enterPlusHead(SlimeParser.PlusHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse_head(SlimeParser.Inse_headContext ctx) { }
+	@Override public void exitPlusHead(SlimeParser.PlusHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse_body(SlimeParser.Inse_bodyContext ctx) { }
+	@Override public void enterPlusBody(SlimeParser.PlusBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse_body(SlimeParser.Inse_bodyContext ctx) { }
+	@Override public void exitPlusBody(SlimeParser.PlusBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse_body_part(SlimeParser.Inse_body_partContext ctx) { }
+	@Override public void enterPlusBodyPart(SlimeParser.PlusBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse_body_part(SlimeParser.Inse_body_partContext ctx) { }
+	@Override public void exitPlusBodyPart(SlimeParser.PlusBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse_element(SlimeParser.Inse_elementContext ctx) { }
+	@Override public void enterPlusElement(SlimeParser.PlusElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse_element(SlimeParser.Inse_elementContext ctx) { }
+	@Override public void exitPlusElement(SlimeParser.PlusElementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInse_tail(SlimeParser.Inse_tailContext ctx) { }
+	@Override public void enterPlusTail(SlimeParser.PlusTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInse_tail(SlimeParser.Inse_tailContext ctx) { }
+	@Override public void exitPlusTail(SlimeParser.PlusTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -424,37 +424,37 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDele_head(SlimeParser.Dele_headContext ctx) { }
+	@Override public void enterDeleHead(SlimeParser.DeleHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDele_head(SlimeParser.Dele_headContext ctx) { }
+	@Override public void exitDeleHead(SlimeParser.DeleHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDele_body(SlimeParser.Dele_bodyContext ctx) { }
+	@Override public void enterDeleBody(SlimeParser.DeleBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDele_body(SlimeParser.Dele_bodyContext ctx) { }
+	@Override public void exitDeleBody(SlimeParser.DeleBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDele_tail(SlimeParser.Dele_tailContext ctx) { }
+	@Override public void enterDeleTail(SlimeParser.DeleTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDele_tail(SlimeParser.Dele_tailContext ctx) { }
+	@Override public void exitDeleTail(SlimeParser.DeleTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -472,61 +472,61 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl_head(SlimeParser.Decl_headContext ctx) { }
+	@Override public void enterDeclHead(SlimeParser.DeclHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl_head(SlimeParser.Decl_headContext ctx) { }
+	@Override public void exitDeclHead(SlimeParser.DeclHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl_neck(SlimeParser.Decl_neckContext ctx) { }
+	@Override public void enterDeclNeck(SlimeParser.DeclNeckContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl_neck(SlimeParser.Decl_neckContext ctx) { }
+	@Override public void exitDeclNeck(SlimeParser.DeclNeckContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl_body(SlimeParser.Decl_bodyContext ctx) { }
+	@Override public void enterDeclBody(SlimeParser.DeclBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl_body(SlimeParser.Decl_bodyContext ctx) { }
+	@Override public void exitDeclBody(SlimeParser.DeclBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl_body_part(SlimeParser.Decl_body_partContext ctx) { }
+	@Override public void enterDeclBodyPart(SlimeParser.DeclBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl_body_part(SlimeParser.Decl_body_partContext ctx) { }
+	@Override public void exitDeclBodyPart(SlimeParser.DeclBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl_tail(SlimeParser.Decl_tailContext ctx) { }
+	@Override public void enterDeclTail(SlimeParser.DeclTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl_tail(SlimeParser.Decl_tailContext ctx) { }
+	@Override public void exitDeclTail(SlimeParser.DeclTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -604,13 +604,13 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterText_outor(SlimeParser.Text_outorContext ctx) { }
+	@Override public void enterTextOutor(SlimeParser.TextOutorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitText_outor(SlimeParser.Text_outorContext ctx) { }
+	@Override public void exitTextOutor(SlimeParser.TextOutorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -28,35 +28,35 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitText(SlimeParser.TextContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#text_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#textHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterText_head(SlimeParser.Text_headContext ctx);
+	void enterTextHead(SlimeParser.TextHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#text_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#textHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitText_head(SlimeParser.Text_headContext ctx);
+	void exitTextHead(SlimeParser.TextHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#text_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#textBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterText_body(SlimeParser.Text_bodyContext ctx);
+	void enterTextBody(SlimeParser.TextBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#text_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#textBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitText_body(SlimeParser.Text_bodyContext ctx);
+	void exitTextBody(SlimeParser.TextBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#text_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#textTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterText_tail(SlimeParser.Text_tailContext ctx);
+	void enterTextTail(SlimeParser.TextTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#text_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#textTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitText_tail(SlimeParser.Text_tailContext ctx);
+	void exitTextTail(SlimeParser.TextTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#refe}.
 	 * @param ctx the parse tree
@@ -68,35 +68,35 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitRefe(SlimeParser.RefeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#refe_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#refeHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterRefe_head(SlimeParser.Refe_headContext ctx);
+	void enterRefeHead(SlimeParser.RefeHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#refe_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#refeHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitRefe_head(SlimeParser.Refe_headContext ctx);
+	void exitRefeHead(SlimeParser.RefeHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#refe_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#refeBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterRefe_body(SlimeParser.Refe_bodyContext ctx);
+	void enterRefeBody(SlimeParser.RefeBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#refe_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#refeBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitRefe_body(SlimeParser.Refe_bodyContext ctx);
+	void exitRefeBody(SlimeParser.RefeBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#refe_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#refeTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterRefe_tail(SlimeParser.Refe_tailContext ctx);
+	void enterRefeTail(SlimeParser.RefeTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#refe_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#refeTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitRefe_tail(SlimeParser.Refe_tailContext ctx);
+	void exitRefeTail(SlimeParser.RefeTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#slot}.
 	 * @param ctx the parse tree
@@ -108,25 +108,25 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitSlot(SlimeParser.SlotContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#slot_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#slotHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterSlot_head(SlimeParser.Slot_headContext ctx);
+	void enterSlotHead(SlimeParser.SlotHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#slot_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#slotHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitSlot_head(SlimeParser.Slot_headContext ctx);
+	void exitSlotHead(SlimeParser.SlotHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#slot_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#slotTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterSlot_tail(SlimeParser.Slot_tailContext ctx);
+	void enterSlotTail(SlimeParser.SlotTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#slot_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#slotTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitSlot_tail(SlimeParser.Slot_tailContext ctx);
+	void exitSlotTail(SlimeParser.SlotTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#spec}.
 	 * @param ctx the parse tree
@@ -138,35 +138,35 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitSpec(SlimeParser.SpecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#spec_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#specHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterSpec_head(SlimeParser.Spec_headContext ctx);
+	void enterSpecHead(SlimeParser.SpecHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#spec_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#specHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitSpec_head(SlimeParser.Spec_headContext ctx);
+	void exitSpecHead(SlimeParser.SpecHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#spec_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#specTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterSpec_tail(SlimeParser.Spec_tailContext ctx);
+	void enterSpecTail(SlimeParser.SpecTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#spec_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#specTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitSpec_tail(SlimeParser.Spec_tailContext ctx);
+	void exitSpecTail(SlimeParser.SpecTailContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#spsl_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#spslBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterSpsl_body(SlimeParser.Spsl_bodyContext ctx);
+	void enterSpslBody(SlimeParser.SpslBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#spsl_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#spslBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitSpsl_body(SlimeParser.Spsl_bodyContext ctx);
+	void exitSpslBody(SlimeParser.SpslBodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#temp}.
 	 * @param ctx the parse tree
@@ -178,55 +178,55 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitTemp(SlimeParser.TempContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#temp_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#tempHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterTemp_head(SlimeParser.Temp_headContext ctx);
+	void enterTempHead(SlimeParser.TempHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#temp_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#tempHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitTemp_head(SlimeParser.Temp_headContext ctx);
+	void exitTempHead(SlimeParser.TempHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#temp_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#tempBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterTemp_body(SlimeParser.Temp_bodyContext ctx);
+	void enterTempBody(SlimeParser.TempBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#temp_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#tempBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitTemp_body(SlimeParser.Temp_bodyContext ctx);
+	void exitTempBody(SlimeParser.TempBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#temp_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#tempBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterTemp_tail(SlimeParser.Temp_tailContext ctx);
+	void enterTempBodyPart(SlimeParser.TempBodyPartContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#temp_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#tempBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitTemp_tail(SlimeParser.Temp_tailContext ctx);
+	void exitTempBodyPart(SlimeParser.TempBodyPartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#temp_line}.
+	 * Enter a parse tree produced by {@link SlimeParser#tempTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterTemp_line(SlimeParser.Temp_lineContext ctx);
+	void enterTempTail(SlimeParser.TempTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#temp_line}.
+	 * Exit a parse tree produced by {@link SlimeParser#tempTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitTemp_line(SlimeParser.Temp_lineContext ctx);
+	void exitTempTail(SlimeParser.TempTailContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#temp_text}.
+	 * Enter a parse tree produced by {@link SlimeParser#tempText}.
 	 * @param ctx the parse tree
 	 */
-	void enterTemp_text(SlimeParser.Temp_textContext ctx);
+	void enterTempText(SlimeParser.TempTextContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#temp_text}.
+	 * Exit a parse tree produced by {@link SlimeParser#tempText}.
 	 * @param ctx the parse tree
 	 */
-	void exitTemp_text(SlimeParser.Temp_textContext ctx);
+	void exitTempText(SlimeParser.TempTextContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#expa}.
 	 * @param ctx the parse tree
@@ -238,105 +238,105 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitExpa(SlimeParser.ExpaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expa_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#expaHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpa_head(SlimeParser.Expa_headContext ctx);
+	void enterExpaHead(SlimeParser.ExpaHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expa_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#expaHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpa_head(SlimeParser.Expa_headContext ctx);
+	void exitExpaHead(SlimeParser.ExpaHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expa_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#expaBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpa_body(SlimeParser.Expa_bodyContext ctx);
+	void enterExpaBody(SlimeParser.ExpaBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expa_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#expaBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpa_body(SlimeParser.Expa_bodyContext ctx);
+	void exitExpaBody(SlimeParser.ExpaBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * Enter a parse tree produced by {@link SlimeParser#expaBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	void enterExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * Exit a parse tree produced by {@link SlimeParser#expaBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	void exitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expa_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#expaTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpa_tail(SlimeParser.Expa_tailContext ctx);
+	void enterExpaTail(SlimeParser.ExpaTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expa_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#expaTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpa_tail(SlimeParser.Expa_tailContext ctx);
+	void exitExpaTail(SlimeParser.ExpaTailContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse}.
+	 * Enter a parse tree produced by {@link SlimeParser#plus}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse(SlimeParser.InseContext ctx);
+	void enterPlus(SlimeParser.PlusContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse}.
+	 * Exit a parse tree produced by {@link SlimeParser#plus}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse(SlimeParser.InseContext ctx);
+	void exitPlus(SlimeParser.PlusContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#plusHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse_head(SlimeParser.Inse_headContext ctx);
+	void enterPlusHead(SlimeParser.PlusHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#plusHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse_head(SlimeParser.Inse_headContext ctx);
+	void exitPlusHead(SlimeParser.PlusHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#plusBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse_body(SlimeParser.Inse_bodyContext ctx);
+	void enterPlusBody(SlimeParser.PlusBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#plusBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse_body(SlimeParser.Inse_bodyContext ctx);
+	void exitPlusBody(SlimeParser.PlusBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse_body_part}.
+	 * Enter a parse tree produced by {@link SlimeParser#plusBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse_body_part(SlimeParser.Inse_body_partContext ctx);
+	void enterPlusBodyPart(SlimeParser.PlusBodyPartContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse_body_part}.
+	 * Exit a parse tree produced by {@link SlimeParser#plusBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse_body_part(SlimeParser.Inse_body_partContext ctx);
+	void exitPlusBodyPart(SlimeParser.PlusBodyPartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse_element}.
+	 * Enter a parse tree produced by {@link SlimeParser#plusElement}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse_element(SlimeParser.Inse_elementContext ctx);
+	void enterPlusElement(SlimeParser.PlusElementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse_element}.
+	 * Exit a parse tree produced by {@link SlimeParser#plusElement}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse_element(SlimeParser.Inse_elementContext ctx);
+	void exitPlusElement(SlimeParser.PlusElementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#inse_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#plusTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterInse_tail(SlimeParser.Inse_tailContext ctx);
+	void enterPlusTail(SlimeParser.PlusTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#inse_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#plusTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitInse_tail(SlimeParser.Inse_tailContext ctx);
+	void exitPlusTail(SlimeParser.PlusTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#dele}.
 	 * @param ctx the parse tree
@@ -348,35 +348,35 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitDele(SlimeParser.DeleContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#dele_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#deleHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterDele_head(SlimeParser.Dele_headContext ctx);
+	void enterDeleHead(SlimeParser.DeleHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#dele_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#deleHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitDele_head(SlimeParser.Dele_headContext ctx);
+	void exitDeleHead(SlimeParser.DeleHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#dele_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#deleBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterDele_body(SlimeParser.Dele_bodyContext ctx);
+	void enterDeleBody(SlimeParser.DeleBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#dele_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#deleBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitDele_body(SlimeParser.Dele_bodyContext ctx);
+	void exitDeleBody(SlimeParser.DeleBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#dele_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#deleTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterDele_tail(SlimeParser.Dele_tailContext ctx);
+	void enterDeleTail(SlimeParser.DeleTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#dele_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#deleTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitDele_tail(SlimeParser.Dele_tailContext ctx);
+	void exitDeleTail(SlimeParser.DeleTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#decl}.
 	 * @param ctx the parse tree
@@ -388,55 +388,55 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitDecl(SlimeParser.DeclContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#decl_head}.
+	 * Enter a parse tree produced by {@link SlimeParser#declHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl_head(SlimeParser.Decl_headContext ctx);
+	void enterDeclHead(SlimeParser.DeclHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#decl_head}.
+	 * Exit a parse tree produced by {@link SlimeParser#declHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl_head(SlimeParser.Decl_headContext ctx);
+	void exitDeclHead(SlimeParser.DeclHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#decl_neck}.
+	 * Enter a parse tree produced by {@link SlimeParser#declNeck}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl_neck(SlimeParser.Decl_neckContext ctx);
+	void enterDeclNeck(SlimeParser.DeclNeckContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#decl_neck}.
+	 * Exit a parse tree produced by {@link SlimeParser#declNeck}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl_neck(SlimeParser.Decl_neckContext ctx);
+	void exitDeclNeck(SlimeParser.DeclNeckContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#decl_body}.
+	 * Enter a parse tree produced by {@link SlimeParser#declBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl_body(SlimeParser.Decl_bodyContext ctx);
+	void enterDeclBody(SlimeParser.DeclBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#decl_body}.
+	 * Exit a parse tree produced by {@link SlimeParser#declBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl_body(SlimeParser.Decl_bodyContext ctx);
+	void exitDeclBody(SlimeParser.DeclBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#decl_body_part}.
+	 * Enter a parse tree produced by {@link SlimeParser#declBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl_body_part(SlimeParser.Decl_body_partContext ctx);
+	void enterDeclBodyPart(SlimeParser.DeclBodyPartContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#decl_body_part}.
+	 * Exit a parse tree produced by {@link SlimeParser#declBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl_body_part(SlimeParser.Decl_body_partContext ctx);
+	void exitDeclBodyPart(SlimeParser.DeclBodyPartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#decl_tail}.
+	 * Enter a parse tree produced by {@link SlimeParser#declTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl_tail(SlimeParser.Decl_tailContext ctx);
+	void enterDeclTail(SlimeParser.DeclTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#decl_tail}.
+	 * Exit a parse tree produced by {@link SlimeParser#declTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl_tail(SlimeParser.Decl_tailContext ctx);
+	void exitDeclTail(SlimeParser.DeclTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#nameValue}.
 	 * @param ctx the parse tree
@@ -498,13 +498,13 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitTypeName(SlimeParser.TypeNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#text_outor}.
+	 * Enter a parse tree produced by {@link SlimeParser#textOutor}.
 	 * @param ctx the parse tree
 	 */
-	void enterText_outor(SlimeParser.Text_outorContext ctx);
+	void enterTextOutor(SlimeParser.TextOutorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#text_outor}.
+	 * Exit a parse tree produced by {@link SlimeParser#textOutor}.
 	 * @param ctx the parse tree
 	 */
-	void exitText_outor(SlimeParser.Text_outorContext ctx);
+	void exitTextOutor(SlimeParser.TextOutorContext ctx);
 }

@@ -31,21 +31,21 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitText_head(SlimeParser.Text_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTextHead(SlimeParser.TextHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitText_body(SlimeParser.Text_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTextBody(SlimeParser.TextBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitText_tail(SlimeParser.Text_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTextTail(SlimeParser.TextTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -59,21 +59,21 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRefe_head(SlimeParser.Refe_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRefeHead(SlimeParser.RefeHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRefe_body(SlimeParser.Refe_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRefeBody(SlimeParser.RefeBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRefe_tail(SlimeParser.Refe_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRefeTail(SlimeParser.RefeTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -87,14 +87,14 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSlot_head(SlimeParser.Slot_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSlotHead(SlimeParser.SlotHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSlot_tail(SlimeParser.Slot_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSlotTail(SlimeParser.SlotTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -108,21 +108,21 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSpec_head(SlimeParser.Spec_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSpecHead(SlimeParser.SpecHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSpec_tail(SlimeParser.Spec_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSpecTail(SlimeParser.SpecTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSpsl_body(SlimeParser.Spsl_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSpslBody(SlimeParser.SpslBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,35 +136,35 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTemp_head(SlimeParser.Temp_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTempHead(SlimeParser.TempHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTemp_body(SlimeParser.Temp_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTempBody(SlimeParser.TempBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTemp_tail(SlimeParser.Temp_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTempBodyPart(SlimeParser.TempBodyPartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTemp_line(SlimeParser.Temp_lineContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTempTail(SlimeParser.TempTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTemp_text(SlimeParser.Temp_textContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTempText(SlimeParser.TempTextContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -178,70 +178,70 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpa_head(SlimeParser.Expa_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpaHead(SlimeParser.ExpaHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpa_body(SlimeParser.Expa_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpaBody(SlimeParser.ExpaBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpa_body_part(SlimeParser.Expa_body_partContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpa_tail(SlimeParser.Expa_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpaTail(SlimeParser.ExpaTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse(SlimeParser.InseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlus(SlimeParser.PlusContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse_head(SlimeParser.Inse_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusHead(SlimeParser.PlusHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse_body(SlimeParser.Inse_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusBody(SlimeParser.PlusBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse_body_part(SlimeParser.Inse_body_partContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusBodyPart(SlimeParser.PlusBodyPartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse_element(SlimeParser.Inse_elementContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusElement(SlimeParser.PlusElementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInse_tail(SlimeParser.Inse_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusTail(SlimeParser.PlusTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -255,21 +255,21 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDele_head(SlimeParser.Dele_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeleHead(SlimeParser.DeleHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDele_body(SlimeParser.Dele_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeleBody(SlimeParser.DeleBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDele_tail(SlimeParser.Dele_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeleTail(SlimeParser.DeleTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -283,35 +283,35 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDecl_head(SlimeParser.Decl_headContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclHead(SlimeParser.DeclHeadContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDecl_neck(SlimeParser.Decl_neckContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclNeck(SlimeParser.DeclNeckContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDecl_body(SlimeParser.Decl_bodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclBody(SlimeParser.DeclBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDecl_body_part(SlimeParser.Decl_body_partContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclBodyPart(SlimeParser.DeclBodyPartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDecl_tail(SlimeParser.Decl_tailContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclTail(SlimeParser.DeclTailContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -360,5 +360,5 @@ public class SlimeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitText_outor(SlimeParser.Text_outorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTextOutor(SlimeParser.TextOutorContext ctx) { return visitChildren(ctx); }
 }

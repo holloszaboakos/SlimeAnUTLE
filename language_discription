@@ -7,10 +7,10 @@ They create a nameless instance of a specific Primitive Type
 //SLOT
 bracket: {$ name $} 
 one line: [$ name 
-compact: <$name
-The place where we can insert into the template. 
+compact:+$name
+The place where we can plus into the template. 
 It has a name it can be called by for in case the template has more slots
-To insert anything into it the insert relation must be used.
+To plus anything into it the plus relation must be used.
 
 //SPECIAL
 bracket: 	{@ name @} 
@@ -27,101 +27,101 @@ The feature is not complite yet
 //TEXT
 bracket: {" words "} 
 one line: [" words 
-compact: <"word
+compact:+"word
 You can use this operation to skip all special character inside it.
 
 //TEMPLATE
 bracket: {| name $} 
 one line: [| name 
-compact: <|name
+compact:+|name
 It marks a template. It can use only slots and special characters. Everithing else is skipped.
 
 
 //REFERENCE
-bracket: {$ name $} line [$ name compact: <$name
+bracket: {$ name $} line [$ name compact:+$name
 It creates a list out of the variables with a name maching the regex
 
 //OPERATION MARKERS
 They make operations on the variables
 
 //EXPAND
-bracket: {= variableName =} 
-one line [= variableName 
-compact: <=variableName
-You can use this operation to insert the value of a variable into the surrounding language
+bracket: {* variableName *} 
+one line [* variableName 
+compact:+=variableName
+You can use this operation to plus the value of a variable into the surrounding language
 It includes a special expression.
 In case you would like to import a file, you have to use this operation too
 
 You can expend template, synonym, list, structure, file:
 expend template:
-{= tempName  =}
+{* tempName  *}
 expend synonime:
-{= synName:{@ e @} =} prints them into the surrounding using enter as
+{* synName:{@ e @} *} prints them into the surrounding using enter as
 expend list:
-{= listName:{@ e @} =}
+{* listName:{@ e @} *}
 expend file (imports file as text):
-{= import:file.txt =}
+{* import:file.txt *}
 
-//INSERT
-bracket: {+ left :< right +} 
-one line: [+ left :< right 
-compact: <+left:<right
-You can use this operation to insert an element into a slot or a list of that type of elements
+//PLUS
+bracket: {+ left :+ right +} 
+one line: [+ left :+ right 
+compact:++left:+right
+You can use this operation to plus an element into a slot or a list of that type of elements
 "into" is the template, "here" is the slot, "this" is the other object.
-In case you would like to insert the content of a text file into a template you can use this variable
+In case you would like to plus the content of a text file into a template you can use this variable
 
-You can insert template into template, synonim into any variable, list into template, template into list,
+You can plus template into template, synonim into any variable, list into template, template into list,
 structure instance into template, template into structure instance, structure instance into list,list of structure instances into template, list into list
 template into template:
-{+ temp1.s1 :< temp2 +}
+{+ temp1.s1 :+ temp2 +}
 synonim into any variable:
-{+ var.names :< syn +}
+{+ var.names :+ syn +}
 list into template:
-{+ temp.s1 :< list +}
+{+ temp.s1 :+ list +}
 template into list:
-{+ list :< temp +}
+{+ list :+ temp +}
 template into all list items:
-{+ list.items :< temp +}
+{+ list.items :+ temp +}
 template into specific list item:
-{+ list.index :< temp +}
+{+ list.index :+ temp +}
 structure instance into template:
-{+ temp :< struct : s1 :< a1, s2 :< a2, s3 :< a3 +}
+{+ temp :+ struct : s1 :+ a1, s2 :+ a2, s3 :+ a3 +}
 template into structure instance:
-{+ struct.a1 :< temp +}
+{+ struct.a1 :+ temp +}
 structure instance into list:
-{+ list :< struture +}
+{+ list :+ struture +}
 list of structure instances into template:
-{+ temp :< list_of_struct : s1 :< a1, s2 :< a2, s3 :< a3 +}
+{+ temp :+ list_of_struct : s1 :+ a1, s2 :+ a2, s3 :+ a3 +}
 list into list:
-{+ list :< list +}
+{+ list :+ list +}
 file into surrounding (imports file as code):
 {+ import:file.txt +}
 
 //DECLARE
-bracket: {* meta := value *} 
-one line [* meta := value
-compact: <*meta:=value
+bracket: {= meta := value =} 
+one line [= meta := value
+compact:+*meta:=value
 You can use this operation to declare structures or any type of variable.
 First comes the name than the type than the value
 You do not have to use a name
 
 You can declare template, synonym, list, structure and structure instance
 template: 
- {* temp:Template := {|sth {$slot1$} sth sth sth {$slot2$}|} *}
+ {= temp:Template := {|sth {$slot1$} sth sth sth {$slot2$}|} =}
 synonym:
- {* syn:Synonym := t, template, te, tem  *}
+ {= syn:Synonym := t, template, te, tem  =}
 list:
- {* list:List := temp1, temp2, temp3, temp4 *}
+ {= list:List := temp1, temp2, temp3, temp4 =}
 sttruct:
- {* struct:Structure := name1 : type1, name2 : type2, name3 : type3 *}
- {* struct:Structure := name1, name2, name3 :type *}
+ {= struct:Structure := name1 : type1, name2 : type2, name3 : type3 =}
+ {= struct:Structure := name1, name2, name3 :type =}
 structure instance
- {* instace:struct := name1:val1,name2:val2,name3:val3 *}
- {* instace:struct := val1, val2, val3 *}
+ {= instace:struct := name1:val1,name2:val2,name3:val3 =}
+ {= instace:struct := val1, val2, val3 =}
 ....
 
 //DELETE
-bracket: {x name x} line [x name compact: <xname
+bracket: {x name x} line [x name compact:+xname
 You can use this operation to delete any allready created structures (including all of its instances) or any type of variable.
 You have to add only the name of the object as input.
 
@@ -130,7 +130,7 @@ You have to add only the name of the object as input.
 //Comment
 bracket: {# name #} 
 one line: [# name 
-compact: <#name
+compact:+#name
 You can add comments anywhere with this It skippes everything and it won't apeare in the final result
 
 
@@ -142,7 +142,7 @@ You can add comments anywhere with this It skippes everything and it won't apear
 {# This is a code #}
 {# A very nice code #}
 {# template, structure and structure instance decleration #}
-{* 
+{= 
 temp:Template := 
 	{|
 		{@e@}{@t@}{$left$} -> {$header$}
@@ -152,11 +152,11 @@ temp:Template :=
 		{@e@}{@t@}[4lang] {$fourlang_graph$}
 		{@e@}
 	|}
-*}
-{* 
+=}
+{= 
 struct:Structure  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
-*}
-{* 
+=}
+{= 
 s:struct  :=  
 	left : {| NN |}, 
 	header : {| dog_NN |}, 
@@ -164,17 +164,17 @@ s:struct  :=
 	syntax_tree : {| NN(dog)  |}, 
 	ud_graph : {| dog |}, 
 	fourlang_graph : {| dog |}
-*}
-{# insert the structure instance into the template and print it out #}
-{= {+ 
-temp :< s : 
-	left 		:< left, 
-	header 		:< header, 
-	string 		:< string, 
-	syntax_tree 	:< syntax_tree, 
-	ud_graph 	:< ud_graph, 
-	fourlang_graph 	:< fourlang_graph
-+}  =}
+=}
+{# plus the structure instance into the template and print it out #}
+{* {+ 
+temp :+ s : 
+	left 		:+ left, 
+	header 		:+ header, 
+	string 		:+ string, 
+	syntax_tree 	:+ syntax_tree, 
+	ud_graph 	:+ ud_graph, 
+	fourlang_graph 	:+ fourlang_graph
++}  *}
 {# delete all variables #}
 {x temp x}
 {x s x}
@@ -185,22 +185,22 @@ temp :< s :
 [# This is a code
 [# A very nice code
 [# template, structure and structure instance decleration
-{* 
+{= 
 temp:Template :=[|<@e;t<$left -> <$header <@e;t[string] <$string <@e;t[tree] <$syntax_tree <@e;t[ud] <$ud_graph <@e;t[4lang] <$fourlang_graph <@e
 
 struct:Structure :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template;
 
 s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
-*}
-[# insert the structure instance into the template and print it out
-[=[+temp:<s
+=}
+[# plus the structure instance into the template and print it out
+[*[+temp:+s
 [# delete all variables
 [x temp; s; struct
 
 //COMPLEX SHORT
 [# This is a complex example designed overly complex to represent most of the languages features
 [# template, structure, three structure instance and two list decleration
-{* 
+{= 
 	temp:Template := {|
 		<@e
 		<@e;t <$left -> <$header
@@ -214,38 +214,38 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 	;
 	s:struct := [| NN ;dog_<$word ;<$word ;NN( <$word ) ;<$word ;<$word
 	;
-	s1:struct := [+ s.attributes :< <|dog
+	s1:struct := [+ s.attributes :+ <|dog
 	;
-	s2:struct := [+ s :< <|cat
+	s2:struct := [+ s :+ <|cat
 	;
-	s3:struct := [+ s :< <|fish
+	s3:struct := [+ s :+ <|fish
 	;
 	l1:List := s1,s2,s3
 	;[# I have to mark that this is a reference given by a regex
 	l2:List := [&struct,^s[123]$
 	;
-	l3:List := [+ s :<  [* :List := dog, cat, fish
-*}
-[# insert the structure instances into the template and print them out from three different source
-{=
-	[+ temp :< s1
-	;<@e
-	;[+ temp :< s2
-	;<@e
-	;[+ temp :< s3 
-	;<@e [# is the same as
-	;[+ temp :< l1
-	: <@e;e ; <@e [# and as
-	;[+ temp :< l2 ; {# but also as #} temp :< l3 
-	: <@e;e ;<@e	
+	l3:List := [+ s :+  [= :List := dog, cat, fish
 =}
+[# plus the structure instances into the template and print them out from three different source
+{*
+	[+ temp :+ s1
+	;<@e
+	;[+ temp :+ s2
+	;<@e
+	;[+ temp :+ s3 
+	;<@e [# is the same as
+	;[+ temp :+ l1
+	:<@e;e ; <@e [# and as
+	;[+ temp :+ l2 ; {# but also as #} temp :+ l3 
+	:<@e;e ;<@e	
+*}
 [# delete all variables
 [x temp; struct; <&slot,^s[123]$ ; l1; l2
 
 //COMPLEX LONG
 {#This is the same example from above but without the shortcuts#}
 {# template, structure, three structure instance and three lists decleration #}
-{* 
+{= 
 	temp:Template := {|
 		{@e@}{@t@}{$left$} -> {$header$}
 		{@e@}{@t@}[string] {$string$}
@@ -254,8 +254,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		{@e@}{@t@}[4lang] {$fourlang_graph$}
 		{@e@}
 	|}
-*}
-{*
+=}
+{=
 	struct:Structure := 
 		left : Template,
 		header : Template, 
@@ -263,8 +263,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : Template, 
 		ud_graph : Template, 
 		fourlang_graph : Template	
-*}
-{*	
+=}
+{=	
 	s:struct := 
 		left : {|NN|}, 
 		header : {|{$word$}_NN|}, 
@@ -272,58 +272,58 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : {|NN( {$word$} )|}, 
 		ud_graph : {|{$word$}|}, 
 		fourlang_graph : {|{$word$}|}
-*}
-{*
+=}
+{=
 	s1:struct := 
-		left : {+s.left:< {"dog"} +}, 
-		header : {+s.header:< {"dog"} +}, 
-		string : {+s.string:< {"dog"} +}, 
-		syntax_tree : {+s.syntax_tree:< {"dog"} +}, 
-		ud_graph : {+s.ud_graph:< {"dog"} +}, 
-		fourlang_graph : {+s.fourlang_graph:< {"dog"} +}
-*}
-{*
+		left : {+s.left:+ {"dog"} +}, 
+		header : {+s.header:+ {"dog"} +}, 
+		string : {+s.string:+ {"dog"} +}, 
+		syntax_tree : {+s.syntax_tree:+ {"dog"} +}, 
+		ud_graph : {+s.ud_graph:+ {"dog"} +}, 
+		fourlang_graph : {+s.fourlang_graph:+ {"dog"} +}
+=}
+{=
 	s2:struct := 
-		left : {+s.left:< {"cat"} +}, 
-		header : {+s.header:< {"cat"} +}, 
-		string : {+s.string:< {"cat"} +}, 
-		syntax_tree : {+s.syntax_tree:< {"cat"} +}, 
-		ud_graph : {+s.ud_graph:< {"cat"} +}, 
-		fourlang_graph : {+s.fourlang_graph:< {"cat"} +}
-*}
-{*
+		left : {+s.left:+ {"cat"} +}, 
+		header : {+s.header:+ {"cat"} +}, 
+		string : {+s.string:+ {"cat"} +}, 
+		syntax_tree : {+s.syntax_tree:+ {"cat"} +}, 
+		ud_graph : {+s.ud_graph:+ {"cat"} +}, 
+		fourlang_graph : {+s.fourlang_graph:+ {"cat"} +}
+=}
+{=
 	s3:struct := 
-		left : {+s.left:< {"fish"} +}, 
-		header : {+s.header:< {"fish"} +}, 
-		string : {+s.string:< {"fish"} +}, 
-		syntax_tree : {+s.syntax_tree:< {"fish"} +}, 
-		ud_graph : {+s.ud_graph:< {"fish"} +}, 
-		fourlang_graph : {+s.fourlang_graph:< {"fish"} +}
-*}
-{*
+		left : {+s.left:+ {"fish"} +}, 
+		header : {+s.header:+ {"fish"} +}, 
+		string : {+s.string:+ {"fish"} +}, 
+		syntax_tree : {+s.syntax_tree:+ {"fish"} +}, 
+		ud_graph : {+s.ud_graph:+ {"fish"} +}, 
+		fourlang_graph : {+s.fourlang_graph:+ {"fish"} +}
+=}
+{=
 	l1:List := s1, s2, s3
-*}
-{*
+=}
+{=
 	{# I have to mark that this is a reference given by a regex #}
 	l2:List := {&struct,^s[123]$ &}
-*}
-{*
-	l3:List := {+ s :<  {* :List := dog, cat, fish *} +}
-*}
-{# insert the structure instances into the template and print them out from three different source #}
-{= {+ temp :< s1 +}  =}
-{={@e@}=}
-{= {+ temp :< s2 +}  =}
+=}
+{=
+	l3:List := {+ s :+  {= :List := dog, cat, fish =} +}
+=}
+{# plus the structure instances into the template and print them out from three different source #}
+{* {+ temp :+ s1 +}  *}
+{*{@e@}*}
+{* {+ temp :+ s2 +}  *}
 {# You can access and brake code mode anywhere #}
-{={@e@}=}
-{= {+ temp :< s3 {# is the same as #} +}  =}
-{={@e@}=}
-{= {+ temp :< l1 +} : {@e;e@} {# and as #}  =}
-{={@e@}=}
-{= {+ temp :< l2 +} : {@e;e@} {# and as #}  =}
-{={@e@}=}
-{= {+ temp :< l3 +} : {@e;e@} {# but also as #}  =}
-{={@e@}=}
+{*{@e@}*}
+{* {+ temp :+ s3 {# is the same as #} +}  *}
+{*{@e@}*}
+{* {+ temp :+ l1 +} : {@e;e@} {# and as #}  *}
+{*{@e@}*}
+{* {+ temp :+ l2 +} : {@e;e@} {# and as #}  *}
+{*{@e@}*}
+{* {+ temp :+ l3 +} : {@e;e@} {# but also as #}  *}
+{*{@e@}*}
 {# delete all variables #}
 {x temp x}
 {x struct x}
@@ -334,7 +334,7 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 //COMPLEX DEMO
 {#This is the same example from above but without the shortcuts#}
 {# template, structure, three structure instance and three lists decleration #}
-{* 
+{= 
 	temp:Template : {|
 		{@e@}{@t@}{$left$} -> {$header$}
 		{@e@}{@t@}[string] {$string$}
@@ -343,8 +343,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		{@e@}{@t@}[4lang] {$fourlang_graph$}
 		{@e@}
 	|}
-*}
-{*
+=}
+{=
 	struct:Structure : 
 		left : Template:
 		header : Template: 
@@ -352,8 +352,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : Template: 
 		ud_graph : Template: 
 		fourlang_graph : Template	
-*}
-{*	
+=}
+{=	
 	s:struct : 
 		left : {|NN|}: 
 		header : {|{$word$}_NN|}: 
@@ -361,8 +361,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : {|NN( {$word$} )|}: 
 		ud_graph : {|{$word$}|}: 
 		fourlang_graph : {|{$word$}|}
-*}
-{*
+=}
+{=
 	s1:struct : 
 		left : {+s.left : {"dog"} +}: 
 		header : {+s.header : {"dog"} +}: 
@@ -370,8 +370,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : {+s.syntax_tree : {"dog"} +}: 
 		ud_graph : {+s.ud_graph : {"dog"} +}: 
 		fourlang_graph : {+s.fourlang_graph : {"dog"} +}
-*}
-{*
+=}
+{=
 	s2:struct : 
 		left : {+s.left : {"cat"} +}: 
 		header : {+s.header : {"cat"} +}: 
@@ -379,8 +379,8 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : {+s.syntax_tree : {"cat"} +}: 
 		ud_graph : {+s.ud_graph : {"cat"} +}: 
 		fourlang_graph : {+s.fourlang_graph : {"cat"} +}
-*}
-{*
+=}
+{=
 	s3:struct : 
 		left : {+s.left : {"fish"} +}: 
 		header : {+s.header : {"fish"} +}: 
@@ -388,31 +388,31 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 		syntax_tree : {+s.syntax_tree : {"fish"} +}: 
 		ud_graph : {+s.ud_graph : {"fish"} +}: 
 		fourlang_graph : {+s.fourlang_graph : {"fish"} +}
-*}
-{*
+=}
+{=
 	l1:List : s1: s2: s3
-*}
-{*
+=}
+{=
 	{# I have to mark that this is a reference given by a regex #}
 	l2:List : {&struct,^s[123]$ &}
-*}
-{*
-	l3:List : {+ s :  {* :List : dog: cat: fish *} +}
-*}
-{# insert the structure instances into the template and print them out from three different source #}
-{= {+ temp : s1 +}  =}
-{={@e@}=}
-{= {+ temp : s2 +}  =}
+=}
+{=
+	l3:List : {+ s :  {= :List : dog: cat: fish =} +}
+=}
+{# plus the structure instances into the template and print them out from three different source #}
+{* {+ temp : s1 +}  *}
+{*{@e@}*}
+{* {+ temp : s2 +}  *}
 {# You can access and brake code mode anywhere #}
-{={@e@}=}
-{= {+ temp : s3 {# is the same as #} +}  =}
-{={@e@}=}
-{= {+ temp : l1 : {|{@e@}{@e@}|} {# and as #} +}  =}
-{={@e@}=}
-{= {+ temp : l2 : {|{@e@}{@e@}|} {# and as #} +}  =}
-{={@e@}=}
-{= {+ temp : l3 : {|{@e@}{@e@}|} {# but also as #} +}  =}
-{={@e@}=}
+{*{@e@}*}
+{* {+ temp : s3 {# is the same as #} +}  *}
+{*{@e@}*}
+{* {+ temp : l1 : {|{@e@}{@e@}|} {# and as #} +}  *}
+{*{@e@}*}
+{* {+ temp : l2 : {|{@e@}{@e@}|} {# and as #} +}  *}
+{*{@e@}*}
+{* {+ temp : l3 : {|{@e@}{@e@}|} {# but also as #} +}  *}
+{*{@e@}*}
 {# delete all variables #}
 {x temp x}
 {x struct x}

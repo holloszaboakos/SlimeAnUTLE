@@ -18,39 +18,39 @@ public class SlimeLexer extends Lexer {
 		new PredictionContextCache();
 	public static final int
 		RULE_DIV=1, COMM_OUTER=2, OB_SLOT=3, OB_SPEC=4, OB_REFE=5, OB_EXPA=6, 
-		OB_INSE=7, OB_DECL=8, OB_DELE=9, OB_TEXT=10, OB_TEMP=11, OLB_SLOT=12, 
-		OLB_SPEC=13, OLB_REFE=14, OLB_EXPA=15, OLB_INSE=16, OLB_DECL=17, OLB_DELE=18, 
+		OB_PLUS=7, OB_DECL=8, OB_DELE=9, OB_TEXT=10, OB_TEMP=11, OLB_SLOT=12, 
+		OLB_SPEC=13, OLB_REFE=14, OLB_EXPA=15, OLB_PLUS=16, OLB_DECL=17, OLB_DELE=18, 
 		OLB_TEXT=19, OLB_TEMP=20, LB_SLOT=21, LB_SPEC=22, LB_REFE=23, LB_EXPA=24, 
-		LB_INSE=25, LB_DECL=26, LB_DELE=27, LB_TEXT=28, LB_TEMP=29, TEXT_OUTOR=30, 
+		LB_PLUS=25, LB_DECL=26, LB_DELE=27, LB_TEXT=28, LB_TEMP=29, TEXT_OUTOR=30, 
 		COMM_B_S=31, WS_B_S=32, CB_SLOT=33, CB_SPEC=34, NAME_B_S=35, SC_B_S=36, 
 		COMM_O_S=37, WS_O_S=38, NL_SLSP=39, NAME_O_S=40, SC_O_S=41, COMM_L_S=42, 
 		NW_SLSP=43, NAME_L_S=44, SC_L_S=45, COMM_REFE=46, WS_B_R=47, CB_REFE=48, 
 		CL_B_R=49, NAME_B_R=50, IN_B_R=51, COMM_O_R=52, WS_O_R=53, NL_REFE=54, 
 		CL_O_R=55, NAME_O_R=56, IN_O_R=57, COMM_L_R=58, WS_L_R=59, NW_REFE=60, 
 		CL_L_R=61, NAME_L_R=62, IN_L_R=63, COMM_B_O=64, WS_B_O=65, CB_EXPA=66, 
-		CB_INSE=67, CB_DECL=68, CB_DELE=69, OB_SLOT_B_O=70, OB_SPEC_B_O=71, OB_REFE_B_O=72, 
-		OB_EXPA_B_O=73, OB_INSE_B_O=74, OB_DECL_B_O=75, OB_DELE_B_O=76, OB_TEXT_B_O=77, 
+		CB_PLUS=67, CB_DECL=68, CB_DELE=69, OB_SLOT_B_O=70, OB_SPEC_B_O=71, OB_REFE_B_O=72, 
+		OB_EXPA_B_O=73, OB_PLUS_B_O=74, OB_DECL_B_O=75, OB_DELE_B_O=76, OB_TEXT_B_O=77, 
 		OB_TEMP_B_O=78, OLB_SLOT_B_O=79, OLB_SPEC_B_O=80, OLB_REFE_B_O=81, OLB_EXPA_B_O=82, 
-		OLB_INSE_B_O=83, OLB_DECL_B_O=84, OLB_DELE_B_O=85, OLB_TEXT_B_O=86, OLB_TEMP_B_O=87, 
-		LB_SLOT_B_O=88, LB_SPEC_B_O=89, LB_REFE_B_O=90, LB_EXPA_B_O=91, LB_INSE_B_O=92, 
+		OLB_PLUS_B_O=83, OLB_DECL_B_O=84, OLB_DELE_B_O=85, OLB_TEXT_B_O=86, OLB_TEMP_B_O=87, 
+		LB_SLOT_B_O=88, LB_SPEC_B_O=89, LB_REFE_B_O=90, LB_EXPA_B_O=91, LB_PLUS_B_O=92, 
 		LB_DECL_B_O=93, LB_DELE_B_O=94, LB_TEXT_B_O=95, LB_TEMP_B_O=96, OB_IMPORT=97, 
-		EQOP_B_O=98, INOP_B_O=99, PE_B_O=100, CL_B_O=101, CO_B_O=102, SC_B_O=103, 
+		EQOP_B_O=98, PLOP_B_O=99, PE_B_O=100, CL_B_O=101, CO_B_O=102, SC_B_O=103, 
 		NAME_B_O=104, INTE_B_O=105, COMM_O_O=106, WS_O_O=107, NL_OPER=108, OB_SLOT_O_O=109, 
-		OB_SPEC_O_O=110, OB_REFE_O_O=111, OB_EXPA_O_O=112, OB_INSE_O_O=113, OB_DECL_O_O=114, 
+		OB_SPEC_O_O=110, OB_REFE_O_O=111, OB_EXPA_O_O=112, OB_PLUS_O_O=113, OB_DECL_O_O=114, 
 		OB_DELE_O_O=115, OB_TEXT_O_O=116, OB_TEMP_O_O=117, OLB_SLOT_O_O=118, OLB_SPEC_O_O=119, 
-		OLB_REFE_O_O=120, OLB_EXPA_O_O=121, OLB_INSE_O_O=122, OLB_DECL_O_O=123, 
+		OLB_REFE_O_O=120, OLB_EXPA_O_O=121, OLB_PLUS_O_O=122, OLB_DECL_O_O=123, 
 		OLB_DELE_O_O=124, OLB_TEXT_O_O=125, OLB_TEMP_O_O=126, LB_SLOT_O_O=127, 
-		LB_SPEC_O_O=128, LB_REFE_O_O=129, LB_EXPA_O_O=130, LB_INSE_O_O=131, LB_DECL_O_O=132, 
+		LB_SPEC_O_O=128, LB_REFE_O_O=129, LB_EXPA_O_O=130, LB_PLUS_O_O=131, LB_DECL_O_O=132, 
 		LB_DELE_O_O=133, LB_TEXT_O_O=134, LB_TEMP_O_O=135, OL_IMPORT=136, EQOP_O_O=137, 
-		INOP_O_O=138, PE_O_O=139, CL_O_O=140, CO_O_O=141, SC_O_O=142, NAME_O_O=143, 
+		PLOP_O_O=138, PE_O_O=139, CL_O_O=140, CO_O_O=141, SC_O_O=142, NAME_O_O=143, 
 		INTE_O_O=144, COMM_L_O=145, WS_L_O=146, NW_OPER=147, OB_SLOT_L_O=148, 
-		OB_SPEC_L_O=149, OB_REFE_L_O=150, OB_EXPA_L_O=151, OB_INSE_L_O=152, OB_DECL_L_O=153, 
+		OB_SPEC_L_O=149, OB_REFE_L_O=150, OB_EXPA_L_O=151, OB_PLUS_L_O=152, OB_DECL_L_O=153, 
 		OB_DELE_L_O=154, OB_TEXT_L_O=155, OB_TEMP_L_O=156, OLB_SLOT_L_O=157, OLB_SPEC_L_O=158, 
-		OLB_REFE_L_O=159, OLB_EXPA_L_O=160, OLB_INSE_L_O=161, OLB_DECL_L_O=162, 
+		OLB_REFE_L_O=159, OLB_EXPA_L_O=160, OLB_PLUS_L_O=161, OLB_DECL_L_O=162, 
 		OLB_DELE_L_O=163, OLB_TEXT_L_O=164, OLB_TEMP_L_O=165, LB_SLOT_L_O=166, 
-		LB_SPEC_L_O=167, LB_REFE_L_O=168, LB_EXPA_L_O=169, LB_INSE_L_O=170, LB_DECL_L_O=171, 
+		LB_SPEC_L_O=167, LB_REFE_L_O=168, LB_EXPA_L_O=169, LB_PLUS_L_O=170, LB_DECL_L_O=171, 
 		LB_DELE_L_O=172, LB_TEXT_L_O=173, LB_TEMP_L_O=174, L_IMPORT=175, EQOP_L_O=176, 
-		INOP_L_O=177, PE_L_O=178, CL_L_O=179, CO_L_O=180, SC_L_O=181, NAME_L_O=182, 
+		PLOP_L_O=177, PE_L_O=178, CL_L_O=179, CO_L_O=180, SC_L_O=181, NAME_L_O=182, 
 		INTE_L_O=183, CB_TEXT=184, IN_TEXT=185, NL_TEXT=186, IN_OL_TEXT=187, NW_TEXT=188, 
 		IN_L_TEXT=189, CB_TEMP=190, TEXT_LINE=191, LINE_DIVIDER=192, OB_SLOT_B_T=193, 
 		OB_SPEC_B_T=194, OB_TEXT_B_T=195, OLB_SLOT_B_T=196, OLB_SPEC_B_T=197, 
@@ -77,36 +77,36 @@ public class SlimeLexer extends Lexer {
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"RULE_DIV", "COMM", "COMM_OUTER", "OB_SLOT", "OB_SPEC", "OB_REFE", "OB_EXPA", 
-			"OB_INSE", "OB_DECL", "OB_DELE", "OB_TEXT", "OB_TEMP", "OLB_SLOT", "OLB_SPEC", 
-			"OLB_REFE", "OLB_EXPA", "OLB_INSE", "OLB_DECL", "OLB_DELE", "OLB_TEXT", 
-			"OLB_TEMP", "LB_SLOT", "LB_SPEC", "LB_REFE", "LB_EXPA", "LB_INSE", "LB_DECL", 
+			"OB_PLUS", "OB_DECL", "OB_DELE", "OB_TEXT", "OB_TEMP", "OLB_SLOT", "OLB_SPEC", 
+			"OLB_REFE", "OLB_EXPA", "OLB_PLUS", "OLB_DECL", "OLB_DELE", "OLB_TEXT", 
+			"OLB_TEMP", "LB_SLOT", "LB_SPEC", "LB_REFE", "LB_EXPA", "LB_PLUS", "LB_DECL", 
 			"LB_DELE", "LB_TEXT", "LB_TEMP", "TEXT_OUTOR", "COMM_B_S", "WS_B_S", 
 			"CB_SLOT", "CB_SPEC", "NAME_B_S", "SC_B_S", "COMM_O_S", "WS_O_S", "NL_SLSP", 
 			"NAME_O_S", "SC_O_S", "COMM_L_S", "NW_SLSP", "NAME_L_S", "SC_L_S", "COMM_REFE", 
 			"WS_B_R", "CB_REFE", "CL_B_R", "NAME_B_R", "IN_B_R", "COMM_O_R", "WS_O_R", 
 			"NL_REFE", "CL_O_R", "NAME_O_R", "IN_O_R", "COMM_L_R", "WS_L_R", "NW_REFE", 
-			"CL_L_R", "NAME_L_R", "IN_L_R", "COMM_B_O", "WS_B_O", "CB_EXPA", "CB_INSE", 
+			"CL_L_R", "NAME_L_R", "IN_L_R", "COMM_B_O", "WS_B_O", "CB_EXPA", "CB_PLUS", 
 			"CB_DECL", "CB_DELE", "OB_SLOT_B_O", "OB_SPEC_B_O", "OB_REFE_B_O", "OB_EXPA_B_O", 
-			"OB_INSE_B_O", "OB_DECL_B_O", "OB_DELE_B_O", "OB_TEXT_B_O", "OB_TEMP_B_O", 
-			"OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", "OLB_EXPA_B_O", "OLB_INSE_B_O", 
+			"OB_PLUS_B_O", "OB_DECL_B_O", "OB_DELE_B_O", "OB_TEXT_B_O", "OB_TEMP_B_O", 
+			"OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", "OLB_EXPA_B_O", "OLB_PLUS_B_O", 
 			"OLB_DECL_B_O", "OLB_DELE_B_O", "OLB_TEXT_B_O", "OLB_TEMP_B_O", "LB_SLOT_B_O", 
-			"LB_SPEC_B_O", "LB_REFE_B_O", "LB_EXPA_B_O", "LB_INSE_B_O", "LB_DECL_B_O", 
+			"LB_SPEC_B_O", "LB_REFE_B_O", "LB_EXPA_B_O", "LB_PLUS_B_O", "LB_DECL_B_O", 
 			"LB_DELE_B_O", "LB_TEXT_B_O", "LB_TEMP_B_O", "OB_IMPORT", "EQOP_B_O", 
-			"INOP_B_O", "PE_B_O", "CL_B_O", "CO_B_O", "SC_B_O", "NAME_B_O", "INTE_B_O", 
+			"PLOP_B_O", "PE_B_O", "CL_B_O", "CO_B_O", "SC_B_O", "NAME_B_O", "INTE_B_O", 
 			"COMM_O_O", "WS_O_O", "NL_OPER", "OB_SLOT_O_O", "OB_SPEC_O_O", "OB_REFE_O_O", 
-			"OB_EXPA_O_O", "OB_INSE_O_O", "OB_DECL_O_O", "OB_DELE_O_O", "OB_TEXT_O_O", 
+			"OB_EXPA_O_O", "OB_PLUS_O_O", "OB_DECL_O_O", "OB_DELE_O_O", "OB_TEXT_O_O", 
 			"OB_TEMP_O_O", "OLB_SLOT_O_O", "OLB_SPEC_O_O", "OLB_REFE_O_O", "OLB_EXPA_O_O", 
-			"OLB_INSE_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", "OLB_TEMP_O_O", 
-			"LB_SLOT_O_O", "LB_SPEC_O_O", "LB_REFE_O_O", "LB_EXPA_O_O", "LB_INSE_O_O", 
+			"OLB_PLUS_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", "OLB_TEMP_O_O", 
+			"LB_SLOT_O_O", "LB_SPEC_O_O", "LB_REFE_O_O", "LB_EXPA_O_O", "LB_PLUS_O_O", 
 			"LB_DECL_O_O", "LB_DELE_O_O", "LB_TEXT_O_O", "LB_TEMP_O_O", "OL_IMPORT", 
-			"EQOP_O_O", "INOP_O_O", "PE_O_O", "CL_O_O", "CO_O_O", "SC_O_O", "NAME_O_O", 
+			"EQOP_O_O", "PLOP_O_O", "PE_O_O", "CL_O_O", "CO_O_O", "SC_O_O", "NAME_O_O", 
 			"INTE_O_O", "COMM_L_O", "WS_L_O", "NW_OPER", "OB_SLOT_L_O", "OB_SPEC_L_O", 
-			"OB_REFE_L_O", "OB_EXPA_L_O", "OB_INSE_L_O", "OB_DECL_L_O", "OB_DELE_L_O", 
+			"OB_REFE_L_O", "OB_EXPA_L_O", "OB_PLUS_L_O", "OB_DECL_L_O", "OB_DELE_L_O", 
 			"OB_TEXT_L_O", "OB_TEMP_L_O", "OLB_SLOT_L_O", "OLB_SPEC_L_O", "OLB_REFE_L_O", 
-			"OLB_EXPA_L_O", "OLB_INSE_L_O", "OLB_DECL_L_O", "OLB_DELE_L_O", "OLB_TEXT_L_O", 
+			"OLB_EXPA_L_O", "OLB_PLUS_L_O", "OLB_DECL_L_O", "OLB_DELE_L_O", "OLB_TEXT_L_O", 
 			"OLB_TEMP_L_O", "LB_SLOT_L_O", "LB_SPEC_L_O", "LB_REFE_L_O", "LB_EXPA_L_O", 
-			"LB_INSE_L_O", "LB_DECL_L_O", "LB_DELE_L_O", "LB_TEXT_L_O", "LB_TEMP_L_O", 
-			"L_IMPORT", "EQOP_L_O", "INOP_L_O", "PE_L_O", "CL_L_O", "CO_L_O", "SC_L_O", 
+			"LB_PLUS_L_O", "LB_DECL_L_O", "LB_DELE_L_O", "LB_TEXT_L_O", "LB_TEMP_L_O", 
+			"L_IMPORT", "EQOP_L_O", "PLOP_L_O", "PE_L_O", "CL_L_O", "CO_L_O", "SC_L_O", 
 			"NAME_L_O", "INTE_L_O", "CB_TEXT", "IN_TEXT", "NL_TEXT", "IN_OL_TEXT", 
 			"NW_TEXT", "IN_L_TEXT", "CB_TEMP", "TEXT_LINE", "LINE_DIVIDER", "OB_SLOT_B_T", 
 			"OB_SPEC_B_T", "OB_TEXT_B_T", "OLB_SLOT_B_T", "OLB_SPEC_B_T", "OLB_TEXT_B_T", 
@@ -127,7 +127,7 @@ public class SlimeLexer extends Lexer {
 			null, null, null, null, null, null, null, null, null, "'$}'", "'@}'", 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, "'&}'", null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, "'=}'", "'+}'", "'*}'", null, 
+			null, null, null, null, null, null, null, "'*}'", "'+}'", "'=}'", null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
@@ -145,36 +145,36 @@ public class SlimeLexer extends Lexer {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "RULE_DIV", "COMM_OUTER", "OB_SLOT", "OB_SPEC", "OB_REFE", "OB_EXPA", 
-			"OB_INSE", "OB_DECL", "OB_DELE", "OB_TEXT", "OB_TEMP", "OLB_SLOT", "OLB_SPEC", 
-			"OLB_REFE", "OLB_EXPA", "OLB_INSE", "OLB_DECL", "OLB_DELE", "OLB_TEXT", 
-			"OLB_TEMP", "LB_SLOT", "LB_SPEC", "LB_REFE", "LB_EXPA", "LB_INSE", "LB_DECL", 
+			"OB_PLUS", "OB_DECL", "OB_DELE", "OB_TEXT", "OB_TEMP", "OLB_SLOT", "OLB_SPEC", 
+			"OLB_REFE", "OLB_EXPA", "OLB_PLUS", "OLB_DECL", "OLB_DELE", "OLB_TEXT", 
+			"OLB_TEMP", "LB_SLOT", "LB_SPEC", "LB_REFE", "LB_EXPA", "LB_PLUS", "LB_DECL", 
 			"LB_DELE", "LB_TEXT", "LB_TEMP", "TEXT_OUTOR", "COMM_B_S", "WS_B_S", 
 			"CB_SLOT", "CB_SPEC", "NAME_B_S", "SC_B_S", "COMM_O_S", "WS_O_S", "NL_SLSP", 
 			"NAME_O_S", "SC_O_S", "COMM_L_S", "NW_SLSP", "NAME_L_S", "SC_L_S", "COMM_REFE", 
 			"WS_B_R", "CB_REFE", "CL_B_R", "NAME_B_R", "IN_B_R", "COMM_O_R", "WS_O_R", 
 			"NL_REFE", "CL_O_R", "NAME_O_R", "IN_O_R", "COMM_L_R", "WS_L_R", "NW_REFE", 
-			"CL_L_R", "NAME_L_R", "IN_L_R", "COMM_B_O", "WS_B_O", "CB_EXPA", "CB_INSE", 
+			"CL_L_R", "NAME_L_R", "IN_L_R", "COMM_B_O", "WS_B_O", "CB_EXPA", "CB_PLUS", 
 			"CB_DECL", "CB_DELE", "OB_SLOT_B_O", "OB_SPEC_B_O", "OB_REFE_B_O", "OB_EXPA_B_O", 
-			"OB_INSE_B_O", "OB_DECL_B_O", "OB_DELE_B_O", "OB_TEXT_B_O", "OB_TEMP_B_O", 
-			"OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", "OLB_EXPA_B_O", "OLB_INSE_B_O", 
+			"OB_PLUS_B_O", "OB_DECL_B_O", "OB_DELE_B_O", "OB_TEXT_B_O", "OB_TEMP_B_O", 
+			"OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", "OLB_EXPA_B_O", "OLB_PLUS_B_O", 
 			"OLB_DECL_B_O", "OLB_DELE_B_O", "OLB_TEXT_B_O", "OLB_TEMP_B_O", "LB_SLOT_B_O", 
-			"LB_SPEC_B_O", "LB_REFE_B_O", "LB_EXPA_B_O", "LB_INSE_B_O", "LB_DECL_B_O", 
+			"LB_SPEC_B_O", "LB_REFE_B_O", "LB_EXPA_B_O", "LB_PLUS_B_O", "LB_DECL_B_O", 
 			"LB_DELE_B_O", "LB_TEXT_B_O", "LB_TEMP_B_O", "OB_IMPORT", "EQOP_B_O", 
-			"INOP_B_O", "PE_B_O", "CL_B_O", "CO_B_O", "SC_B_O", "NAME_B_O", "INTE_B_O", 
+			"PLOP_B_O", "PE_B_O", "CL_B_O", "CO_B_O", "SC_B_O", "NAME_B_O", "INTE_B_O", 
 			"COMM_O_O", "WS_O_O", "NL_OPER", "OB_SLOT_O_O", "OB_SPEC_O_O", "OB_REFE_O_O", 
-			"OB_EXPA_O_O", "OB_INSE_O_O", "OB_DECL_O_O", "OB_DELE_O_O", "OB_TEXT_O_O", 
+			"OB_EXPA_O_O", "OB_PLUS_O_O", "OB_DECL_O_O", "OB_DELE_O_O", "OB_TEXT_O_O", 
 			"OB_TEMP_O_O", "OLB_SLOT_O_O", "OLB_SPEC_O_O", "OLB_REFE_O_O", "OLB_EXPA_O_O", 
-			"OLB_INSE_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", "OLB_TEMP_O_O", 
-			"LB_SLOT_O_O", "LB_SPEC_O_O", "LB_REFE_O_O", "LB_EXPA_O_O", "LB_INSE_O_O", 
+			"OLB_PLUS_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", "OLB_TEMP_O_O", 
+			"LB_SLOT_O_O", "LB_SPEC_O_O", "LB_REFE_O_O", "LB_EXPA_O_O", "LB_PLUS_O_O", 
 			"LB_DECL_O_O", "LB_DELE_O_O", "LB_TEXT_O_O", "LB_TEMP_O_O", "OL_IMPORT", 
-			"EQOP_O_O", "INOP_O_O", "PE_O_O", "CL_O_O", "CO_O_O", "SC_O_O", "NAME_O_O", 
+			"EQOP_O_O", "PLOP_O_O", "PE_O_O", "CL_O_O", "CO_O_O", "SC_O_O", "NAME_O_O", 
 			"INTE_O_O", "COMM_L_O", "WS_L_O", "NW_OPER", "OB_SLOT_L_O", "OB_SPEC_L_O", 
-			"OB_REFE_L_O", "OB_EXPA_L_O", "OB_INSE_L_O", "OB_DECL_L_O", "OB_DELE_L_O", 
+			"OB_REFE_L_O", "OB_EXPA_L_O", "OB_PLUS_L_O", "OB_DECL_L_O", "OB_DELE_L_O", 
 			"OB_TEXT_L_O", "OB_TEMP_L_O", "OLB_SLOT_L_O", "OLB_SPEC_L_O", "OLB_REFE_L_O", 
-			"OLB_EXPA_L_O", "OLB_INSE_L_O", "OLB_DECL_L_O", "OLB_DELE_L_O", "OLB_TEXT_L_O", 
+			"OLB_EXPA_L_O", "OLB_PLUS_L_O", "OLB_DECL_L_O", "OLB_DELE_L_O", "OLB_TEXT_L_O", 
 			"OLB_TEMP_L_O", "LB_SLOT_L_O", "LB_SPEC_L_O", "LB_REFE_L_O", "LB_EXPA_L_O", 
-			"LB_INSE_L_O", "LB_DECL_L_O", "LB_DELE_L_O", "LB_TEXT_L_O", "LB_TEMP_L_O", 
-			"L_IMPORT", "EQOP_L_O", "INOP_L_O", "PE_L_O", "CL_L_O", "CO_L_O", "SC_L_O", 
+			"LB_PLUS_L_O", "LB_DECL_L_O", "LB_DELE_L_O", "LB_TEXT_L_O", "LB_TEMP_L_O", 
+			"L_IMPORT", "EQOP_L_O", "PLOP_L_O", "PE_L_O", "CL_L_O", "CO_L_O", "SC_L_O", 
 			"NAME_L_O", "INTE_L_O", "CB_TEXT", "IN_TEXT", "NL_TEXT", "IN_OL_TEXT", 
 			"NW_TEXT", "IN_L_TEXT", "CB_TEMP", "TEXT_LINE", "LINE_DIVIDER", "OB_SLOT_B_T", 
 			"OB_SPEC_B_T", "OB_TEXT_B_T", "OLB_SLOT_B_T", "OLB_SPEC_B_T", "OLB_TEXT_B_T", 
@@ -664,10 +664,10 @@ public class SlimeLexer extends Lexer {
 		"\2\u020d\31\3\2\2\2\u020e\u020f\7}\2\2\u020f\u0210\7B\2\2\u0210\u0211"+
 		"\3\2\2\2\u0211\u0212\b\6\3\2\u0212\33\3\2\2\2\u0213\u0214\7}\2\2\u0214"+
 		"\u0215\7(\2\2\u0215\u0216\3\2\2\2\u0216\u0217\b\7\4\2\u0217\35\3\2\2\2"+
-		"\u0218\u0219\7}\2\2\u0219\u021a\7?\2\2\u021a\u021b\3\2\2\2\u021b\u021c"+
+		"\u0218\u0219\7}\2\2\u0219\u021a\7,\2\2\u021a\u021b\3\2\2\2\u021b\u021c"+
 		"\b\b\5\2\u021c\37\3\2\2\2\u021d\u021e\7}\2\2\u021e\u021f\7-\2\2\u021f"+
 		"\u0220\3\2\2\2\u0220\u0221\b\t\5\2\u0221!\3\2\2\2\u0222\u0223\7}\2\2\u0223"+
-		"\u0224\7,\2\2\u0224\u0225\3\2\2\2\u0225\u0226\b\n\5\2\u0226#\3\2\2\2\u0227"+
+		"\u0224\7?\2\2\u0224\u0225\3\2\2\2\u0225\u0226\b\n\5\2\u0226#\3\2\2\2\u0227"+
 		"\u0228\7}\2\2\u0228\u022c\7z\2\2\u0229\u022a\7}\2\2\u022a\u022c\7Z\2\2"+
 		"\u022b\u0227\3\2\2\2\u022b\u0229\3\2\2\2\u022c\u022d\3\2\2\2\u022d\u022e"+
 		"\b\13\5\2\u022e%\3\2\2\2\u022f\u0230\7}\2\2\u0230\u0231\7$\2\2\u0231\u0232"+
@@ -677,10 +677,10 @@ public class SlimeLexer extends Lexer {
 		"\b\2\u023d+\3\2\2\2\u023e\u023f\7]\2\2\u023f\u0240\7B\2\2\u0240\u0241"+
 		"\3\2\2\2\u0241\u0242\b\17\b\2\u0242-\3\2\2\2\u0243\u0244\7]\2\2\u0244"+
 		"\u0245\7(\2\2\u0245\u0246\3\2\2\2\u0246\u0247\b\20\t\2\u0247/\3\2\2\2"+
-		"\u0248\u0249\7]\2\2\u0249\u024a\7?\2\2\u024a\u024b\3\2\2\2\u024b\u024c"+
+		"\u0248\u0249\7]\2\2\u0249\u024a\7,\2\2\u024a\u024b\3\2\2\2\u024b\u024c"+
 		"\b\21\n\2\u024c\61\3\2\2\2\u024d\u024e\7]\2\2\u024e\u024f\7-\2\2\u024f"+
 		"\u0250\3\2\2\2\u0250\u0251\b\22\n\2\u0251\63\3\2\2\2\u0252\u0253\7]\2"+
-		"\2\u0253\u0254\7,\2\2\u0254\u0255\3\2\2\2\u0255\u0256\b\23\n\2\u0256\65"+
+		"\2\u0253\u0254\7?\2\2\u0254\u0255\3\2\2\2\u0255\u0256\b\23\n\2\u0256\65"+
 		"\3\2\2\2\u0257\u0258\7]\2\2\u0258\u025c\7z\2\2\u0259\u025a\7]\2\2\u025a"+
 		"\u025c\7Z\2\2\u025b\u0257\3\2\2\2\u025b\u0259\3\2\2\2\u025c\u025d\3\2"+
 		"\2\2\u025d\u025e\b\24\n\2\u025e\67\3\2\2\2\u025f\u0260\7]\2\2\u0260\u0261"+
@@ -690,10 +690,10 @@ public class SlimeLexer extends Lexer {
 		"\3\2\2\2\u026c\u026d\b\27\r\2\u026d=\3\2\2\2\u026e\u026f\7>\2\2\u026f"+
 		"\u0270\7B\2\2\u0270\u0271\3\2\2\2\u0271\u0272\b\30\r\2\u0272?\3\2\2\2"+
 		"\u0273\u0274\7>\2\2\u0274\u0275\7(\2\2\u0275\u0276\3\2\2\2\u0276\u0277"+
-		"\b\31\16\2\u0277A\3\2\2\2\u0278\u0279\7>\2\2\u0279\u027a\7?\2\2\u027a"+
+		"\b\31\16\2\u0277A\3\2\2\2\u0278\u0279\7>\2\2\u0279\u027a\7,\2\2\u027a"+
 		"\u027b\3\2\2\2\u027b\u027c\b\32\17\2\u027cC\3\2\2\2\u027d\u027e\7>\2\2"+
 		"\u027e\u027f\7-\2\2\u027f\u0280\3\2\2\2\u0280\u0281\b\33\17\2\u0281E\3"+
-		"\2\2\2\u0282\u0283\7>\2\2\u0283\u0284\7,\2\2\u0284\u0285\3\2\2\2\u0285"+
+		"\2\2\2\u0282\u0283\7>\2\2\u0283\u0284\7?\2\2\u0284\u0285\3\2\2\2\u0285"+
 		"\u0286\b\34\17\2\u0286G\3\2\2\2\u0287\u0288\7>\2\2\u0288\u028c\7z\2\2"+
 		"\u0289\u028a\7>\2\2\u028a\u028c\7Z\2\2\u028b\u0287\3\2\2\2\u028b\u0289"+
 		"\3\2\2\2\u028c\u028d\3\2\2\2\u028d\u028e\b\35\17\2\u028eI\3\2\2\2\u028f"+
@@ -750,9 +750,9 @@ public class SlimeLexer extends Lexer {
 		"\2\2\u0339\u033a\3\2\2\2\u033a\u0091\3\2\2\2\u033b\u033c\5\24\3\2\u033c"+
 		"\u033d\3\2\2\2\u033d\u033e\bB\2\2\u033e\u0093\3\2\2\2\u033f\u0340\t\2"+
 		"\2\2\u0340\u0341\3\2\2\2\u0341\u0342\bC\2\2\u0342\u0095\3\2\2\2\u0343"+
-		"\u0344\7?\2\2\u0344\u0345\7\177\2\2\u0345\u0346\3\2\2\2\u0346\u0347\b"+
+		"\u0344\7,\2\2\u0344\u0345\7\177\2\2\u0345\u0346\3\2\2\2\u0346\u0347\b"+
 		"D\22\2\u0347\u0097\3\2\2\2\u0348\u0349\7-\2\2\u0349\u034a\7\177\2\2\u034a"+
-		"\u034b\3\2\2\2\u034b\u034c\bE\22\2\u034c\u0099\3\2\2\2\u034d\u034e\7,"+
+		"\u034b\3\2\2\2\u034b\u034c\bE\22\2\u034c\u0099\3\2\2\2\u034d\u034e\7?"+
 		"\2\2\u034e\u034f\7\177\2\2\u034f\u0350\3\2\2\2\u0350\u0351\bF\22\2\u0351"+
 		"\u009b\3\2\2\2\u0352\u0353\7z\2\2\u0353\u0357\7\177\2\2\u0354\u0355\7"+
 		"Z\2\2\u0355\u0357\7\177\2\2\u0356\u0352\3\2\2\2\u0356\u0354\3\2\2\2\u0357"+
@@ -761,10 +761,10 @@ public class SlimeLexer extends Lexer {
 		"\3\2\2\2\u035f\u0360\7}\2\2\u0360\u0361\7B\2\2\u0361\u0362\3\2\2\2\u0362"+
 		"\u0363\bI\3\2\u0363\u00a1\3\2\2\2\u0364\u0365\7}\2\2\u0365\u0366\7(\2"+
 		"\2\u0366\u0367\3\2\2\2\u0367\u0368\bJ\4\2\u0368\u00a3\3\2\2\2\u0369\u036a"+
-		"\7}\2\2\u036a\u036b\7?\2\2\u036b\u036c\3\2\2\2\u036c\u036d\bK\5\2\u036d"+
+		"\7}\2\2\u036a\u036b\7,\2\2\u036b\u036c\3\2\2\2\u036c\u036d\bK\5\2\u036d"+
 		"\u00a5\3\2\2\2\u036e\u036f\7}\2\2\u036f\u0370\7-\2\2\u0370\u0371\3\2\2"+
 		"\2\u0371\u0372\bL\5\2\u0372\u00a7\3\2\2\2\u0373\u0374\7}\2\2\u0374\u0375"+
-		"\7,\2\2\u0375\u0376\3\2\2\2\u0376\u0377\bM\5\2\u0377\u00a9\3\2\2\2\u0378"+
+		"\7?\2\2\u0375\u0376\3\2\2\2\u0376\u0377\bM\5\2\u0377\u00a9\3\2\2\2\u0378"+
 		"\u0379\7}\2\2\u0379\u037d\7z\2\2\u037a\u037b\7}\2\2\u037b\u037d\7Z\2\2"+
 		"\u037c\u0378\3\2\2\2\u037c\u037a\3\2\2\2\u037d\u037e\3\2\2\2\u037e\u037f"+
 		"\bN\5\2\u037f\u00ab\3\2\2\2\u0380\u0381\7}\2\2\u0381\u0382\7$\2\2\u0382"+
@@ -774,10 +774,10 @@ public class SlimeLexer extends Lexer {
 		"\u038e\bQ\b\2\u038e\u00b1\3\2\2\2\u038f\u0390\7]\2\2\u0390\u0391\7B\2"+
 		"\2\u0391\u0392\3\2\2\2\u0392\u0393\bR\b\2\u0393\u00b3\3\2\2\2\u0394\u0395"+
 		"\7]\2\2\u0395\u0396\7(\2\2\u0396\u0397\3\2\2\2\u0397\u0398\bS\t\2\u0398"+
-		"\u00b5\3\2\2\2\u0399\u039a\7]\2\2\u039a\u039b\7?\2\2\u039b\u039c\3\2\2"+
+		"\u00b5\3\2\2\2\u0399\u039a\7]\2\2\u039a\u039b\7,\2\2\u039b\u039c\3\2\2"+
 		"\2\u039c\u039d\bT\n\2\u039d\u00b7\3\2\2\2\u039e\u039f\7]\2\2\u039f\u03a0"+
 		"\7-\2\2\u03a0\u03a1\3\2\2\2\u03a1\u03a2\bU\n\2\u03a2\u00b9\3\2\2\2\u03a3"+
-		"\u03a4\7]\2\2\u03a4\u03a5\7,\2\2\u03a5\u03a6\3\2\2\2\u03a6\u03a7\bV\n"+
+		"\u03a4\7]\2\2\u03a4\u03a5\7?\2\2\u03a5\u03a6\3\2\2\2\u03a6\u03a7\bV\n"+
 		"\2\u03a7\u00bb\3\2\2\2\u03a8\u03a9\7]\2\2\u03a9\u03ad\7z\2\2\u03aa\u03ab"+
 		"\7]\2\2\u03ab\u03ad\7Z\2\2\u03ac\u03a8\3\2\2\2\u03ac\u03aa\3\2\2\2\u03ad"+
 		"\u03ae\3\2\2\2\u03ae\u03af\bW\n\2\u03af\u00bd\3\2\2\2\u03b0\u03b1\7]\2"+
@@ -788,9 +788,9 @@ public class SlimeLexer extends Lexer {
 		"\7>\2\2\u03c0\u03c1\7B\2\2\u03c1\u03c2\3\2\2\2\u03c2\u03c3\b[\r\2\u03c3"+
 		"\u00c5\3\2\2\2\u03c4\u03c5\7>\2\2\u03c5\u03c6\7(\2\2\u03c6\u03c7\3\2\2"+
 		"\2\u03c7\u03c8\b\\\16\2\u03c8\u00c7\3\2\2\2\u03c9\u03ca\7>\2\2\u03ca\u03cb"+
-		"\7?\2\2\u03cb\u03cc\3\2\2\2\u03cc\u03cd\b]\17\2\u03cd\u00c9\3\2\2\2\u03ce"+
+		"\7,\2\2\u03cb\u03cc\3\2\2\2\u03cc\u03cd\b]\17\2\u03cd\u00c9\3\2\2\2\u03ce"+
 		"\u03cf\7>\2\2\u03cf\u03d0\7-\2\2\u03d0\u03d1\3\2\2\2\u03d1\u03d2\b^\17"+
-		"\2\u03d2\u00cb\3\2\2\2\u03d3\u03d4\7>\2\2\u03d4\u03d5\7,\2\2\u03d5\u03d6"+
+		"\2\u03d2\u00cb\3\2\2\2\u03d3\u03d4\7>\2\2\u03d4\u03d5\7?\2\2\u03d5\u03d6"+
 		"\3\2\2\2\u03d6\u03d7\b_\17\2\u03d7\u00cd\3\2\2\2\u03d8\u03d9\7>\2\2\u03d9"+
 		"\u03dd\7z\2\2\u03da\u03db\7>\2\2\u03db\u03dd\7Z\2\2\u03dc\u03d8\3\2\2"+
 		"\2\u03dc\u03da\3\2\2\2\u03dd\u03de\3\2\2\2\u03de\u03df\b`\17\2\u03df\u00cf"+
@@ -800,7 +800,7 @@ public class SlimeLexer extends Lexer {
 		"\7k\2\2\u03eb\u03ec\7o\2\2\u03ec\u03ed\7r\2\2\u03ed\u03ee\7q\2\2\u03ee"+
 		"\u03ef\7t\2\2\u03ef\u03f0\7v\2\2\u03f0\u03f1\3\2\2\2\u03f1\u03f2\5\u00dc"+
 		"g\2\u03f2\u00d5\3\2\2\2\u03f3\u03f4\7<\2\2\u03f4\u03f5\7?\2\2\u03f5\u00d7"+
-		"\3\2\2\2\u03f6\u03f7\7<\2\2\u03f7\u03f8\7>\2\2\u03f8\u00d9\3\2\2\2\u03f9"+
+		"\3\2\2\2\u03f6\u03f7\7<\2\2\u03f7\u03f8\7-\2\2\u03f8\u00d9\3\2\2\2\u03f9"+
 		"\u03fa\7\60\2\2\u03fa\u00db\3\2\2\2\u03fb\u03fc\7<\2\2\u03fc\u00dd\3\2"+
 		"\2\2\u03fd\u03fe\7.\2\2\u03fe\u00df\3\2\2\2\u03ff\u0400\7=\2\2\u0400\u00e1"+
 		"\3\2\2\2\u0401\u0405\t\b\2\2\u0402\u0404\t\t\2\2\u0403\u0402\3\2\2\2\u0404"+
@@ -815,9 +815,9 @@ public class SlimeLexer extends Lexer {
 		"\7}\2\2\u041f\u0420\7B\2\2\u0420\u0421\3\2\2\2\u0421\u0422\bp\3\2\u0422"+
 		"\u00ef\3\2\2\2\u0423\u0424\7}\2\2\u0424\u0425\7(\2\2\u0425\u0426\3\2\2"+
 		"\2\u0426\u0427\bq\4\2\u0427\u00f1\3\2\2\2\u0428\u0429\7}\2\2\u0429\u042a"+
-		"\7?\2\2\u042a\u042b\3\2\2\2\u042b\u042c\br\5\2\u042c\u00f3\3\2\2\2\u042d"+
+		"\7,\2\2\u042a\u042b\3\2\2\2\u042b\u042c\br\5\2\u042c\u00f3\3\2\2\2\u042d"+
 		"\u042e\7}\2\2\u042e\u042f\7-\2\2\u042f\u0430\3\2\2\2\u0430\u0431\bs\5"+
-		"\2\u0431\u00f5\3\2\2\2\u0432\u0433\7}\2\2\u0433\u0434\7,\2\2\u0434\u0435"+
+		"\2\u0431\u00f5\3\2\2\2\u0432\u0433\7}\2\2\u0433\u0434\7?\2\2\u0434\u0435"+
 		"\3\2\2\2\u0435\u0436\bt\5\2\u0436\u00f7\3\2\2\2\u0437\u0438\7}\2\2\u0438"+
 		"\u043c\7z\2\2\u0439\u043a\7}\2\2\u043a\u043c\7Z\2\2\u043b\u0437\3\2\2"+
 		"\2\u043b\u0439\3\2\2\2\u043c\u043d\3\2\2\2\u043d\u043e\bu\5\2\u043e\u00f9"+
@@ -828,10 +828,10 @@ public class SlimeLexer extends Lexer {
 		"\u00ff\3\2\2\2\u044e\u044f\7]\2\2\u044f\u0450\7B\2\2\u0450\u0451\3\2\2"+
 		"\2\u0451\u0452\by\b\2\u0452\u0101\3\2\2\2\u0453\u0454\7]\2\2\u0454\u0455"+
 		"\7(\2\2\u0455\u0456\3\2\2\2\u0456\u0457\bz\t\2\u0457\u0103\3\2\2\2\u0458"+
-		"\u0459\7]\2\2\u0459\u045a\7?\2\2\u045a\u045b\3\2\2\2\u045b\u045c\b{\n"+
+		"\u0459\7]\2\2\u0459\u045a\7,\2\2\u045a\u045b\3\2\2\2\u045b\u045c\b{\n"+
 		"\2\u045c\u0105\3\2\2\2\u045d\u045e\7]\2\2\u045e\u045f\7-\2\2\u045f\u0460"+
 		"\3\2\2\2\u0460\u0461\b|\n\2\u0461\u0107\3\2\2\2\u0462\u0463\7]\2\2\u0463"+
-		"\u0464\7,\2\2\u0464\u0465\3\2\2\2\u0465\u0466\b}\n\2\u0466\u0109\3\2\2"+
+		"\u0464\7?\2\2\u0464\u0465\3\2\2\2\u0465\u0466\b}\n\2\u0466\u0109\3\2\2"+
 		"\2\u0467\u0468\7]\2\2\u0468\u046c\7z\2\2\u0469\u046a\7]\2\2\u046a\u046c"+
 		"\7Z\2\2\u046b\u0467\3\2\2\2\u046b\u0469\3\2\2\2\u046c\u046d\3\2\2\2\u046d"+
 		"\u046e\b~\n\2\u046e\u010b\3\2\2\2\u046f\u0470\7]\2\2\u0470\u0471\7$\2"+
@@ -842,10 +842,10 @@ public class SlimeLexer extends Lexer {
 		"\2\u047f\u0480\7B\2\2\u0480\u0481\3\2\2\2\u0481\u0482\b\u0082\r\2\u0482"+
 		"\u0113\3\2\2\2\u0483\u0484\7>\2\2\u0484\u0485\7(\2\2\u0485\u0486\3\2\2"+
 		"\2\u0486\u0487\b\u0083\16\2\u0487\u0115\3\2\2\2\u0488\u0489\7>\2\2\u0489"+
-		"\u048a\7?\2\2\u048a\u048b\3\2\2\2\u048b\u048c\b\u0084\17\2\u048c\u0117"+
+		"\u048a\7,\2\2\u048a\u048b\3\2\2\2\u048b\u048c\b\u0084\17\2\u048c\u0117"+
 		"\3\2\2\2\u048d\u048e\7>\2\2\u048e\u048f\7-\2\2\u048f\u0490\3\2\2\2\u0490"+
 		"\u0491\b\u0085\17\2\u0491\u0119\3\2\2\2\u0492\u0493\7>\2\2\u0493\u0494"+
-		"\7,\2\2\u0494\u0495\3\2\2\2\u0495\u0496\b\u0086\17\2\u0496\u011b\3\2\2"+
+		"\7?\2\2\u0494\u0495\3\2\2\2\u0495\u0496\b\u0086\17\2\u0496\u011b\3\2\2"+
 		"\2\u0497\u0498\7>\2\2\u0498\u049c\7z\2\2\u0499\u049a\7>\2\2\u049a\u049c"+
 		"\7Z\2\2\u049b\u0497\3\2\2\2\u049b\u0499\3\2\2\2\u049c\u049d\3\2\2\2\u049d"+
 		"\u049e\b\u0087\17\2\u049e\u011d\3\2\2\2\u049f\u04a0\7>\2\2\u04a0\u04a1"+
@@ -855,7 +855,7 @@ public class SlimeLexer extends Lexer {
 		"\2\u04ab\u04ac\7r\2\2\u04ac\u04ad\7q\2\2\u04ad\u04ae\7t\2\2\u04ae\u04af"+
 		"\7v\2\2\u04af\u04b0\3\2\2\2\u04b0\u04b1\5\u012a\u008e\2\u04b1\u0123\3"+
 		"\2\2\2\u04b2\u04b3\7<\2\2\u04b3\u04b4\7?\2\2\u04b4\u0125\3\2\2\2\u04b5"+
-		"\u04b6\7<\2\2\u04b6\u04b7\7>\2\2\u04b7\u0127\3\2\2\2\u04b8\u04b9\7\60"+
+		"\u04b6\7<\2\2\u04b6\u04b7\7-\2\2\u04b7\u0127\3\2\2\2\u04b8\u04b9\7\60"+
 		"\2\2\u04b9\u0129\3\2\2\2\u04ba\u04bb\7<\2\2\u04bb\u012b\3\2\2\2\u04bc"+
 		"\u04bd\7.\2\2\u04bd\u012d\3\2\2\2\u04be\u04bf\7=\2\2\u04bf\u012f\3\2\2"+
 		"\2\u04c0\u04c4\t\b\2\2\u04c1\u04c3\t\t\2\2\u04c2\u04c1\3\2\2\2\u04c3\u04c6"+
@@ -870,10 +870,10 @@ public class SlimeLexer extends Lexer {
 		"\2\u04dd\u04de\7}\2\2\u04de\u04df\7B\2\2\u04df\u04e0\3\2\2\2\u04e0\u04e1"+
 		"\b\u0097\3\2\u04e1\u013d\3\2\2\2\u04e2\u04e3\7}\2\2\u04e3\u04e4\7(\2\2"+
 		"\u04e4\u04e5\3\2\2\2\u04e5\u04e6\b\u0098\4\2\u04e6\u013f\3\2\2\2\u04e7"+
-		"\u04e8\7}\2\2\u04e8\u04e9\7?\2\2\u04e9\u04ea\3\2\2\2\u04ea\u04eb\b\u0099"+
+		"\u04e8\7}\2\2\u04e8\u04e9\7,\2\2\u04e9\u04ea\3\2\2\2\u04ea\u04eb\b\u0099"+
 		"\5\2\u04eb\u0141\3\2\2\2\u04ec\u04ed\7}\2\2\u04ed\u04ee\7-\2\2\u04ee\u04ef"+
 		"\3\2\2\2\u04ef\u04f0\b\u009a\5\2\u04f0\u0143\3\2\2\2\u04f1\u04f2\7}\2"+
-		"\2\u04f2\u04f3\7,\2\2\u04f3\u04f4\3\2\2\2\u04f4\u04f5\b\u009b\5\2\u04f5"+
+		"\2\u04f2\u04f3\7?\2\2\u04f3\u04f4\3\2\2\2\u04f4\u04f5\b\u009b\5\2\u04f5"+
 		"\u0145\3\2\2\2\u04f6\u04f7\7}\2\2\u04f7\u04fb\7z\2\2\u04f8\u04f9\7}\2"+
 		"\2\u04f9\u04fb\7Z\2\2\u04fa\u04f6\3\2\2\2\u04fa\u04f8\3\2\2\2\u04fb\u04fc"+
 		"\3\2\2\2\u04fc\u04fd\b\u009c\5\2\u04fd\u0147\3\2\2\2\u04fe\u04ff\7}\2"+
@@ -884,10 +884,10 @@ public class SlimeLexer extends Lexer {
 		"\3\2\2\2\u050d\u050e\7]\2\2\u050e\u050f\7B\2\2\u050f\u0510\3\2\2\2\u0510"+
 		"\u0511\b\u00a0\b\2\u0511\u014f\3\2\2\2\u0512\u0513\7]\2\2\u0513\u0514"+
 		"\7(\2\2\u0514\u0515\3\2\2\2\u0515\u0516\b\u00a1\t\2\u0516\u0151\3\2\2"+
-		"\2\u0517\u0518\7]\2\2\u0518\u0519\7?\2\2\u0519\u051a\3\2\2\2\u051a\u051b"+
+		"\2\u0517\u0518\7]\2\2\u0518\u0519\7,\2\2\u0519\u051a\3\2\2\2\u051a\u051b"+
 		"\b\u00a2\n\2\u051b\u0153\3\2\2\2\u051c\u051d\7]\2\2\u051d\u051e\7-\2\2"+
 		"\u051e\u051f\3\2\2\2\u051f\u0520\b\u00a3\n\2\u0520\u0155\3\2\2\2\u0521"+
-		"\u0522\7]\2\2\u0522\u0523\7,\2\2\u0523\u0524\3\2\2\2\u0524\u0525\b\u00a4"+
+		"\u0522\7]\2\2\u0522\u0523\7?\2\2\u0523\u0524\3\2\2\2\u0524\u0525\b\u00a4"+
 		"\n\2\u0525\u0157\3\2\2\2\u0526\u0527\7]\2\2\u0527\u052b\7z\2\2\u0528\u0529"+
 		"\7]\2\2\u0529\u052b\7Z\2\2\u052a\u0526\3\2\2\2\u052a\u0528\3\2\2\2\u052b"+
 		"\u052c\3\2\2\2\u052c\u052d\b\u00a5\n\2\u052d\u0159\3\2\2\2\u052e\u052f"+
@@ -898,10 +898,10 @@ public class SlimeLexer extends Lexer {
 		"\u015f\3\2\2\2\u053d\u053e\7>\2\2\u053e\u053f\7B\2\2\u053f\u0540\3\2\2"+
 		"\2\u0540\u0541\b\u00a9\r\2\u0541\u0161\3\2\2\2\u0542\u0543\7>\2\2\u0543"+
 		"\u0544\7(\2\2\u0544\u0545\3\2\2\2\u0545\u0546\b\u00aa\16\2\u0546\u0163"+
-		"\3\2\2\2\u0547\u0548\7>\2\2\u0548\u0549\7?\2\2\u0549\u054a\3\2\2\2\u054a"+
+		"\3\2\2\2\u0547\u0548\7>\2\2\u0548\u0549\7,\2\2\u0549\u054a\3\2\2\2\u054a"+
 		"\u054b\b\u00ab\17\2\u054b\u0165\3\2\2\2\u054c\u054d\7>\2\2\u054d\u054e"+
 		"\7-\2\2\u054e\u054f\3\2\2\2\u054f\u0550\b\u00ac\17\2\u0550\u0167\3\2\2"+
-		"\2\u0551\u0552\7>\2\2\u0552\u0553\7,\2\2\u0553\u0554\3\2\2\2\u0554\u0555"+
+		"\2\u0551\u0552\7>\2\2\u0552\u0553\7?\2\2\u0553\u0554\3\2\2\2\u0554\u0555"+
 		"\b\u00ad\17\2\u0555\u0169\3\2\2\2\u0556\u0557\7>\2\2\u0557\u055b\7z\2"+
 		"\2\u0558\u0559\7>\2\2\u0559\u055b\7Z\2\2\u055a\u0556\3\2\2\2\u055a\u0558"+
 		"\3\2\2\2\u055b\u055c\3\2\2\2\u055c\u055d\b\u00ae\17\2\u055d\u016b\3\2"+
@@ -911,7 +911,7 @@ public class SlimeLexer extends Lexer {
 		"\u0569\7k\2\2\u0569\u056a\7o\2\2\u056a\u056b\7r\2\2\u056b\u056c\7q\2\2"+
 		"\u056c\u056d\7t\2\2\u056d\u056e\7v\2\2\u056e\u056f\3\2\2\2\u056f\u0570"+
 		"\5\u0178\u00b5\2\u0570\u0171\3\2\2\2\u0571\u0572\7<\2\2\u0572\u0573\7"+
-		"?\2\2\u0573\u0173\3\2\2\2\u0574\u0575\7<\2\2\u0575\u0576\7>\2\2\u0576"+
+		"?\2\2\u0573\u0173\3\2\2\2\u0574\u0575\7<\2\2\u0575\u0576\7-\2\2\u0576"+
 		"\u0175\3\2\2\2\u0577\u0578\7\60\2\2\u0578\u0177\3\2\2\2\u0579\u057a\7"+
 		"<\2\2\u057a\u0179\3\2\2\2\u057b\u057c\7.\2\2\u057c\u017b\3\2\2\2\u057d"+
 		"\u057e\7=\2\2\u057e\u017d\3\2\2\2\u057f\u0583\t\b\2\2\u0580\u0582\t\t"+

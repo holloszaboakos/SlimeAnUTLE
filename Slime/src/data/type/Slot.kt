@@ -3,11 +3,9 @@ package data.type
 import data.*
 import java.lang.Exception
 
-class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
+class Slot(names: MutableList<Text>?=null) : Variable(Type.Slot,names), Visitor {
 
     var content: Template? = null
-
-    override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List,type), mutableListOf(this))
 
     override fun copy(): Slot {
         val result = Slot(names?.toMutableList())
@@ -20,13 +18,13 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
 
     override fun expand(divider: String): String = content?.expand() ?: "{$ ${names?.getOrNull(0) ?: "@nameless"} $}"
 
-    override fun insert(v: Variable, i: Int): Variable = v.visit(this, "@insert")
+    override fun add(v: Variable, i: Int): Variable = v.visit(this, "@add")
 
 
-    override fun get(path: ListOf): Variable =
+    override fun get(path: ListOf<Text>): Variable =
         when {
             path.content.isEmpty() -> this
-            path.content.size==1 && (path.content[0] as Text).content=="@content"-> {
+            path.content.size==1 && path.content[0].content=="@content"-> {
                 content?:throw Exception("No variable in Slot: ${names?.getOrNull(0) ?: "@nameless"}")
             }
             else -> {
@@ -34,12 +32,12 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
             }
         }
 
-    override fun delete(path: ListOf) {
+    override fun delete(path: ListOf<Text>) {
         when {
             path.content.isEmpty() -> throw Exception(
                 "path shouldn't be empty when deleting from Slot: ${names?.getOrNull(0) ?: "@nameless"}"
             )
-            path.content.size==1 && (path.content[0] as Text).content=="@content"-> {
+            path.content.size==1 && path.content[0].content=="@content"-> {
                 content=null
             }
             else -> {
@@ -52,19 +50,19 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
     override fun visit(v: Visitor, mod: String): Variable = v.accept(this, mod)
 
     override fun accept(h: Slot, mode: String): Variable = when (mode) {
-        "@insert" -> {
+        "@add" -> {
             val result = copy();result.content =
-                Template(mutableListOf(), mutableMapOf(Pair(0, h)), mutableMapOf(), mutableMapOf()); result
+                Template(mutableMapOf(Pair(0, h)), mutableMapOf(), mutableMapOf()); result
         }
         else -> throw Exception(
             "wrong variable or in wrong mode visiting Slot: ${names?.getOrNull(0) ?: "@nameless"}"
         )
     }
 
-    override fun accept(h: SpecialChar, mode: String): Variable = when (mode) {
-        "@insert" -> {
+    override fun accept(h: Special, mode: String): Variable = when (mode) {
+        "@add" -> {
             val result = copy();result.content =
-                Template(mutableListOf(), mutableMapOf(), mutableMapOf(Pair(0, h)), mutableMapOf()); result
+                Template(mutableMapOf(), mutableMapOf(Pair(0, h)), mutableMapOf()); result
         }
         else -> throw Exception(
             "wrong variable or in wrong mode visiting Slot: ${names?.getOrNull(0) ?: "@nameless"}"
@@ -72,15 +70,15 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
     }
 
     override fun accept(h: StructType, mode: String): Variable =
-        throw Exception("You can not insert a Structure SType into Slot ${names?.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You can not add a Structure SType into Slot ${names?.getOrNull(0) ?: "@nameless"}")
 
     override fun accept(h: StructInstance, mode: String): Variable =
-        throw Exception("You can not insert a Structure Instance into Slot ${names?.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You can not add a Structure Instance into Slot ${names?.getOrNull(0) ?: "@nameless"}")
 
     override fun accept(h: Template, mode: String): Variable {
         val result = copy()
         result.content = when (mode) {
-            "@insert" -> h
+            "@add" -> h
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Slot: ${names?.getOrNull(0) ?: "@nameless"}"
             )
@@ -89,9 +87,9 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
     }
 
     override fun accept(h: Text, mode: String): Variable = when (mode) {
-        "@insert" -> {
+        "@add" -> {
             val result = copy();result.content =
-                Template(mutableListOf(), mutableMapOf(), mutableMapOf(), mutableMapOf(Pair(0, h))); result
+                Template(mutableMapOf(), mutableMapOf(), mutableMapOf(Pair(0, h))); result
         }
         else -> throw Exception(
             "wrong variable or in wrong mode visiting Slot: ${names?.getOrNull(0) ?: "@nameless"}"
@@ -100,7 +98,7 @@ class Slot(names: MutableList<Text>?) : Variable(Type.Slot,names), Visitor {
 
     override fun accept(h: ReferenceTo, mode: String): Variable = throw Exception("TODO")
 
-    override fun accept(h: ListOf, mode: String): Variable = throw Exception("TODO")
+    override fun accept(h: ListOf<*>, mode: String): Variable = throw Exception("TODO")
 
     override fun accept(h: File, mode: String): Variable = throw Exception("TODO")
 }

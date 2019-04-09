@@ -23,23 +23,23 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitText(SlimeParser.TextContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#text_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#textHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText_head(SlimeParser.Text_headContext ctx);
+	T visitTextHead(SlimeParser.TextHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#text_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#textBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText_body(SlimeParser.Text_bodyContext ctx);
+	T visitTextBody(SlimeParser.TextBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#text_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#textTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText_tail(SlimeParser.Text_tailContext ctx);
+	T visitTextTail(SlimeParser.TextTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#refe}.
 	 * @param ctx the parse tree
@@ -47,23 +47,23 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRefe(SlimeParser.RefeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#refe_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#refeHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRefe_head(SlimeParser.Refe_headContext ctx);
+	T visitRefeHead(SlimeParser.RefeHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#refe_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#refeBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRefe_body(SlimeParser.Refe_bodyContext ctx);
+	T visitRefeBody(SlimeParser.RefeBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#refe_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#refeTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRefe_tail(SlimeParser.Refe_tailContext ctx);
+	T visitRefeTail(SlimeParser.RefeTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#slot}.
 	 * @param ctx the parse tree
@@ -71,17 +71,17 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSlot(SlimeParser.SlotContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#slot_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#slotHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSlot_head(SlimeParser.Slot_headContext ctx);
+	T visitSlotHead(SlimeParser.SlotHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#slot_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#slotTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSlot_tail(SlimeParser.Slot_tailContext ctx);
+	T visitSlotTail(SlimeParser.SlotTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#spec}.
 	 * @param ctx the parse tree
@@ -89,23 +89,23 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSpec(SlimeParser.SpecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#spec_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#specHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSpec_head(SlimeParser.Spec_headContext ctx);
+	T visitSpecHead(SlimeParser.SpecHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#spec_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#specTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSpec_tail(SlimeParser.Spec_tailContext ctx);
+	T visitSpecTail(SlimeParser.SpecTailContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#spsl_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#spslBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSpsl_body(SlimeParser.Spsl_bodyContext ctx);
+	T visitSpslBody(SlimeParser.SpslBodyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#temp}.
 	 * @param ctx the parse tree
@@ -113,35 +113,35 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTemp(SlimeParser.TempContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#temp_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#tempHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTemp_head(SlimeParser.Temp_headContext ctx);
+	T visitTempHead(SlimeParser.TempHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#temp_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#tempBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTemp_body(SlimeParser.Temp_bodyContext ctx);
+	T visitTempBody(SlimeParser.TempBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#temp_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#tempBodyPart}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTemp_tail(SlimeParser.Temp_tailContext ctx);
+	T visitTempBodyPart(SlimeParser.TempBodyPartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#temp_line}.
+	 * Visit a parse tree produced by {@link SlimeParser#tempTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTemp_line(SlimeParser.Temp_lineContext ctx);
+	T visitTempTail(SlimeParser.TempTailContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#temp_text}.
+	 * Visit a parse tree produced by {@link SlimeParser#tempText}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTemp_text(SlimeParser.Temp_textContext ctx);
+	T visitTempText(SlimeParser.TempTextContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#expa}.
 	 * @param ctx the parse tree
@@ -149,65 +149,65 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpa(SlimeParser.ExpaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#expa_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#expaHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpa_head(SlimeParser.Expa_headContext ctx);
+	T visitExpaHead(SlimeParser.ExpaHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#expa_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#expaBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpa_body(SlimeParser.Expa_bodyContext ctx);
+	T visitExpaBody(SlimeParser.ExpaBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#expa_body_part}.
+	 * Visit a parse tree produced by {@link SlimeParser#expaBodyPart}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpa_body_part(SlimeParser.Expa_body_partContext ctx);
+	T visitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#expa_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#expaTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpa_tail(SlimeParser.Expa_tailContext ctx);
+	T visitExpaTail(SlimeParser.ExpaTailContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse}.
+	 * Visit a parse tree produced by {@link SlimeParser#plus}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse(SlimeParser.InseContext ctx);
+	T visitPlus(SlimeParser.PlusContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#plusHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse_head(SlimeParser.Inse_headContext ctx);
+	T visitPlusHead(SlimeParser.PlusHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#plusBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse_body(SlimeParser.Inse_bodyContext ctx);
+	T visitPlusBody(SlimeParser.PlusBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse_body_part}.
+	 * Visit a parse tree produced by {@link SlimeParser#plusBodyPart}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse_body_part(SlimeParser.Inse_body_partContext ctx);
+	T visitPlusBodyPart(SlimeParser.PlusBodyPartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse_element}.
+	 * Visit a parse tree produced by {@link SlimeParser#plusElement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse_element(SlimeParser.Inse_elementContext ctx);
+	T visitPlusElement(SlimeParser.PlusElementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#inse_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#plusTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInse_tail(SlimeParser.Inse_tailContext ctx);
+	T visitPlusTail(SlimeParser.PlusTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#dele}.
 	 * @param ctx the parse tree
@@ -215,23 +215,23 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDele(SlimeParser.DeleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#dele_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#deleHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDele_head(SlimeParser.Dele_headContext ctx);
+	T visitDeleHead(SlimeParser.DeleHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#dele_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#deleBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDele_body(SlimeParser.Dele_bodyContext ctx);
+	T visitDeleBody(SlimeParser.DeleBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#dele_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#deleTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDele_tail(SlimeParser.Dele_tailContext ctx);
+	T visitDeleTail(SlimeParser.DeleTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#decl}.
 	 * @param ctx the parse tree
@@ -239,35 +239,35 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDecl(SlimeParser.DeclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#decl_head}.
+	 * Visit a parse tree produced by {@link SlimeParser#declHead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_head(SlimeParser.Decl_headContext ctx);
+	T visitDeclHead(SlimeParser.DeclHeadContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#decl_neck}.
+	 * Visit a parse tree produced by {@link SlimeParser#declNeck}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_neck(SlimeParser.Decl_neckContext ctx);
+	T visitDeclNeck(SlimeParser.DeclNeckContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#decl_body}.
+	 * Visit a parse tree produced by {@link SlimeParser#declBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_body(SlimeParser.Decl_bodyContext ctx);
+	T visitDeclBody(SlimeParser.DeclBodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#decl_body_part}.
+	 * Visit a parse tree produced by {@link SlimeParser#declBodyPart}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_body_part(SlimeParser.Decl_body_partContext ctx);
+	T visitDeclBodyPart(SlimeParser.DeclBodyPartContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#decl_tail}.
+	 * Visit a parse tree produced by {@link SlimeParser#declTail}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_tail(SlimeParser.Decl_tailContext ctx);
+	T visitDeclTail(SlimeParser.DeclTailContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SlimeParser#nameValue}.
 	 * @param ctx the parse tree
@@ -305,9 +305,9 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypeName(SlimeParser.TypeNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SlimeParser#text_outor}.
+	 * Visit a parse tree produced by {@link SlimeParser#textOutor}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText_outor(SlimeParser.Text_outorContext ctx);
+	T visitTextOutor(SlimeParser.TextOutorContext ctx);
 }

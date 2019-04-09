@@ -3,14 +3,12 @@ package data.type
 import data.*
 import java.lang.Exception
 
-class StructInstance(override val names: MutableList<Text>?, val meta: StructType) : Variable(Type.SInst, names) {
+class StructInstance( val meta: StructType,override val names: MutableList<Text>?=null) : Variable(Type.SInst, names) {
 
     val content: MutableList<Variable?> = MutableList(meta.attributes.size) { null }
 
-    override fun toListOf(): ListOf = ListOf(mutableListOf(), listOf(Type.List, type), mutableListOf(this))
-
     override fun copy(): StructInstance {
-        val result = StructInstance(names?.toMutableList(), meta)
+        val result = StructInstance(meta)
         for (d in content)
             if (d != null) result.content[content.indexOf(d)] = d
         return result
@@ -30,16 +28,16 @@ class StructInstance(override val names: MutableList<Text>?, val meta: StructTyp
         return result
     }
 
-    override fun insert(v: Variable, i: Int): Variable {
+    override fun add(v: Variable, i: Int): Variable {
         content[meta.attributes.indexOf(meta.attributes.first { it.type == v.type })] = v
         return this
     }
 
-    override fun get(path: ListOf): Variable =
+    override fun get(path: ListOf<Text>): Variable =
         when {
             path.content.isEmpty() -> this
             path.content.size == 1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     content[next.toInt()] ?: throw Exception("Wrong index")
@@ -49,7 +47,7 @@ class StructInstance(override val names: MutableList<Text>?, val meta: StructTyp
                 }
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     content[next.toInt()]?.get(path) ?: throw Exception("Wrong index")
@@ -60,29 +58,26 @@ class StructInstance(override val names: MutableList<Text>?, val meta: StructTyp
             }
         }
 
-    override fun delete(path: ListOf) {
+    override fun delete(path: ListOf<Text>) {
         when {
             path.content.isEmpty() -> throw Exception(
                 "path.content shouldn't be empty when deleting from Template: ${names?.getOrNull(0) ?: "@nameless"}"
             )
             path.content.size == 1 -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     val i = next.toInt()
-                    content[i]?.delete(ListOf(mutableListOf(Type.List, Type.Text), mutableListOf(Text("@content"))))
+                    content[i]?.delete(ListOf(mutableListOf(Text("@content"))))
                 } catch (e: Exception) {
                     content[meta.attributes.indexOf(meta.attributes.first { it.name == next })]?.delete(
-                        ListOf(
-                            mutableListOf(Type.List, Type.Text),
-                            mutableListOf(Text("@content"))
-                        )
+                        ListOf(mutableListOf(Text("@content")))
                     )
                 }
 
             }
             else -> {
-                val next = (path.content[0] as Text).content
+                val next = path.content[0].content
                 path.content.removeAt(0)
                 try {
                     val i = next.toInt()
