@@ -3,7 +3,8 @@ package data.type
 import data.*
 import java.lang.Exception
 
-class Special(val key: Char, names: MutableList<Text>? = null) : Variable(Type.Spec, names) {
+class SSpec(val key: Char, names: MutableList<SText>? = null) : SVari(ctype,names) {
+
     enum class Char(val value: String, val names: MutableList<String>) {
         ENTER("\n", mutableListOf("e", "ent", "enter")),
         RENTER("\r", mutableListOf("r", "ren", "renter")),
@@ -17,20 +18,26 @@ class Special(val key: Char, names: MutableList<Text>? = null) : Variable(Type.S
         SEMICOLON(";", mutableListOf("se", "sem", "semicolon"))
     }
 
-    override fun copy(): Variable = Special(key)
+    companion object {
+        val ctype=SType["Spec"]
+    }
+
+    override fun listPaths(): SList<SList<SText>>? = null
+
+    override fun copy(): SVari = SSpec(key)
 
     override fun expand(): String = key.value
 
     override fun expand(divider: String): String = key.value
 
-    override fun add(v: Variable, i: Int): Variable =
+    override fun add(v: SVari, i: Int): SVari =
         throw Exception("You can not add into special character:{${names?.getOrNull(0) ?: "@nameless"}")
 
-    override fun get(path: ListOf<Text>): Variable =
-        throw Exception("No Variable to get in Special Variable:{${names?.getOrNull(0) ?: "@nameless"}")
+    override fun get(path: SList<SText>): SVari =
+        throw Exception("No SVari to get in SSpec SVari:{${names?.getOrNull(0) ?: "@nameless"}")
 
-    override fun delete(path: ListOf<Text>) =
-        throw Exception("You cannot delete Variable from Special Variable:{${names?.getOrNull(0) ?: "@nameless"}")
+    override fun delete(path: SList<SText>) =
+        throw Exception("You cannot delete SVari from SSpec SVari:{${names?.getOrNull(0) ?: "@nameless"}")
 
-    override fun visit(v: Visitor, mod: String): Variable = v.accept(this, mod)
+    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
 }

@@ -2,6 +2,7 @@
   <dictionary name="boss">
     <words>
       <w>refe</w>
+      <w>struct</w>
     </words>
   </dictionary>
 </component>

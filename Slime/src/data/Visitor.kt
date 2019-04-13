@@ -3,13 +3,13 @@ package data
 import data.type.*
 
 interface Visitor {
-    fun accept(h: File, mode: String = ""): Variable
-    fun accept(h: Slot, mode: String = ""): Variable
-    fun accept(h: Special, mode: String = ""): Variable
-    fun accept(h: StructType, mode: String = ""): Variable
-    fun accept(h: StructInstance, mode: String = ""): Variable
-    fun accept(h: Template, mode: String = ""): Variable
-    fun accept(h: ReferenceTo, mode: String = ""): Variable
-    fun accept(h: ListOf<*>, mode: String = ""): Variable
-    fun accept(h: Text, mode: String = ""): Variable
+    fun accept(h: SFile, mode: String = ""): SVari
+    fun accept(h: SSlot, mode: String = ""): SVari
+    fun accept(h: SSpec, mode: String = ""): SVari
+    fun accept(h: SType, mode: String = ""): SVari
+    fun accept(h: SInst, mode: String = ""): SVari
+    fun accept(h: STemp, mode: String = ""): SVari
+    fun accept(h: SRefe, mode: String = ""): SVari
+    fun <T:SVari>accept(h: SList<T>, mode: String = ""): SVari
+    fun accept(h: SText, mode: String = ""): SVari
 }

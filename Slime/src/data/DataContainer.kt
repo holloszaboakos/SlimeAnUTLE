@@ -1,8 +1,8 @@
 package data
 
-import data.type.File
+import data.type.*
 
 object DataContainer {
-    var root:File?=null
-    var focus:File?=null
+    var root:SFile?=null
+    var focus:SFile?=null
 }

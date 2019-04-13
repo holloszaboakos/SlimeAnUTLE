@@ -1,5 +1,4 @@
 lexer grammar SlimeLexer;
-//TODO:Check windows new line
 RULE_DIV: ({ _input.LA(-1) == '}' }? [\n\r\t ]+ { _input.LA(1) == '{' }?)->skip;
 fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )+ '#}')
               | ('[#' (~[\n\r])+        {_input.LA(1) == '\n'}?)

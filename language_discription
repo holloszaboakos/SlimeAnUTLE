@@ -7,7 +7,7 @@ They create a nameless instance of a specific Primitive Type
 //SLOT
 bracket: {$ name $} 
 one line: [$ name 
-compact:+$name
+compact:<$name
 The place where we can plus into the template. 
 It has a name it can be called by for in case the template has more slots
 To plus anything into it the plus relation must be used.
@@ -47,7 +47,7 @@ They make operations on the variables
 //EXPAND
 bracket: {* variableName *} 
 one line [* variableName 
-compact:+=variableName
+compact:<*variableName
 You can use this operation to plus the value of a variable into the surrounding language
 It includes a special expression.
 In case you would like to import a file, you have to use this operation too
@@ -65,7 +65,7 @@ expend file (imports file as text):
 //PLUS
 bracket: {+ left :+ right +} 
 one line: [+ left :+ right 
-compact:++left:+right
+compact:<+left:+right
 You can use this operation to plus an element into a slot or a list of that type of elements
 "into" is the template, "here" is the slot, "this" is the other object.
 In case you would like to plus the content of a text file into a template you can use this variable
@@ -100,7 +100,7 @@ file into surrounding (imports file as code):
 //DECLARE
 bracket: {= meta := value =} 
 one line [= meta := value
-compact:+*meta:=value
+compact:<=meta:=value
 You can use this operation to declare structures or any type of variable.
 First comes the name than the type than the value
 You do not have to use a name
@@ -121,7 +121,9 @@ structure instance
 ....
 
 //DELETE
-bracket: {x name x} line [x name compact:+xname
+bracket: {x name x} 
+one line: [x name 
+compact:<xname
 You can use this operation to delete any allready created structures (including all of its instances) or any type of variable.
 You have to add only the name of the object as input.
 
@@ -130,7 +132,7 @@ You have to add only the name of the object as input.
 //Comment
 bracket: {# name #} 
 one line: [# name 
-compact:+#name
+compact:<#name
 You can add comments anywhere with this It skippes everything and it won't apeare in the final result
 
 
@@ -216,9 +218,9 @@ s:struct := {|NN;dog_NN;dog;NN(dog);dog;dog
 	;
 	s1:struct := [+ s.attributes :+ <|dog
 	;
-	s2:struct := [+ s :+ <|cat
+	s2:struct := [+ s.attributes :+ <|cat
 	;
-	s3:struct := [+ s :+ <|fish
+	s3:struct := [+ s.attributes :+ <|fish
 	;
 	l1:List := s1,s2,s3
 	;[# I have to mark that this is a reference given by a regex
