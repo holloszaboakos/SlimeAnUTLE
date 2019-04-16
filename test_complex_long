@@ -1,0 +1,54 @@
+//COMPLEX LONG{@e;e@}
+[#start
+[#This is the same example from above but without the shortcuts
+[# template, structure, three structure instance and three lists decleration
+{= 
+	temp:Temp := {|
+		[@e;t
+		<$left -> <$header [@e;t 
+		[string] <$string [@e;t
+		[tree] <$syntax_tree [@e;t
+		[ud] <$ud_graph [@e;t
+		[4lang] <$fourlang_graph
+	|}
+
+	;struct:Type := left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp	
+	;s:List:Temp := <|NN ,<|{$word$}_NN ,<|{$word$} ,{|NN( {$word$} )|}, <|"({$word$}<root>/{$word$})"
+
+	;s1:struct := s.0.copy 
+		,[+ s.1.copy.word :+ <"dog
+		,[+ s.2.copy.word :+ <"dog 
+		,[+ s.3.copy.word :+ <"dog
+		,[+ s.4.copy.word.iter :+ <"dog
+		,[+ s.4.copy.word.iter :+ <"dog
+	;s2:struct := s.0.copy 
+		,[+ s.1.copy.word :+ <"cat
+		,[+ s.2.copy.word :+ <"cat 
+		,[+ s.3.copy.word :+ <"cat
+		,[+ s.4.copy.word.iter :+ <"cat
+		,[+ s.4.copy.word.iter :+ <"cat
+	;s3:struct := s.0.copy 
+		,[+ s.1.copy.word :+ <"fish
+		,[+ s.2.copy.word :+ <"fish 
+		,[+ s.3.copy.word :+ <"fish
+		,[+ s.4.copy.word.iter :+ <"fish
+		,[+ s.4.copy.word.iter :+ <"fish
+	;l1:List:Temp := s1.copy, s2.copy, s3.copy
+	[# I have to mark that this is a reference given by a regex
+	;l2:List:Temp := [&struct,^s[123]$
+=}
+
+[# plus the structure instances into the template and print them out from three different source
+{*
+	<"//temp+s1 ;[+ <=temp :+ s1
+	;<@e ;<"//temp+s2 ;[+ <=temp :+ s2
+	[# You can access and brake code mode anywhere
+	;<@e ;<"//temp+s3 ;[+ <=temp :+ s3
+	;<@e ;<"//temp+l1 ;<+temp:+l1.iter : <@e;e [# and as
+	;<@e ;<"//temp+l2 ;<+temp:+l2.iter : <@e;e [# and as
+	;<@e
+*}
+[# delete all variables
+[x temp; struct; {&struct,s[123]&}; l1; l2 ;s
+
+

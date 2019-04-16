@@ -1,6 +1,7 @@
 lexer grammar SlimeLexer;
-//TODO:Check windows new line
-RULE_DIV: ({ _input.LA(-1) == '}' }? [\n\r\t ]+ { _input.LA(1) == '{' }?)->skip;
+RULE_DIV:   ([\n\r\t ]+ { _input.LA(1) == '{' }?
+            |[\n\r\t ]+ { _input.LA(1) == '[' }?
+            |[\n\r\t ]+ { _input.LA(1) == '<' }?)->skip;
 fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )+ '#}')
               | ('[#' (~[\n\r])+        {_input.LA(1) == '\n'}?)
               | ('<#'  (~[\n\r\t ])+     {_input.LA(1) == '\n'|| _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}? );
@@ -199,7 +200,6 @@ INTE_O_O: [0-9]+;
 
 mode L_OPER;
 COMM_L_O: COMM -> skip;
-WS_L_O:[\t ]->skip;
 NW_OPER  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
 
 OB_SLOT_L_O : '{$' 	    -> pushMode(B_SLSP);

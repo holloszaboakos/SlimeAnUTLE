@@ -281,6 +281,12 @@ public interface SlimeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNameType(SlimeParser.NameTypeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SlimeParser#listVari}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListVari(SlimeParser.ListVariContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SlimeParser#vari}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

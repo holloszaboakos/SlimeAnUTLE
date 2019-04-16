@@ -61,7 +61,7 @@ expaHead:(OB_EXPA|OLB_EXPA|LB_EXPA|
            OB_EXPA_O_O|OLB_EXPA_O_O|LB_EXPA_O_O|
            OB_EXPA_L_O|OLB_EXPA_L_O|LB_EXPA_L_O);
 expaBody:(expaBodyPart (SC_B_O|SC_O_O|SC_L_O))* expaBodyPart;
-expaBodyPart:(vari ((CL_B_O|CL_O_O|CL_L_O) temp|(CL_B_O|CL_O_O|CL_L_O) spec)?|(OB_IMPORT|OL_IMPORT|L_IMPORT) variPath);
+expaBodyPart:vari ((CL_B_O|CL_O_O|CL_L_O) (temp|spec))?;
 expaTail:(CB_EXPA|NL_OPER|NW_OPER);
 
 plus: plusHead plusBody plusTail;
@@ -70,7 +70,7 @@ plusHead:(OB_PLUS|OLB_PLUS|LB_PLUS|
            OB_PLUS_O_O|OLB_PLUS_O_O|LB_PLUS_O_O|
            OB_PLUS_L_O|OLB_PLUS_L_O|LB_PLUS_L_O);
 plusBody:(plusBodyPart (SC_B_O|SC_O_O|SC_L_O))* plusBodyPart;
-plusBodyPart: vari (PLOP_B_O|PLOP_O_O|PLOP_L_O) vari ((CL_B_O|CL_O_O|CL_L_O) plusElement((CO_B_O|CO_O_O|CO_L_O) plusElement)*)?| (OB_IMPORT|OL_IMPORT|L_IMPORT) variPath;
+plusBodyPart: vari (PLOP_B_O|PLOP_O_O|PLOP_L_O) vari ((CL_B_O|CL_O_O|CL_L_O) (plusElement(CO_B_O|CO_O_O|CO_L_O))* plusElement)?;
 plusElement: variPath (PLOP_B_O|PLOP_O_O|PLOP_L_O) variPath;
 plusTail:(CB_PLUS|NL_OPER|NW_OPER);
 
@@ -90,15 +90,16 @@ declHead: (OB_DECL|OLB_DECL|LB_DECL|
             OB_DECL_L_O|OLB_DECL_L_O|LB_DECL_L_O) ;
 declNeck:listName? (CL_B_O|CL_O_O|CL_L_O) typeName (EQOP_B_O|EQOP_O_O|EQOP_L_O);
 declBody: (declBodyPart (SC_B_O|SC_O_O|SC_L_O))* declBodyPart;
-declBodyPart: declNeck( (listName)|
-                 ((nameType (CO_B_O|CO_O_O|CO_L_O))* nameType)|
-                 ((nameValue (CO_B_O|CO_O_O|CO_L_O))* nameValue)|
-                 ((vari (CO_B_O|CO_O_O|CO_L_O))* vari))|vari;
+declBodyPart: declNeck( listName|listVari|
+                 (nameType (CO_B_O|CO_O_O|CO_L_O))* nameType|
+                 (nameValue (CO_B_O|CO_O_O|CO_L_O))* nameValue)|
+                 vari;
 declTail:(CB_DECL|NL_OPER|NW_OPER);
 
 
-nameValue:(listName (CL_B_O|CL_O_O|CL_L_O) vari);
-nameType:(listName (PE_B_O|PE_O_O|PE_L_O) typeName);
+nameValue:(listName (EQOP_B_O|EQOP_O_O|EQOP_L_O) listVari);
+nameType:(listName (CL_B_O|CL_O_O|CL_L_O) typeName);
+listVari: (vari (CO_B_O|CO_O_O|CO_L_O))* vari;
 vari: variPath|decl|temp|spec|slot|refe|plus|text;
 listName: (NAME_B_O CO_B_O|NAME_O_O CO_O_O|NAME_L_O CO_L_O)* (NAME_B_O|NAME_O_O|NAME_L_O);
 variPath: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_L_O PE_L_O|INTE_B_O PE_B_O|INTE_O_O PE_O_O|INTE_L_O PE_L_O)*

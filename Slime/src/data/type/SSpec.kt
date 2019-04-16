@@ -3,7 +3,7 @@ package data.type
 import data.*
 import java.lang.Exception
 
-class SSpec(val key: Char, names: MutableList<SText>? = null) : SVari(ctype,names) {
+class SSpec(val key: Char, names: List<SText> = listOf()) : SVari("Spec",names) {
 
     enum class Char(val value: String, val names: MutableList<String>) {
         ENTER("\n", mutableListOf("e", "ent", "enter")),
@@ -18,26 +18,44 @@ class SSpec(val key: Char, names: MutableList<SText>? = null) : SVari(ctype,name
         SEMICOLON(";", mutableListOf("se", "sem", "semicolon"))
     }
 
-    companion object {
-        val ctype=SType["Spec"]
-    }
+    override fun listPaths(): SList<SList<SText>> = SList()
 
-    override fun listPaths(): SList<SList<SText>>? = null
-
-    override fun copy(): SVari = SSpec(key)
+    override fun copy(names: List<SText>): SVari = SSpec(key,names)
 
     override fun expand(): String = key.value
 
     override fun expand(divider: String): String = key.value
 
-    override fun add(v: SVari, i: Int): SVari =
-        throw Exception("You can not add into special character:{${names?.getOrNull(0) ?: "@nameless"}")
+    override fun plus(v: SVari, i: Int): SVari =
+        throw Exception("You can not add into special character:{${names.getOrNull(0)?:"@nameless"}")
 
     override fun get(path: SList<SText>): SVari =
-        throw Exception("No SVari to get in SSpec SVari:{${names?.getOrNull(0) ?: "@nameless"}")
+        when {
+            path.isEmpty() -> this
+            path.size == 1 -> {
+                when (path[0]()) {
+                    "names"-> names
+                    "self" -> this
+                    "copy" -> copy()
+                    "copyN" -> copy(names)
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> names.get(path)
+                    "self" -> this.get(path)
+                    "copy" -> copy().get(path)
+                    "copyN" -> copy(names).get(path)
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+        }
 
     override fun delete(path: SList<SText>) =
-        throw Exception("You cannot delete SVari from SSpec SVari:{${names?.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You cannot delete SVari from SSpec SVari:{${names.getOrNull(0)?:"@nameless"}")
 
     override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
 }

@@ -18,19 +18,26 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         val result = SList(mutableListOf())
         for (cIx in 0 until (p0?.childCount ?: 0))
             if (p0?.getChild(cIx)?.accept(this) != null)
-                result.content.add(p0.getChild(cIx).accept(this))
+                result.add(p0.getChild(cIx).accept(this))
         return result
     }
 
-    override fun visitFile(ctx: SlimeParser.FileContext): SVari {
+    override fun visitFile(ctx: SlimeParser.FileContext): SText {
+        val oldFocus = DataContainer.focus
         DataContainer.focus = SFile(mutableMapOf())
         if (DataContainer.root == null) DataContainer.root = DataContainer.focus
-        val result = SText("")
-        for (c in ctx.children) {
-            val r = c.accept(this)
-            if (r != null && r.type == SType["Text"])
-                result.content += (c.accept(this) as SText)
-        }
+        val result = SText()
+        for (c in ctx.children)
+            when (c) {
+                is SlimeParser.TextOutorContext -> result(result() + visitTextOutor(c)())
+                is SlimeParser.ExpaContext ->
+                    for (t in visitExpa(c))
+                        result(result() + t())
+                is SlimeParser.TextContext -> result(result() + visitText(c)())
+                is SlimeParser.SpecContext -> result(result() + visitSpec(c).expand(""))
+                else -> c.accept(this)
+            }
+        DataContainer.focus = oldFocus
         return result
     }
 
@@ -47,18 +54,20 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitRefeHead(ctx: SlimeParser.RefeHeadContext): SVari? = null
 
     override fun visitRefeBody(ctx: SlimeParser.RefeBodyContext): SRefe =
-        SRefe(ctx.getChild(3).text.substring(1), visitTypeName(ctx.typeName()).content)
+        SRefe(ctx.children[1].text.substring(1), visitTypeName(ctx.typeName()))
 
 
     override fun visitRefeTail(ctx: SlimeParser.RefeTailContext): SVari? = null
 
-    override fun visitSlot(ctx: SlimeParser.SlotContext): SVari = visitSpslBody(ctx.spslBody())
+    override fun visitSlot(ctx: SlimeParser.SlotContext): SList<SSlot> =
+        SList(visitSpslBody(ctx.spslBody()).filter { it is SSlot }.map { it as SSlot }.toMutableList())
 
     override fun visitSlotHead(ctx: SlimeParser.SlotHeadContext): SVari? = null
 
     override fun visitSlotTail(ctx: SlimeParser.SlotTailContext): SVari? = null
 
-    override fun visitSpec(ctx: SlimeParser.SpecContext): SVari = visitSpslBody(ctx.spslBody())
+    override fun visitSpec(ctx: SlimeParser.SpecContext): SList<SSpec> =
+        SList(visitSpslBody(ctx.spslBody()).filter { it is SSpec }.map { it as SSpec }.toMutableList())
 
     override fun visitSpecHead(ctx: SlimeParser.SpecHeadContext): SVari? = null
 
@@ -66,15 +75,15 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     override fun visitSpslBody(ctx: SlimeParser.SpslBodyContext): SList<*> =
         if (ctx.parent.ruleIndex == SlimeParser.RULE_spec)
-            SList(visitChildren(ctx).content.map { (it as SText).content }.filter { it != ";" }.map {
-                SSpec(SSpec.Char.valueOf(it))
+            SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
+                .map {
+                SSpec(SSpec.Char.values().first { it2 -> it2.names.any { it3 -> it3.compareTo(it()) == 0 } })
             }.toMutableList())
         else
-            SList(visitChildren(ctx).content.map { (it as SText) }.filter { it.content != ";" }.map {
-                SSlot(mutableListOf(it))
-            }.toMutableList())
+            SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
+                .map { SSlot(it) }.toMutableList())
 
-    override fun visitTemp(ctx: SlimeParser.TempContext): SVari = visitTempBody(ctx.tempBody())
+    override fun visitTemp(ctx: SlimeParser.TempContext): SList<STemp> = visitTempBody(ctx.tempBody())
 
     override fun visitTempHead(ctx: SlimeParser.TempHeadContext): SVari? = null
 
@@ -83,27 +92,34 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
 
     override fun visitTempBodyPart(ctx: SlimeParser.TempBodyPartContext): STemp {
-        val children = visitChildren(ctx).content
-        children.forEach { if (it is SList<*>) children.addAll(it.content) }
-        children.removeAll { it is SList<*> }
-        return STemp(children)
+        val children2 = mutableListOf<SVari>()
+        visitChildren(ctx).forEach { if (it is SList<*>) children2.addAll(it) else children2.add(it) }
+        return STemp(children2)
     }
 
     override fun visitTempTail(ctx: SlimeParser.TempTailContext): SVari? = null
 
     override fun visitTempText(ctx: SlimeParser.TempTextContext): SList<SText> =
-        SList(visitChildren(ctx).content.map { it as SText }.toMutableList())
+        SList(visitChildren(ctx).map { it as SText }.toMutableList())
 
-    override fun visitExpa(ctx: SlimeParser.ExpaContext): SVari = visitExpaBody(ctx.expaBody())
+    override fun visitExpa(ctx: SlimeParser.ExpaContext): SList<SText> = visitExpaBody(ctx.expaBody())
 
     override fun visitExpaHead(ctx: SlimeParser.ExpaHeadContext): SVari? = null
 
-    override fun visitExpaBody(ctx: SlimeParser.ExpaBodyContext): SList<SVari> =
+    override fun visitExpaBody(ctx: SlimeParser.ExpaBodyContext): SList<SText> =
         SList(ctx.expaBodyPart().map { visitExpaBodyPart(it) }.toMutableList())
 
-    override fun visitExpaBodyPart(ctx: SlimeParser.ExpaBodyPartContext): SVari {
-        TODO("convert all variable to text")
-    }
+    override fun visitExpaBodyPart(ctx: SlimeParser.ExpaBodyPartContext): SText =
+        if (ctx.childCount == 1) {
+            SText(visitVari(ctx.vari()).expand())
+        } else {
+            var seperater = ""
+            if (ctx.children[2] is SlimeParser.SpecContext)
+                visitSpec(ctx.children[2] as SlimeParser.SpecContext).forEach { seperater += it.expand() }
+            else
+                visitTemp(ctx.children[2] as SlimeParser.TempContext).forEach { seperater += it.expand() }
+            SText(visitVari(ctx.vari()).expand(seperater))
+        }
 
     override fun visitExpaTail(ctx: SlimeParser.ExpaTailContext): SVari? = null
 
@@ -112,14 +128,22 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitPlusHead(ctx: SlimeParser.PlusHeadContext): SVari? = null
 
     override fun visitPlusBody(ctx: SlimeParser.PlusBodyContext): SList<SVari> =
-        SList(ctx.plusBodyPart().map { visitPlusBodyPart(it) }.toMutableList())
+        SList(ctx.plusBodyPart().map { visitPlusBodyPart(it) })
 
     override fun visitPlusBodyPart(ctx: SlimeParser.PlusBodyPartContext): SVari {
-        TODO("Make plusrts according to visited add elements and return variable")
+        val vari1 = visitVari(ctx.vari(0))[0]
+        val vari2 = visitVari(ctx.vari(1))[0]
+        return if (ctx.childCount == 3) {
+            vari1.plus(vari2)
+        } else {
+            ctx.plusElement().map { visitPlusElement(it) }
+                .forEach { vari1.get(it[0]).plus(vari2.get(it[1])) }
+            vari1
+        }
     }
 
-    override fun visitPlusElement(ctx: SlimeParser.PlusElementContext): SVari =
-        SFile(mutableMapOf())
+    override fun visitPlusElement(ctx: SlimeParser.PlusElementContext): SList<SList<SText>> =
+        SList(ctx.variPath().map { visitVariPath(it) }.toMutableList())
 
     override fun visitPlusTail(ctx: SlimeParser.PlusTailContext): SVari? = null
 
@@ -134,7 +158,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         for (vp in ctx.variPath())
             DataContainer.focus?.delete(visitVariPath(vp))
         for (r in ctx.refe())
-            for (vp in visitRefe(r).listMatchingPaths().content)
+            for (vp in visitRefe(r).listMatchingPaths())
                 DataContainer.focus?.delete(vp)
         return null
     }
@@ -145,77 +169,274 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     override fun visitDeclHead(ctx: SlimeParser.DeclHeadContext): SVari? = null
 
-    override fun visitDeclNeck(ctx: SlimeParser.DeclNeckContext): SInst {
-        val si = SInst("DeclNeck")
-        try {
-            si.content[0] = visitListName(ctx.listName())
-        } catch (E: Exception) {
-            print(E.stackTrace)
-        }
-        si.content[1] = visitTypeName(ctx.typeName())
-        return si
-    }
+    override fun visitDeclNeck(ctx: SlimeParser.DeclNeckContext): SList<SList<SText>> =
+        if (ctx.childCount == 4)
+            SList(mutableListOf(visitTypeName(ctx.typeName()), visitListName(ctx.listName())))
+        else
+            SList(mutableListOf(visitTypeName(ctx.typeName())))
 
     override fun visitDeclBody(ctx: SlimeParser.DeclBodyContext): SList<SVari> =
         SList(ctx.declBodyPart().map { visitDeclBodyPart(it) }.toMutableList())
 
     override fun visitDeclBodyPart(ctx: SlimeParser.DeclBodyPartContext): SVari {
-        TODO("")
-        val neck = visitDeclNeck(ctx.declNeck())
-        //if(neck.content[1] as SList<SText>)
-        return SText("not working yet")
+        if (ctx.children[0] is SlimeParser.DeclNeckContext) {
+            val neck = visitDeclNeck(ctx.declNeck())
+            val names: List<SText> =
+                if (neck.size == 2) neck[1].toList()
+                else listOf()
+            when (val typeIndicator =
+                VariableFactory.getEmptyVariableByTypeList(VariableFactory.NameL2TypeL(neck[0]))) {
+                is SText -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize text by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize text by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize text by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for text initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SText)
+                                return (vari[0] as SText).copy(names)
+                        }
+                    }
+                }
+                is SSpec -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize special char by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize special char by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize special char by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for special char initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SSpec)
+                                return (vari[0] as SSpec).copy(names)
+                        }
+                    }
+                }
+                is SSlot -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize slot by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize slot by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize slot by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for slot initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SSlot)
+                                return (vari[0] as SSlot).copy(names)
+                        }
+                    }
+                }
+                is STemp -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize slot by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize slot by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize slot by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            val varis = ctx.children.filter { it is SlimeParser.ListVariContext }
+                                .map { visitListVari(it as SlimeParser.ListVariContext) }
+                            if (varis.size == 1 && varis[0][0] is STemp)
+                                return (varis[0][0] as STemp).copy(names)
+                            val content = mutableListOf<SVari>()
+                            varis.forEach { content += it.toMutableList() }
+                            return STemp(
+                                content.filter { it is SText || it is SSlot || it is SSpec }.toMutableList(),
+                                names
+                            )
+                        }
+                    }
+                }
+                is SType -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize type by list of names.")
+                        is SlimeParser.NameTypeContext -> {
+                            val datas = ctx.nameType().map { visitNameType(it) }
+                            val nameValues = mutableListOf<SType.NameType>()
+                            datas.forEach {
+                                for (name in it[0])
+                                    nameValues.add(SType.NameType(name(), it[1]))
+                            }
+                            return SType(
+                                (names)[0](),
+                                nameValues
+                            )
+                        }
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize type by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for type initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SType)
+                                return (vari[0] as SType).copy(names)
+                        }
+                    }
+                }
+                is SInst -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize inst by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize inst by list of types.")
+                        is SlimeParser.NameValueContext -> {
+                            val inst = SInst(typeIndicator.typeName, names)
+                            val datas = ctx.nameValue().map { visitNameValue(it) }
+                            datas.forEach {
+                                for (name in (it()[0] as SList<*>?
+                                    ?: throw Exception(
+                                        "You have to add the name of the variables," +
+                                                " when declaring an instance by name value pairs"
+                                    )))
+                                    for (vari in (it()[1] as SList<*>?
+                                        ?: throw Exception(
+                                            "You have to add the value of the variables," +
+                                                    " when declaring an instance by name value pairs"
+                                        ))) {
+                                        val meta =
+                                            inst.ctype.attributes.first { it.name.compareTo((name as SText)()) == 0 }
+                                        val leftIx = inst.ctype.attributes.indexOf(meta)
+                                        inst()[leftIx] = vari
+                                    }
+                            }
+                            return inst
+                        }
+                        is SlimeParser.ListVariContext -> {
+                            val varis = ctx.children.filter { it is SlimeParser.ListVariContext }
+                                .map { visitListVari(it as SlimeParser.ListVariContext) }[0]
+                            if (varis.size == 1 && varis[0] is SInst)
+                                return (varis[0] as SInst).copy(names)
+                            val inst = SInst((typeIndicator).typeName, names)
+                            for (i in 0 until varis.size)
+                                inst()[i] = varis[i]
+                            return inst
+                        }
+                    }
+                }
+                is SRefe -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize reference by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize reference by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize reference by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for reference initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SRefe)
+                                return (vari[0] as SRefe).copy(names)
+                        }
+                    }
+                }
+                is SFile -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> throw Error("Can not initialize file by list of names.")
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize file by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize file by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) throw Error("two many arguments for file initialization.")
+                            val vari = visitListVari(ctx.listVari())
+                            if (vari.size == 1 && vari[0] is SFile)
+                                return (vari[0] as SFile).copy(names)
+                        }
+                    }
+                }
+                is SList<*> -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> return SList(visitListName(ctx.listName()), names)
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize list by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize list by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) {
+                                return visitListVari(ctx.listVari()).copy(names)
+                            }
+                            val vari = visitListVari(ctx.listVari())
+                            return if (vari.size == 1 && vari[0] is SList<*>)
+                                (vari[0] as SList<*>).copy(names)
+                            else
+                                (vari as SList<*>).copy(names)
+                        }
+                    }
+                }
+                is SList.SIter<*> -> {
+                    when (ctx.children[1]) {
+                        is SlimeParser.ListNameContext -> return SList(visitListName(ctx.listName()), names).iter
+                        is SlimeParser.NameTypeContext -> throw Error("Can not initialize list by list of types.")
+                        is SlimeParser.NameValueContext -> throw Error("Can not initialize list by list of name-value pairs.")
+                        is SlimeParser.ListVariContext -> {
+                            if (ctx.childCount != 2) {
+                                return visitListVari(ctx.listVari()).copy(names).iter
+                            }
+                            val vari = visitListVari(ctx.listVari())
+                            return if (vari.size == 1 && vari[0] is SList.SIter<*>)
+                                (vari[0] as SList.SIter<*>)
+                            else
+                                vari.iter
+                        }
+                    }
+                }
+            }
+        } else {
+            return visitVari(ctx.vari())[0].copy()
+        }
+        return SText("An other variabel was suposed to be created")
+
     }
 
     override fun visitDeclTail(ctx: SlimeParser.DeclTailContext): SVari? = null
 
-    override fun visitNameValue(ctx: SlimeParser.NameValueContext): SVari {
+    override fun visitNameValue(ctx: SlimeParser.NameValueContext): SInst {
         val result = SInst("NameValue")
-        result.content.add(visitListName(ctx.listName()))
-        result.content.add(visitVari(ctx.vari()))
+        result()[0] = visitListName(ctx.listName())
+        result()[1] = visitListVari(ctx.listVari())
         return result
     }
 
-    override fun visitNameType(ctx: SlimeParser.NameTypeContext): SVari =
-        SList(mutableListOf(SList(mutableListOf(visitListName(ctx.listName()), visitTypeName(ctx.typeName())))))
+    override fun visitNameType(ctx: SlimeParser.NameTypeContext): SList<SList<SText>> =
+        SList(mutableListOf(visitListName(ctx.listName()), visitTypeName(ctx.typeName())))
 
-    override fun visitVari(ctx: SlimeParser.VariContext): SList<SVari> {
-        val prc = (ctx.getChild(0) as ParserRuleContext)
-        return when (prc.ruleIndex) {
-            SlimeParser.RULE_variPath -> {
+
+    override fun visitVari(ctx: SlimeParser.VariContext): SList<SVari> =
+        when (val prc = (ctx.getChild(0) as ParserRuleContext)) {
+            is SlimeParser.VariPathContext -> {
                 SList(
                     mutableListOf(
-                        DataContainer.focus?.get(visitVariPath(prc as SlimeParser.VariPathContext))
+                        DataContainer.focus?.get(visitVariPath(prc))
                             ?: throw Exception(
-                                "Can not rech variable at Path ${(visitVariPath(prc as SlimeParser.VariPathContext)).expand(
+                                "Can not reach variable at Path ${(visitVariPath(prc)).expand(
                                     "/"
                                 )}"
                             )
                     )
                 )
             }
-            SlimeParser.RULE_refe -> {
-                SList(visitRefe(prc as SlimeParser.RefeContext).listMatchingPaths().content.map {
+            is SlimeParser.RefeContext -> {
+                SList(visitRefe(prc).listMatchingPaths().map {
                     DataContainer.focus?.get(it)
                         ?: throw Exception(
-                            "Can not rech variable at Path ${(visitVariPath(prc as SlimeParser.VariPathContext)).expand(
+                            "Can not reach variable at Path ${(visitRefe(prc)).expand(
                                 "/"
                             )}"
                         )
                 }.toMutableList())
             }
-            else -> SList(mutableListOf(prc.accept(this)))
+            else ->{
+                val vari=prc.accept(this)
+                if (vari is SList<*>)
+                    if(vari.size==1)
+                        SList(mutableListOf(vari[0]))
+                    else
+                        vari.map { it}.toSList()
+                else SList(mutableListOf(vari))
+            }
         }
+
+    override fun visitListVari(ctx: SlimeParser.ListVariContext): SList<SVari> {
+        val result = SList(mutableListOf())
+        ctx.vari().forEach { result.addAll(visitVari(it)) }
+        return result
     }
 
     override fun visitListName(ctx: SlimeParser.ListNameContext): SList<SText> =
-        SList(visitChildren(ctx).content.map { it as SText }.filter { it.content != "," }.toMutableList())
+        SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(",") != 0 }.toMutableList())
 
     override fun visitVariPath(ctx: SlimeParser.VariPathContext): SList<SText> =
-        SList(visitChildren(ctx).content.map { it as SText }.filter { it.content != "." }.toMutableList())
+        SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(".") != 0 }.toMutableList())
 
     override fun visitTypeName(ctx: SlimeParser.TypeNameContext): SList<SText> =
-        SList(visitChildren(ctx).content.map { it as SText }.filter { it.content != ":" }.toMutableList())
+        SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(":") != 0 }.toMutableList())
 
-    override fun visitTextOutor(ctx: SlimeParser.TextOutorContext): SVari = ctx.TEXT_OUTOR().accept(this)
+    override fun visitTextOutor(ctx: SlimeParser.TextOutorContext): SText = ctx.TEXT_OUTOR().accept(this) as SText
 
 }

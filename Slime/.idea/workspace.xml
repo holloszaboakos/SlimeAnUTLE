@@ -2,147 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/VariableFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/SFile.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/SInst.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/SRefe.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/SSlot.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/STemp.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/type/SType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/abstract.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/abstract.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/acknowledgement.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/acknowledgement.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/appendices.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/appendices.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter1.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter2.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter3.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/declaration.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/declaration.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/diploma.tcp" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/diploma.tcp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/diploma.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/diploma.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/BMElogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/BMElogo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/TeXnicCenter.png" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/TeXnicCenter.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/TeXnicCenterSetup.png" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/TeXnicCenterSetup.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/convert.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/figures/convert.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/guideline.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/guideline.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/introduction.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/introduction.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/magyar.ldf" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/magyar.ldf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/mybib.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/mybib.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/preliminaries.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/preliminaries.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/project.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/project.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/text_of_thesis.g4" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/text_of_thesis.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/titlepage.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/titlepage.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/boss.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/boss.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/antlr_4_7_2_complete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/antlr_4_7_2_complete.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Slime.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Slime.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/META-INF/Slime.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/MainKt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/MySlimeParserVisitor$WhenMappings.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/MySlimeParserVisitor.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/DataContainer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/Type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/Variable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/Visitor$DefaultImpls.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/Visitor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/File.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/ListOf.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/ReferenceTo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/Slot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/Special$Char.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/Special.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/StructInstance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/StructType$NameType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/StructType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/Template.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/Text.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclBodyPartContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclNeckContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeclTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeleBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeleContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeleHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$DeleTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaBodyPartContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$FileContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ListNameContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$NameTypeContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$NameValueContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusBodyPartContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusElementContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$PlusTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$RefeBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$RefeContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$RefeHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$RefeTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SlotContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SlotHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SlotTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SpecContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SpecHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SpecTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$SpslBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempBodyPartContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TempTextContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TextBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TextContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TextHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TextOutorContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TextTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$TypeNameContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$VariContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$VariPathContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseVisitor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserVisitor.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SlimeLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeLexer.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SlimeParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/DataContainer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataContainer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Type.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Variable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SVari.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/SVari.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SVari.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/VariableFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/VariableFactory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/Visitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Visitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/File.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/ListOf.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/ReferenceTo.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/Slot.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/Special.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SSpec.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/StructInstance.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/StructType.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/Template.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/Text.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SText.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SFile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SInst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SInst.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SRefe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SRefe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SSlot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SSlot.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SSpec.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SSpec.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/STemp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/STemp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SText.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SText.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/SType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" afterDir="false" />
@@ -168,34 +51,47 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SRefe.kt">
+        <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="150" selection-start-line="150" selection-end-line="150" />
+              <folding>
+                <element signature="e#0#226#0" expanded="true" />
+                <element signature="n#!!block;n#visitChildren#0;n#!!block;n#MySlimeParserVisitor#0" />
+                <element signature="n#!!block;n#visitNameValue#0;n#!!block;n#MySlimeParserVisitor#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SList.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1881">
+              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output.irtg">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
-              <caret line="5" column="61" selection-start-line="5" selection-start-column="61" selection-end-line="5" selection-end-column="61" />
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
+        <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1805">
-              <caret line="96" column="9" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
-              <folding>
-                <element signature="e#19#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="47" column="101" selection-start-line="47" selection-start-column="101" selection-end-line="47" selection-end-column="101" />
-              <folding>
-                <element signature="e#19#59#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="19">
+              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -203,8 +99,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="125">
+              <caret line="171" selection-start-line="171" selection-end-line="171" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1729">
+              <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -212,62 +117,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="1482">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SText.kt">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="8" selection-end-column="5" />
+            <state relative-caret-position="874">
+              <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="836">
+              <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
               <folding>
-                <element signature="e#19#59#0" expanded="true" />
+                <element signature="e#19#90#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/VariableFactory.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="185" column="34" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#226#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SSpec.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-              <folding>
-                <element signature="e#19#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/type/SType.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -286,51 +158,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>path.content:</find>
-      <find>name.</find>
-      <find>path.</find>
-      <find>path[0]</find>
-      <find>path.content[0]</find>
-      <find>names.</find>
-      <find>nameValue</find>
-      <find />
-      <find>class</find>
-      <find>visitChildren</find>
-      <find>visitC</find>
-      <find>(path.content[0]as Text)</find>
-      <find>Text(mutableListOf(),</find>
-      <find>(path.content[0] as Text)</find>
-      <find>_text</find>
-      <find>_element</find>
-      <find>INSE</find>
-      <find>Ł}</find>
-      <find>inse</find>
-      <find>refe</find>
-      <find>plusBodyPart</find>
-      <find>Pair</find>
-      <find>Text(</find>
-      <find>Refe</find>
-      <find>visit</find>
-      <find>))),</find>
       <find>Type</find>
       <find>data.</find>
       <find>.Type.</find>
       <find>STemp: $</find>
+      <find>ParseTree</find>
+      <find>SIm</find>
+      <find>neck</find>
+      <find>.getChild(1)</find>
+      <find>if</find>
+      <find>neck.content[</find>
+      <find>visitListVari(</find>
+      <find>SText(next)</find>
+      <find>getChild(5)</find>
+      <find>ctx.children[1] as SlimeParser.ListVariContext</find>
+      <find>visitRefe</find>
+      <find>visitText</find>
+      <find>visitTextOutor</find>
+      <find>.getOrNull(0)</find>
+      <find>?</find>
+      <find>path.content</find>
+      <find>.get(0)</find>
+      <find>.content</find>
+      <find>getOrNull</find>
+      <find>?.</find>
+      <find>names?.get(0)?.content ?: &quot;@nameless&quot;</find>
+      <find>names[0].content</find>
+      <find>path[0].content</find>
+      <find>names[0]()</find>
+      <find>catch</find>
+      <find>size</find>
     </findStrings>
     <replaceStrings>
-      <replace>_B_O :</replace>
-      <replace>_B_S</replace>
-      <replace>_TEXT</replace>
-      <replace>_B_O</replace>
-      <replace>B_T :</replace>
-      <replace>_TEMP_</replace>
-      <replace>_B_T :</replace>
-      <replace>&lt;</replace>
-      <replace>{=</replace>
-      <replace>=}</replace>
-      <replace>[+</replace>
-      <replace>:Variable = File(mutableListOf(), mutableMapOf())</replace>
-      <replace>path.content</replace>
       <replace>path:</replace>
       <replace>path.content.</replace>
       <replace>names?.</replace>
@@ -348,6 +207,19 @@
       <replace>Type.Type</replace>
       <replace>[&quot;</replace>
       <replace>Temp: $</replace>
+      <replace>.children[0]</replace>
+      <replace>next</replace>
+      <replace>children[2]</replace>
+      <replace>ctx.listVari()</replace>
+      <replace>.getOrNull(0)?.content</replace>
+      <replace>path</replace>
+      <replace>[0]</replace>
+      <replace>names[0].content</replace>
+      <replace>get</replace>
+      <replace>.</replace>
+      <replace>names[0]()</replace>
+      <replace>path[0]()</replace>
+      <replace>names.getOrNull(0)?:&quot;@nameless&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -370,14 +242,10 @@
         <option value="$PROJECT_DIR$/src/data/DataTree.kt" />
         <option value="$PROJECT_DIR$/src/Slime_parser.g4" />
         <option value="$PROJECT_DIR$/src/Slime_lexer.g4" />
-        <option value="$PROJECT_DIR$/src/Main.kt" />
         <option value="$PROJECT_DIR$/src/data/SType.kt" />
         <option value="$PROJECT_DIR$/src/MyVisitor.kt" />
         <option value="$PROJECT_DIR$/src/MySlimeVisitor.kt" />
-        <option value="$PROJECT_DIR$/src/SlimeParser.g4" />
         <option value="$PROJECT_DIR$/src/data/type/SpecialChar.kt" />
-        <option value="$PROJECT_DIR$/src/SlimeLexer.g4" />
-        <option value="$PROJECT_DIR$/src/data/DataContainer.kt" />
         <option value="$PROJECT_DIR$/src/data/type/Template.kt" />
         <option value="$PROJECT_DIR$/src/data/type/Special.kt" />
         <option value="$PROJECT_DIR$/src/data/type/ListOf.kt" />
@@ -389,20 +257,25 @@
         <option value="$PROJECT_DIR$/src/data/type/StructType.kt" />
         <option value="$PROJECT_DIR$/src/data/type/Text.kt" />
         <option value="$PROJECT_DIR$/src/data/type/Struct.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SText.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SFile.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SSpec.kt" />
-        <option value="$PROJECT_DIR$/src/data/SVari.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SList.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SRefe.kt" />
-        <option value="$PROJECT_DIR$/src/data/Visitor.kt" />
         <option value="$PROJECT_DIR$/src/data/type/Slot.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SType.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SInst.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/SSlot.kt" />
+        <option value="$PROJECT_DIR$/src/data/DataContainer.kt" />
+        <option value="$PROJECT_DIR$/output.irtg" />
+        <option value="$PROJECT_DIR$/src/data/SVari.kt" />
+        <option value="$PROJECT_DIR$/src/SlimeParser.g4" />
+        <option value="$PROJECT_DIR$/src/data/Visitor.kt" />
         <option value="$PROJECT_DIR$/src/data/VariableFactory.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SText.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SSpec.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SSlot.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SRefe.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SType.kt" />
         <option value="$PROJECT_DIR$/src/data/type/STemp.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SFile.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SInst.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/SList.kt" />
+        <option value="$PROJECT_DIR$/src/SlimeLexer.g4" />
         <option value="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" />
+        <option value="$PROJECT_DIR$/src/Main.kt" />
       </list>
     </option>
   </component>
@@ -448,12 +321,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="type" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Slime" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Slime" type="b2602c69:ProjectViewProjectNode" />
@@ -543,6 +410,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -568,8 +440,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26622295" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29450914" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -579,28 +452,29 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.54901963" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.47712418" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Tool Output" order="10" weight="0.33006537" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="11" />
+      <window_info anchor="bottom" id="Tool Output" order="10" weight="0.43028322" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.96732026" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32897604" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24958402" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.24958402" />
       <window_info anchor="right" id="Maven" order="8" weight="0.3294509" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2562396" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29062673" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -610,30 +484,89 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41067538" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.51198256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Tool Output" order="10" weight="0.33006537" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="11" />
+      <window_info anchor="bottom" id="Tool Output" order="10" weight="0.43028322" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" weight="0.7570806" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32897604" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="right" id="Maven" order="8" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.24958402" />
+      <window_info anchor="right" id="Maven" order="8" weight="0.3294509" />
     </layout-to-restore>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/data/type/SInst.kt</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt</url>
+          <line>352</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="DataContainer.focus" language="kotlin" custom="import data.DataContainer" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>DataContainer.focus</expression-string>
+        <language-id>kotlin</language-id>
+        <custom-info>import data.DataContainer</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SType.types</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SType</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>DataContainer.focus</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>root</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>DataContainer</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/gVisitor.java" />
@@ -650,14 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/ParserRuleContext.class" />
-    <entry file="file://$PROJECT_DIR$/src/Main.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/SlimeParserBaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -665,153 +590,283 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParserVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/data/Type.kt" />
+    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.tokens">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+        <state relative-caret-position="57">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/ANTLRFileStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/runtime/ANTLRInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/runtime/ANTLRReaderStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/runtime/ANTLRStringStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/runtime/CharStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/tree/TerminalNodeImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#1354#1355#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/CommonToken.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1387">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/SlimeLexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18246">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/tree/TerminalNodeImpl.class" />
-    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="2816" column="25" selection-start-line="2816" selection-start-column="25" selection-end-line="2816" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1577">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
-      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/Type.kt" />
-    <entry file="file://$PROJECT_DIR$/src/data/DataContainer.kt">
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/UnbufferedCharStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#6515#6516#0" expanded="true" />
+            <element signature="e#6612#6613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/CodePointCharStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="29" column="57" lean-forward="true" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/CodePointBuffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/jdk-12/lib/src.zip!/java.base/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="995" column="12" selection-start-line="995" selection-start-column="12" selection-end-line="995" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-sources.jar!/common/generated/_Collections.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="203" selection-start-line="203" selection-end-line="203" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/antlr-4.7.2-complete.jar!/org/antlr/v4/runtime/ParserRuleContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParserVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2377">
+          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$KOTLIN_BUNDLED$/lib/kotlin-stdlib-jdk8-sources.jar!/kotlin/collections/Collections.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/SVari.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="217">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/DataContainer.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/Visitor.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        <state relative-caret-position="190">
+          <caret line="10" column="50" lean-forward="true" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SList.kt">
+    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="5" selection-start-line="7" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SRefe.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="61" selection-start-line="5" selection-start-column="61" selection-end-line="5" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="96" column="9" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+        <state relative-caret-position="130">
+          <caret line="3025" selection-start-line="3025" selection-end-line="3025" />
           <folding>
-            <element signature="e#19#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="47" column="101" selection-start-line="47" selection-start-column="101" selection-end-line="47" selection-end-column="101" />
-          <folding>
-            <element signature="e#19#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SText.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="65" selection-start-line="5" selection-start-column="65" selection-end-line="8" selection-end-column="5" />
-          <folding>
-            <element signature="e#19#59#0" expanded="true" />
+            <element signature="e#29503#29504#0" expanded="true" />
+            <element signature="e#29558#29559#0" expanded="true" />
+            <element signature="e#94323#94324#0" expanded="true" />
+            <element signature="e#94374#94375#0" expanded="true" />
+            <element signature="e#122723#122724#0" expanded="true" />
+            <element signature="e#122778#122779#0" expanded="true" />
+            <element signature="e#133073#133074#0" expanded="true" />
+            <element signature="e#133123#133124#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/VariableFactory.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+        <state relative-caret-position="384">
+          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SSpec.kt">
+    <entry file="file://$PROJECT_DIR$/src/data/type/SType.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="352">
+          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SText.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
           <folding>
             <element signature="e#19#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SType.kt">
+    <entry file="file://$PROJECT_DIR$/src/data/type/SSpec.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        <state relative-caret-position="742">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+          <folding>
+            <element signature="e#19#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SRefe.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="988">
+          <caret line="54" column="26" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SList.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1881">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1729">
+          <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+          <folding>
+            <element signature="e#19#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.irtg">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="171" selection-start-line="171" selection-end-line="171" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="185" column="34" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
+        <state relative-caret-position="160">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
           <folding>
             <element signature="e#0#226#0" expanded="true" />
+            <element signature="n#!!block;n#visitChildren#0;n#!!block;n#MySlimeParserVisitor#0" />
+            <element signature="n#!!block;n#visitNameValue#0;n#!!block;n#MySlimeParserVisitor#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
         </state>
       </provider>
     </entry>

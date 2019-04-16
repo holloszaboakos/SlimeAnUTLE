@@ -2,37 +2,61 @@ package data.type
 
 import data.*
 import java.lang.Exception
+import java.util.regex.Pattern
 
-class SRefe(val pattern: String, val types: MutableList<SText>, names: MutableList<SText>? = null) :
-    SVari(ctype, names) {
+class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SText>  = listOf()) :
+    SVari("Refe", names) {
 
-    companion object {
-        val ctype = SType["Refe"]
-    }
-
-    override fun listPaths(): SList<SList<SText>>? = null
+    override fun listPaths(): SList<SList<SText>> = SList()
 
     fun listMatchingPaths(): SList<SList<SText>> {
-        val result = DataContainer.focus?.listPaths() ?: throw Exception("SFile of reference is not in focus")
-        for (path in result.content) {
-            var text = path.content[0].content
-            for (tIx in 1 until path.content.size)
-                text += ('.' + path.content[tIx].content)
-            if (!pattern.toRegex().matches(text))
-                result.content.remove(path)
+        val preResult = DataContainer.focus?.listPaths() ?: throw Exception("SFile of reference is not in focus")
+        val result = SList(mutableListOf<SList<SText>>())
+        for (path in preResult) {
+            var text = ""
+            for (t in path)
+                text += ('.' + t())
+            text=text.substring(1)
+            if (Pattern.matches(pattern,text))
+                result.add(path)
         }
         return result
     }
 
-    override fun copy(): SRefe = SRefe(pattern, types.toMutableList())
+    override fun copy(names: List<SText>): SRefe = SRefe(pattern, types.toMutableList(),names)
 
     override fun expand(): String = pattern
 
     override fun expand(divider: String): String = pattern
 
-    override fun add(v: SVari, i: Int): SVari = throw Exception("You can not add into a reference.")
+    override fun plus(v: SVari, i: Int): SVari = throw Exception("You can not add into a reference.")
 
-    override fun get(path: SList<SText>): SVari = throw Exception("You can not get variable form a reference.")
+    override fun get(path: SList<SText>): SVari =
+        when {
+            path.isEmpty() -> this
+            path.size == 1 -> {
+                when (path[0]()) {
+                    "names"-> names
+                    "self" -> this
+                    "self" -> this
+                    "copy" -> copy()
+                    "copyN" -> copy(names)
+                    else -> throw  Exception("unknown keyword for slot: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> names.get(path)
+                    "self" -> this.get(path)
+                    "self" -> this.get(path)
+                    "copy" -> copy().get(path)
+                    "copyN" -> copy(names).get(path)
+                    else -> throw  Exception("unknown keyword for slot: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+        }
 
     override fun delete(path: SList<SText>) = throw Exception("You can not delete variable form a reference.")
 

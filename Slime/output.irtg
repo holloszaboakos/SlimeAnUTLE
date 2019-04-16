@@ -1,0 +1,59 @@
+//COMPLEX LONG
+
+//temp+s1
+	NN -> dog_NN 
+	[string] dog 
+	[tree] NN( dog ) 
+	[ud] "(dog<root>/dog)" 
+	[4lang] "(dog<root>/dog)"
+//temp+s2
+	NN -> cat_NN 
+	[string] cat 
+	[tree] NN( cat ) 
+	[ud] "(cat<root>/cat)" 
+	[4lang] "(cat<root>/cat)"
+//temp+s3
+	NN -> fish_NN 
+	[string] fish 
+	[tree] NN( fish ) 
+	[ud] "(fish<root>/fish)" 
+	[4lang] "(fish<root>/fish)"
+//temp+l1
+	NN -> dog_NN 
+	[string] dog 
+	[tree] NN( dog ) 
+	[ud] "(dog<root>/dog)" 
+	[4lang] "(dog<root>/dog)"
+
+	NN -> cat_NN 
+	[string] cat 
+	[tree] NN( cat ) 
+	[ud] "(cat<root>/cat)" 
+	[4lang] "(cat<root>/cat)"
+
+	NN -> fish_NN 
+	[string] fish 
+	[tree] NN( fish ) 
+	[ud] "(fish<root>/fish)" 
+	[4lang] "(fish<root>/fish)"
+//temp+l2
+	NN -> dog_NN 
+	[string] dog 
+	[tree] NN( dog ) 
+	[ud] "(dog<root>/dog)" 
+	[4lang] "(dog<root>/dog)"
+
+	NN -> cat_NN 
+	[string] cat 
+	[tree] NN( cat ) 
+	[ud] "(cat<root>/cat)" 
+	[4lang] "(cat<root>/cat)"
+
+	NN -> fish_NN 
+	[string] fish 
+	[tree] NN( fish ) 
+	[ud] "(fish<root>/fish)" 
+	[4lang] "(fish<root>/fish)"
+
+
+
