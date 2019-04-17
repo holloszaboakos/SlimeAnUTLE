@@ -4,18 +4,18 @@ import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
 
-class SInst(metaName: String, names: List<SText> = SList()) : SVari(metaName, names) {
+class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, names) {
 
     private val content: MutableList<SVari?> = MutableList(SType[typeName].attributes.size) { null }
 
     operator fun invoke(): MutableList<SVari?> = content
 
-    override fun listPaths(): SList<SList<SText>> {
-        val result = SList<SList<SText>>(mutableListOf())
+    override fun listPaths(): SList<SList<SName>> {
+        val result = SList<SList<SName>>(mutableListOf())
         for (vari in content) {
             vari?.let {
                 val variPaths = vari.listPaths()
-                val variName = SText(SType[typeName].attributes[content.indexOf(vari)].name)
+                val variName = SName(SType[typeName].attributes[content.indexOf(vari)].name)
 
                 for (path in variPaths)
                     path.add(1, variName)
@@ -27,32 +27,37 @@ class SInst(metaName: String, names: List<SText> = SList()) : SVari(metaName, na
         return result
     }
 
-    override fun copy(names: List<SText>): SInst {
+    override fun copy(names: List<SName>): SInst {
         val result = SInst(typeName, names)
 
         for (d in content)
-            if (d != null) result.content[content.indexOf(d)] = d.copy(d.names)
+            if (d != null) result.content[content.indexOf(d)] = d.copy()
         return result
     }
 
     override fun expand(): String {
         var result = ""
         for (d in content)
-            result += ("\n"+d?.expand()  )
-        result=result.substring(1)
+            result += d?.expand()
         return result
     }
 
     override fun expand(divider: String): String {
         var result = ""
         for (d in content)
-            result += (divider+d?.expand())
-        result=result.substring(divider.length)
+            result += (divider + d?.expand())
+        result = result.substring(divider.length)
         return result
     }
 
     override fun plus(v: SVari, i: Int): SVari {
         when {
+            v is SList<*> && v[0] is SName && i == -1
+            -> addNames(v.filter { it is SName }.map { it as SName })
+            v is SList.SIter<*> && v.owner[0] is SName && i == -1
+            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+            v is SName && i == -1
+            -> addNames(listOf(v))
             i == -1 && v is SList.SIter<*>
             -> for (j in 0 until v.owner.size)
                 plus(v.owner[j], j)
@@ -65,33 +70,14 @@ class SInst(metaName: String, names: List<SText> = SList()) : SVari(metaName, na
         return this
     }
 
-    override fun get(path: SList<SText>): SVari =
+    override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
-            path.size == 1 -> {
-                when (val next = path[0]()) {
-                    "names" -> names
-                    "self" -> this
-                    "copy" -> copy()
-                    "copyN" -> copy(names)
-                    "cont" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this)
-                    "iter" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this).iter
-                    in ctype.attributes.map { it.name } ->
-                        content[ctype.attributes.indexOf(ctype.attributes
-                            .first { it.name.compareTo(next) == 0 })]
-                            ?: throw Exception("Wrong variable name: $next")
-                    else ->
-                        if (Pattern.matches("^[0-9]*$", next))
-                            content[next.toInt()]
-                                ?: throw Exception("Wrong variable index: $next")
-                        else throw Exception("Wrong variable name: $next")
-                }
-            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.get(path)
+                    "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
                     "copyN" -> copy(names).get(path)
@@ -110,7 +96,7 @@ class SInst(metaName: String, names: List<SText> = SList()) : SVari(metaName, na
             }
         }
 
-    override fun delete(path: SList<SText>) {
+    override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
                 "path shouldn't be empty when deleting from STemp: ${names.getOrNull(0) ?: "@nameless"}"
@@ -120,10 +106,10 @@ class SInst(metaName: String, names: List<SText> = SList()) : SVari(metaName, na
                 path.removeAt(0)
                 if (Pattern.matches("^[0-9]*$", next)) {
                     val i = next.toInt()
-                    content[i]?.delete(SList(mutableListOf(SText("@content"))))
+                    content[i]?.delete(SList(mutableListOf(SName("@content"))))
                 } else
                     content[SType[typeName].attributes.indexOf(SType[typeName].attributes.first { it.name == next })]?.delete(
-                        SList(mutableListOf(SText("@content")))
+                        SList(mutableListOf(SName("@content")))
                     )
 
 

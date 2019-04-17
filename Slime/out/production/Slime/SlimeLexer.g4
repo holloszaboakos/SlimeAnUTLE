@@ -2,9 +2,9 @@ lexer grammar SlimeLexer;
 RULE_DIV:   ([\n\r\t ]+ { _input.LA(1) == '{' }?
             |[\n\r\t ]+ { _input.LA(1) == '[' }?
             |[\n\r\t ]+ { _input.LA(1) == '<' }?)->skip;
-fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )+ '#}')
-              | ('[#' (~[\n\r])+        {_input.LA(1) == '\n'}?)
-              | ('<#'  (~[\n\r\t ])+     {_input.LA(1) == '\n'|| _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}? );
+fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )* '#}')
+              | ('[#' (~[\n\r])*        {_input.LA(1) == '\n'}?)
+              | ('<#'  (~[\n\r\t ])*     {_input.LA(1) == '\n'|| _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}? );
 COMM_OUTER:COMM->skip;
 //OPEN BRACKETS
 OB_SLOT : '{$' 	        -> pushMode(B_SLSP);
@@ -61,7 +61,7 @@ SC_O_S : ';';
 
 mode L_SLSP;
 COMM_L_S: COMM -> skip;
-NW_SLSP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
+NW_SLSP  : ' ' -> popMode ;
 NAME_L_S   : [a-zA-Z_][a-zA-Z_0-9]* ;
 SC_L_S : ';';
 
@@ -69,7 +69,7 @@ SC_L_S : ';';
 
 mode B_REFE;
 COMM_REFE: COMM -> skip;
-WS_B_R:[\n\r\t]->skip;
+WS_B_R:[\n\r\t ]->skip;
 CB_REFE  : '&}' -> popMode ;
 
 CL_B_R:':';
@@ -264,7 +264,7 @@ IN_L_TEXT : ( ~[\n\r\t ])+ ;
 
 mode B_TEMP;
 CB_TEMP  : '|}' -> popMode ;
-TEXT_LINE: ( ~[|\n\r{[<] | '|' (~'}'|EOF) | [{[<] (~["@$]|EOF) )+;
+TEXT_LINE: ( ~[|\n\r{[<;] | '|' (~'}'|EOF) | [{[<] (~["@$]|EOF) )+;
 LINE_DIVIDER: ([ \t]*[\n\r][ \t]*) -> skip;
 
 OB_SLOT_B_T : '{$' 	-> pushMode(B_SLSP);
@@ -283,7 +283,7 @@ SC_B_T:';';
 
 mode O_TEMP;
 NL_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
-OL_TEXT_LINE: ( ~[|\n\r{[<] | '|' (~[}\n\r]|EOF) | [{[<] (~["@$\n\r]|EOF) )+;
+OL_TEXT_LINE: ( ~[|\n\r{[<;] | '|' (~[}\n\r]|EOF) | [{[<] (~["@$\n\r]|EOF) )+;
 
 OB_SLOT_O_T : '{$' 	-> pushMode(B_SLSP);
 OB_SPEC_O_T : '{@' 	-> pushMode(B_SLSP);
@@ -301,7 +301,7 @@ SC_O_T:';';
 
 mode L_TEMP;
 NW_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
-L_TEXT_LINE: ( ~[|\n\r\t {[<] | '|' (~[}\n\r\t ]|EOF) | [{[<] (~["@$\n\r\t ]|EOF) )+;
+L_TEXT_LINE: ( ~[|\n\r\t {[<;] | '|' (~[}\n\r\t ]|EOF) | [{[<] (~["@$\n\r\t ]|EOF) )+;
 
 OB_SLOT_L_T : '{$' 	-> pushMode(B_SLSP);
 OB_SPEC_L_T : '{@' 	-> pushMode(B_SLSP);

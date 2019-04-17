@@ -1,0 +1,69 @@
+//COMPLEX SHORT<#
+[#This is the same example from above but without the shortcuts
+[# template, structure, three structure instance and three lists decleration
+{= 
+	irtgBase : Temp := {|
+		<@e;t <$left  -> <$header 
+		<@e;t [string] <$string 
+		<@e;t [tree] <$syntax_tree 
+		<@e;t [ud] <$ud_graph 
+		<@e;t [4lang] <$fourlang_graph 
+	|}
+
+	;irtgDataBase : Type := left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
+	
+	;termDataBase : List:Temp := [|NN;<$word _NN ;<$word ;NN( <$word );"(<$word <root>/<$word )";"(<$word <root>/<$word )"
+
+	;termData1 : irtgDataBase := termDataBase.0.copy 
+		,[+ termDataBase.1.copy.word 	  :+ <"dog 
+		,[+ termDataBase.2.copy.word 	  :+ <"dog 
+		,[+ termDataBase.3.copy.word 	  :+ <"dog 
+		,[+ termDataBase.4.copy.word.iter :+ <"dog 
+		,[+ termDataBase.5.copy.word.iter :+ <"dog
+
+	;termData2 : irtgDataBase := termDataBase.0.copy 
+		,[+ termDataBase.1.copy.word 	  :+ <"cat 
+		,[+ termDataBase.2.copy.word 	  :+ <"cat 
+		,[+ termDataBase.3.copy.word 	  :+ <"cat 
+		,[+ termDataBase.4.copy.word.iter :+ <"cat 
+		,[+ termDataBase.5.copy.word.iter :+ <"cat
+
+
+	;termData3 : irtgDataBase := termDataBase.0.copy 
+		,[+ termDataBase.1.copy.word 	  :+ <"fish 
+		,[+ termDataBase.2.copy.word 	  :+ <"fish 
+		,[+ termDataBase.3.copy.word 	  :+ <"fish 
+		,[+ termDataBase.4.copy.word.iter :+ <"fish 
+		,[+ termDataBase.5.copy.word.iter :+ <"fish
+
+	;datas1 : List:Temp := termData1.self, termData2.self, termData3.self
+	
+	[# I have to mark that this is a reference given by a regex
+	;datas2 : List:Temp := {& irtgDataBase ,^termData[123]$&}
+=}
+
+
+
+[# plus the structure instances into the template and print them out from three different source
+{*
+	 <@e ;<"//irtgBase:+termData1
+	;[+ irtgBase.copy :+ termData1
+
+	;<@e;e ;<"//irtgBase:+termData2
+	;[+ irtgBase.copy :+ termData2
+
+	;<@e;e ;<"//irtgBase:+termData3
+	;[+ irtgBase.copy :+ termData3 
+
+	[# is the same as
+	;<@e;e ;<"//irtgBase:+datas1
+	;<+irtgBase:+datas1.iter : <@e;e 
+
+	[# and as
+	;<@e;e ;<"//irtgBase:+datas2
+	;<+irtgBase:+datas1.iter : <@e;e 
+*}
+
+[# delete all variables
+[x irtgBase; termDataBase; {& irtgDataBase ,^termData[1,2,3]$&}; datas1; datas2
+

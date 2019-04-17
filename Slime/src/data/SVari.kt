@@ -2,25 +2,31 @@ package data
 
 import data.type.*
 
-abstract class SVari(val typeName: String, _names: List<SText>) {
-    init {
-            for (n in _names)
-                DataContainer.focus?.content?.set(n(), this)
-    }
+abstract class SVari(val typeName: String, _names: List<SName>) {
 
     val ctype get() = SType[typeName]
-    private var pnames:MutableList<SText> = _names.toMutableList()
-    var names:SList<SText>
-    get() =pnames.toSList()
-    set(value){pnames=value.toMutableList()}
 
-    abstract fun listPaths(): SList<SList<SText>>
-    abstract fun copy(names: List<SText> = listOf()): SVari
+    protected val names:MutableList<SName> = mutableListOf()
+
+    init {
+        addNames(_names)
+    }
+    fun addNames(_names: List<SName>): SVari {
+        if (_names.isNotEmpty()) {
+            names.addAll(_names)
+            for (n in _names)
+                DataContainer.focus?.content?.set(n(), this)
+        }
+        return this
+    }
+
+    abstract fun listPaths(): SList<SList<SName>>
+    abstract fun copy(names: List<SName> = listOf()): SVari
     abstract fun expand(): String
     abstract fun expand(divider: String): String
     abstract fun plus(v: SVari, i: Int = -1): SVari
-    abstract fun get(path: SList<SText>): SVari
-    abstract fun delete(path: SList<SText>)
+    abstract fun get(path: SList<SName>): SVari
+    abstract fun delete(path: SList<SName>)
     abstract fun visit(v: Visitor, mod: String): SVari
 
 }

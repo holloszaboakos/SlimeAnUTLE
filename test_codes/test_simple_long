@@ -1,33 +1,33 @@
 //SIMPLE LONG
+
 {# This is a code #}
 {# A very nice code #}
 {# template, structure and structure instance decleration #}
 {= 
-temp:Temp := 
+irtgBase : Temp := 
 	{|
 		{@e@}{@t@}{$left$} -> {$header$}
 		{@e@}{@t@}[string] {$string$}
 		{@e@}{@t@}[tree] {$syntax_tree$}
 		{@e@}{@t@}[ud] {$ud_graph$}
 		{@e@}{@t@}[4lang] {$fourlang_graph$}
-		{@e@}
 	|}
 =}
 {= 
-Stru:Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
+irtgDataBase:Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
 =}
 {= 
-s:Stru  :=  
-	left := {|NN|}, 
-	header := {|dog_NN|}, 
-	string := {|dog|}, 
-	syntax_tree := {|NN(dog)|}, 
-	ud_graph := {|dog|}, 
-	fourlang_graph := {|dog|}
+termDataDog:irtgDataBase  :=  
+	left := {"NN"}, 
+	header := {"dog_NN"}, 
+	string := {"dog"}, 
+	syntax_tree := {"NN(dog)"}, 
+	ud_graph := {"dog"}, 
+	fourlang_graph := {"dog"}
 =}
 {# plus the structure instance into the template and print it out #}
 {* {+ 
-temp :+ s : 
+irtgBase :+ termDataDog : 
 	left 		:+ left, 
 	header 		:+ header, 
 	string 		:+ string, 
@@ -36,7 +36,7 @@ temp :+ s :
 	fourlang_graph 	:+ fourlang_graph
 +}  *}
 {# delete all variables #}
-{x temp x}
-{x s x}
-{x Stru x}
+{x irtgBase x}
+{x irtgDataLineBase x}
+{x termDataDog x}
 

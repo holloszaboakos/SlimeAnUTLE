@@ -25,9 +25,10 @@ object VariableFactory : Visitor {
             SType["List"] -> throw Error("Last element of type list can not be a List")
             SType["Type"] -> SType["Vari"]
             SType["Iter"] -> throw Error("Last element of type list can not be a List")
-            SType["Slot"] -> SSlot(SText())
+            SType["Slot"] -> SSlot(SName())
             SType["Refe"] -> SRefe("", mutableListOf())
             SType["Text"] -> SText("")
+            SType["Name"] -> SName("")
             SType["Spec"] -> SSpec(SSpec.Char.COLON)
             SType["File"] -> SFile(mutableMapOf())
             SType["Temp"] -> STemp(mutableListOf())
@@ -60,4 +61,5 @@ object VariableFactory : Visitor {
     override fun <T : SVari> accept(h: SList<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
     override fun <T : SVari> accept(h: SList.SIter<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
     override fun accept(h: SText, mode: String): SList<SText> = SList(mutableListOf())
+    override fun accept(h: SName, mode: String): SList<SName> = SList(mutableListOf())
 }

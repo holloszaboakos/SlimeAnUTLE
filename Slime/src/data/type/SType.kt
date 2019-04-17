@@ -28,6 +28,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
             Pair("Spec", SType("Spec", listOf(names, NameType("copy", listOf(SText("Spec")))))),
             Pair("Temp", SType("Temp", listOf(names, NameType("copy", listOf(SText("Temp")))))),
             Pair("Text", SType("Text", listOf(names, NameType("copy", listOf(SText("Text")))))),
+            Pair("Name", SType("Name", listOf(names, NameType("copy", listOf(SText("Name")))))),
             Pair("File", SType("File", listOf(names, NameType("copy", listOf(SText("File")))))),
             Pair("Vari", SType("Vari", listOf(names, NameType("copy", listOf(SText("Vari")))))),
             Pair("Iter", SType("Iter", listOf(names, NameType("copy", listOf(SText("Iter")))))),
@@ -44,17 +45,17 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         typesReady = typesReady || (!typesReady && tag.compareTo("Type") == 0)
     }
 
-    override fun listPaths(): SList<SList<SText>> = SList()
+    override fun listPaths(): SList<SList<SName>> = SList()
 
-    override fun copy(names: List<SText>): SType {
+    override fun copy(names: List<SName>): SType {
         return this
     }
 
     override fun expand(): String {
-        var result = "struct ${names.getOrNull(0)?:"@nameless"}{\n"
+        var result = "struct ${names.getOrNull(0)?:"@nameless"}{\t"
         for (a in attributes)
-            result += "\t${a.name}:${a.type}\n"
-        result += "}"
+            result += "\t${a.name}:${a.type}"
+        result += "\t}"
         return result
     }
 
@@ -66,26 +67,24 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         return result
     }
 
-    override fun plus(v: SVari, i: Int): SVari =
-        throw Exception("You can not add into a Structure type SVari")
+    override fun plus(v: SVari, i: Int): SVari =when {
+        v is SList<*> && v[0] is SName && i == -1
+        -> addNames(v.filter { it is SName }.map { it as SName })
+        v is SList.SIter<*> && v.owner[0] is SName && i == -1
+        -> addNames(v.owner.filter { it is SName }.map { it as SName })
+        v is SName && i == -1
+        -> addNames(listOf(v))
+        else ->
+        throw Exception("You can not add into a Structure type SVari")}
 
-    override fun get(path: SList<SText>): SVari =
+    override fun get(path: SList<SName>): SVari =
     when {
         path.isEmpty() -> this
-        path.size == 1 -> {
-            when (path[0]()) {
-                "names"-> names
-                "self" -> this
-                "copy" -> copy()
-                "copyN" -> copy(names)
-                else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
-            }
-        }
         else -> {
             val next = path[0]()
             path.removeAt(0)
             when (next) {
-                "names"-> names.get(path)
+                "names"-> names.toSList(owner = this).get(path)
                 "self" -> this.get(path)
                 "copy" -> copy().get(path)
                 "copyN" -> copy(names).get(path)
@@ -94,7 +93,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         }
     }
 
-    override fun delete(path: SList<SText>): Unit =
+    override fun delete(path: SList<SName>): Unit =
         throw Exception("You can not delete from a Structure type SVari")
 
     override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)

@@ -1,0 +1,90 @@
+//COMPLEX LONG{##}
+{#This is the same example from above but without the shortcuts#}
+{# template, structure, three structure instance and three lists decleration #}
+{= 
+	irtgBase : Temp := {|
+		{@e@}{@t@}{$left$} -> {$header$}
+		{@e@}{@t@}[string] {$string$}
+		{@e@}{@t@}[tree] {$syntax_tree$}
+		{@e@}{@t@}[ud] {$ud_graph$}
+		{@e@}{@t@}[4lang] {$fourlang_graph$}
+	|}
+=}
+{=
+	irtgDataBase : Type := 
+		left : Temp,
+		header : Temp, 
+		string : Temp, 
+		syntax_tree : Temp, 
+		ud_graph : Temp, 
+		fourlang_graph : Temp	
+=}
+{=	
+	termDataBase : irtgDataBase := 
+		left := {|NN|}, 
+		header := {|{$word$}_NN|}, 
+		string := {|{$word$}|}, 
+		syntax_tree := {|NN( {$word$} )|}, 
+		ud_graph := {|"({$word$}<root>/{$word$})"|}, 
+		fourlang_graph := {|"({$word$}<root>/{$word$})"|}
+=}
+{=
+	termData1 : irtgDataBase := 
+		left := termDataBase.left.copy, 
+		header := {+ termDataBase.header.copy.word :+ {"dog"} +}, 
+		string := {+ termDataBase.string.copy.word :+ {"dog"} +}, 
+		syntax_tree := {+ termDataBase.syntax_tree.copy.word :+ {"dog"} +}, 
+		ud_graph := {+ termDataBase.ud_graph.copy.word.iter :+ {"dog"} +}, 
+		fourlang_graph := {+ termDataBase.fourlang_graph.copy.word.iter :+ {"dog"} +}
+=}
+{=
+	termData2 : irtgDataBase := 
+		left := termDataBase.left.copy, 
+		header := {+ termDataBase.header.copy.word :+ {"cat"} +}, 
+		string := {+ termDataBase.string.copy.word :+ {"cat"} +}, 
+		syntax_tree := {+ termDataBase.syntax_tree.copy.word :+ {"cat"} +}, 
+		ud_graph := {+ termDataBase.ud_graph.copy.word.iter :+ {"cat"} +}, 
+		fourlang_graph := {+ termDataBase.fourlang_graph.copy.word.iter :+ {"cat"} +}
+=}
+{=
+	termData3 : irtgDataBase := 
+		left := termDataBase.left.copy, 
+		header := {+ termDataBase.header.copy.word :+ {"fish"} +}, 
+		string := {+ termDataBase.string.copy.word :+ {"fish"} +}, 
+		syntax_tree := {+ termDataBase.syntax_tree.copy.word :+ {"fish"} +}, 
+		ud_graph := {+ termDataBase.ud_graph.copy.word.iter :+ {"fish"} +}, 
+		fourlang_graph := {+ termDataBase.fourlang_graph.copy.word.iter :+ {"fish"} +}
+=}
+{=
+	datas1 : List:Temp := termData1.self, termData2.self, termData3.self
+=}
+{=
+	{# I have to mark that this is a reference given by a regex #}
+	datas2 : List:Temp := {& irtgDataBase ,^termData[123]$&}
+=}
+
+
+
+{# plus the structure instances into the template and print them out from three different source #}
+//irtgBase:+termData1{##}
+{* {+ irtgBase.copy :+ termData1 +}  *}
+{*{@e@}*}
+//irtgBase:+termData2{##}
+{* {+ irtgBase.copy :+ termData2 +}  *}
+{*{@e@}*}
+//irtgBase:+termData3{##}
+{* {+ irtgBase.copy :+ termData3 {# is the same as #} +}  *}
+{*{@e@}*}
+//irtgBase:+datas1{##}
+{* {+ irtgBase :+ datas1 +} : {@e;e@} {# and as #}  *}
+{*{@e@}*}
+//irtgBase:+datas2{##}
+{* {+ irtgBase :+ datas2 +} : {@e;e@} *}
+
+{# delete all variables #}
+{x irtgBase x}
+{x termDataBase x}
+{x {& irtgDataBase ,^termData[1,2,3]$&} x}
+{x datas1 x}
+{x datas2 x}
+

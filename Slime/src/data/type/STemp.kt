@@ -6,7 +6,7 @@ import java.util.regex.Pattern
 
 class STemp(
     val content: MutableList<SVari>,
-    names: List<SText> = listOf()
+    names: List<SName> = listOf()
 ) : SVari("Temp", names), Visitor {
 
     val slotL: List<SSlot> get() = content.filter { it is SSlot }.map { it as SSlot }
@@ -18,8 +18,8 @@ class STemp(
         slotL.forEach { it.owner = this }
     }
 
-    override fun listPaths(): SList<SList<SText>> {
-        val result = SList<SList<SText>>(mutableListOf())
+    override fun listPaths(): SList<SList<SName>> {
+        val result = SList<SList<SName>>(mutableListOf())
         for (slot in slotL) {
             val slotPaths = slot.listPaths()
             slotPaths.let {
@@ -35,7 +35,7 @@ class STemp(
         return result
     }
 
-    override fun copy(names: List<SText>): STemp {
+    override fun copy(names: List<SName>): STemp {
         return STemp(content.map { it.copy() }.toMutableList(), names)
     }
 
@@ -57,38 +57,14 @@ class STemp(
 
     override fun plus(v: SVari, i: Int): SVari = v.visit(this, "@add")
 
-    override fun get(path: SList<SText>): SVari =
+    override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
-            path.size == 1 -> {
-                when (val next = path[0]()) {
-                    "names" -> names
-                    "slots" -> slotL.toSList(owner = this)
-                    "texts" -> content.filter { it is SText }.map { it as SText }.toSList(owner = this)
-                    "specs" -> content.filter { it is SSpec }.map { it as SSpec }.toSList(owner = this)
-                    "self" -> this
-                    "copy" -> copy()
-                    "copyN" -> copy(names)
-                    "cont" -> content.toSList(owner = this)
-                    "iter" -> content.toSList(owner = this).iter
-                    in slotL.map { it.tag() } -> {
-                        val matchingSlots = get(next)
-                        if (matchingSlots.size == 1)
-                            matchingSlots[0]
-                        else
-                            matchingSlots.toSList(owner = this)
-                    }
-                    else ->
-                        if (Pattern.matches("^[0-9]*$", next))
-                            content[next.toInt()]
-                        else throw Exception("Wrong variable name: $next")
-                }
-            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.get(path)
+                    "names" -> names.toSList(owner = this).get(path)
                     "slots" -> slotL.toSList(owner = this).get(path)
                     "texts" -> content.filter { it is SText }.map { it as SText }.toSList(owner = this).get(path)
                     "specs" -> content.filter { it is SSpec }.map { it as SSpec }.toSList(owner = this).get(path)
@@ -111,7 +87,7 @@ class STemp(
             }
         }
 
-    override fun delete(path: SList<SText>) {
+    override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
                 "path shouldn't be empty when deleting from Temp: ${names.getOrNull(0) ?: "@nameless"}"
@@ -122,9 +98,9 @@ class STemp(
 
                 if (Pattern.matches("^[0-9]*$", next)) {
                     val i = next.toInt()
-                    slotL[i].delete(SList(mutableListOf(SText("@content"))))
+                    slotL[i].delete(SList(mutableListOf(SName("@content"))))
                 } else
-                    this[next].toSList().delete(SList(mutableListOf(SText("@content"))))
+                    this[next].toSList().delete(SList(mutableListOf(SName("@content"))))
 
 
             }
@@ -172,9 +148,12 @@ class STemp(
         when (mode) {
             "@add" -> {
                 for (slot in slotL)
-                    if(h.ctype.attributes.any { it.name.compareTo(slot.tag())==0 }){
-                        val a = h.ctype.attributes.find{it.name.compareTo(slot.tag())==0}?:throw Exception("attribute disappeared")
-                        slot.plus(h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value"))
+                    if (h.ctype.attributes.any { it.name.compareTo(slot.tag()) == 0 }) {
+                        val a = h.ctype.attributes.find { it.name.compareTo(slot.tag()) == 0 }
+                            ?: throw Exception("attribute disappeared")
+                        slot.plus(
+                            h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value")
+                        )
                     }
                 this
             }
@@ -205,41 +184,62 @@ class STemp(
             )
         }
 
-    override fun accept(h: SRefe, mode: String)
-            : SVari = throw Exception("TODO")
-
-    override fun <T : SVari> accept(h: SList<T>, mode: String):SList<STemp> =
+    override fun accept(h: SName, mode: String): SVari =
         when (mode) {
             "@add" -> {
-                val result=SList<STemp>()
-                for(item in h){
-                    val v=copy().plus(item)
-                    if(v is STemp)
-                        result.add(v)
-                    if(v is SList<*>)
-                        for (t in v as SList<STemp>)
-                            result.add(t)
-                }
-                result
+                addNames(listOf(h))
+                this
             }
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
             )
         }
 
-    override fun <T : SVari> accept(h: SList.SIter<T>, mode: String):SList<STemp> =
+    override fun accept(h: SRefe, mode: String)
+            : SVari = throw Exception("TODO")
+
+    override fun <T : SVari> accept(h: SList<T>, mode: String): SList<STemp> =
         when (mode) {
             "@add" -> {
-                val result=SList<STemp>()
-                for(item in h.owner){
-                    val v=copy().plus(item)
-                    if(v is STemp)
-                        result.add(v)
-                    if(v is SList<*>)
-                        for (t in v as SList<STemp>)
-                            result.add(t)
+                if (h[0] is SName) {
+                    addNames(h.filter { it is SName }.map { it as SName })
+                    SList(listOf(this))
+                } else {
+                    val result = SList<STemp>()
+                    for (item in h) {
+                        val v = copy().plus(item)
+                        if (v is STemp)
+                            result.add(v)
+                        if (v is SList<*>)
+                            for (t in v.filter { it is STemp }.map { it as STemp })
+                                result.add(t)
+                    }
+                    result
                 }
-                result
+            }
+            else -> throw Exception(
+                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+            )
+        }
+
+    override fun <T : SVari> accept(h: SList.SIter<T>, mode: String): SList<STemp> =
+        when (mode) {
+            "@add" -> {
+                if (h.owner[0] is SName) {
+                    addNames(h.owner.filter { it is SName }.map { it as SName })
+                    SList(listOf(this))
+                } else {
+                    val result = SList<STemp>()
+                    for (item in h.owner) {
+                        val v = copy().plus(item)
+                        if (v is STemp)
+                            result.add(v)
+                        if (v is SList<*>)
+                            for (t in v.filter { it is STemp }.map { it as STemp })
+                                result.add(t)
+                    }
+                    result
+                }
             }
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"

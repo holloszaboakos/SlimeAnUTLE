@@ -1,0 +1,12 @@
+//IMPORT
+
+{# create File #}
+{= importedFile :File := {"/home/boss/Documents/Git/SlimeAnUTLE/test_codes/test_complex_long"} =}
+
+//The irtgBase template from the file
+//You have to comment out thee rule that delets it at the and of the file the file
+{* importedFile.irtgBase *}
+
+//The hole text of the file
+{* importedFile.outp *}
+

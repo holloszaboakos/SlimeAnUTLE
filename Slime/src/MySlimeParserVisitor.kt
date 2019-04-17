@@ -23,8 +23,10 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     }
 
     override fun visitFile(ctx: SlimeParser.FileContext): SText {
-        val oldFocus = DataContainer.focus
+        val grandParentFocus = DataContainer.parentFocus
+        DataContainer.parentFocus=DataContainer.focus
         DataContainer.focus = SFile(mutableMapOf())
+        DataContainer.childFocus = null
         if (DataContainer.root == null) DataContainer.root = DataContainer.focus
         val result = SText()
         for (c in ctx.children)
@@ -37,7 +39,9 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                 is SlimeParser.SpecContext -> result(result() + visitSpec(c).expand(""))
                 else -> c.accept(this)
             }
-        DataContainer.focus = oldFocus
+        DataContainer.childFocus=DataContainer.focus
+        DataContainer.focus = DataContainer.parentFocus
+        DataContainer.parentFocus=grandParentFocus
         return result
     }
 
@@ -81,7 +85,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             }.toMutableList())
         else
             SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
-                .map { SSlot(it) }.toMutableList())
+                .map { SSlot(SName(it)) }.toMutableList())
 
     override fun visitTemp(ctx: SlimeParser.TempContext): SList<STemp> = visitTempBody(ctx.tempBody())
 
@@ -137,7 +141,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             vari1.plus(vari2)
         } else {
             ctx.plusElement().map { visitPlusElement(it) }
-                .forEach { vari1.get(it[0]).plus(vari2.get(it[1])) }
+                .forEach { vari1.get(it[0].map {it2-> SName(it2) }.toSList()).plus(vari2.get(it[1].map {it2-> SName(it2) }.toSList())) }
             vari1
         }
     }
@@ -156,7 +160,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     override fun visitDeleBody(ctx: SlimeParser.DeleBodyContext): SVari? {
         for (vp in ctx.variPath())
-            DataContainer.focus?.delete(visitVariPath(vp))
+            DataContainer.focus?.delete(visitVariPath(vp).map {it2-> SName(it2) }.toSList())
         for (r in ctx.refe())
             for (vp in visitRefe(r).listMatchingPaths())
                 DataContainer.focus?.delete(vp)
@@ -181,8 +185,8 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitDeclBodyPart(ctx: SlimeParser.DeclBodyPartContext): SVari {
         if (ctx.children[0] is SlimeParser.DeclNeckContext) {
             val neck = visitDeclNeck(ctx.declNeck())
-            val names: List<SText> =
-                if (neck.size == 2) neck[1].toList()
+            val names: List<SName> =
+                if (neck.size == 2) neck[1].toList().map {it2-> SName(it2) }
                 else listOf()
             when (val typeIndicator =
                 VariableFactory.getEmptyVariableByTypeList(VariableFactory.NameL2TypeL(neck[0]))) {
@@ -329,6 +333,9 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                             val vari = visitListVari(ctx.listVari())
                             if (vari.size == 1 && vari[0] is SFile)
                                 return (vari[0] as SFile).copy(names)
+                            if (vari.size == 1 && vari[0] is SText){
+                                DataContainer.loadFile((vari[0] as SText)(),names)
+                            }
                         }
                     }
                 }
@@ -392,7 +399,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             is SlimeParser.VariPathContext -> {
                 SList(
                     mutableListOf(
-                        DataContainer.focus?.get(visitVariPath(prc))
+                        DataContainer.focus?.get(visitVariPath(prc).map {it2-> SName(it2) }.toSList())
                             ?: throw Exception(
                                 "Can not reach variable at Path ${(visitVariPath(prc)).expand(
                                     "/"

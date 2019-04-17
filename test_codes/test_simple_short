@@ -1,0 +1,18 @@
+//SIMPLE SHORT
+
+[# This is a code
+[# A very nice code
+[# template, structure and structure instance decleration
+{= 
+	irtgBase : Temp :=[|<@e;t <$left  -> <$header <@e;t [string] <$string <@e;t [tree] <$syntax_tree <@e;t [ud] <$ud_graph <@e;t [4lang] <$fourlang_graph 
+
+	;irtgDataBase : Type :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
+
+	;termDataDog : irtgDataBase := [|NN;dog_NN;dog;NN(dog);dog;dog
+=}
+[# plus the structure instance into the template and print it out
+[*[+irtgBase :+ termDataDog
+[# delete all variables
+[x irtgBase; irtgDataLineBase; termDataDog
+
+

@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.util.regex.Pattern
 
-//      /home/boss/Documents/Git/SlimeAnUTLE/test_simple_long
+//      /home/boss/Documents/Git/SlimeAnUTLE/test_codes/test_complex_short
 //      output.irtg
 fun main() {
     println("Give me the path to the input file!")
@@ -14,13 +14,13 @@ fun main() {
     println("Give me the path to the output file!")
     val outputFile = readLine()
     println("Thanks!")
-    val lexer = SlimeLexer(ANTLRInputStream(InputStreamReader(FileInputStream("/home/boss/Documents/Git/SlimeAnUTLE/test_complex_long"))) as CharStream)
+    val lexer = SlimeLexer(ANTLRInputStream(InputStreamReader(FileInputStream(inputFile))) as CharStream)
     println("Lexer Ready!")
     val parser = SlimeParser(CommonTokenStream(lexer as TokenSource) as TokenStream)
     println("Parser Ready!")
     val tree = parser.file()
     println("ParsTree Ready!")
-    val outfile = PrintWriter("output.irtg")
+    val outfile = PrintWriter(outputFile)
     val output = MySlimeParserVisitor().visitFile(tree)
     println("Output Ready!")
     outfile.print(output())
