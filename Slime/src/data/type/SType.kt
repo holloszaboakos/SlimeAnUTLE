@@ -51,7 +51,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         return this
     }
 
-    override fun expand(): String {
+    override fun extend(): String {
         var result = "struct ${names.getOrNull(0)?:"@nameless"}{\t"
         for (a in attributes)
             result += "\t${a.name}:${a.type}"
@@ -59,7 +59,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         return result
     }
 
-    override fun expand(divider: String): String {
+    override fun extend(divider: String): String {
         var result = "struct ${names.getOrNull(0)?:"@nameless"}{$divider"
         for (a in attributes)
             result += "\t${a.name}:${a.type}$divider"

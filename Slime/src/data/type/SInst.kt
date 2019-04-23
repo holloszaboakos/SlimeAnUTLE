@@ -35,17 +35,17 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         return result
     }
 
-    override fun expand(): String {
+    override fun extend(): String {
         var result = ""
         for (d in content)
-            result += d?.expand()
+            result += d?.extend()
         return result
     }
 
-    override fun expand(divider: String): String {
+    override fun extend(divider: String): String {
         var result = ""
         for (d in content)
-            result += (divider + d?.expand())
+            result += (divider + d?.extend())
         result = result.substring(divider.length)
         return result
     }

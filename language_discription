@@ -31,7 +31,7 @@ compact:+"word
 You can use this operation to skip all special character inside it.
 
 //TEMPLATE
-bracket: {| name $} 
+bracket: {| name |} 
 one line: [| name 
 compact:+|name
 It marks a template. It can use only slots and special characters. Everithing else is skipped.
@@ -44,7 +44,7 @@ It creates a list out of the variables with a name maching the regex
 //OPERATION MARKERS
 They make operations on the variables
 
-//EXPAND
+//EXTEND
 bracket: {* variableName *} 
 one line [* variableName 
 compact:<*variableName
@@ -118,7 +118,7 @@ sttruct:
 structure instance
  {= instace:struct := name1:val1,name2:val2,name3:val3 =}
  {= instace:struct := val1, val2, val3 =}
-....
+...
 
 //DELETE
 bracket: {x name x} 

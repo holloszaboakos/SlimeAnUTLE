@@ -17,9 +17,9 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         return result
     }
 
-    override fun expand(): String = content?.expand() ?: "{$ ${tag()} $}"
+    override fun extend(): String = content?.extend() ?: "{$ ${tag()} $}"
 
-    override fun expand(divider: String): String = content?.expand() ?: "{$ ${tag()} $}"
+    override fun extend(divider: String): String = content?.extend() ?: "{$ ${tag()} $}"
 
     override fun plus(v: SVari, i: Int): SVari = v.visit(this, "@add")
 

@@ -25,9 +25,9 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
 
     override fun copy(names: List<SName>): SRefe = SRefe(pattern, types.toMutableList(), names)
 
-    override fun expand(): String = pattern
+    override fun extend(): String = pattern
 
-    override fun expand(divider: String): String = pattern
+    override fun extend(divider: String): String = pattern
 
     override fun plus(v: SVari, i: Int): SVari =
         when {

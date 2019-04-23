@@ -17,8 +17,8 @@ class SList<T : SVari>(
     class SIter<T : SVari>(val owner: SList<T>) : SVari("Iter", listOf()) {
         override fun listPaths(): SList<SList<SName>> = owner.listPaths()
         override fun copy(names: List<SName>): SVari = owner.copy(names).iter
-        override fun expand(): String = owner.expand()
-        override fun expand(divider: String): String = owner.expand(divider)
+        override fun extend(): String = owner.extend()
+        override fun extend(divider: String): String = owner.extend(divider)
         override fun plus(v: SVari, i: Int): SVari {
             owner.forEach { it.plus(v, i) }
             return owner.owner ?: owner
@@ -84,17 +84,17 @@ class SList<T : SVari>(
 
     override fun copy(names: List<SName>): SList<T> = content.toList().toSList(names)
 
-    override fun expand(): String {
+    override fun extend(): String {
         var result = ""
         for (c in content)
-            result += c.expand()
+            result += c.extend()
         return result
     }
 
-    override fun expand(divider: String): String {
+    override fun extend(divider: String): String {
         var result = ""
         for (c in content)
-            result += (divider + c.expand())
+            result += (divider + c.extend())
         result = result.substring(divider.length)
         return result
     }

@@ -6,25 +6,25 @@ import java.lang.Exception
 class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names) {
 
     enum class Char(val value: String, val names: MutableList<String>) {
-        ENTER("\n", mutableListOf("e", "ent", "enter")),
+    ENTER("\n", mutableListOf("e", "ent", "enter")),
         RENTER("\r", mutableListOf("r", "ren", "renter")),
         TABULATOR("\t", mutableListOf("t", "tab", "tabulator")),
-        SPACE(" ", mutableListOf("sp", "spa", "space")),
+        SPACE(" ", mutableListOf("s", "spa", "space")),
         PERIOD(".", mutableListOf("pe", "per", "period")),
-        QUESTION_MARK("?", mutableListOf("qu", "qum", "question_mark")),
-        EXCLAMATION_MARK("!", mutableListOf("ex", "exm", "exclamation_mark")),
+        QUESTION_MARK("?", mutableListOf("qm", "qum", "question_mark")),
+        EXCLAMATION_MARK("!", mutableListOf("em", "exm", "exclamation_mark")),
         COMMA(",", mutableListOf("co", "com", "comma")),
         COLON(":", mutableListOf("cl", "col", "colon")),
-        SEMICOLON(";", mutableListOf("se", "sem", "semicolon"))
+        SEMICOLON(";", mutableListOf("sc", "sec", "semicolon"))
     }
 
     override fun listPaths(): SList<SList<SName>> = SList()
 
     override fun copy(names: List<SName>): SVari = SSpec(key, names)
 
-    override fun expand(): String = key.value
+    override fun extend(): String = key.value
 
-    override fun expand(divider: String): String = key.value
+    override fun extend(divider: String): String = key.value
 
     override fun plus(v: SVari, i: Int): SVari = when {
         v is SList<*> && v[0] is SName && i == -1

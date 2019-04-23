@@ -280,61 +280,61 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpa(SlimeParser.ExpaContext ctx) { }
+	@Override public void enterExte(SlimeParser.ExteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpa(SlimeParser.ExpaContext ctx) { }
+	@Override public void exitExte(SlimeParser.ExteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpaHead(SlimeParser.ExpaHeadContext ctx) { }
+	@Override public void enterExteHead(SlimeParser.ExteHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpaHead(SlimeParser.ExpaHeadContext ctx) { }
+	@Override public void exitExteHead(SlimeParser.ExteHeadContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpaBody(SlimeParser.ExpaBodyContext ctx) { }
+	@Override public void enterExteBody(SlimeParser.ExteBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpaBody(SlimeParser.ExpaBodyContext ctx) { }
+	@Override public void exitExteBody(SlimeParser.ExteBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx) { }
+	@Override public void enterExteBodyPart(SlimeParser.ExteBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx) { }
+	@Override public void exitExteBodyPart(SlimeParser.ExteBodyPartContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpaTail(SlimeParser.ExpaTailContext ctx) { }
+	@Override public void enterExteTail(SlimeParser.ExteTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpaTail(SlimeParser.ExpaTailContext ctx) { }
+	@Override public void exitExteTail(SlimeParser.ExteTailContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -228,55 +228,55 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitTempText(SlimeParser.TempTextContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expa}.
+	 * Enter a parse tree produced by {@link SlimeParser#exte}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpa(SlimeParser.ExpaContext ctx);
+	void enterExte(SlimeParser.ExteContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expa}.
+	 * Exit a parse tree produced by {@link SlimeParser#exte}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpa(SlimeParser.ExpaContext ctx);
+	void exitExte(SlimeParser.ExteContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expaHead}.
+	 * Enter a parse tree produced by {@link SlimeParser#exteHead}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpaHead(SlimeParser.ExpaHeadContext ctx);
+	void enterExteHead(SlimeParser.ExteHeadContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expaHead}.
+	 * Exit a parse tree produced by {@link SlimeParser#exteHead}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpaHead(SlimeParser.ExpaHeadContext ctx);
+	void exitExteHead(SlimeParser.ExteHeadContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expaBody}.
+	 * Enter a parse tree produced by {@link SlimeParser#exteBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpaBody(SlimeParser.ExpaBodyContext ctx);
+	void enterExteBody(SlimeParser.ExteBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expaBody}.
+	 * Exit a parse tree produced by {@link SlimeParser#exteBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpaBody(SlimeParser.ExpaBodyContext ctx);
+	void exitExteBody(SlimeParser.ExteBodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expaBodyPart}.
+	 * Enter a parse tree produced by {@link SlimeParser#exteBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx);
+	void enterExteBodyPart(SlimeParser.ExteBodyPartContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expaBodyPart}.
+	 * Exit a parse tree produced by {@link SlimeParser#exteBodyPart}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpaBodyPart(SlimeParser.ExpaBodyPartContext ctx);
+	void exitExteBodyPart(SlimeParser.ExteBodyPartContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#expaTail}.
+	 * Enter a parse tree produced by {@link SlimeParser#exteTail}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpaTail(SlimeParser.ExpaTailContext ctx);
+	void enterExteTail(SlimeParser.ExteTailContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SlimeParser#expaTail}.
+	 * Exit a parse tree produced by {@link SlimeParser#exteTail}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpaTail(SlimeParser.ExpaTailContext ctx);
+	void exitExteTail(SlimeParser.ExteTailContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#plus}.
 	 * @param ctx the parse tree

@@ -2,7 +2,7 @@ parser grammar SlimeParser;
 
 options { tokenVocab=SlimeLexer; }
 
-file: (text|refe|slot|spec|temp|dele|expa|plus|decl|dele|refe|textOutor)*;
+file: (text|refe|slot|spec|temp|dele|exte|plus|decl|dele|refe|textOutor)*;
 
 text: textHead textBody textTail;
 textHead:(OB_TEXT|OLB_TEXT|LB_TEXT|
@@ -55,14 +55,14 @@ tempBodyPart:(text|slot|spec|tempText|LINE_DIVIDER)+;
 tempTail:(CB_TEMP|NL_TEMP|NW_TEMP);
 tempText:(TEXT_LINE LINE_DIVIDER)* TEXT_LINE|OL_TEXT_LINE|L_TEXT_LINE;
 
-expa: expaHead expaBody expaTail;
-expaHead:(OB_EXPA|OLB_EXPA|LB_EXPA|
-           OB_EXPA_B_O|OLB_EXPA_B_O|LB_EXPA_B_O|
-           OB_EXPA_O_O|OLB_EXPA_O_O|LB_EXPA_O_O|
-           OB_EXPA_L_O|OLB_EXPA_L_O|LB_EXPA_L_O);
-expaBody:(expaBodyPart (SC_B_O|SC_O_O|SC_L_O))* expaBodyPart;
-expaBodyPart:vari ((CL_B_O|CL_O_O|CL_L_O) (temp|spec))?;
-expaTail:(CB_EXPA|NL_OPER|NW_OPER);
+exte: exteHead exteBody exteTail;
+exteHead:(OB_EXTE|OLB_EXTE|LB_EXTE|
+           OB_EXTE_B_O|OLB_EXTE_B_O|LB_EXTE_B_O|
+           OB_EXTE_O_O|OLB_EXTE_O_O|LB_EXTE_O_O|
+           OB_EXTE_L_O|OLB_EXTE_L_O|LB_EXTE_L_O);
+exteBody:(exteBodyPart (SC_B_O|SC_O_O|SC_L_O))* exteBodyPart;
+exteBodyPart:vari ((CL_B_O|CL_O_O|CL_L_O) (temp|spec))?;
+exteTail:(CB_EXTE|NL_OPER|NW_OPER);
 
 plus: plusHead plusBody plusTail;
 plusHead:(OB_PLUS|OLB_PLUS|LB_PLUS|

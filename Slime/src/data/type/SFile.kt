@@ -29,17 +29,17 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
         return result
     }
 
-    override fun expand(): String {
+    override fun extend(): String {
         var result = ""
         for (c in content.values)
-            result += c.expand()
+            result += c.extend()
         return result
     }
 
-    override fun expand(divider: String): String {
+    override fun extend(divider: String): String {
         var result = ""
         for (c in content.values)
-            result += (divider+c.expand())
+            result += (divider+c.extend())
         result=result.substring(divider.length)
         return result
     }

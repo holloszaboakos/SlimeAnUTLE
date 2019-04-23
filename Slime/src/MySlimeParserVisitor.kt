@@ -32,11 +32,11 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         for (c in ctx.children)
             when (c) {
                 is SlimeParser.TextOutorContext -> result(result() + visitTextOutor(c)())
-                is SlimeParser.ExpaContext ->
-                    for (t in visitExpa(c))
+                is SlimeParser.ExteContext ->
+                    for (t in visitExte(c))
                         result(result() + t())
                 is SlimeParser.TextContext -> result(result() + visitText(c)())
-                is SlimeParser.SpecContext -> result(result() + visitSpec(c).expand(""))
+                is SlimeParser.SpecContext -> result(result() + visitSpec(c).extend(""))
                 else -> c.accept(this)
             }
         DataContainer.childFocus=DataContainer.focus
@@ -106,26 +106,26 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitTempText(ctx: SlimeParser.TempTextContext): SList<SText> =
         SList(visitChildren(ctx).map { it as SText }.toMutableList())
 
-    override fun visitExpa(ctx: SlimeParser.ExpaContext): SList<SText> = visitExpaBody(ctx.expaBody())
+    override fun visitExte(ctx: SlimeParser.ExteContext): SList<SText> = visitExteBody(ctx.exteBody())
 
-    override fun visitExpaHead(ctx: SlimeParser.ExpaHeadContext): SVari? = null
+    override fun visitExteHead(ctx: SlimeParser.ExteHeadContext): SVari? = null
 
-    override fun visitExpaBody(ctx: SlimeParser.ExpaBodyContext): SList<SText> =
-        SList(ctx.expaBodyPart().map { visitExpaBodyPart(it) }.toMutableList())
+    override fun visitExteBody(ctx: SlimeParser.ExteBodyContext): SList<SText> =
+        SList(ctx.exteBodyPart().map { visitExteBodyPart(it) }.toMutableList())
 
-    override fun visitExpaBodyPart(ctx: SlimeParser.ExpaBodyPartContext): SText =
+    override fun visitExteBodyPart(ctx: SlimeParser.ExteBodyPartContext): SText =
         if (ctx.childCount == 1) {
-            SText(visitVari(ctx.vari()).expand())
+            SText(visitVari(ctx.vari()).extend())
         } else {
             var seperater = ""
             if (ctx.children[2] is SlimeParser.SpecContext)
-                visitSpec(ctx.children[2] as SlimeParser.SpecContext).forEach { seperater += it.expand() }
+                visitSpec(ctx.children[2] as SlimeParser.SpecContext).forEach { seperater += it.extend() }
             else
-                visitTemp(ctx.children[2] as SlimeParser.TempContext).forEach { seperater += it.expand() }
-            SText(visitVari(ctx.vari()).expand(seperater))
+                visitTemp(ctx.children[2] as SlimeParser.TempContext).forEach { seperater += it.extend() }
+            SText(visitVari(ctx.vari()).extend(seperater))
         }
 
-    override fun visitExpaTail(ctx: SlimeParser.ExpaTailContext): SVari? = null
+    override fun visitExteTail(ctx: SlimeParser.ExteTailContext): SVari? = null
 
     override fun visitPlus(ctx: SlimeParser.PlusContext): SVari = visitPlusBody(ctx.plusBody())
 
@@ -401,7 +401,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     mutableListOf(
                         DataContainer.focus?.get(visitVariPath(prc).map {it2-> SName(it2) }.toSList())
                             ?: throw Exception(
-                                "Can not reach variable at Path ${(visitVariPath(prc)).expand(
+                                "Can not reach variable at Path ${(visitVariPath(prc)).extend(
                                     "/"
                                 )}"
                             )
@@ -412,7 +412,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                 SList(visitRefe(prc).listMatchingPaths().map {
                     DataContainer.focus?.get(it)
                         ?: throw Exception(
-                            "Can not reach variable at Path ${(visitRefe(prc)).expand(
+                            "Can not reach variable at Path ${(visitRefe(prc)).extend(
                                 "/"
                             )}"
                         )

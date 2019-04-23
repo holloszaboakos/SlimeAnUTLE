@@ -14,9 +14,9 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
 
     override fun copy(names: List<SName>): SText = SText(content, names.toSList())
 
-    override fun expand(): String = content
+    override fun extend(): String = content
 
-    override fun expand(divider: String): String = content
+    override fun extend(divider: String): String = content
 
     override fun plus(v: SVari, i: Int): SVari = when {
         v is SList<*> && v[0] is SName && i == -1

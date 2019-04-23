@@ -17,57 +17,59 @@ public class SlimeParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		RULE_DIV=1, COMM_OUTER=2, OB_SLOT=3, OB_SPEC=4, OB_REFE=5, OB_EXPA=6, 
-		OB_PLUS=7, OB_DECL=8, OB_DELE=9, OB_TEXT=10, OB_TEMP=11, OLB_SLOT=12, 
-		OLB_SPEC=13, OLB_REFE=14, OLB_EXPA=15, OLB_PLUS=16, OLB_DECL=17, OLB_DELE=18, 
-		OLB_TEXT=19, OLB_TEMP=20, LB_SLOT=21, LB_SPEC=22, LB_REFE=23, LB_EXPA=24, 
-		LB_PLUS=25, LB_DECL=26, LB_DELE=27, LB_TEXT=28, LB_TEMP=29, TEXT_OUTOR=30, 
-		COMM_B_S=31, WS_B_S=32, CB_SLOT=33, CB_SPEC=34, NAME_B_S=35, SC_B_S=36, 
-		COMM_O_S=37, WS_O_S=38, NL_SLSP=39, NAME_O_S=40, SC_O_S=41, COMM_L_S=42, 
-		NW_SLSP=43, NAME_L_S=44, SC_L_S=45, COMM_REFE=46, WS_B_R=47, CB_REFE=48, 
+		RULE_DIV=1, COMM_OUTER=2, BOB_SLOT=3, BOB_SPEC=4, BOB_REFE=5, BOB_EXTE=6, 
+		BOB_PLUS=7, BOB_DECL=8, BOB_DELE=9, BOB_TEXT=10, BOB_TEMP=11, OLB_SLOT=12, 
+		OLB_SPEC=13, OLB_REFE=14, OLB_EXTE=15, OLB_PLUS=16, OLB_DECL=17, OLB_DELE=18, 
+		OLB_TEXT=19, OLB_TEMP=20, COB_SLOT=21, COB_SPEC=22, COB_REFE=23, COB_EXTE=24, 
+		COB_PLUS=25, COB_DECL=26, COB_DELE=27, COB_TEXT=28, COB_TEMP=29, TEXT_OUTOR=30, 
+		COMM_B_S=31, WS_B_S=32, BCB_SLOT=33, BCB_SPEC=34, NAME_B_S=35, SC_B_S=36, 
+		COMM_L_S=37, WS_L_S=38, NL_SLSP=39, NAME_O_S=40, SC_O_S=41, COMM_C_S=42, 
+		NW_SLSP=43, NAME_C_S=44, SC_C_S=45, COMM_REFE=46, WS_B_R=47, BCB_REFE=48, 
 		CL_B_R=49, NAME_B_R=50, IN_B_R=51, COMM_O_R=52, WS_O_R=53, NL_REFE=54, 
-		CL_O_R=55, NAME_O_R=56, IN_O_R=57, COMM_L_R=58, WS_L_R=59, NW_REFE=60, 
-		CL_L_R=61, NAME_L_R=62, IN_L_R=63, COMM_B_O=64, WS_B_O=65, CB_EXPA=66, 
-		CB_PLUS=67, CB_DECL=68, CB_DELE=69, OB_SLOT_B_O=70, OB_SPEC_B_O=71, OB_REFE_B_O=72, 
-		OB_EXPA_B_O=73, OB_PLUS_B_O=74, OB_DECL_B_O=75, OB_DELE_B_O=76, OB_TEXT_B_O=77, 
-		OB_TEMP_B_O=78, OLB_SLOT_B_O=79, OLB_SPEC_B_O=80, OLB_REFE_B_O=81, OLB_EXPA_B_O=82, 
-		OLB_PLUS_B_O=83, OLB_DECL_B_O=84, OLB_DELE_B_O=85, OLB_TEXT_B_O=86, OLB_TEMP_B_O=87, 
-		LB_SLOT_B_O=88, LB_SPEC_B_O=89, LB_REFE_B_O=90, LB_EXPA_B_O=91, LB_PLUS_B_O=92, 
-		LB_DECL_B_O=93, LB_DELE_B_O=94, LB_TEXT_B_O=95, LB_TEMP_B_O=96, OB_IMPORT=97, 
-		EQOP_B_O=98, PLOP_B_O=99, PE_B_O=100, CL_B_O=101, CO_B_O=102, SC_B_O=103, 
-		NAME_B_O=104, INTE_B_O=105, COMM_O_O=106, WS_O_O=107, NL_OPER=108, OB_SLOT_O_O=109, 
-		OB_SPEC_O_O=110, OB_REFE_O_O=111, OB_EXPA_O_O=112, OB_PLUS_O_O=113, OB_DECL_O_O=114, 
-		OB_DELE_O_O=115, OB_TEXT_O_O=116, OB_TEMP_O_O=117, OLB_SLOT_O_O=118, OLB_SPEC_O_O=119, 
-		OLB_REFE_O_O=120, OLB_EXPA_O_O=121, OLB_PLUS_O_O=122, OLB_DECL_O_O=123, 
-		OLB_DELE_O_O=124, OLB_TEXT_O_O=125, OLB_TEMP_O_O=126, LB_SLOT_O_O=127, 
-		LB_SPEC_O_O=128, LB_REFE_O_O=129, LB_EXPA_O_O=130, LB_PLUS_O_O=131, LB_DECL_O_O=132, 
-		LB_DELE_O_O=133, LB_TEXT_O_O=134, LB_TEMP_O_O=135, OL_IMPORT=136, EQOP_O_O=137, 
-		PLOP_O_O=138, PE_O_O=139, CL_O_O=140, CO_O_O=141, SC_O_O=142, NAME_O_O=143, 
-		INTE_O_O=144, COMM_L_O=145, NW_OPER=146, OB_SLOT_L_O=147, OB_SPEC_L_O=148, 
-		OB_REFE_L_O=149, OB_EXPA_L_O=150, OB_PLUS_L_O=151, OB_DECL_L_O=152, OB_DELE_L_O=153, 
-		OB_TEXT_L_O=154, OB_TEMP_L_O=155, OLB_SLOT_L_O=156, OLB_SPEC_L_O=157, 
-		OLB_REFE_L_O=158, OLB_EXPA_L_O=159, OLB_PLUS_L_O=160, OLB_DECL_L_O=161, 
-		OLB_DELE_L_O=162, OLB_TEXT_L_O=163, OLB_TEMP_L_O=164, LB_SLOT_L_O=165, 
-		LB_SPEC_L_O=166, LB_REFE_L_O=167, LB_EXPA_L_O=168, LB_PLUS_L_O=169, LB_DECL_L_O=170, 
-		LB_DELE_L_O=171, LB_TEXT_L_O=172, LB_TEMP_L_O=173, L_IMPORT=174, EQOP_L_O=175, 
-		PLOP_L_O=176, PE_L_O=177, CL_L_O=178, CO_L_O=179, SC_L_O=180, NAME_L_O=181, 
-		INTE_L_O=182, CB_TEXT=183, IN_TEXT=184, NL_TEXT=185, IN_OL_TEXT=186, NW_TEXT=187, 
-		IN_L_TEXT=188, CB_TEMP=189, TEXT_LINE=190, LINE_DIVIDER=191, OB_SLOT_B_T=192, 
-		OB_SPEC_B_T=193, OB_TEXT_B_T=194, OLB_SLOT_B_T=195, OLB_SPEC_B_T=196, 
-		OLB_TEXT_B_T=197, LB_SLOT_B_T=198, LB_SPEC_B_T=199, LB_TEXT_B_T=200, SC_B_T=201, 
-		NL_TEMP=202, OL_TEXT_LINE=203, OB_SLOT_O_T=204, OB_SPEC_O_T=205, OB_TEXT_O_T=206, 
-		OLB_SLOT_O_T=207, OLB_SPEC_O_T=208, OLB_TEXT_O_T=209, LB_SLOT_O_T=210, 
-		LB_SPEC_O_T=211, LB_TEXT_O_T=212, SC_O_T=213, NW_TEMP=214, L_TEXT_LINE=215, 
-		OB_SLOT_L_T=216, OB_SPEC_L_T=217, OB_TEXT_L_T=218, OLB_SLOT_L_T=219, OLB_SPEC_L_T=220, 
-		OLB_TEXT_L_T=221, LB_SLOT_L_T=222, LB_SPEC_L_T=223, LB_TEXT_L_T=224, SC_L_T=225;
+		CL_O_R=55, NAME_O_R=56, IN_O_R=57, COMM_C_R=58, WS_C_R=59, NW_REFE=60, 
+		CL_C_R=61, NAME_C_R=62, IN_C_R=63, COMM_B_O=64, WS_B_O=65, BCB_EXTE=66, 
+		BCB_PLUS=67, BCB_DECL=68, BCB_DELE=69, BOB_SLOT_B_O=70, BOB_SPEC_B_O=71, 
+		BOB_REFE_B_O=72, BOB_EXTE_B_O=73, BOB_PLUS_B_O=74, BOB_DECL_B_O=75, BOB_DELE_B_O=76, 
+		BOB_TEXT_B_O=77, BOB_TEMP_B_O=78, OLB_SLOT_B_O=79, OLB_SPEC_B_O=80, OLB_REFE_B_O=81, 
+		OLB_EXTE_B_O=82, OLB_PLUS_B_O=83, OLB_DECL_B_O=84, OLB_DELE_B_O=85, OLB_TEXT_B_O=86, 
+		OLB_TEMP_B_O=87, COB_SLOT_B_O=88, COB_SPEC_B_O=89, COB_REFE_B_O=90, COB_EXTE_B_O=91, 
+		COB_PLUS_B_O=92, COB_DECL_B_O=93, COB_DELE_B_O=94, COB_TEXT_B_O=95, COB_TEMP_B_O=96, 
+		EQOP_B_O=97, PLOP_B_O=98, PE_B_O=99, CO_B_O=100, CL_B_O=101, SC_B_O=102, 
+		NAME_B_O=103, INTE_B_O=104, COMM_O_O=105, WS_O_O=106, NL_OPER=107, BOB_SLOT_O_O=108, 
+		BOB_SPEC_O_O=109, BOB_REFE_O_O=110, BOB_EXTE_O_O=111, BOB_PLUS_O_O=112, 
+		BOB_DECL_O_O=113, BOB_DELE_O_O=114, BOB_TEXT_O_O=115, BOB_TEMP_O_O=116, 
+		OLB_SLOT_O_O=117, OLB_SPEC_O_O=118, OLB_REFE_O_O=119, OLB_EXTE_O_O=120, 
+		OLB_PLUS_O_O=121, OLB_DECL_O_O=122, OLB_DELE_O_O=123, OLB_TEXT_O_O=124, 
+		OLB_TEMP_O_O=125, COB_SLOT_O_O=126, COB_SPEC_O_O=127, COB_REFE_O_O=128, 
+		COB_EXTE_O_O=129, COB_PLUS_O_O=130, COB_DECL_O_O=131, COB_DELE_O_O=132, 
+		COB_TEXT_O_O=133, COB_TEMP_O_O=134, EQOP_O_O=135, PLOP_O_O=136, PE_O_O=137, 
+		CO_O_O=138, CL_O_O=139, SC_O_O=140, NAME_O_O=141, INTE_O_O=142, COMM_C_O=143, 
+		NW_OPER=144, BOB_SLOT_C_O=145, BOB_SPEC_C_O=146, BOB_REFE_C_O=147, BOB_EXTE_C_O=148, 
+		BOB_PLUS_C_O=149, BOB_DECL_C_O=150, BOB_DELE_C_O=151, BOB_TEXT_C_O=152, 
+		BOB_TEMP_C_O=153, OLB_SLOT_C_O=154, OLB_SPEC_C_O=155, OLB_REFE_C_O=156, 
+		OLB_EXTE_C_O=157, OLB_PLUS_C_O=158, OLB_DECL_C_O=159, OLB_DELE_C_O=160, 
+		OLB_TEXT_C_O=161, OLB_TEMP_C_O=162, COB_SLOT_C_O=163, COB_SPEC_C_O=164, 
+		COB_REFE_C_O=165, COB_EXTE_C_O=166, COB_PLUS_C_O=167, COB_DECL_C_O=168, 
+		COB_DELE_C_O=169, COB_TEXT_C_O=170, COB_TEMP_C_O=171, EQOP_C_O=172, PLOP_C_O=173, 
+		PE_C_O=174, CO_C_O=175, CL_C_O=176, SC_C_O=177, NAME_C_O=178, INTE_C_O=179, 
+		BCB_TEXT=180, IN_B_T=181, NL_TEXT=182, IN_O_T=183, NW_TEXT=184, IN_C_T=185, 
+		BCB_TEMP=186, B_TEXT_LINE=187, LINE_DIVIDER=188, BOB_SLOT_B_T=189, BOB_SPEC_B_T=190, 
+		BOB_TEXT_B_T=191, OLB_SLOT_B_T=192, OLB_SPEC_B_T=193, OLB_TEXT_B_T=194, 
+		COB_SLOT_B_T=195, COB_SPEC_B_T=196, COB_TEXT_B_T=197, SC_B_T=198, NL_TEMP=199, 
+		O_TEXT_LINE=200, BOB_SLOT_O_T=201, BOB_SPEC_O_T=202, BOB_TEXT_O_T=203, 
+		OLB_SLOT_O_T=204, OLB_SPEC_O_T=205, OLB_TEXT_O_T=206, COB_SLOT_O_T=207, 
+		COB_SPEC_O_T=208, COB_TEXT_O_T=209, SC_O_T=210, NW_TEMP=211, C_TEXT_LINE=212, 
+		BOB_SLOT_C_T=213, BOB_SPEC_C_T=214, BOB_TEXT_C_T=215, OLB_SLOT_C_T=216, 
+		OLB_SPEC_C_T=217, OLB_TEXT_C_T=218, COB_SLOT_C_T=219, COB_SPEC_C_T=220, 
+		COB_TEXT_C_T=221, SC_C_T=222;
 	public static final int
 		RULE_file = 0, RULE_text = 1, RULE_textHead = 2, RULE_textBody = 3, RULE_textTail = 4, 
 		RULE_refe = 5, RULE_refeHead = 6, RULE_refeBody = 7, RULE_refeTail = 8, 
 		RULE_slot = 9, RULE_slotHead = 10, RULE_slotTail = 11, RULE_spec = 12, 
 		RULE_specHead = 13, RULE_specTail = 14, RULE_spslBody = 15, RULE_temp = 16, 
 		RULE_tempHead = 17, RULE_tempBody = 18, RULE_tempBodyPart = 19, RULE_tempTail = 20, 
-		RULE_tempText = 21, RULE_expa = 22, RULE_expaHead = 23, RULE_expaBody = 24, 
-		RULE_expaBodyPart = 25, RULE_expaTail = 26, RULE_plus = 27, RULE_plusHead = 28, 
+		RULE_tempText = 21, RULE_exte = 22, RULE_exteHead = 23, RULE_exteBody = 24, 
+		RULE_exteBodyPart = 25, RULE_exteTail = 26, RULE_plus = 27, RULE_plusHead = 28, 
 		RULE_plusBody = 29, RULE_plusBodyPart = 30, RULE_plusElement = 31, RULE_plusTail = 32, 
 		RULE_dele = 33, RULE_deleHead = 34, RULE_deleBody = 35, RULE_deleTail = 36, 
 		RULE_decl = 37, RULE_declHead = 38, RULE_declNeck = 39, RULE_declBody = 40, 
@@ -79,8 +81,8 @@ public class SlimeParser extends Parser {
 			"file", "text", "textHead", "textBody", "textTail", "refe", "refeHead", 
 			"refeBody", "refeTail", "slot", "slotHead", "slotTail", "spec", "specHead", 
 			"specTail", "spslBody", "temp", "tempHead", "tempBody", "tempBodyPart", 
-			"tempTail", "tempText", "expa", "expaHead", "expaBody", "expaBodyPart", 
-			"expaTail", "plus", "plusHead", "plusBody", "plusBodyPart", "plusElement", 
+			"tempTail", "tempText", "exte", "exteHead", "exteBody", "exteBodyPart", 
+			"exteTail", "plus", "plusHead", "plusBody", "plusBodyPart", "plusElement", 
 			"plusTail", "dele", "deleHead", "deleBody", "deleTail", "decl", "declHead", 
 			"declNeck", "declBody", "declBodyPart", "declTail", "nameValue", "nameType", 
 			"listVari", "vari", "listName", "variPath", "typeName", "textOutor"
@@ -93,7 +95,7 @@ public class SlimeParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, "'$}'", "'@}'", 
-			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, null, null, null, null, null, null, null, "' '", null, null, null, 
 			null, "'&}'", null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, "'*}'", "'+}'", "'=}'", null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
@@ -105,52 +107,51 @@ public class SlimeParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, "'\"}'", null, null, null, null, null, 
-			"'|}'"
+			null, null, "'\"}'", null, null, null, null, null, "'|}'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "RULE_DIV", "COMM_OUTER", "OB_SLOT", "OB_SPEC", "OB_REFE", "OB_EXPA", 
-			"OB_PLUS", "OB_DECL", "OB_DELE", "OB_TEXT", "OB_TEMP", "OLB_SLOT", "OLB_SPEC", 
-			"OLB_REFE", "OLB_EXPA", "OLB_PLUS", "OLB_DECL", "OLB_DELE", "OLB_TEXT", 
-			"OLB_TEMP", "LB_SLOT", "LB_SPEC", "LB_REFE", "LB_EXPA", "LB_PLUS", "LB_DECL", 
-			"LB_DELE", "LB_TEXT", "LB_TEMP", "TEXT_OUTOR", "COMM_B_S", "WS_B_S", 
-			"CB_SLOT", "CB_SPEC", "NAME_B_S", "SC_B_S", "COMM_O_S", "WS_O_S", "NL_SLSP", 
-			"NAME_O_S", "SC_O_S", "COMM_L_S", "NW_SLSP", "NAME_L_S", "SC_L_S", "COMM_REFE", 
-			"WS_B_R", "CB_REFE", "CL_B_R", "NAME_B_R", "IN_B_R", "COMM_O_R", "WS_O_R", 
-			"NL_REFE", "CL_O_R", "NAME_O_R", "IN_O_R", "COMM_L_R", "WS_L_R", "NW_REFE", 
-			"CL_L_R", "NAME_L_R", "IN_L_R", "COMM_B_O", "WS_B_O", "CB_EXPA", "CB_PLUS", 
-			"CB_DECL", "CB_DELE", "OB_SLOT_B_O", "OB_SPEC_B_O", "OB_REFE_B_O", "OB_EXPA_B_O", 
-			"OB_PLUS_B_O", "OB_DECL_B_O", "OB_DELE_B_O", "OB_TEXT_B_O", "OB_TEMP_B_O", 
-			"OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", "OLB_EXPA_B_O", "OLB_PLUS_B_O", 
-			"OLB_DECL_B_O", "OLB_DELE_B_O", "OLB_TEXT_B_O", "OLB_TEMP_B_O", "LB_SLOT_B_O", 
-			"LB_SPEC_B_O", "LB_REFE_B_O", "LB_EXPA_B_O", "LB_PLUS_B_O", "LB_DECL_B_O", 
-			"LB_DELE_B_O", "LB_TEXT_B_O", "LB_TEMP_B_O", "OB_IMPORT", "EQOP_B_O", 
-			"PLOP_B_O", "PE_B_O", "CL_B_O", "CO_B_O", "SC_B_O", "NAME_B_O", "INTE_B_O", 
-			"COMM_O_O", "WS_O_O", "NL_OPER", "OB_SLOT_O_O", "OB_SPEC_O_O", "OB_REFE_O_O", 
-			"OB_EXPA_O_O", "OB_PLUS_O_O", "OB_DECL_O_O", "OB_DELE_O_O", "OB_TEXT_O_O", 
-			"OB_TEMP_O_O", "OLB_SLOT_O_O", "OLB_SPEC_O_O", "OLB_REFE_O_O", "OLB_EXPA_O_O", 
-			"OLB_PLUS_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", "OLB_TEMP_O_O", 
-			"LB_SLOT_O_O", "LB_SPEC_O_O", "LB_REFE_O_O", "LB_EXPA_O_O", "LB_PLUS_O_O", 
-			"LB_DECL_O_O", "LB_DELE_O_O", "LB_TEXT_O_O", "LB_TEMP_O_O", "OL_IMPORT", 
-			"EQOP_O_O", "PLOP_O_O", "PE_O_O", "CL_O_O", "CO_O_O", "SC_O_O", "NAME_O_O", 
-			"INTE_O_O", "COMM_L_O", "NW_OPER", "OB_SLOT_L_O", "OB_SPEC_L_O", "OB_REFE_L_O", 
-			"OB_EXPA_L_O", "OB_PLUS_L_O", "OB_DECL_L_O", "OB_DELE_L_O", "OB_TEXT_L_O", 
-			"OB_TEMP_L_O", "OLB_SLOT_L_O", "OLB_SPEC_L_O", "OLB_REFE_L_O", "OLB_EXPA_L_O", 
-			"OLB_PLUS_L_O", "OLB_DECL_L_O", "OLB_DELE_L_O", "OLB_TEXT_L_O", "OLB_TEMP_L_O", 
-			"LB_SLOT_L_O", "LB_SPEC_L_O", "LB_REFE_L_O", "LB_EXPA_L_O", "LB_PLUS_L_O", 
-			"LB_DECL_L_O", "LB_DELE_L_O", "LB_TEXT_L_O", "LB_TEMP_L_O", "L_IMPORT", 
-			"EQOP_L_O", "PLOP_L_O", "PE_L_O", "CL_L_O", "CO_L_O", "SC_L_O", "NAME_L_O", 
-			"INTE_L_O", "CB_TEXT", "IN_TEXT", "NL_TEXT", "IN_OL_TEXT", "NW_TEXT", 
-			"IN_L_TEXT", "CB_TEMP", "TEXT_LINE", "LINE_DIVIDER", "OB_SLOT_B_T", "OB_SPEC_B_T", 
-			"OB_TEXT_B_T", "OLB_SLOT_B_T", "OLB_SPEC_B_T", "OLB_TEXT_B_T", "LB_SLOT_B_T", 
-			"LB_SPEC_B_T", "LB_TEXT_B_T", "SC_B_T", "NL_TEMP", "OL_TEXT_LINE", "OB_SLOT_O_T", 
-			"OB_SPEC_O_T", "OB_TEXT_O_T", "OLB_SLOT_O_T", "OLB_SPEC_O_T", "OLB_TEXT_O_T", 
-			"LB_SLOT_O_T", "LB_SPEC_O_T", "LB_TEXT_O_T", "SC_O_T", "NW_TEMP", "L_TEXT_LINE", 
-			"OB_SLOT_L_T", "OB_SPEC_L_T", "OB_TEXT_L_T", "OLB_SLOT_L_T", "OLB_SPEC_L_T", 
-			"OLB_TEXT_L_T", "LB_SLOT_L_T", "LB_SPEC_L_T", "LB_TEXT_L_T", "SC_L_T"
+			null, "RULE_DIV", "COMM_OUTER", "BOB_SLOT", "BOB_SPEC", "BOB_REFE", "BOB_EXTE", 
+			"BOB_PLUS", "BOB_DECL", "BOB_DELE", "BOB_TEXT", "BOB_TEMP", "OLB_SLOT", 
+			"OLB_SPEC", "OLB_REFE", "OLB_EXTE", "OLB_PLUS", "OLB_DECL", "OLB_DELE", 
+			"OLB_TEXT", "OLB_TEMP", "COB_SLOT", "COB_SPEC", "COB_REFE", "COB_EXTE", 
+			"COB_PLUS", "COB_DECL", "COB_DELE", "COB_TEXT", "COB_TEMP", "TEXT_OUTOR", 
+			"COMM_B_S", "WS_B_S", "BCB_SLOT", "BCB_SPEC", "NAME_B_S", "SC_B_S", "COMM_L_S", 
+			"WS_L_S", "NL_SLSP", "NAME_O_S", "SC_O_S", "COMM_C_S", "NW_SLSP", "NAME_C_S", 
+			"SC_C_S", "COMM_REFE", "WS_B_R", "BCB_REFE", "CL_B_R", "NAME_B_R", "IN_B_R", 
+			"COMM_O_R", "WS_O_R", "NL_REFE", "CL_O_R", "NAME_O_R", "IN_O_R", "COMM_C_R", 
+			"WS_C_R", "NW_REFE", "CL_C_R", "NAME_C_R", "IN_C_R", "COMM_B_O", "WS_B_O", 
+			"BCB_EXTE", "BCB_PLUS", "BCB_DECL", "BCB_DELE", "BOB_SLOT_B_O", "BOB_SPEC_B_O", 
+			"BOB_REFE_B_O", "BOB_EXTE_B_O", "BOB_PLUS_B_O", "BOB_DECL_B_O", "BOB_DELE_B_O", 
+			"BOB_TEXT_B_O", "BOB_TEMP_B_O", "OLB_SLOT_B_O", "OLB_SPEC_B_O", "OLB_REFE_B_O", 
+			"OLB_EXTE_B_O", "OLB_PLUS_B_O", "OLB_DECL_B_O", "OLB_DELE_B_O", "OLB_TEXT_B_O", 
+			"OLB_TEMP_B_O", "COB_SLOT_B_O", "COB_SPEC_B_O", "COB_REFE_B_O", "COB_EXTE_B_O", 
+			"COB_PLUS_B_O", "COB_DECL_B_O", "COB_DELE_B_O", "COB_TEXT_B_O", "COB_TEMP_B_O", 
+			"EQOP_B_O", "PLOP_B_O", "PE_B_O", "CO_B_O", "CL_B_O", "SC_B_O", "NAME_B_O", 
+			"INTE_B_O", "COMM_O_O", "WS_O_O", "NL_OPER", "BOB_SLOT_O_O", "BOB_SPEC_O_O", 
+			"BOB_REFE_O_O", "BOB_EXTE_O_O", "BOB_PLUS_O_O", "BOB_DECL_O_O", "BOB_DELE_O_O", 
+			"BOB_TEXT_O_O", "BOB_TEMP_O_O", "OLB_SLOT_O_O", "OLB_SPEC_O_O", "OLB_REFE_O_O", 
+			"OLB_EXTE_O_O", "OLB_PLUS_O_O", "OLB_DECL_O_O", "OLB_DELE_O_O", "OLB_TEXT_O_O", 
+			"OLB_TEMP_O_O", "COB_SLOT_O_O", "COB_SPEC_O_O", "COB_REFE_O_O", "COB_EXTE_O_O", 
+			"COB_PLUS_O_O", "COB_DECL_O_O", "COB_DELE_O_O", "COB_TEXT_O_O", "COB_TEMP_O_O", 
+			"EQOP_O_O", "PLOP_O_O", "PE_O_O", "CO_O_O", "CL_O_O", "SC_O_O", "NAME_O_O", 
+			"INTE_O_O", "COMM_C_O", "NW_OPER", "BOB_SLOT_C_O", "BOB_SPEC_C_O", "BOB_REFE_C_O", 
+			"BOB_EXTE_C_O", "BOB_PLUS_C_O", "BOB_DECL_C_O", "BOB_DELE_C_O", "BOB_TEXT_C_O", 
+			"BOB_TEMP_C_O", "OLB_SLOT_C_O", "OLB_SPEC_C_O", "OLB_REFE_C_O", "OLB_EXTE_C_O", 
+			"OLB_PLUS_C_O", "OLB_DECL_C_O", "OLB_DELE_C_O", "OLB_TEXT_C_O", "OLB_TEMP_C_O", 
+			"COB_SLOT_C_O", "COB_SPEC_C_O", "COB_REFE_C_O", "COB_EXTE_C_O", "COB_PLUS_C_O", 
+			"COB_DECL_C_O", "COB_DELE_C_O", "COB_TEXT_C_O", "COB_TEMP_C_O", "EQOP_C_O", 
+			"PLOP_C_O", "PE_C_O", "CO_C_O", "CL_C_O", "SC_C_O", "NAME_C_O", "INTE_C_O", 
+			"BCB_TEXT", "IN_B_T", "NL_TEXT", "IN_O_T", "NW_TEXT", "IN_C_T", "BCB_TEMP", 
+			"B_TEXT_LINE", "LINE_DIVIDER", "BOB_SLOT_B_T", "BOB_SPEC_B_T", "BOB_TEXT_B_T", 
+			"OLB_SLOT_B_T", "OLB_SPEC_B_T", "OLB_TEXT_B_T", "COB_SLOT_B_T", "COB_SPEC_B_T", 
+			"COB_TEXT_B_T", "SC_B_T", "NL_TEMP", "O_TEXT_LINE", "BOB_SLOT_O_T", "BOB_SPEC_O_T", 
+			"BOB_TEXT_O_T", "OLB_SLOT_O_T", "OLB_SPEC_O_T", "OLB_TEXT_O_T", "COB_SLOT_O_T", 
+			"COB_SPEC_O_T", "COB_TEXT_O_T", "SC_O_T", "NW_TEMP", "C_TEXT_LINE", "BOB_SLOT_C_T", 
+			"BOB_SPEC_C_T", "BOB_TEXT_C_T", "OLB_SLOT_C_T", "OLB_SPEC_C_T", "OLB_TEXT_C_T", 
+			"COB_SLOT_C_T", "COB_SPEC_C_T", "COB_TEXT_C_T", "SC_C_T"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -241,11 +242,11 @@ public class SlimeParser extends Parser {
 		public DeleContext dele(int i) {
 			return getRuleContext(DeleContext.class,i);
 		}
-		public List<ExpaContext> expa() {
-			return getRuleContexts(ExpaContext.class);
+		public List<ExteContext> exte() {
+			return getRuleContexts(ExteContext.class);
 		}
-		public ExpaContext expa(int i) {
-			return getRuleContext(ExpaContext.class,i);
+		public ExteContext exte(int i) {
+			return getRuleContext(ExteContext.class,i);
 		}
 		public List<PlusContext> plus() {
 			return getRuleContexts(PlusContext.class);
@@ -294,7 +295,7 @@ public class SlimeParser extends Parser {
 			setState(116);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_SLOT) | (1L << OB_SPEC) | (1L << OB_REFE) | (1L << OB_EXPA) | (1L << OB_PLUS) | (1L << OB_DECL) | (1L << OB_DELE) | (1L << OB_TEXT) | (1L << OB_TEMP) | (1L << OLB_SLOT) | (1L << OLB_SPEC) | (1L << OLB_REFE) | (1L << OLB_EXPA) | (1L << OLB_PLUS) | (1L << OLB_DECL) | (1L << OLB_DELE) | (1L << OLB_TEXT) | (1L << OLB_TEMP) | (1L << LB_SLOT) | (1L << LB_SPEC) | (1L << LB_REFE) | (1L << LB_EXPA) | (1L << LB_PLUS) | (1L << LB_DECL) | (1L << LB_DELE) | (1L << LB_TEXT) | (1L << LB_TEMP) | (1L << TEXT_OUTOR))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (OB_SLOT_B_O - 70)) | (1L << (OB_SPEC_B_O - 70)) | (1L << (OB_REFE_B_O - 70)) | (1L << (OB_EXPA_B_O - 70)) | (1L << (OB_PLUS_B_O - 70)) | (1L << (OB_DECL_B_O - 70)) | (1L << (OB_DELE_B_O - 70)) | (1L << (OB_TEXT_B_O - 70)) | (1L << (OB_TEMP_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (OLB_SPEC_B_O - 70)) | (1L << (OLB_REFE_B_O - 70)) | (1L << (OLB_EXPA_B_O - 70)) | (1L << (OLB_PLUS_B_O - 70)) | (1L << (OLB_DECL_B_O - 70)) | (1L << (OLB_DELE_B_O - 70)) | (1L << (OLB_TEXT_B_O - 70)) | (1L << (OLB_TEMP_B_O - 70)) | (1L << (LB_SLOT_B_O - 70)) | (1L << (LB_SPEC_B_O - 70)) | (1L << (LB_REFE_B_O - 70)) | (1L << (LB_EXPA_B_O - 70)) | (1L << (LB_PLUS_B_O - 70)) | (1L << (LB_DECL_B_O - 70)) | (1L << (LB_DELE_B_O - 70)) | (1L << (LB_TEXT_B_O - 70)) | (1L << (LB_TEMP_B_O - 70)) | (1L << (OB_SLOT_O_O - 70)) | (1L << (OB_SPEC_O_O - 70)) | (1L << (OB_REFE_O_O - 70)) | (1L << (OB_EXPA_O_O - 70)) | (1L << (OB_PLUS_O_O - 70)) | (1L << (OB_DECL_O_O - 70)) | (1L << (OB_DELE_O_O - 70)) | (1L << (OB_TEXT_O_O - 70)) | (1L << (OB_TEMP_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (OLB_SPEC_O_O - 70)) | (1L << (OLB_REFE_O_O - 70)) | (1L << (OLB_EXPA_O_O - 70)) | (1L << (OLB_PLUS_O_O - 70)) | (1L << (OLB_DECL_O_O - 70)) | (1L << (OLB_DELE_O_O - 70)) | (1L << (OLB_TEXT_O_O - 70)) | (1L << (OLB_TEMP_O_O - 70)) | (1L << (LB_SLOT_O_O - 70)) | (1L << (LB_SPEC_O_O - 70)) | (1L << (LB_REFE_O_O - 70)) | (1L << (LB_EXPA_O_O - 70)) | (1L << (LB_PLUS_O_O - 70)) | (1L << (LB_DECL_O_O - 70)) | (1L << (LB_DELE_O_O - 70)))) != 0) || ((((_la - 134)) & ~0x3f) == 0 && ((1L << (_la - 134)) & ((1L << (LB_TEXT_O_O - 134)) | (1L << (LB_TEMP_O_O - 134)) | (1L << (OB_SLOT_L_O - 134)) | (1L << (OB_SPEC_L_O - 134)) | (1L << (OB_REFE_L_O - 134)) | (1L << (OB_EXPA_L_O - 134)) | (1L << (OB_PLUS_L_O - 134)) | (1L << (OB_DECL_L_O - 134)) | (1L << (OB_DELE_L_O - 134)) | (1L << (OB_TEXT_L_O - 134)) | (1L << (OB_TEMP_L_O - 134)) | (1L << (OLB_SLOT_L_O - 134)) | (1L << (OLB_SPEC_L_O - 134)) | (1L << (OLB_REFE_L_O - 134)) | (1L << (OLB_EXPA_L_O - 134)) | (1L << (OLB_PLUS_L_O - 134)) | (1L << (OLB_DECL_L_O - 134)) | (1L << (OLB_DELE_L_O - 134)) | (1L << (OLB_TEXT_L_O - 134)) | (1L << (OLB_TEMP_L_O - 134)) | (1L << (LB_SLOT_L_O - 134)) | (1L << (LB_SPEC_L_O - 134)) | (1L << (LB_REFE_L_O - 134)) | (1L << (LB_EXPA_L_O - 134)) | (1L << (LB_PLUS_L_O - 134)) | (1L << (LB_DECL_L_O - 134)) | (1L << (LB_DELE_L_O - 134)) | (1L << (LB_TEXT_L_O - 134)) | (1L << (LB_TEMP_L_O - 134)) | (1L << (OB_SLOT_B_T - 134)) | (1L << (OB_SPEC_B_T - 134)) | (1L << (OB_TEXT_B_T - 134)) | (1L << (OLB_SLOT_B_T - 134)) | (1L << (OLB_SPEC_B_T - 134)) | (1L << (OLB_TEXT_B_T - 134)))) != 0) || ((((_la - 198)) & ~0x3f) == 0 && ((1L << (_la - 198)) & ((1L << (LB_SLOT_B_T - 198)) | (1L << (LB_SPEC_B_T - 198)) | (1L << (LB_TEXT_B_T - 198)) | (1L << (OB_SLOT_O_T - 198)) | (1L << (OB_SPEC_O_T - 198)) | (1L << (OB_TEXT_O_T - 198)) | (1L << (OLB_SLOT_O_T - 198)) | (1L << (OLB_SPEC_O_T - 198)) | (1L << (OLB_TEXT_O_T - 198)) | (1L << (LB_SLOT_O_T - 198)) | (1L << (LB_SPEC_O_T - 198)) | (1L << (LB_TEXT_O_T - 198)) | (1L << (OB_SLOT_L_T - 198)) | (1L << (OB_SPEC_L_T - 198)) | (1L << (OB_TEXT_L_T - 198)) | (1L << (OLB_SLOT_L_T - 198)) | (1L << (OLB_SPEC_L_T - 198)) | (1L << (OLB_TEXT_L_T - 198)) | (1L << (LB_SLOT_L_T - 198)) | (1L << (LB_SPEC_L_T - 198)) | (1L << (LB_TEXT_L_T - 198)))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_SLOT) | (1L << BOB_SPEC) | (1L << BOB_REFE) | (1L << BOB_EXTE) | (1L << BOB_PLUS) | (1L << BOB_DECL) | (1L << BOB_DELE) | (1L << BOB_TEXT) | (1L << BOB_TEMP) | (1L << OLB_SLOT) | (1L << OLB_SPEC) | (1L << OLB_REFE) | (1L << OLB_EXTE) | (1L << OLB_PLUS) | (1L << OLB_DECL) | (1L << OLB_DELE) | (1L << OLB_TEXT) | (1L << OLB_TEMP) | (1L << COB_SLOT) | (1L << COB_SPEC) | (1L << COB_REFE) | (1L << COB_EXTE) | (1L << COB_PLUS) | (1L << COB_DECL) | (1L << COB_DELE) | (1L << COB_TEXT) | (1L << COB_TEMP) | (1L << TEXT_OUTOR))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (BOB_SLOT_B_O - 70)) | (1L << (BOB_SPEC_B_O - 70)) | (1L << (BOB_REFE_B_O - 70)) | (1L << (BOB_EXTE_B_O - 70)) | (1L << (BOB_PLUS_B_O - 70)) | (1L << (BOB_DECL_B_O - 70)) | (1L << (BOB_DELE_B_O - 70)) | (1L << (BOB_TEXT_B_O - 70)) | (1L << (BOB_TEMP_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (OLB_SPEC_B_O - 70)) | (1L << (OLB_REFE_B_O - 70)) | (1L << (OLB_EXTE_B_O - 70)) | (1L << (OLB_PLUS_B_O - 70)) | (1L << (OLB_DECL_B_O - 70)) | (1L << (OLB_DELE_B_O - 70)) | (1L << (OLB_TEXT_B_O - 70)) | (1L << (OLB_TEMP_B_O - 70)) | (1L << (COB_SLOT_B_O - 70)) | (1L << (COB_SPEC_B_O - 70)) | (1L << (COB_REFE_B_O - 70)) | (1L << (COB_EXTE_B_O - 70)) | (1L << (COB_PLUS_B_O - 70)) | (1L << (COB_DECL_B_O - 70)) | (1L << (COB_DELE_B_O - 70)) | (1L << (COB_TEXT_B_O - 70)) | (1L << (COB_TEMP_B_O - 70)) | (1L << (BOB_SLOT_O_O - 70)) | (1L << (BOB_SPEC_O_O - 70)) | (1L << (BOB_REFE_O_O - 70)) | (1L << (BOB_EXTE_O_O - 70)) | (1L << (BOB_PLUS_O_O - 70)) | (1L << (BOB_DECL_O_O - 70)) | (1L << (BOB_DELE_O_O - 70)) | (1L << (BOB_TEXT_O_O - 70)) | (1L << (BOB_TEMP_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (OLB_SPEC_O_O - 70)) | (1L << (OLB_REFE_O_O - 70)) | (1L << (OLB_EXTE_O_O - 70)) | (1L << (OLB_PLUS_O_O - 70)) | (1L << (OLB_DECL_O_O - 70)) | (1L << (OLB_DELE_O_O - 70)) | (1L << (OLB_TEXT_O_O - 70)) | (1L << (OLB_TEMP_O_O - 70)) | (1L << (COB_SLOT_O_O - 70)) | (1L << (COB_SPEC_O_O - 70)) | (1L << (COB_REFE_O_O - 70)) | (1L << (COB_EXTE_O_O - 70)) | (1L << (COB_PLUS_O_O - 70)) | (1L << (COB_DECL_O_O - 70)) | (1L << (COB_DELE_O_O - 70)) | (1L << (COB_TEXT_O_O - 70)))) != 0) || ((((_la - 134)) & ~0x3f) == 0 && ((1L << (_la - 134)) & ((1L << (COB_TEMP_O_O - 134)) | (1L << (BOB_SLOT_C_O - 134)) | (1L << (BOB_SPEC_C_O - 134)) | (1L << (BOB_REFE_C_O - 134)) | (1L << (BOB_EXTE_C_O - 134)) | (1L << (BOB_PLUS_C_O - 134)) | (1L << (BOB_DECL_C_O - 134)) | (1L << (BOB_DELE_C_O - 134)) | (1L << (BOB_TEXT_C_O - 134)) | (1L << (BOB_TEMP_C_O - 134)) | (1L << (OLB_SLOT_C_O - 134)) | (1L << (OLB_SPEC_C_O - 134)) | (1L << (OLB_REFE_C_O - 134)) | (1L << (OLB_EXTE_C_O - 134)) | (1L << (OLB_PLUS_C_O - 134)) | (1L << (OLB_DECL_C_O - 134)) | (1L << (OLB_DELE_C_O - 134)) | (1L << (OLB_TEXT_C_O - 134)) | (1L << (OLB_TEMP_C_O - 134)) | (1L << (COB_SLOT_C_O - 134)) | (1L << (COB_SPEC_C_O - 134)) | (1L << (COB_REFE_C_O - 134)) | (1L << (COB_EXTE_C_O - 134)) | (1L << (COB_PLUS_C_O - 134)) | (1L << (COB_DECL_C_O - 134)) | (1L << (COB_DELE_C_O - 134)) | (1L << (COB_TEXT_C_O - 134)) | (1L << (COB_TEMP_C_O - 134)) | (1L << (BOB_SLOT_B_T - 134)) | (1L << (BOB_SPEC_B_T - 134)) | (1L << (BOB_TEXT_B_T - 134)) | (1L << (OLB_SLOT_B_T - 134)) | (1L << (OLB_SPEC_B_T - 134)) | (1L << (OLB_TEXT_B_T - 134)) | (1L << (COB_SLOT_B_T - 134)) | (1L << (COB_SPEC_B_T - 134)) | (1L << (COB_TEXT_B_T - 134)))) != 0) || ((((_la - 201)) & ~0x3f) == 0 && ((1L << (_la - 201)) & ((1L << (BOB_SLOT_O_T - 201)) | (1L << (BOB_SPEC_O_T - 201)) | (1L << (BOB_TEXT_O_T - 201)) | (1L << (OLB_SLOT_O_T - 201)) | (1L << (OLB_SPEC_O_T - 201)) | (1L << (OLB_TEXT_O_T - 201)) | (1L << (COB_SLOT_O_T - 201)) | (1L << (COB_SPEC_O_T - 201)) | (1L << (COB_TEXT_O_T - 201)) | (1L << (BOB_SLOT_C_T - 201)) | (1L << (BOB_SPEC_C_T - 201)) | (1L << (BOB_TEXT_C_T - 201)) | (1L << (OLB_SLOT_C_T - 201)) | (1L << (OLB_SPEC_C_T - 201)) | (1L << (OLB_TEXT_C_T - 201)) | (1L << (COB_SLOT_C_T - 201)) | (1L << (COB_SPEC_C_T - 201)) | (1L << (COB_TEXT_C_T - 201)))) != 0)) {
 				{
 				setState(114);
 				_errHandler.sync(this);
@@ -338,7 +339,7 @@ public class SlimeParser extends Parser {
 				case 7:
 					{
 					setState(108);
-					expa();
+					exte();
 					}
 					break;
 				case 8:
@@ -445,27 +446,27 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TextHeadContext extends ParserRuleContext {
-		public TerminalNode OB_TEXT() { return getToken(SlimeParser.OB_TEXT, 0); }
+		public TerminalNode BOB_TEXT() { return getToken(SlimeParser.BOB_TEXT, 0); }
 		public TerminalNode OLB_TEXT() { return getToken(SlimeParser.OLB_TEXT, 0); }
-		public TerminalNode LB_TEXT() { return getToken(SlimeParser.LB_TEXT, 0); }
-		public TerminalNode OB_TEXT_B_O() { return getToken(SlimeParser.OB_TEXT_B_O, 0); }
+		public TerminalNode COB_TEXT() { return getToken(SlimeParser.COB_TEXT, 0); }
+		public TerminalNode BOB_TEXT_B_O() { return getToken(SlimeParser.BOB_TEXT_B_O, 0); }
 		public TerminalNode OLB_TEXT_B_O() { return getToken(SlimeParser.OLB_TEXT_B_O, 0); }
-		public TerminalNode LB_TEXT_B_O() { return getToken(SlimeParser.LB_TEXT_B_O, 0); }
-		public TerminalNode OB_TEXT_O_O() { return getToken(SlimeParser.OB_TEXT_O_O, 0); }
+		public TerminalNode COB_TEXT_B_O() { return getToken(SlimeParser.COB_TEXT_B_O, 0); }
+		public TerminalNode BOB_TEXT_O_O() { return getToken(SlimeParser.BOB_TEXT_O_O, 0); }
 		public TerminalNode OLB_TEXT_O_O() { return getToken(SlimeParser.OLB_TEXT_O_O, 0); }
-		public TerminalNode LB_TEXT_O_O() { return getToken(SlimeParser.LB_TEXT_O_O, 0); }
-		public TerminalNode OB_TEXT_L_O() { return getToken(SlimeParser.OB_TEXT_L_O, 0); }
-		public TerminalNode OLB_TEXT_L_O() { return getToken(SlimeParser.OLB_TEXT_L_O, 0); }
-		public TerminalNode LB_TEXT_L_O() { return getToken(SlimeParser.LB_TEXT_L_O, 0); }
-		public TerminalNode OB_TEXT_B_T() { return getToken(SlimeParser.OB_TEXT_B_T, 0); }
+		public TerminalNode COB_TEXT_O_O() { return getToken(SlimeParser.COB_TEXT_O_O, 0); }
+		public TerminalNode BOB_TEXT_C_O() { return getToken(SlimeParser.BOB_TEXT_C_O, 0); }
+		public TerminalNode OLB_TEXT_C_O() { return getToken(SlimeParser.OLB_TEXT_C_O, 0); }
+		public TerminalNode COB_TEXT_C_O() { return getToken(SlimeParser.COB_TEXT_C_O, 0); }
+		public TerminalNode BOB_TEXT_B_T() { return getToken(SlimeParser.BOB_TEXT_B_T, 0); }
 		public TerminalNode OLB_TEXT_B_T() { return getToken(SlimeParser.OLB_TEXT_B_T, 0); }
-		public TerminalNode LB_TEXT_B_T() { return getToken(SlimeParser.LB_TEXT_B_T, 0); }
-		public TerminalNode OB_TEXT_O_T() { return getToken(SlimeParser.OB_TEXT_O_T, 0); }
+		public TerminalNode COB_TEXT_B_T() { return getToken(SlimeParser.COB_TEXT_B_T, 0); }
+		public TerminalNode BOB_TEXT_O_T() { return getToken(SlimeParser.BOB_TEXT_O_T, 0); }
 		public TerminalNode OLB_TEXT_O_T() { return getToken(SlimeParser.OLB_TEXT_O_T, 0); }
-		public TerminalNode LB_TEXT_O_T() { return getToken(SlimeParser.LB_TEXT_O_T, 0); }
-		public TerminalNode OB_TEXT_L_T() { return getToken(SlimeParser.OB_TEXT_L_T, 0); }
-		public TerminalNode OLB_TEXT_L_T() { return getToken(SlimeParser.OLB_TEXT_L_T, 0); }
-		public TerminalNode LB_TEXT_L_T() { return getToken(SlimeParser.LB_TEXT_L_T, 0); }
+		public TerminalNode COB_TEXT_O_T() { return getToken(SlimeParser.COB_TEXT_O_T, 0); }
+		public TerminalNode BOB_TEXT_C_T() { return getToken(SlimeParser.BOB_TEXT_C_T, 0); }
+		public TerminalNode OLB_TEXT_C_T() { return getToken(SlimeParser.OLB_TEXT_C_T, 0); }
+		public TerminalNode COB_TEXT_C_T() { return getToken(SlimeParser.COB_TEXT_C_T, 0); }
 		public TextHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -494,7 +495,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(123);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_TEXT) | (1L << OLB_TEXT) | (1L << LB_TEXT))) != 0) || ((((_la - 77)) & ~0x3f) == 0 && ((1L << (_la - 77)) & ((1L << (OB_TEXT_B_O - 77)) | (1L << (OLB_TEXT_B_O - 77)) | (1L << (LB_TEXT_B_O - 77)) | (1L << (OB_TEXT_O_O - 77)) | (1L << (OLB_TEXT_O_O - 77)) | (1L << (LB_TEXT_O_O - 77)))) != 0) || ((((_la - 154)) & ~0x3f) == 0 && ((1L << (_la - 154)) & ((1L << (OB_TEXT_L_O - 154)) | (1L << (OLB_TEXT_L_O - 154)) | (1L << (LB_TEXT_L_O - 154)) | (1L << (OB_TEXT_B_T - 154)) | (1L << (OLB_TEXT_B_T - 154)) | (1L << (LB_TEXT_B_T - 154)) | (1L << (OB_TEXT_O_T - 154)) | (1L << (OLB_TEXT_O_T - 154)) | (1L << (LB_TEXT_O_T - 154)))) != 0) || ((((_la - 218)) & ~0x3f) == 0 && ((1L << (_la - 218)) & ((1L << (OB_TEXT_L_T - 218)) | (1L << (OLB_TEXT_L_T - 218)) | (1L << (LB_TEXT_L_T - 218)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_TEXT) | (1L << OLB_TEXT) | (1L << COB_TEXT))) != 0) || ((((_la - 77)) & ~0x3f) == 0 && ((1L << (_la - 77)) & ((1L << (BOB_TEXT_B_O - 77)) | (1L << (OLB_TEXT_B_O - 77)) | (1L << (COB_TEXT_B_O - 77)) | (1L << (BOB_TEXT_O_O - 77)) | (1L << (OLB_TEXT_O_O - 77)) | (1L << (COB_TEXT_O_O - 77)))) != 0) || ((((_la - 152)) & ~0x3f) == 0 && ((1L << (_la - 152)) & ((1L << (BOB_TEXT_C_O - 152)) | (1L << (OLB_TEXT_C_O - 152)) | (1L << (COB_TEXT_C_O - 152)) | (1L << (BOB_TEXT_B_T - 152)) | (1L << (OLB_TEXT_B_T - 152)) | (1L << (COB_TEXT_B_T - 152)) | (1L << (BOB_TEXT_O_T - 152)) | (1L << (OLB_TEXT_O_T - 152)) | (1L << (COB_TEXT_O_T - 152)) | (1L << (BOB_TEXT_C_T - 152)))) != 0) || _la==OLB_TEXT_C_T || _la==COB_TEXT_C_T) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -516,9 +517,9 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TextBodyContext extends ParserRuleContext {
-		public TerminalNode IN_TEXT() { return getToken(SlimeParser.IN_TEXT, 0); }
-		public TerminalNode IN_OL_TEXT() { return getToken(SlimeParser.IN_OL_TEXT, 0); }
-		public TerminalNode IN_L_TEXT() { return getToken(SlimeParser.IN_L_TEXT, 0); }
+		public TerminalNode IN_B_T() { return getToken(SlimeParser.IN_B_T, 0); }
+		public TerminalNode IN_O_T() { return getToken(SlimeParser.IN_O_T, 0); }
+		public TerminalNode IN_C_T() { return getToken(SlimeParser.IN_C_T, 0); }
 		public TextBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -547,7 +548,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(125);
 			_la = _input.LA(1);
-			if ( !(((((_la - 184)) & ~0x3f) == 0 && ((1L << (_la - 184)) & ((1L << (IN_TEXT - 184)) | (1L << (IN_OL_TEXT - 184)) | (1L << (IN_L_TEXT - 184)))) != 0)) ) {
+			if ( !(((((_la - 181)) & ~0x3f) == 0 && ((1L << (_la - 181)) & ((1L << (IN_B_T - 181)) | (1L << (IN_O_T - 181)) | (1L << (IN_C_T - 181)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -569,7 +570,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TextTailContext extends ParserRuleContext {
-		public TerminalNode CB_TEXT() { return getToken(SlimeParser.CB_TEXT, 0); }
+		public TerminalNode BCB_TEXT() { return getToken(SlimeParser.BCB_TEXT, 0); }
 		public TerminalNode NL_TEXT() { return getToken(SlimeParser.NL_TEXT, 0); }
 		public TerminalNode NW_TEXT() { return getToken(SlimeParser.NW_TEXT, 0); }
 		public TextTailContext(ParserRuleContext parent, int invokingState) {
@@ -600,7 +601,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(127);
 			_la = _input.LA(1);
-			if ( !(((((_la - 183)) & ~0x3f) == 0 && ((1L << (_la - 183)) & ((1L << (CB_TEXT - 183)) | (1L << (NL_TEXT - 183)) | (1L << (NW_TEXT - 183)))) != 0)) ) {
+			if ( !(((((_la - 180)) & ~0x3f) == 0 && ((1L << (_la - 180)) & ((1L << (BCB_TEXT - 180)) | (1L << (NL_TEXT - 180)) | (1L << (NW_TEXT - 180)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -676,18 +677,18 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class RefeHeadContext extends ParserRuleContext {
-		public TerminalNode OB_REFE() { return getToken(SlimeParser.OB_REFE, 0); }
+		public TerminalNode BOB_REFE() { return getToken(SlimeParser.BOB_REFE, 0); }
 		public TerminalNode OLB_REFE() { return getToken(SlimeParser.OLB_REFE, 0); }
-		public TerminalNode LB_REFE() { return getToken(SlimeParser.LB_REFE, 0); }
-		public TerminalNode OB_REFE_B_O() { return getToken(SlimeParser.OB_REFE_B_O, 0); }
+		public TerminalNode COB_REFE() { return getToken(SlimeParser.COB_REFE, 0); }
+		public TerminalNode BOB_REFE_B_O() { return getToken(SlimeParser.BOB_REFE_B_O, 0); }
 		public TerminalNode OLB_REFE_B_O() { return getToken(SlimeParser.OLB_REFE_B_O, 0); }
-		public TerminalNode LB_REFE_B_O() { return getToken(SlimeParser.LB_REFE_B_O, 0); }
-		public TerminalNode OB_REFE_O_O() { return getToken(SlimeParser.OB_REFE_O_O, 0); }
+		public TerminalNode COB_REFE_B_O() { return getToken(SlimeParser.COB_REFE_B_O, 0); }
+		public TerminalNode BOB_REFE_O_O() { return getToken(SlimeParser.BOB_REFE_O_O, 0); }
 		public TerminalNode OLB_REFE_O_O() { return getToken(SlimeParser.OLB_REFE_O_O, 0); }
-		public TerminalNode LB_REFE_O_O() { return getToken(SlimeParser.LB_REFE_O_O, 0); }
-		public TerminalNode OB_REFE_L_O() { return getToken(SlimeParser.OB_REFE_L_O, 0); }
-		public TerminalNode OLB_REFE_L_O() { return getToken(SlimeParser.OLB_REFE_L_O, 0); }
-		public TerminalNode LB_REFE_L_O() { return getToken(SlimeParser.LB_REFE_L_O, 0); }
+		public TerminalNode COB_REFE_O_O() { return getToken(SlimeParser.COB_REFE_O_O, 0); }
+		public TerminalNode BOB_REFE_C_O() { return getToken(SlimeParser.BOB_REFE_C_O, 0); }
+		public TerminalNode OLB_REFE_C_O() { return getToken(SlimeParser.OLB_REFE_C_O, 0); }
+		public TerminalNode COB_REFE_C_O() { return getToken(SlimeParser.COB_REFE_C_O, 0); }
 		public RefeHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -716,7 +717,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(133);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_REFE) | (1L << OLB_REFE) | (1L << LB_REFE))) != 0) || ((((_la - 72)) & ~0x3f) == 0 && ((1L << (_la - 72)) & ((1L << (OB_REFE_B_O - 72)) | (1L << (OLB_REFE_B_O - 72)) | (1L << (LB_REFE_B_O - 72)) | (1L << (OB_REFE_O_O - 72)) | (1L << (OLB_REFE_O_O - 72)) | (1L << (LB_REFE_O_O - 72)))) != 0) || ((((_la - 149)) & ~0x3f) == 0 && ((1L << (_la - 149)) & ((1L << (OB_REFE_L_O - 149)) | (1L << (OLB_REFE_L_O - 149)) | (1L << (LB_REFE_L_O - 149)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_REFE) | (1L << OLB_REFE) | (1L << COB_REFE))) != 0) || ((((_la - 72)) & ~0x3f) == 0 && ((1L << (_la - 72)) & ((1L << (BOB_REFE_B_O - 72)) | (1L << (OLB_REFE_B_O - 72)) | (1L << (COB_REFE_B_O - 72)) | (1L << (BOB_REFE_O_O - 72)) | (1L << (OLB_REFE_O_O - 72)) | (1L << (COB_REFE_O_O - 72)))) != 0) || ((((_la - 147)) & ~0x3f) == 0 && ((1L << (_la - 147)) & ((1L << (BOB_REFE_C_O - 147)) | (1L << (OLB_REFE_C_O - 147)) | (1L << (COB_REFE_C_O - 147)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -743,7 +744,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode IN_B_R() { return getToken(SlimeParser.IN_B_R, 0); }
 		public TerminalNode IN_O_R() { return getToken(SlimeParser.IN_O_R, 0); }
-		public TerminalNode IN_L_R() { return getToken(SlimeParser.IN_L_R, 0); }
+		public TerminalNode IN_C_R() { return getToken(SlimeParser.IN_C_R, 0); }
 		public RefeBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -774,7 +775,7 @@ public class SlimeParser extends Parser {
 			typeName();
 			setState(136);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IN_B_R) | (1L << IN_O_R) | (1L << IN_L_R))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IN_B_R) | (1L << IN_O_R) | (1L << IN_C_R))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -796,7 +797,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class RefeTailContext extends ParserRuleContext {
-		public TerminalNode CB_REFE() { return getToken(SlimeParser.CB_REFE, 0); }
+		public TerminalNode BCB_REFE() { return getToken(SlimeParser.BCB_REFE, 0); }
 		public TerminalNode NL_REFE() { return getToken(SlimeParser.NL_REFE, 0); }
 		public TerminalNode NW_REFE() { return getToken(SlimeParser.NW_REFE, 0); }
 		public RefeTailContext(ParserRuleContext parent, int invokingState) {
@@ -827,7 +828,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(138);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CB_REFE) | (1L << NL_REFE) | (1L << NW_REFE))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BCB_REFE) | (1L << NL_REFE) | (1L << NW_REFE))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -903,27 +904,27 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class SlotHeadContext extends ParserRuleContext {
-		public TerminalNode OB_SLOT() { return getToken(SlimeParser.OB_SLOT, 0); }
+		public TerminalNode BOB_SLOT() { return getToken(SlimeParser.BOB_SLOT, 0); }
 		public TerminalNode OLB_SLOT() { return getToken(SlimeParser.OLB_SLOT, 0); }
-		public TerminalNode LB_SLOT() { return getToken(SlimeParser.LB_SLOT, 0); }
-		public TerminalNode OB_SLOT_B_O() { return getToken(SlimeParser.OB_SLOT_B_O, 0); }
+		public TerminalNode COB_SLOT() { return getToken(SlimeParser.COB_SLOT, 0); }
+		public TerminalNode BOB_SLOT_B_O() { return getToken(SlimeParser.BOB_SLOT_B_O, 0); }
 		public TerminalNode OLB_SLOT_B_O() { return getToken(SlimeParser.OLB_SLOT_B_O, 0); }
-		public TerminalNode LB_SLOT_B_O() { return getToken(SlimeParser.LB_SLOT_B_O, 0); }
-		public TerminalNode OB_SLOT_O_O() { return getToken(SlimeParser.OB_SLOT_O_O, 0); }
+		public TerminalNode COB_SLOT_B_O() { return getToken(SlimeParser.COB_SLOT_B_O, 0); }
+		public TerminalNode BOB_SLOT_O_O() { return getToken(SlimeParser.BOB_SLOT_O_O, 0); }
 		public TerminalNode OLB_SLOT_O_O() { return getToken(SlimeParser.OLB_SLOT_O_O, 0); }
-		public TerminalNode LB_SLOT_O_O() { return getToken(SlimeParser.LB_SLOT_O_O, 0); }
-		public TerminalNode OB_SLOT_L_O() { return getToken(SlimeParser.OB_SLOT_L_O, 0); }
-		public TerminalNode OLB_SLOT_L_O() { return getToken(SlimeParser.OLB_SLOT_L_O, 0); }
-		public TerminalNode LB_SLOT_L_O() { return getToken(SlimeParser.LB_SLOT_L_O, 0); }
-		public TerminalNode OB_SLOT_B_T() { return getToken(SlimeParser.OB_SLOT_B_T, 0); }
+		public TerminalNode COB_SLOT_O_O() { return getToken(SlimeParser.COB_SLOT_O_O, 0); }
+		public TerminalNode BOB_SLOT_C_O() { return getToken(SlimeParser.BOB_SLOT_C_O, 0); }
+		public TerminalNode OLB_SLOT_C_O() { return getToken(SlimeParser.OLB_SLOT_C_O, 0); }
+		public TerminalNode COB_SLOT_C_O() { return getToken(SlimeParser.COB_SLOT_C_O, 0); }
+		public TerminalNode BOB_SLOT_B_T() { return getToken(SlimeParser.BOB_SLOT_B_T, 0); }
 		public TerminalNode OLB_SLOT_B_T() { return getToken(SlimeParser.OLB_SLOT_B_T, 0); }
-		public TerminalNode LB_SLOT_B_T() { return getToken(SlimeParser.LB_SLOT_B_T, 0); }
-		public TerminalNode OB_SLOT_O_T() { return getToken(SlimeParser.OB_SLOT_O_T, 0); }
+		public TerminalNode COB_SLOT_B_T() { return getToken(SlimeParser.COB_SLOT_B_T, 0); }
+		public TerminalNode BOB_SLOT_O_T() { return getToken(SlimeParser.BOB_SLOT_O_T, 0); }
 		public TerminalNode OLB_SLOT_O_T() { return getToken(SlimeParser.OLB_SLOT_O_T, 0); }
-		public TerminalNode LB_SLOT_O_T() { return getToken(SlimeParser.LB_SLOT_O_T, 0); }
-		public TerminalNode OB_SLOT_L_T() { return getToken(SlimeParser.OB_SLOT_L_T, 0); }
-		public TerminalNode OLB_SLOT_L_T() { return getToken(SlimeParser.OLB_SLOT_L_T, 0); }
-		public TerminalNode LB_SLOT_L_T() { return getToken(SlimeParser.LB_SLOT_L_T, 0); }
+		public TerminalNode COB_SLOT_O_T() { return getToken(SlimeParser.COB_SLOT_O_T, 0); }
+		public TerminalNode BOB_SLOT_C_T() { return getToken(SlimeParser.BOB_SLOT_C_T, 0); }
+		public TerminalNode OLB_SLOT_C_T() { return getToken(SlimeParser.OLB_SLOT_C_T, 0); }
+		public TerminalNode COB_SLOT_C_T() { return getToken(SlimeParser.COB_SLOT_C_T, 0); }
 		public SlotHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -952,7 +953,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(144);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_SLOT) | (1L << OLB_SLOT) | (1L << LB_SLOT))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (OB_SLOT_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (LB_SLOT_B_O - 70)) | (1L << (OB_SLOT_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (LB_SLOT_O_O - 70)))) != 0) || ((((_la - 147)) & ~0x3f) == 0 && ((1L << (_la - 147)) & ((1L << (OB_SLOT_L_O - 147)) | (1L << (OLB_SLOT_L_O - 147)) | (1L << (LB_SLOT_L_O - 147)) | (1L << (OB_SLOT_B_T - 147)) | (1L << (OLB_SLOT_B_T - 147)) | (1L << (LB_SLOT_B_T - 147)) | (1L << (OB_SLOT_O_T - 147)) | (1L << (OLB_SLOT_O_T - 147)) | (1L << (LB_SLOT_O_T - 147)))) != 0) || ((((_la - 216)) & ~0x3f) == 0 && ((1L << (_la - 216)) & ((1L << (OB_SLOT_L_T - 216)) | (1L << (OLB_SLOT_L_T - 216)) | (1L << (LB_SLOT_L_T - 216)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_SLOT) | (1L << OLB_SLOT) | (1L << COB_SLOT))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (BOB_SLOT_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (COB_SLOT_B_O - 70)) | (1L << (BOB_SLOT_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (COB_SLOT_O_O - 70)))) != 0) || ((((_la - 145)) & ~0x3f) == 0 && ((1L << (_la - 145)) & ((1L << (BOB_SLOT_C_O - 145)) | (1L << (OLB_SLOT_C_O - 145)) | (1L << (COB_SLOT_C_O - 145)) | (1L << (BOB_SLOT_B_T - 145)) | (1L << (OLB_SLOT_B_T - 145)) | (1L << (COB_SLOT_B_T - 145)) | (1L << (BOB_SLOT_O_T - 145)) | (1L << (OLB_SLOT_O_T - 145)) | (1L << (COB_SLOT_O_T - 145)))) != 0) || ((((_la - 213)) & ~0x3f) == 0 && ((1L << (_la - 213)) & ((1L << (BOB_SLOT_C_T - 213)) | (1L << (OLB_SLOT_C_T - 213)) | (1L << (COB_SLOT_C_T - 213)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -974,7 +975,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class SlotTailContext extends ParserRuleContext {
-		public TerminalNode CB_SLOT() { return getToken(SlimeParser.CB_SLOT, 0); }
+		public TerminalNode BCB_SLOT() { return getToken(SlimeParser.BCB_SLOT, 0); }
 		public TerminalNode NL_SLSP() { return getToken(SlimeParser.NL_SLSP, 0); }
 		public TerminalNode NW_SLSP() { return getToken(SlimeParser.NW_SLSP, 0); }
 		public SlotTailContext(ParserRuleContext parent, int invokingState) {
@@ -1005,7 +1006,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(146);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CB_SLOT) | (1L << NL_SLSP) | (1L << NW_SLSP))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BCB_SLOT) | (1L << NL_SLSP) | (1L << NW_SLSP))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1081,27 +1082,27 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class SpecHeadContext extends ParserRuleContext {
-		public TerminalNode OB_SPEC() { return getToken(SlimeParser.OB_SPEC, 0); }
+		public TerminalNode BOB_SPEC() { return getToken(SlimeParser.BOB_SPEC, 0); }
 		public TerminalNode OLB_SPEC() { return getToken(SlimeParser.OLB_SPEC, 0); }
-		public TerminalNode LB_SPEC() { return getToken(SlimeParser.LB_SPEC, 0); }
-		public TerminalNode OB_SPEC_B_O() { return getToken(SlimeParser.OB_SPEC_B_O, 0); }
+		public TerminalNode COB_SPEC() { return getToken(SlimeParser.COB_SPEC, 0); }
+		public TerminalNode BOB_SPEC_B_O() { return getToken(SlimeParser.BOB_SPEC_B_O, 0); }
 		public TerminalNode OLB_SPEC_B_O() { return getToken(SlimeParser.OLB_SPEC_B_O, 0); }
-		public TerminalNode LB_SPEC_B_O() { return getToken(SlimeParser.LB_SPEC_B_O, 0); }
-		public TerminalNode OB_SPEC_O_O() { return getToken(SlimeParser.OB_SPEC_O_O, 0); }
+		public TerminalNode COB_SPEC_B_O() { return getToken(SlimeParser.COB_SPEC_B_O, 0); }
+		public TerminalNode BOB_SPEC_O_O() { return getToken(SlimeParser.BOB_SPEC_O_O, 0); }
 		public TerminalNode OLB_SPEC_O_O() { return getToken(SlimeParser.OLB_SPEC_O_O, 0); }
-		public TerminalNode LB_SPEC_O_O() { return getToken(SlimeParser.LB_SPEC_O_O, 0); }
-		public TerminalNode OB_SPEC_L_O() { return getToken(SlimeParser.OB_SPEC_L_O, 0); }
-		public TerminalNode OLB_SPEC_L_O() { return getToken(SlimeParser.OLB_SPEC_L_O, 0); }
-		public TerminalNode LB_SPEC_L_O() { return getToken(SlimeParser.LB_SPEC_L_O, 0); }
-		public TerminalNode OB_SPEC_B_T() { return getToken(SlimeParser.OB_SPEC_B_T, 0); }
+		public TerminalNode COB_SPEC_O_O() { return getToken(SlimeParser.COB_SPEC_O_O, 0); }
+		public TerminalNode BOB_SPEC_C_O() { return getToken(SlimeParser.BOB_SPEC_C_O, 0); }
+		public TerminalNode OLB_SPEC_C_O() { return getToken(SlimeParser.OLB_SPEC_C_O, 0); }
+		public TerminalNode COB_SPEC_C_O() { return getToken(SlimeParser.COB_SPEC_C_O, 0); }
+		public TerminalNode BOB_SPEC_B_T() { return getToken(SlimeParser.BOB_SPEC_B_T, 0); }
 		public TerminalNode OLB_SPEC_B_T() { return getToken(SlimeParser.OLB_SPEC_B_T, 0); }
-		public TerminalNode LB_SPEC_B_T() { return getToken(SlimeParser.LB_SPEC_B_T, 0); }
-		public TerminalNode OB_SPEC_O_T() { return getToken(SlimeParser.OB_SPEC_O_T, 0); }
+		public TerminalNode COB_SPEC_B_T() { return getToken(SlimeParser.COB_SPEC_B_T, 0); }
+		public TerminalNode BOB_SPEC_O_T() { return getToken(SlimeParser.BOB_SPEC_O_T, 0); }
 		public TerminalNode OLB_SPEC_O_T() { return getToken(SlimeParser.OLB_SPEC_O_T, 0); }
-		public TerminalNode LB_SPEC_O_T() { return getToken(SlimeParser.LB_SPEC_O_T, 0); }
-		public TerminalNode OB_SPEC_L_T() { return getToken(SlimeParser.OB_SPEC_L_T, 0); }
-		public TerminalNode OLB_SPEC_L_T() { return getToken(SlimeParser.OLB_SPEC_L_T, 0); }
-		public TerminalNode LB_SPEC_L_T() { return getToken(SlimeParser.LB_SPEC_L_T, 0); }
+		public TerminalNode COB_SPEC_O_T() { return getToken(SlimeParser.COB_SPEC_O_T, 0); }
+		public TerminalNode BOB_SPEC_C_T() { return getToken(SlimeParser.BOB_SPEC_C_T, 0); }
+		public TerminalNode OLB_SPEC_C_T() { return getToken(SlimeParser.OLB_SPEC_C_T, 0); }
+		public TerminalNode COB_SPEC_C_T() { return getToken(SlimeParser.COB_SPEC_C_T, 0); }
 		public SpecHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1130,7 +1131,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(152);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_SPEC) | (1L << OLB_SPEC) | (1L << LB_SPEC))) != 0) || ((((_la - 71)) & ~0x3f) == 0 && ((1L << (_la - 71)) & ((1L << (OB_SPEC_B_O - 71)) | (1L << (OLB_SPEC_B_O - 71)) | (1L << (LB_SPEC_B_O - 71)) | (1L << (OB_SPEC_O_O - 71)) | (1L << (OLB_SPEC_O_O - 71)) | (1L << (LB_SPEC_O_O - 71)))) != 0) || ((((_la - 148)) & ~0x3f) == 0 && ((1L << (_la - 148)) & ((1L << (OB_SPEC_L_O - 148)) | (1L << (OLB_SPEC_L_O - 148)) | (1L << (LB_SPEC_L_O - 148)) | (1L << (OB_SPEC_B_T - 148)) | (1L << (OLB_SPEC_B_T - 148)) | (1L << (LB_SPEC_B_T - 148)) | (1L << (OB_SPEC_O_T - 148)) | (1L << (OLB_SPEC_O_T - 148)) | (1L << (LB_SPEC_O_T - 148)))) != 0) || ((((_la - 217)) & ~0x3f) == 0 && ((1L << (_la - 217)) & ((1L << (OB_SPEC_L_T - 217)) | (1L << (OLB_SPEC_L_T - 217)) | (1L << (LB_SPEC_L_T - 217)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_SPEC) | (1L << OLB_SPEC) | (1L << COB_SPEC))) != 0) || ((((_la - 71)) & ~0x3f) == 0 && ((1L << (_la - 71)) & ((1L << (BOB_SPEC_B_O - 71)) | (1L << (OLB_SPEC_B_O - 71)) | (1L << (COB_SPEC_B_O - 71)) | (1L << (BOB_SPEC_O_O - 71)) | (1L << (OLB_SPEC_O_O - 71)) | (1L << (COB_SPEC_O_O - 71)))) != 0) || ((((_la - 146)) & ~0x3f) == 0 && ((1L << (_la - 146)) & ((1L << (BOB_SPEC_C_O - 146)) | (1L << (OLB_SPEC_C_O - 146)) | (1L << (COB_SPEC_C_O - 146)) | (1L << (BOB_SPEC_B_T - 146)) | (1L << (OLB_SPEC_B_T - 146)) | (1L << (COB_SPEC_B_T - 146)) | (1L << (BOB_SPEC_O_T - 146)) | (1L << (OLB_SPEC_O_T - 146)) | (1L << (COB_SPEC_O_T - 146)))) != 0) || ((((_la - 214)) & ~0x3f) == 0 && ((1L << (_la - 214)) & ((1L << (BOB_SPEC_C_T - 214)) | (1L << (OLB_SPEC_C_T - 214)) | (1L << (COB_SPEC_C_T - 214)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1152,7 +1153,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class SpecTailContext extends ParserRuleContext {
-		public TerminalNode CB_SPEC() { return getToken(SlimeParser.CB_SPEC, 0); }
+		public TerminalNode BCB_SPEC() { return getToken(SlimeParser.BCB_SPEC, 0); }
 		public TerminalNode NL_SLSP() { return getToken(SlimeParser.NL_SLSP, 0); }
 		public TerminalNode NW_SLSP() { return getToken(SlimeParser.NW_SLSP, 0); }
 		public SpecTailContext(ParserRuleContext parent, int invokingState) {
@@ -1183,7 +1184,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(154);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CB_SPEC) | (1L << NL_SLSP) | (1L << NW_SLSP))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BCB_SPEC) | (1L << NL_SLSP) | (1L << NW_SLSP))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1213,9 +1214,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME_O_S(int i) {
 			return getToken(SlimeParser.NAME_O_S, i);
 		}
-		public List<TerminalNode> NAME_L_S() { return getTokens(SlimeParser.NAME_L_S); }
-		public TerminalNode NAME_L_S(int i) {
-			return getToken(SlimeParser.NAME_L_S, i);
+		public List<TerminalNode> NAME_C_S() { return getTokens(SlimeParser.NAME_C_S); }
+		public TerminalNode NAME_C_S(int i) {
+			return getToken(SlimeParser.NAME_C_S, i);
 		}
 		public List<TerminalNode> SC_B_S() { return getTokens(SlimeParser.SC_B_S); }
 		public TerminalNode SC_B_S(int i) {
@@ -1225,9 +1226,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_O_S(int i) {
 			return getToken(SlimeParser.SC_O_S, i);
 		}
-		public List<TerminalNode> SC_L_S() { return getTokens(SlimeParser.SC_L_S); }
-		public TerminalNode SC_L_S(int i) {
-			return getToken(SlimeParser.SC_L_S, i);
+		public List<TerminalNode> SC_C_S() { return getTokens(SlimeParser.SC_C_S); }
+		public TerminalNode SC_C_S(int i) {
+			return getToken(SlimeParser.SC_C_S, i);
 		}
 		public SpslBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1281,12 +1282,12 @@ public class SlimeParser extends Parser {
 						match(SC_O_S);
 						}
 						break;
-					case NAME_L_S:
+					case NAME_C_S:
 						{
 						setState(160);
-						match(NAME_L_S);
+						match(NAME_C_S);
 						setState(161);
-						match(SC_L_S);
+						match(SC_C_S);
 						}
 						break;
 					default:
@@ -1300,7 +1301,7 @@ public class SlimeParser extends Parser {
 			}
 			setState(167);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NAME_B_S) | (1L << NAME_O_S) | (1L << NAME_L_S))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NAME_B_S) | (1L << NAME_O_S) | (1L << NAME_C_S))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1376,18 +1377,18 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TempHeadContext extends ParserRuleContext {
-		public TerminalNode OB_TEMP() { return getToken(SlimeParser.OB_TEMP, 0); }
+		public TerminalNode BOB_TEMP() { return getToken(SlimeParser.BOB_TEMP, 0); }
 		public TerminalNode OLB_TEMP() { return getToken(SlimeParser.OLB_TEMP, 0); }
-		public TerminalNode LB_TEMP() { return getToken(SlimeParser.LB_TEMP, 0); }
-		public TerminalNode OB_TEMP_B_O() { return getToken(SlimeParser.OB_TEMP_B_O, 0); }
+		public TerminalNode COB_TEMP() { return getToken(SlimeParser.COB_TEMP, 0); }
+		public TerminalNode BOB_TEMP_B_O() { return getToken(SlimeParser.BOB_TEMP_B_O, 0); }
 		public TerminalNode OLB_TEMP_B_O() { return getToken(SlimeParser.OLB_TEMP_B_O, 0); }
-		public TerminalNode LB_TEMP_B_O() { return getToken(SlimeParser.LB_TEMP_B_O, 0); }
-		public TerminalNode OB_TEMP_O_O() { return getToken(SlimeParser.OB_TEMP_O_O, 0); }
+		public TerminalNode COB_TEMP_B_O() { return getToken(SlimeParser.COB_TEMP_B_O, 0); }
+		public TerminalNode BOB_TEMP_O_O() { return getToken(SlimeParser.BOB_TEMP_O_O, 0); }
 		public TerminalNode OLB_TEMP_O_O() { return getToken(SlimeParser.OLB_TEMP_O_O, 0); }
-		public TerminalNode LB_TEMP_O_O() { return getToken(SlimeParser.LB_TEMP_O_O, 0); }
-		public TerminalNode OB_TEMP_L_O() { return getToken(SlimeParser.OB_TEMP_L_O, 0); }
-		public TerminalNode OLB_TEMP_L_O() { return getToken(SlimeParser.OLB_TEMP_L_O, 0); }
-		public TerminalNode LB_TEMP_L_O() { return getToken(SlimeParser.LB_TEMP_L_O, 0); }
+		public TerminalNode COB_TEMP_O_O() { return getToken(SlimeParser.COB_TEMP_O_O, 0); }
+		public TerminalNode BOB_TEMP_C_O() { return getToken(SlimeParser.BOB_TEMP_C_O, 0); }
+		public TerminalNode OLB_TEMP_C_O() { return getToken(SlimeParser.OLB_TEMP_C_O, 0); }
+		public TerminalNode COB_TEMP_C_O() { return getToken(SlimeParser.COB_TEMP_C_O, 0); }
 		public TempHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1416,7 +1417,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(173);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_TEMP) | (1L << OLB_TEMP) | (1L << LB_TEMP))) != 0) || ((((_la - 78)) & ~0x3f) == 0 && ((1L << (_la - 78)) & ((1L << (OB_TEMP_B_O - 78)) | (1L << (OLB_TEMP_B_O - 78)) | (1L << (LB_TEMP_B_O - 78)) | (1L << (OB_TEMP_O_O - 78)) | (1L << (OLB_TEMP_O_O - 78)) | (1L << (LB_TEMP_O_O - 78)))) != 0) || ((((_la - 155)) & ~0x3f) == 0 && ((1L << (_la - 155)) & ((1L << (OB_TEMP_L_O - 155)) | (1L << (OLB_TEMP_L_O - 155)) | (1L << (LB_TEMP_L_O - 155)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_TEMP) | (1L << OLB_TEMP) | (1L << COB_TEMP))) != 0) || ((((_la - 78)) & ~0x3f) == 0 && ((1L << (_la - 78)) & ((1L << (BOB_TEMP_B_O - 78)) | (1L << (OLB_TEMP_B_O - 78)) | (1L << (COB_TEMP_B_O - 78)) | (1L << (BOB_TEMP_O_O - 78)) | (1L << (OLB_TEMP_O_O - 78)) | (1L << (COB_TEMP_O_O - 78)))) != 0) || ((((_la - 153)) & ~0x3f) == 0 && ((1L << (_la - 153)) & ((1L << (BOB_TEMP_C_O - 153)) | (1L << (OLB_TEMP_C_O - 153)) | (1L << (COB_TEMP_C_O - 153)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1448,9 +1449,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_B_T(int i) {
 			return getToken(SlimeParser.SC_B_T, i);
 		}
-		public List<TerminalNode> SC_L_T() { return getTokens(SlimeParser.SC_L_T); }
-		public TerminalNode SC_L_T(int i) {
-			return getToken(SlimeParser.SC_L_T, i);
+		public List<TerminalNode> SC_C_T() { return getTokens(SlimeParser.SC_C_T); }
+		public TerminalNode SC_C_T(int i) {
+			return getToken(SlimeParser.SC_C_T, i);
 		}
 		public List<TerminalNode> SC_O_T() { return getTokens(SlimeParser.SC_O_T); }
 		public TerminalNode SC_O_T(int i) {
@@ -1494,7 +1495,7 @@ public class SlimeParser extends Parser {
 					tempBodyPart();
 					setState(176);
 					_la = _input.LA(1);
-					if ( !(((((_la - 201)) & ~0x3f) == 0 && ((1L << (_la - 201)) & ((1L << (SC_B_T - 201)) | (1L << (SC_O_T - 201)) | (1L << (SC_L_T - 201)))) != 0)) ) {
+					if ( !(((((_la - 198)) & ~0x3f) == 0 && ((1L << (_la - 198)) & ((1L << (SC_B_T - 198)) | (1L << (SC_O_T - 198)) | (1L << (SC_C_T - 198)))) != 0)) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -1587,87 +1588,87 @@ public class SlimeParser extends Parser {
 				setState(190);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case OB_TEXT:
+				case BOB_TEXT:
 				case OLB_TEXT:
-				case LB_TEXT:
-				case OB_TEXT_B_O:
+				case COB_TEXT:
+				case BOB_TEXT_B_O:
 				case OLB_TEXT_B_O:
-				case LB_TEXT_B_O:
-				case OB_TEXT_O_O:
+				case COB_TEXT_B_O:
+				case BOB_TEXT_O_O:
 				case OLB_TEXT_O_O:
-				case LB_TEXT_O_O:
-				case OB_TEXT_L_O:
-				case OLB_TEXT_L_O:
-				case LB_TEXT_L_O:
-				case OB_TEXT_B_T:
+				case COB_TEXT_O_O:
+				case BOB_TEXT_C_O:
+				case OLB_TEXT_C_O:
+				case COB_TEXT_C_O:
+				case BOB_TEXT_B_T:
 				case OLB_TEXT_B_T:
-				case LB_TEXT_B_T:
-				case OB_TEXT_O_T:
+				case COB_TEXT_B_T:
+				case BOB_TEXT_O_T:
 				case OLB_TEXT_O_T:
-				case LB_TEXT_O_T:
-				case OB_TEXT_L_T:
-				case OLB_TEXT_L_T:
-				case LB_TEXT_L_T:
+				case COB_TEXT_O_T:
+				case BOB_TEXT_C_T:
+				case OLB_TEXT_C_T:
+				case COB_TEXT_C_T:
 					{
 					setState(185);
 					text();
 					}
 					break;
-				case OB_SLOT:
+				case BOB_SLOT:
 				case OLB_SLOT:
-				case LB_SLOT:
-				case OB_SLOT_B_O:
+				case COB_SLOT:
+				case BOB_SLOT_B_O:
 				case OLB_SLOT_B_O:
-				case LB_SLOT_B_O:
-				case OB_SLOT_O_O:
+				case COB_SLOT_B_O:
+				case BOB_SLOT_O_O:
 				case OLB_SLOT_O_O:
-				case LB_SLOT_O_O:
-				case OB_SLOT_L_O:
-				case OLB_SLOT_L_O:
-				case LB_SLOT_L_O:
-				case OB_SLOT_B_T:
+				case COB_SLOT_O_O:
+				case BOB_SLOT_C_O:
+				case OLB_SLOT_C_O:
+				case COB_SLOT_C_O:
+				case BOB_SLOT_B_T:
 				case OLB_SLOT_B_T:
-				case LB_SLOT_B_T:
-				case OB_SLOT_O_T:
+				case COB_SLOT_B_T:
+				case BOB_SLOT_O_T:
 				case OLB_SLOT_O_T:
-				case LB_SLOT_O_T:
-				case OB_SLOT_L_T:
-				case OLB_SLOT_L_T:
-				case LB_SLOT_L_T:
+				case COB_SLOT_O_T:
+				case BOB_SLOT_C_T:
+				case OLB_SLOT_C_T:
+				case COB_SLOT_C_T:
 					{
 					setState(186);
 					slot();
 					}
 					break;
-				case OB_SPEC:
+				case BOB_SPEC:
 				case OLB_SPEC:
-				case LB_SPEC:
-				case OB_SPEC_B_O:
+				case COB_SPEC:
+				case BOB_SPEC_B_O:
 				case OLB_SPEC_B_O:
-				case LB_SPEC_B_O:
-				case OB_SPEC_O_O:
+				case COB_SPEC_B_O:
+				case BOB_SPEC_O_O:
 				case OLB_SPEC_O_O:
-				case LB_SPEC_O_O:
-				case OB_SPEC_L_O:
-				case OLB_SPEC_L_O:
-				case LB_SPEC_L_O:
-				case OB_SPEC_B_T:
+				case COB_SPEC_O_O:
+				case BOB_SPEC_C_O:
+				case OLB_SPEC_C_O:
+				case COB_SPEC_C_O:
+				case BOB_SPEC_B_T:
 				case OLB_SPEC_B_T:
-				case LB_SPEC_B_T:
-				case OB_SPEC_O_T:
+				case COB_SPEC_B_T:
+				case BOB_SPEC_O_T:
 				case OLB_SPEC_O_T:
-				case LB_SPEC_O_T:
-				case OB_SPEC_L_T:
-				case OLB_SPEC_L_T:
-				case LB_SPEC_L_T:
+				case COB_SPEC_O_T:
+				case BOB_SPEC_C_T:
+				case OLB_SPEC_C_T:
+				case COB_SPEC_C_T:
 					{
 					setState(187);
 					spec();
 					}
 					break;
-				case TEXT_LINE:
-				case OL_TEXT_LINE:
-				case L_TEXT_LINE:
+				case B_TEXT_LINE:
+				case O_TEXT_LINE:
+				case C_TEXT_LINE:
 					{
 					setState(188);
 					tempText();
@@ -1686,7 +1687,7 @@ public class SlimeParser extends Parser {
 				setState(192); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_SLOT) | (1L << OB_SPEC) | (1L << OB_TEXT) | (1L << OLB_SLOT) | (1L << OLB_SPEC) | (1L << OLB_TEXT) | (1L << LB_SLOT) | (1L << LB_SPEC) | (1L << LB_TEXT))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (OB_SLOT_B_O - 70)) | (1L << (OB_SPEC_B_O - 70)) | (1L << (OB_TEXT_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (OLB_SPEC_B_O - 70)) | (1L << (OLB_TEXT_B_O - 70)) | (1L << (LB_SLOT_B_O - 70)) | (1L << (LB_SPEC_B_O - 70)) | (1L << (LB_TEXT_B_O - 70)) | (1L << (OB_SLOT_O_O - 70)) | (1L << (OB_SPEC_O_O - 70)) | (1L << (OB_TEXT_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (OLB_SPEC_O_O - 70)) | (1L << (OLB_TEXT_O_O - 70)) | (1L << (LB_SLOT_O_O - 70)) | (1L << (LB_SPEC_O_O - 70)))) != 0) || ((((_la - 134)) & ~0x3f) == 0 && ((1L << (_la - 134)) & ((1L << (LB_TEXT_O_O - 134)) | (1L << (OB_SLOT_L_O - 134)) | (1L << (OB_SPEC_L_O - 134)) | (1L << (OB_TEXT_L_O - 134)) | (1L << (OLB_SLOT_L_O - 134)) | (1L << (OLB_SPEC_L_O - 134)) | (1L << (OLB_TEXT_L_O - 134)) | (1L << (LB_SLOT_L_O - 134)) | (1L << (LB_SPEC_L_O - 134)) | (1L << (LB_TEXT_L_O - 134)) | (1L << (TEXT_LINE - 134)) | (1L << (LINE_DIVIDER - 134)) | (1L << (OB_SLOT_B_T - 134)) | (1L << (OB_SPEC_B_T - 134)) | (1L << (OB_TEXT_B_T - 134)) | (1L << (OLB_SLOT_B_T - 134)) | (1L << (OLB_SPEC_B_T - 134)) | (1L << (OLB_TEXT_B_T - 134)))) != 0) || ((((_la - 198)) & ~0x3f) == 0 && ((1L << (_la - 198)) & ((1L << (LB_SLOT_B_T - 198)) | (1L << (LB_SPEC_B_T - 198)) | (1L << (LB_TEXT_B_T - 198)) | (1L << (OL_TEXT_LINE - 198)) | (1L << (OB_SLOT_O_T - 198)) | (1L << (OB_SPEC_O_T - 198)) | (1L << (OB_TEXT_O_T - 198)) | (1L << (OLB_SLOT_O_T - 198)) | (1L << (OLB_SPEC_O_T - 198)) | (1L << (OLB_TEXT_O_T - 198)) | (1L << (LB_SLOT_O_T - 198)) | (1L << (LB_SPEC_O_T - 198)) | (1L << (LB_TEXT_O_T - 198)) | (1L << (L_TEXT_LINE - 198)) | (1L << (OB_SLOT_L_T - 198)) | (1L << (OB_SPEC_L_T - 198)) | (1L << (OB_TEXT_L_T - 198)) | (1L << (OLB_SLOT_L_T - 198)) | (1L << (OLB_SPEC_L_T - 198)) | (1L << (OLB_TEXT_L_T - 198)) | (1L << (LB_SLOT_L_T - 198)) | (1L << (LB_SPEC_L_T - 198)) | (1L << (LB_TEXT_L_T - 198)))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_SLOT) | (1L << BOB_SPEC) | (1L << BOB_TEXT) | (1L << OLB_SLOT) | (1L << OLB_SPEC) | (1L << OLB_TEXT) | (1L << COB_SLOT) | (1L << COB_SPEC) | (1L << COB_TEXT))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (BOB_SLOT_B_O - 70)) | (1L << (BOB_SPEC_B_O - 70)) | (1L << (BOB_TEXT_B_O - 70)) | (1L << (OLB_SLOT_B_O - 70)) | (1L << (OLB_SPEC_B_O - 70)) | (1L << (OLB_TEXT_B_O - 70)) | (1L << (COB_SLOT_B_O - 70)) | (1L << (COB_SPEC_B_O - 70)) | (1L << (COB_TEXT_B_O - 70)) | (1L << (BOB_SLOT_O_O - 70)) | (1L << (BOB_SPEC_O_O - 70)) | (1L << (BOB_TEXT_O_O - 70)) | (1L << (OLB_SLOT_O_O - 70)) | (1L << (OLB_SPEC_O_O - 70)) | (1L << (OLB_TEXT_O_O - 70)) | (1L << (COB_SLOT_O_O - 70)) | (1L << (COB_SPEC_O_O - 70)) | (1L << (COB_TEXT_O_O - 70)))) != 0) || ((((_la - 145)) & ~0x3f) == 0 && ((1L << (_la - 145)) & ((1L << (BOB_SLOT_C_O - 145)) | (1L << (BOB_SPEC_C_O - 145)) | (1L << (BOB_TEXT_C_O - 145)) | (1L << (OLB_SLOT_C_O - 145)) | (1L << (OLB_SPEC_C_O - 145)) | (1L << (OLB_TEXT_C_O - 145)) | (1L << (COB_SLOT_C_O - 145)) | (1L << (COB_SPEC_C_O - 145)) | (1L << (COB_TEXT_C_O - 145)) | (1L << (B_TEXT_LINE - 145)) | (1L << (LINE_DIVIDER - 145)) | (1L << (BOB_SLOT_B_T - 145)) | (1L << (BOB_SPEC_B_T - 145)) | (1L << (BOB_TEXT_B_T - 145)) | (1L << (OLB_SLOT_B_T - 145)) | (1L << (OLB_SPEC_B_T - 145)) | (1L << (OLB_TEXT_B_T - 145)) | (1L << (COB_SLOT_B_T - 145)) | (1L << (COB_SPEC_B_T - 145)) | (1L << (COB_TEXT_B_T - 145)) | (1L << (O_TEXT_LINE - 145)) | (1L << (BOB_SLOT_O_T - 145)) | (1L << (BOB_SPEC_O_T - 145)) | (1L << (BOB_TEXT_O_T - 145)) | (1L << (OLB_SLOT_O_T - 145)) | (1L << (OLB_SPEC_O_T - 145)) | (1L << (OLB_TEXT_O_T - 145)) | (1L << (COB_SLOT_O_T - 145)) | (1L << (COB_SPEC_O_T - 145)))) != 0) || ((((_la - 209)) & ~0x3f) == 0 && ((1L << (_la - 209)) & ((1L << (COB_TEXT_O_T - 209)) | (1L << (C_TEXT_LINE - 209)) | (1L << (BOB_SLOT_C_T - 209)) | (1L << (BOB_SPEC_C_T - 209)) | (1L << (BOB_TEXT_C_T - 209)) | (1L << (OLB_SLOT_C_T - 209)) | (1L << (OLB_SPEC_C_T - 209)) | (1L << (OLB_TEXT_C_T - 209)) | (1L << (COB_SLOT_C_T - 209)) | (1L << (COB_SPEC_C_T - 209)) | (1L << (COB_TEXT_C_T - 209)))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -1701,7 +1702,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TempTailContext extends ParserRuleContext {
-		public TerminalNode CB_TEMP() { return getToken(SlimeParser.CB_TEMP, 0); }
+		public TerminalNode BCB_TEMP() { return getToken(SlimeParser.BCB_TEMP, 0); }
 		public TerminalNode NL_TEMP() { return getToken(SlimeParser.NL_TEMP, 0); }
 		public TerminalNode NW_TEMP() { return getToken(SlimeParser.NW_TEMP, 0); }
 		public TempTailContext(ParserRuleContext parent, int invokingState) {
@@ -1732,7 +1733,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(194);
 			_la = _input.LA(1);
-			if ( !(((((_la - 189)) & ~0x3f) == 0 && ((1L << (_la - 189)) & ((1L << (CB_TEMP - 189)) | (1L << (NL_TEMP - 189)) | (1L << (NW_TEMP - 189)))) != 0)) ) {
+			if ( !(((((_la - 186)) & ~0x3f) == 0 && ((1L << (_la - 186)) & ((1L << (BCB_TEMP - 186)) | (1L << (NL_TEMP - 186)) | (1L << (NW_TEMP - 186)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1754,16 +1755,16 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class TempTextContext extends ParserRuleContext {
-		public List<TerminalNode> TEXT_LINE() { return getTokens(SlimeParser.TEXT_LINE); }
-		public TerminalNode TEXT_LINE(int i) {
-			return getToken(SlimeParser.TEXT_LINE, i);
+		public List<TerminalNode> B_TEXT_LINE() { return getTokens(SlimeParser.B_TEXT_LINE); }
+		public TerminalNode B_TEXT_LINE(int i) {
+			return getToken(SlimeParser.B_TEXT_LINE, i);
 		}
 		public List<TerminalNode> LINE_DIVIDER() { return getTokens(SlimeParser.LINE_DIVIDER); }
 		public TerminalNode LINE_DIVIDER(int i) {
 			return getToken(SlimeParser.LINE_DIVIDER, i);
 		}
-		public TerminalNode OL_TEXT_LINE() { return getToken(SlimeParser.OL_TEXT_LINE, 0); }
-		public TerminalNode L_TEXT_LINE() { return getToken(SlimeParser.L_TEXT_LINE, 0); }
+		public TerminalNode O_TEXT_LINE() { return getToken(SlimeParser.O_TEXT_LINE, 0); }
+		public TerminalNode C_TEXT_LINE() { return getToken(SlimeParser.C_TEXT_LINE, 0); }
 		public TempTextContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1791,7 +1792,7 @@ public class SlimeParser extends Parser {
 			setState(206);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case TEXT_LINE:
+			case B_TEXT_LINE:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(200);
@@ -1802,7 +1803,7 @@ public class SlimeParser extends Parser {
 						{
 						{
 						setState(196);
-						match(TEXT_LINE);
+						match(B_TEXT_LINE);
 						setState(197);
 						match(LINE_DIVIDER);
 						}
@@ -1813,21 +1814,21 @@ public class SlimeParser extends Parser {
 					_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 				}
 				setState(203);
-				match(TEXT_LINE);
+				match(B_TEXT_LINE);
 				}
 				break;
-			case OL_TEXT_LINE:
+			case O_TEXT_LINE:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(204);
-				match(OL_TEXT_LINE);
+				match(O_TEXT_LINE);
 				}
 				break;
-			case L_TEXT_LINE:
+			case C_TEXT_LINE:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(205);
-				match(L_TEXT_LINE);
+				match(C_TEXT_LINE);
 				}
 				break;
 			default:
@@ -1845,47 +1846,47 @@ public class SlimeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpaContext extends ParserRuleContext {
-		public ExpaHeadContext expaHead() {
-			return getRuleContext(ExpaHeadContext.class,0);
+	public static class ExteContext extends ParserRuleContext {
+		public ExteHeadContext exteHead() {
+			return getRuleContext(ExteHeadContext.class,0);
 		}
-		public ExpaBodyContext expaBody() {
-			return getRuleContext(ExpaBodyContext.class,0);
+		public ExteBodyContext exteBody() {
+			return getRuleContext(ExteBodyContext.class,0);
 		}
-		public ExpaTailContext expaTail() {
-			return getRuleContext(ExpaTailContext.class,0);
+		public ExteTailContext exteTail() {
+			return getRuleContext(ExteTailContext.class,0);
 		}
-		public ExpaContext(ParserRuleContext parent, int invokingState) {
+		public ExteContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expa; }
+		@Override public int getRuleIndex() { return RULE_exte; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExpa(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExte(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExpa(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExte(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExpa(this);
+			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExte(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpaContext expa() throws RecognitionException {
-		ExpaContext _localctx = new ExpaContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_expa);
+	public final ExteContext exte() throws RecognitionException {
+		ExteContext _localctx = new ExteContext(_ctx, getState());
+		enterRule(_localctx, 44, RULE_exte);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(208);
-			expaHead();
+			exteHead();
 			setState(209);
-			expaBody();
+			exteBody();
 			setState(210);
-			expaTail();
+			exteTail();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1899,48 +1900,48 @@ public class SlimeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpaHeadContext extends ParserRuleContext {
-		public TerminalNode OB_EXPA() { return getToken(SlimeParser.OB_EXPA, 0); }
-		public TerminalNode OLB_EXPA() { return getToken(SlimeParser.OLB_EXPA, 0); }
-		public TerminalNode LB_EXPA() { return getToken(SlimeParser.LB_EXPA, 0); }
-		public TerminalNode OB_EXPA_B_O() { return getToken(SlimeParser.OB_EXPA_B_O, 0); }
-		public TerminalNode OLB_EXPA_B_O() { return getToken(SlimeParser.OLB_EXPA_B_O, 0); }
-		public TerminalNode LB_EXPA_B_O() { return getToken(SlimeParser.LB_EXPA_B_O, 0); }
-		public TerminalNode OB_EXPA_O_O() { return getToken(SlimeParser.OB_EXPA_O_O, 0); }
-		public TerminalNode OLB_EXPA_O_O() { return getToken(SlimeParser.OLB_EXPA_O_O, 0); }
-		public TerminalNode LB_EXPA_O_O() { return getToken(SlimeParser.LB_EXPA_O_O, 0); }
-		public TerminalNode OB_EXPA_L_O() { return getToken(SlimeParser.OB_EXPA_L_O, 0); }
-		public TerminalNode OLB_EXPA_L_O() { return getToken(SlimeParser.OLB_EXPA_L_O, 0); }
-		public TerminalNode LB_EXPA_L_O() { return getToken(SlimeParser.LB_EXPA_L_O, 0); }
-		public ExpaHeadContext(ParserRuleContext parent, int invokingState) {
+	public static class ExteHeadContext extends ParserRuleContext {
+		public TerminalNode BOB_EXTE() { return getToken(SlimeParser.BOB_EXTE, 0); }
+		public TerminalNode OLB_EXTE() { return getToken(SlimeParser.OLB_EXTE, 0); }
+		public TerminalNode COB_EXTE() { return getToken(SlimeParser.COB_EXTE, 0); }
+		public TerminalNode BOB_EXTE_B_O() { return getToken(SlimeParser.BOB_EXTE_B_O, 0); }
+		public TerminalNode OLB_EXTE_B_O() { return getToken(SlimeParser.OLB_EXTE_B_O, 0); }
+		public TerminalNode COB_EXTE_B_O() { return getToken(SlimeParser.COB_EXTE_B_O, 0); }
+		public TerminalNode BOB_EXTE_O_O() { return getToken(SlimeParser.BOB_EXTE_O_O, 0); }
+		public TerminalNode OLB_EXTE_O_O() { return getToken(SlimeParser.OLB_EXTE_O_O, 0); }
+		public TerminalNode COB_EXTE_O_O() { return getToken(SlimeParser.COB_EXTE_O_O, 0); }
+		public TerminalNode BOB_EXTE_C_O() { return getToken(SlimeParser.BOB_EXTE_C_O, 0); }
+		public TerminalNode OLB_EXTE_C_O() { return getToken(SlimeParser.OLB_EXTE_C_O, 0); }
+		public TerminalNode COB_EXTE_C_O() { return getToken(SlimeParser.COB_EXTE_C_O, 0); }
+		public ExteHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expaHead; }
+		@Override public int getRuleIndex() { return RULE_exteHead; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExpaHead(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExteHead(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExpaHead(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExteHead(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExpaHead(this);
+			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExteHead(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpaHeadContext expaHead() throws RecognitionException {
-		ExpaHeadContext _localctx = new ExpaHeadContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_expaHead);
+	public final ExteHeadContext exteHead() throws RecognitionException {
+		ExteHeadContext _localctx = new ExteHeadContext(_ctx, getState());
+		enterRule(_localctx, 46, RULE_exteHead);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(212);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_EXPA) | (1L << OLB_EXPA) | (1L << LB_EXPA))) != 0) || ((((_la - 73)) & ~0x3f) == 0 && ((1L << (_la - 73)) & ((1L << (OB_EXPA_B_O - 73)) | (1L << (OLB_EXPA_B_O - 73)) | (1L << (LB_EXPA_B_O - 73)) | (1L << (OB_EXPA_O_O - 73)) | (1L << (OLB_EXPA_O_O - 73)) | (1L << (LB_EXPA_O_O - 73)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (OB_EXPA_L_O - 150)) | (1L << (OLB_EXPA_L_O - 150)) | (1L << (LB_EXPA_L_O - 150)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_EXTE) | (1L << OLB_EXTE) | (1L << COB_EXTE))) != 0) || ((((_la - 73)) & ~0x3f) == 0 && ((1L << (_la - 73)) & ((1L << (BOB_EXTE_B_O - 73)) | (1L << (OLB_EXTE_B_O - 73)) | (1L << (COB_EXTE_B_O - 73)) | (1L << (BOB_EXTE_O_O - 73)) | (1L << (OLB_EXTE_O_O - 73)) | (1L << (COB_EXTE_O_O - 73)))) != 0) || ((((_la - 148)) & ~0x3f) == 0 && ((1L << (_la - 148)) & ((1L << (BOB_EXTE_C_O - 148)) | (1L << (OLB_EXTE_C_O - 148)) | (1L << (COB_EXTE_C_O - 148)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1961,12 +1962,12 @@ public class SlimeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpaBodyContext extends ParserRuleContext {
-		public List<ExpaBodyPartContext> expaBodyPart() {
-			return getRuleContexts(ExpaBodyPartContext.class);
+	public static class ExteBodyContext extends ParserRuleContext {
+		public List<ExteBodyPartContext> exteBodyPart() {
+			return getRuleContexts(ExteBodyPartContext.class);
 		}
-		public ExpaBodyPartContext expaBodyPart(int i) {
-			return getRuleContext(ExpaBodyPartContext.class,i);
+		public ExteBodyPartContext exteBodyPart(int i) {
+			return getRuleContext(ExteBodyPartContext.class,i);
 		}
 		public List<TerminalNode> SC_B_O() { return getTokens(SlimeParser.SC_B_O); }
 		public TerminalNode SC_B_O(int i) {
@@ -1976,32 +1977,32 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_O_O(int i) {
 			return getToken(SlimeParser.SC_O_O, i);
 		}
-		public List<TerminalNode> SC_L_O() { return getTokens(SlimeParser.SC_L_O); }
-		public TerminalNode SC_L_O(int i) {
-			return getToken(SlimeParser.SC_L_O, i);
+		public List<TerminalNode> SC_C_O() { return getTokens(SlimeParser.SC_C_O); }
+		public TerminalNode SC_C_O(int i) {
+			return getToken(SlimeParser.SC_C_O, i);
 		}
-		public ExpaBodyContext(ParserRuleContext parent, int invokingState) {
+		public ExteBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expaBody; }
+		@Override public int getRuleIndex() { return RULE_exteBody; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExpaBody(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExteBody(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExpaBody(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExteBody(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExpaBody(this);
+			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExteBody(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpaBodyContext expaBody() throws RecognitionException {
-		ExpaBodyContext _localctx = new ExpaBodyContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_expaBody);
+	public final ExteBodyContext exteBody() throws RecognitionException {
+		ExteBodyContext _localctx = new ExteBodyContext(_ctx, getState());
+		enterRule(_localctx, 48, RULE_exteBody);
 		int _la;
 		try {
 			int _alt;
@@ -2015,10 +2016,10 @@ public class SlimeParser extends Parser {
 					{
 					{
 					setState(214);
-					expaBodyPart();
+					exteBodyPart();
 					setState(215);
 					_la = _input.LA(1);
-					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_L_O) ) {
+					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_C_O) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -2034,7 +2035,7 @@ public class SlimeParser extends Parser {
 				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
 			}
 			setState(222);
-			expaBodyPart();
+			exteBodyPart();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2048,41 +2049,41 @@ public class SlimeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpaBodyPartContext extends ParserRuleContext {
+	public static class ExteBodyPartContext extends ParserRuleContext {
 		public VariContext vari() {
 			return getRuleContext(VariContext.class,0);
 		}
 		public TerminalNode CL_B_O() { return getToken(SlimeParser.CL_B_O, 0); }
 		public TerminalNode CL_O_O() { return getToken(SlimeParser.CL_O_O, 0); }
-		public TerminalNode CL_L_O() { return getToken(SlimeParser.CL_L_O, 0); }
+		public TerminalNode CL_C_O() { return getToken(SlimeParser.CL_C_O, 0); }
 		public TempContext temp() {
 			return getRuleContext(TempContext.class,0);
 		}
 		public SpecContext spec() {
 			return getRuleContext(SpecContext.class,0);
 		}
-		public ExpaBodyPartContext(ParserRuleContext parent, int invokingState) {
+		public ExteBodyPartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expaBodyPart; }
+		@Override public int getRuleIndex() { return RULE_exteBodyPart; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExpaBodyPart(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExteBodyPart(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExpaBodyPart(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExteBodyPart(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExpaBodyPart(this);
+			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExteBodyPart(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpaBodyPartContext expaBodyPart() throws RecognitionException {
-		ExpaBodyPartContext _localctx = new ExpaBodyPartContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_expaBodyPart);
+	public final ExteBodyPartContext exteBodyPart() throws RecognitionException {
+		ExteBodyPartContext _localctx = new ExteBodyPartContext(_ctx, getState());
+		enterRule(_localctx, 50, RULE_exteBodyPart);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -2092,11 +2093,11 @@ public class SlimeParser extends Parser {
 			setState(230);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) {
+			if (_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) {
 				{
 				setState(225);
 				_la = _input.LA(1);
-				if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) ) {
+				if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -2107,44 +2108,44 @@ public class SlimeParser extends Parser {
 				setState(228);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case OB_TEMP:
+				case BOB_TEMP:
 				case OLB_TEMP:
-				case LB_TEMP:
-				case OB_TEMP_B_O:
+				case COB_TEMP:
+				case BOB_TEMP_B_O:
 				case OLB_TEMP_B_O:
-				case LB_TEMP_B_O:
-				case OB_TEMP_O_O:
+				case COB_TEMP_B_O:
+				case BOB_TEMP_O_O:
 				case OLB_TEMP_O_O:
-				case LB_TEMP_O_O:
-				case OB_TEMP_L_O:
-				case OLB_TEMP_L_O:
-				case LB_TEMP_L_O:
+				case COB_TEMP_O_O:
+				case BOB_TEMP_C_O:
+				case OLB_TEMP_C_O:
+				case COB_TEMP_C_O:
 					{
 					setState(226);
 					temp();
 					}
 					break;
-				case OB_SPEC:
+				case BOB_SPEC:
 				case OLB_SPEC:
-				case LB_SPEC:
-				case OB_SPEC_B_O:
+				case COB_SPEC:
+				case BOB_SPEC_B_O:
 				case OLB_SPEC_B_O:
-				case LB_SPEC_B_O:
-				case OB_SPEC_O_O:
+				case COB_SPEC_B_O:
+				case BOB_SPEC_O_O:
 				case OLB_SPEC_O_O:
-				case LB_SPEC_O_O:
-				case OB_SPEC_L_O:
-				case OLB_SPEC_L_O:
-				case LB_SPEC_L_O:
-				case OB_SPEC_B_T:
+				case COB_SPEC_O_O:
+				case BOB_SPEC_C_O:
+				case OLB_SPEC_C_O:
+				case COB_SPEC_C_O:
+				case BOB_SPEC_B_T:
 				case OLB_SPEC_B_T:
-				case LB_SPEC_B_T:
-				case OB_SPEC_O_T:
+				case COB_SPEC_B_T:
+				case BOB_SPEC_O_T:
 				case OLB_SPEC_O_T:
-				case LB_SPEC_O_T:
-				case OB_SPEC_L_T:
-				case OLB_SPEC_L_T:
-				case LB_SPEC_L_T:
+				case COB_SPEC_O_T:
+				case BOB_SPEC_C_T:
+				case OLB_SPEC_C_T:
+				case COB_SPEC_C_T:
 					{
 					setState(227);
 					spec();
@@ -2169,39 +2170,39 @@ public class SlimeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ExpaTailContext extends ParserRuleContext {
-		public TerminalNode CB_EXPA() { return getToken(SlimeParser.CB_EXPA, 0); }
+	public static class ExteTailContext extends ParserRuleContext {
+		public TerminalNode BCB_EXTE() { return getToken(SlimeParser.BCB_EXTE, 0); }
 		public TerminalNode NL_OPER() { return getToken(SlimeParser.NL_OPER, 0); }
 		public TerminalNode NW_OPER() { return getToken(SlimeParser.NW_OPER, 0); }
-		public ExpaTailContext(ParserRuleContext parent, int invokingState) {
+		public ExteTailContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_expaTail; }
+		@Override public int getRuleIndex() { return RULE_exteTail; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExpaTail(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).enterExteTail(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExpaTail(this);
+			if ( listener instanceof SlimeParserListener ) ((SlimeParserListener)listener).exitExteTail(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExpaTail(this);
+			if ( visitor instanceof SlimeParserVisitor ) return ((SlimeParserVisitor<? extends T>)visitor).visitExteTail(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ExpaTailContext expaTail() throws RecognitionException {
-		ExpaTailContext _localctx = new ExpaTailContext(_ctx, getState());
-		enterRule(_localctx, 52, RULE_expaTail);
+	public final ExteTailContext exteTail() throws RecognitionException {
+		ExteTailContext _localctx = new ExteTailContext(_ctx, getState());
+		enterRule(_localctx, 52, RULE_exteTail);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(232);
 			_la = _input.LA(1);
-			if ( !(_la==CB_EXPA || _la==NL_OPER || _la==NW_OPER) ) {
+			if ( !(_la==BCB_EXTE || _la==NL_OPER || _la==NW_OPER) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2277,18 +2278,18 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class PlusHeadContext extends ParserRuleContext {
-		public TerminalNode OB_PLUS() { return getToken(SlimeParser.OB_PLUS, 0); }
+		public TerminalNode BOB_PLUS() { return getToken(SlimeParser.BOB_PLUS, 0); }
 		public TerminalNode OLB_PLUS() { return getToken(SlimeParser.OLB_PLUS, 0); }
-		public TerminalNode LB_PLUS() { return getToken(SlimeParser.LB_PLUS, 0); }
-		public TerminalNode OB_PLUS_B_O() { return getToken(SlimeParser.OB_PLUS_B_O, 0); }
+		public TerminalNode COB_PLUS() { return getToken(SlimeParser.COB_PLUS, 0); }
+		public TerminalNode BOB_PLUS_B_O() { return getToken(SlimeParser.BOB_PLUS_B_O, 0); }
 		public TerminalNode OLB_PLUS_B_O() { return getToken(SlimeParser.OLB_PLUS_B_O, 0); }
-		public TerminalNode LB_PLUS_B_O() { return getToken(SlimeParser.LB_PLUS_B_O, 0); }
-		public TerminalNode OB_PLUS_O_O() { return getToken(SlimeParser.OB_PLUS_O_O, 0); }
+		public TerminalNode COB_PLUS_B_O() { return getToken(SlimeParser.COB_PLUS_B_O, 0); }
+		public TerminalNode BOB_PLUS_O_O() { return getToken(SlimeParser.BOB_PLUS_O_O, 0); }
 		public TerminalNode OLB_PLUS_O_O() { return getToken(SlimeParser.OLB_PLUS_O_O, 0); }
-		public TerminalNode LB_PLUS_O_O() { return getToken(SlimeParser.LB_PLUS_O_O, 0); }
-		public TerminalNode OB_PLUS_L_O() { return getToken(SlimeParser.OB_PLUS_L_O, 0); }
-		public TerminalNode OLB_PLUS_L_O() { return getToken(SlimeParser.OLB_PLUS_L_O, 0); }
-		public TerminalNode LB_PLUS_L_O() { return getToken(SlimeParser.LB_PLUS_L_O, 0); }
+		public TerminalNode COB_PLUS_O_O() { return getToken(SlimeParser.COB_PLUS_O_O, 0); }
+		public TerminalNode BOB_PLUS_C_O() { return getToken(SlimeParser.BOB_PLUS_C_O, 0); }
+		public TerminalNode OLB_PLUS_C_O() { return getToken(SlimeParser.OLB_PLUS_C_O, 0); }
+		public TerminalNode COB_PLUS_C_O() { return getToken(SlimeParser.COB_PLUS_C_O, 0); }
 		public PlusHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2317,7 +2318,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(238);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_PLUS) | (1L << OLB_PLUS) | (1L << LB_PLUS))) != 0) || ((((_la - 74)) & ~0x3f) == 0 && ((1L << (_la - 74)) & ((1L << (OB_PLUS_B_O - 74)) | (1L << (OLB_PLUS_B_O - 74)) | (1L << (LB_PLUS_B_O - 74)) | (1L << (OB_PLUS_O_O - 74)) | (1L << (OLB_PLUS_O_O - 74)) | (1L << (LB_PLUS_O_O - 74)))) != 0) || ((((_la - 151)) & ~0x3f) == 0 && ((1L << (_la - 151)) & ((1L << (OB_PLUS_L_O - 151)) | (1L << (OLB_PLUS_L_O - 151)) | (1L << (LB_PLUS_L_O - 151)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_PLUS) | (1L << OLB_PLUS) | (1L << COB_PLUS))) != 0) || ((((_la - 74)) & ~0x3f) == 0 && ((1L << (_la - 74)) & ((1L << (BOB_PLUS_B_O - 74)) | (1L << (OLB_PLUS_B_O - 74)) | (1L << (COB_PLUS_B_O - 74)) | (1L << (BOB_PLUS_O_O - 74)) | (1L << (OLB_PLUS_O_O - 74)) | (1L << (COB_PLUS_O_O - 74)))) != 0) || ((((_la - 149)) & ~0x3f) == 0 && ((1L << (_la - 149)) & ((1L << (BOB_PLUS_C_O - 149)) | (1L << (OLB_PLUS_C_O - 149)) | (1L << (COB_PLUS_C_O - 149)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2353,9 +2354,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_O_O(int i) {
 			return getToken(SlimeParser.SC_O_O, i);
 		}
-		public List<TerminalNode> SC_L_O() { return getTokens(SlimeParser.SC_L_O); }
-		public TerminalNode SC_L_O(int i) {
-			return getToken(SlimeParser.SC_L_O, i);
+		public List<TerminalNode> SC_C_O() { return getTokens(SlimeParser.SC_C_O); }
+		public TerminalNode SC_C_O(int i) {
+			return getToken(SlimeParser.SC_C_O, i);
 		}
 		public PlusBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2395,7 +2396,7 @@ public class SlimeParser extends Parser {
 					plusBodyPart();
 					setState(241);
 					_la = _input.LA(1);
-					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_L_O) ) {
+					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_C_O) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -2434,7 +2435,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode PLOP_B_O() { return getToken(SlimeParser.PLOP_B_O, 0); }
 		public TerminalNode PLOP_O_O() { return getToken(SlimeParser.PLOP_O_O, 0); }
-		public TerminalNode PLOP_L_O() { return getToken(SlimeParser.PLOP_L_O, 0); }
+		public TerminalNode PLOP_C_O() { return getToken(SlimeParser.PLOP_C_O, 0); }
 		public List<PlusElementContext> plusElement() {
 			return getRuleContexts(PlusElementContext.class);
 		}
@@ -2443,7 +2444,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode CL_B_O() { return getToken(SlimeParser.CL_B_O, 0); }
 		public TerminalNode CL_O_O() { return getToken(SlimeParser.CL_O_O, 0); }
-		public TerminalNode CL_L_O() { return getToken(SlimeParser.CL_L_O, 0); }
+		public TerminalNode CL_C_O() { return getToken(SlimeParser.CL_C_O, 0); }
 		public List<TerminalNode> CO_B_O() { return getTokens(SlimeParser.CO_B_O); }
 		public TerminalNode CO_B_O(int i) {
 			return getToken(SlimeParser.CO_B_O, i);
@@ -2452,9 +2453,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode CO_O_O(int i) {
 			return getToken(SlimeParser.CO_O_O, i);
 		}
-		public List<TerminalNode> CO_L_O() { return getTokens(SlimeParser.CO_L_O); }
-		public TerminalNode CO_L_O(int i) {
-			return getToken(SlimeParser.CO_L_O, i);
+		public List<TerminalNode> CO_C_O() { return getTokens(SlimeParser.CO_C_O); }
+		public TerminalNode CO_C_O(int i) {
+			return getToken(SlimeParser.CO_C_O, i);
 		}
 		public PlusBodyPartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2487,7 +2488,7 @@ public class SlimeParser extends Parser {
 			vari();
 			setState(251);
 			_la = _input.LA(1);
-			if ( !(_la==PLOP_B_O || _la==PLOP_O_O || _la==PLOP_L_O) ) {
+			if ( !(_la==PLOP_B_O || _la==PLOP_O_O || _la==PLOP_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2500,11 +2501,11 @@ public class SlimeParser extends Parser {
 			setState(263);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) {
+			if (_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) {
 				{
 				setState(253);
 				_la = _input.LA(1);
-				if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) ) {
+				if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -2523,7 +2524,7 @@ public class SlimeParser extends Parser {
 						plusElement();
 						setState(255);
 						_la = _input.LA(1);
-						if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_L_O) ) {
+						if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_C_O) ) {
 						_errHandler.recoverInline(this);
 						}
 						else {
@@ -2565,7 +2566,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode PLOP_B_O() { return getToken(SlimeParser.PLOP_B_O, 0); }
 		public TerminalNode PLOP_O_O() { return getToken(SlimeParser.PLOP_O_O, 0); }
-		public TerminalNode PLOP_L_O() { return getToken(SlimeParser.PLOP_L_O, 0); }
+		public TerminalNode PLOP_C_O() { return getToken(SlimeParser.PLOP_C_O, 0); }
 		public PlusElementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2596,7 +2597,7 @@ public class SlimeParser extends Parser {
 			variPath();
 			setState(266);
 			_la = _input.LA(1);
-			if ( !(_la==PLOP_B_O || _la==PLOP_O_O || _la==PLOP_L_O) ) {
+			if ( !(_la==PLOP_B_O || _la==PLOP_O_O || _la==PLOP_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2620,7 +2621,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class PlusTailContext extends ParserRuleContext {
-		public TerminalNode CB_PLUS() { return getToken(SlimeParser.CB_PLUS, 0); }
+		public TerminalNode BCB_PLUS() { return getToken(SlimeParser.BCB_PLUS, 0); }
 		public TerminalNode NL_OPER() { return getToken(SlimeParser.NL_OPER, 0); }
 		public TerminalNode NW_OPER() { return getToken(SlimeParser.NW_OPER, 0); }
 		public PlusTailContext(ParserRuleContext parent, int invokingState) {
@@ -2651,7 +2652,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(269);
 			_la = _input.LA(1);
-			if ( !(_la==CB_PLUS || _la==NL_OPER || _la==NW_OPER) ) {
+			if ( !(_la==BCB_PLUS || _la==NL_OPER || _la==NW_OPER) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2727,18 +2728,18 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class DeleHeadContext extends ParserRuleContext {
-		public TerminalNode OB_DELE() { return getToken(SlimeParser.OB_DELE, 0); }
+		public TerminalNode BOB_DELE() { return getToken(SlimeParser.BOB_DELE, 0); }
 		public TerminalNode OLB_DELE() { return getToken(SlimeParser.OLB_DELE, 0); }
-		public TerminalNode LB_DELE() { return getToken(SlimeParser.LB_DELE, 0); }
-		public TerminalNode OB_DELE_B_O() { return getToken(SlimeParser.OB_DELE_B_O, 0); }
+		public TerminalNode COB_DELE() { return getToken(SlimeParser.COB_DELE, 0); }
+		public TerminalNode BOB_DELE_B_O() { return getToken(SlimeParser.BOB_DELE_B_O, 0); }
 		public TerminalNode OLB_DELE_B_O() { return getToken(SlimeParser.OLB_DELE_B_O, 0); }
-		public TerminalNode LB_DELE_B_O() { return getToken(SlimeParser.LB_DELE_B_O, 0); }
-		public TerminalNode OB_DELE_O_O() { return getToken(SlimeParser.OB_DELE_O_O, 0); }
+		public TerminalNode COB_DELE_B_O() { return getToken(SlimeParser.COB_DELE_B_O, 0); }
+		public TerminalNode BOB_DELE_O_O() { return getToken(SlimeParser.BOB_DELE_O_O, 0); }
 		public TerminalNode OLB_DELE_O_O() { return getToken(SlimeParser.OLB_DELE_O_O, 0); }
-		public TerminalNode LB_DELE_O_O() { return getToken(SlimeParser.LB_DELE_O_O, 0); }
-		public TerminalNode OB_DELE_L_O() { return getToken(SlimeParser.OB_DELE_L_O, 0); }
-		public TerminalNode OLB_DELE_L_O() { return getToken(SlimeParser.OLB_DELE_L_O, 0); }
-		public TerminalNode LB_DELE_L_O() { return getToken(SlimeParser.LB_DELE_L_O, 0); }
+		public TerminalNode COB_DELE_O_O() { return getToken(SlimeParser.COB_DELE_O_O, 0); }
+		public TerminalNode BOB_DELE_C_O() { return getToken(SlimeParser.BOB_DELE_C_O, 0); }
+		public TerminalNode OLB_DELE_C_O() { return getToken(SlimeParser.OLB_DELE_C_O, 0); }
+		public TerminalNode COB_DELE_C_O() { return getToken(SlimeParser.COB_DELE_C_O, 0); }
 		public DeleHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2767,7 +2768,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(275);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_DELE) | (1L << OLB_DELE) | (1L << LB_DELE))) != 0) || ((((_la - 76)) & ~0x3f) == 0 && ((1L << (_la - 76)) & ((1L << (OB_DELE_B_O - 76)) | (1L << (OLB_DELE_B_O - 76)) | (1L << (LB_DELE_B_O - 76)) | (1L << (OB_DELE_O_O - 76)) | (1L << (OLB_DELE_O_O - 76)) | (1L << (LB_DELE_O_O - 76)))) != 0) || ((((_la - 153)) & ~0x3f) == 0 && ((1L << (_la - 153)) & ((1L << (OB_DELE_L_O - 153)) | (1L << (OLB_DELE_L_O - 153)) | (1L << (LB_DELE_L_O - 153)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_DELE) | (1L << OLB_DELE) | (1L << COB_DELE))) != 0) || ((((_la - 76)) & ~0x3f) == 0 && ((1L << (_la - 76)) & ((1L << (BOB_DELE_B_O - 76)) | (1L << (OLB_DELE_B_O - 76)) | (1L << (COB_DELE_B_O - 76)) | (1L << (BOB_DELE_O_O - 76)) | (1L << (OLB_DELE_O_O - 76)) | (1L << (COB_DELE_O_O - 76)))) != 0) || ((((_la - 151)) & ~0x3f) == 0 && ((1L << (_la - 151)) & ((1L << (BOB_DELE_C_O - 151)) | (1L << (OLB_DELE_C_O - 151)) | (1L << (COB_DELE_C_O - 151)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -2809,9 +2810,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_O_O(int i) {
 			return getToken(SlimeParser.SC_O_O, i);
 		}
-		public List<TerminalNode> SC_L_O() { return getTokens(SlimeParser.SC_L_O); }
-		public TerminalNode SC_L_O(int i) {
-			return getToken(SlimeParser.SC_L_O, i);
+		public List<TerminalNode> SC_C_O() { return getTokens(SlimeParser.SC_C_O); }
+		public TerminalNode SC_C_O(int i) {
+			return getToken(SlimeParser.SC_C_O, i);
 		}
 		public DeleBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2854,25 +2855,25 @@ public class SlimeParser extends Parser {
 					case INTE_B_O:
 					case NAME_O_O:
 					case INTE_O_O:
-					case NAME_L_O:
-					case INTE_L_O:
+					case NAME_C_O:
+					case INTE_C_O:
 						{
 						setState(277);
 						variPath();
 						}
 						break;
-					case OB_REFE:
+					case BOB_REFE:
 					case OLB_REFE:
-					case LB_REFE:
-					case OB_REFE_B_O:
+					case COB_REFE:
+					case BOB_REFE_B_O:
 					case OLB_REFE_B_O:
-					case LB_REFE_B_O:
-					case OB_REFE_O_O:
+					case COB_REFE_B_O:
+					case BOB_REFE_O_O:
 					case OLB_REFE_O_O:
-					case LB_REFE_O_O:
-					case OB_REFE_L_O:
-					case OLB_REFE_L_O:
-					case LB_REFE_L_O:
+					case COB_REFE_O_O:
+					case BOB_REFE_C_O:
+					case OLB_REFE_C_O:
+					case COB_REFE_C_O:
 						{
 						setState(278);
 						refe();
@@ -2883,7 +2884,7 @@ public class SlimeParser extends Parser {
 					}
 					setState(281);
 					_la = _input.LA(1);
-					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_L_O) ) {
+					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_C_O) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -2905,25 +2906,25 @@ public class SlimeParser extends Parser {
 			case INTE_B_O:
 			case NAME_O_O:
 			case INTE_O_O:
-			case NAME_L_O:
-			case INTE_L_O:
+			case NAME_C_O:
+			case INTE_C_O:
 				{
 				setState(288);
 				variPath();
 				}
 				break;
-			case OB_REFE:
+			case BOB_REFE:
 			case OLB_REFE:
-			case LB_REFE:
-			case OB_REFE_B_O:
+			case COB_REFE:
+			case BOB_REFE_B_O:
 			case OLB_REFE_B_O:
-			case LB_REFE_B_O:
-			case OB_REFE_O_O:
+			case COB_REFE_B_O:
+			case BOB_REFE_O_O:
 			case OLB_REFE_O_O:
-			case LB_REFE_O_O:
-			case OB_REFE_L_O:
-			case OLB_REFE_L_O:
-			case LB_REFE_L_O:
+			case COB_REFE_O_O:
+			case BOB_REFE_C_O:
+			case OLB_REFE_C_O:
+			case COB_REFE_C_O:
 				{
 				setState(289);
 				refe();
@@ -2946,7 +2947,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class DeleTailContext extends ParserRuleContext {
-		public TerminalNode CB_DELE() { return getToken(SlimeParser.CB_DELE, 0); }
+		public TerminalNode BCB_DELE() { return getToken(SlimeParser.BCB_DELE, 0); }
 		public TerminalNode NL_OPER() { return getToken(SlimeParser.NL_OPER, 0); }
 		public TerminalNode NW_OPER() { return getToken(SlimeParser.NW_OPER, 0); }
 		public DeleTailContext(ParserRuleContext parent, int invokingState) {
@@ -2977,7 +2978,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(292);
 			_la = _input.LA(1);
-			if ( !(_la==CB_DELE || _la==NL_OPER || _la==NW_OPER) ) {
+			if ( !(_la==BCB_DELE || _la==NL_OPER || _la==NW_OPER) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3053,18 +3054,18 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class DeclHeadContext extends ParserRuleContext {
-		public TerminalNode OB_DECL() { return getToken(SlimeParser.OB_DECL, 0); }
+		public TerminalNode BOB_DECL() { return getToken(SlimeParser.BOB_DECL, 0); }
 		public TerminalNode OLB_DECL() { return getToken(SlimeParser.OLB_DECL, 0); }
-		public TerminalNode LB_DECL() { return getToken(SlimeParser.LB_DECL, 0); }
-		public TerminalNode OB_DECL_B_O() { return getToken(SlimeParser.OB_DECL_B_O, 0); }
+		public TerminalNode COB_DECL() { return getToken(SlimeParser.COB_DECL, 0); }
+		public TerminalNode BOB_DECL_B_O() { return getToken(SlimeParser.BOB_DECL_B_O, 0); }
 		public TerminalNode OLB_DECL_B_O() { return getToken(SlimeParser.OLB_DECL_B_O, 0); }
-		public TerminalNode LB_DECL_B_O() { return getToken(SlimeParser.LB_DECL_B_O, 0); }
-		public TerminalNode OB_DECL_O_O() { return getToken(SlimeParser.OB_DECL_O_O, 0); }
+		public TerminalNode COB_DECL_B_O() { return getToken(SlimeParser.COB_DECL_B_O, 0); }
+		public TerminalNode BOB_DECL_O_O() { return getToken(SlimeParser.BOB_DECL_O_O, 0); }
 		public TerminalNode OLB_DECL_O_O() { return getToken(SlimeParser.OLB_DECL_O_O, 0); }
-		public TerminalNode LB_DECL_O_O() { return getToken(SlimeParser.LB_DECL_O_O, 0); }
-		public TerminalNode OB_DECL_L_O() { return getToken(SlimeParser.OB_DECL_L_O, 0); }
-		public TerminalNode OLB_DECL_L_O() { return getToken(SlimeParser.OLB_DECL_L_O, 0); }
-		public TerminalNode LB_DECL_L_O() { return getToken(SlimeParser.LB_DECL_L_O, 0); }
+		public TerminalNode COB_DECL_O_O() { return getToken(SlimeParser.COB_DECL_O_O, 0); }
+		public TerminalNode BOB_DECL_C_O() { return getToken(SlimeParser.BOB_DECL_C_O, 0); }
+		public TerminalNode OLB_DECL_C_O() { return getToken(SlimeParser.OLB_DECL_C_O, 0); }
+		public TerminalNode COB_DECL_C_O() { return getToken(SlimeParser.COB_DECL_C_O, 0); }
 		public DeclHeadContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3093,7 +3094,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(298);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OB_DECL) | (1L << OLB_DECL) | (1L << LB_DECL))) != 0) || ((((_la - 75)) & ~0x3f) == 0 && ((1L << (_la - 75)) & ((1L << (OB_DECL_B_O - 75)) | (1L << (OLB_DECL_B_O - 75)) | (1L << (LB_DECL_B_O - 75)) | (1L << (OB_DECL_O_O - 75)) | (1L << (OLB_DECL_O_O - 75)) | (1L << (LB_DECL_O_O - 75)))) != 0) || ((((_la - 152)) & ~0x3f) == 0 && ((1L << (_la - 152)) & ((1L << (OB_DECL_L_O - 152)) | (1L << (OLB_DECL_L_O - 152)) | (1L << (LB_DECL_L_O - 152)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BOB_DECL) | (1L << OLB_DECL) | (1L << COB_DECL))) != 0) || ((((_la - 75)) & ~0x3f) == 0 && ((1L << (_la - 75)) & ((1L << (BOB_DECL_B_O - 75)) | (1L << (OLB_DECL_B_O - 75)) | (1L << (COB_DECL_B_O - 75)) | (1L << (BOB_DECL_O_O - 75)) | (1L << (OLB_DECL_O_O - 75)) | (1L << (COB_DECL_O_O - 75)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (BOB_DECL_C_O - 150)) | (1L << (OLB_DECL_C_O - 150)) | (1L << (COB_DECL_C_O - 150)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3120,10 +3121,10 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode CL_B_O() { return getToken(SlimeParser.CL_B_O, 0); }
 		public TerminalNode CL_O_O() { return getToken(SlimeParser.CL_O_O, 0); }
-		public TerminalNode CL_L_O() { return getToken(SlimeParser.CL_L_O, 0); }
+		public TerminalNode CL_C_O() { return getToken(SlimeParser.CL_C_O, 0); }
 		public TerminalNode EQOP_B_O() { return getToken(SlimeParser.EQOP_B_O, 0); }
 		public TerminalNode EQOP_O_O() { return getToken(SlimeParser.EQOP_O_O, 0); }
-		public TerminalNode EQOP_L_O() { return getToken(SlimeParser.EQOP_L_O, 0); }
+		public TerminalNode EQOP_C_O() { return getToken(SlimeParser.EQOP_C_O, 0); }
 		public ListNameContext listName() {
 			return getRuleContext(ListNameContext.class,0);
 		}
@@ -3156,7 +3157,7 @@ public class SlimeParser extends Parser {
 			setState(301);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==NAME_B_O || _la==NAME_O_O || _la==NAME_L_O) {
+			if (_la==NAME_B_O || _la==NAME_O_O || _la==NAME_C_O) {
 				{
 				setState(300);
 				listName();
@@ -3165,7 +3166,7 @@ public class SlimeParser extends Parser {
 
 			setState(303);
 			_la = _input.LA(1);
-			if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) ) {
+			if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3177,7 +3178,7 @@ public class SlimeParser extends Parser {
 			typeName();
 			setState(305);
 			_la = _input.LA(1);
-			if ( !(_la==EQOP_B_O || _la==EQOP_O_O || _la==EQOP_L_O) ) {
+			if ( !(_la==EQOP_B_O || _la==EQOP_O_O || _la==EQOP_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3213,9 +3214,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode SC_O_O(int i) {
 			return getToken(SlimeParser.SC_O_O, i);
 		}
-		public List<TerminalNode> SC_L_O() { return getTokens(SlimeParser.SC_L_O); }
-		public TerminalNode SC_L_O(int i) {
-			return getToken(SlimeParser.SC_L_O, i);
+		public List<TerminalNode> SC_C_O() { return getTokens(SlimeParser.SC_C_O); }
+		public TerminalNode SC_C_O(int i) {
+			return getToken(SlimeParser.SC_C_O, i);
 		}
 		public DeclBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3255,7 +3256,7 @@ public class SlimeParser extends Parser {
 					declBodyPart();
 					setState(308);
 					_la = _input.LA(1);
-					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_L_O) ) {
+					if ( !(_la==SC_B_O || _la==SC_O_O || _la==SC_C_O) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -3315,9 +3316,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode CO_O_O(int i) {
 			return getToken(SlimeParser.CO_O_O, i);
 		}
-		public List<TerminalNode> CO_L_O() { return getTokens(SlimeParser.CO_L_O); }
-		public TerminalNode CO_L_O(int i) {
-			return getToken(SlimeParser.CO_L_O, i);
+		public List<TerminalNode> CO_C_O() { return getTokens(SlimeParser.CO_C_O); }
+		public TerminalNode CO_C_O(int i) {
+			return getToken(SlimeParser.CO_C_O, i);
 		}
 		public VariContext vari() {
 			return getRuleContext(VariContext.class,0);
@@ -3383,7 +3384,7 @@ public class SlimeParser extends Parser {
 							nameType();
 							setState(321);
 							_la = _input.LA(1);
-							if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_L_O) ) {
+							if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_C_O) ) {
 							_errHandler.recoverInline(this);
 							}
 							else {
@@ -3415,7 +3416,7 @@ public class SlimeParser extends Parser {
 							nameValue();
 							setState(330);
 							_la = _input.LA(1);
-							if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_L_O) ) {
+							if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_C_O) ) {
 							_errHandler.recoverInline(this);
 							}
 							else {
@@ -3458,7 +3459,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static class DeclTailContext extends ParserRuleContext {
-		public TerminalNode CB_DECL() { return getToken(SlimeParser.CB_DECL, 0); }
+		public TerminalNode BCB_DECL() { return getToken(SlimeParser.BCB_DECL, 0); }
 		public TerminalNode NL_OPER() { return getToken(SlimeParser.NL_OPER, 0); }
 		public TerminalNode NW_OPER() { return getToken(SlimeParser.NW_OPER, 0); }
 		public DeclTailContext(ParserRuleContext parent, int invokingState) {
@@ -3489,7 +3490,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(343);
 			_la = _input.LA(1);
-			if ( !(_la==CB_DECL || _la==NL_OPER || _la==NW_OPER) ) {
+			if ( !(_la==BCB_DECL || _la==NL_OPER || _la==NW_OPER) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3519,7 +3520,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode EQOP_B_O() { return getToken(SlimeParser.EQOP_B_O, 0); }
 		public TerminalNode EQOP_O_O() { return getToken(SlimeParser.EQOP_O_O, 0); }
-		public TerminalNode EQOP_L_O() { return getToken(SlimeParser.EQOP_L_O, 0); }
+		public TerminalNode EQOP_C_O() { return getToken(SlimeParser.EQOP_C_O, 0); }
 		public NameValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3551,7 +3552,7 @@ public class SlimeParser extends Parser {
 			listName();
 			setState(346);
 			_la = _input.LA(1);
-			if ( !(_la==EQOP_B_O || _la==EQOP_O_O || _la==EQOP_L_O) ) {
+			if ( !(_la==EQOP_B_O || _la==EQOP_O_O || _la==EQOP_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3584,7 +3585,7 @@ public class SlimeParser extends Parser {
 		}
 		public TerminalNode CL_B_O() { return getToken(SlimeParser.CL_B_O, 0); }
 		public TerminalNode CL_O_O() { return getToken(SlimeParser.CL_O_O, 0); }
-		public TerminalNode CL_L_O() { return getToken(SlimeParser.CL_L_O, 0); }
+		public TerminalNode CL_C_O() { return getToken(SlimeParser.CL_C_O, 0); }
 		public NameTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3616,7 +3617,7 @@ public class SlimeParser extends Parser {
 			listName();
 			setState(350);
 			_la = _input.LA(1);
-			if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_L_O) ) {
+			if ( !(_la==CL_B_O || _la==CL_O_O || _la==CL_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3655,9 +3656,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode CO_O_O(int i) {
 			return getToken(SlimeParser.CO_O_O, i);
 		}
-		public List<TerminalNode> CO_L_O() { return getTokens(SlimeParser.CO_L_O); }
-		public TerminalNode CO_L_O(int i) {
-			return getToken(SlimeParser.CO_L_O, i);
+		public List<TerminalNode> CO_C_O() { return getTokens(SlimeParser.CO_C_O); }
+		public TerminalNode CO_C_O(int i) {
+			return getToken(SlimeParser.CO_C_O, i);
 		}
 		public ListVariContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3697,7 +3698,7 @@ public class SlimeParser extends Parser {
 					vari();
 					setState(354);
 					_la = _input.LA(1);
-					if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_L_O) ) {
+					if ( !(_la==CO_B_O || _la==CO_O_O || _la==CO_C_O) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -3782,161 +3783,161 @@ public class SlimeParser extends Parser {
 			case INTE_B_O:
 			case NAME_O_O:
 			case INTE_O_O:
-			case NAME_L_O:
-			case INTE_L_O:
+			case NAME_C_O:
+			case INTE_C_O:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(363);
 				variPath();
 				}
 				break;
-			case OB_DECL:
+			case BOB_DECL:
 			case OLB_DECL:
-			case LB_DECL:
-			case OB_DECL_B_O:
+			case COB_DECL:
+			case BOB_DECL_B_O:
 			case OLB_DECL_B_O:
-			case LB_DECL_B_O:
-			case OB_DECL_O_O:
+			case COB_DECL_B_O:
+			case BOB_DECL_O_O:
 			case OLB_DECL_O_O:
-			case LB_DECL_O_O:
-			case OB_DECL_L_O:
-			case OLB_DECL_L_O:
-			case LB_DECL_L_O:
+			case COB_DECL_O_O:
+			case BOB_DECL_C_O:
+			case OLB_DECL_C_O:
+			case COB_DECL_C_O:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(364);
 				decl();
 				}
 				break;
-			case OB_TEMP:
+			case BOB_TEMP:
 			case OLB_TEMP:
-			case LB_TEMP:
-			case OB_TEMP_B_O:
+			case COB_TEMP:
+			case BOB_TEMP_B_O:
 			case OLB_TEMP_B_O:
-			case LB_TEMP_B_O:
-			case OB_TEMP_O_O:
+			case COB_TEMP_B_O:
+			case BOB_TEMP_O_O:
 			case OLB_TEMP_O_O:
-			case LB_TEMP_O_O:
-			case OB_TEMP_L_O:
-			case OLB_TEMP_L_O:
-			case LB_TEMP_L_O:
+			case COB_TEMP_O_O:
+			case BOB_TEMP_C_O:
+			case OLB_TEMP_C_O:
+			case COB_TEMP_C_O:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(365);
 				temp();
 				}
 				break;
-			case OB_SPEC:
+			case BOB_SPEC:
 			case OLB_SPEC:
-			case LB_SPEC:
-			case OB_SPEC_B_O:
+			case COB_SPEC:
+			case BOB_SPEC_B_O:
 			case OLB_SPEC_B_O:
-			case LB_SPEC_B_O:
-			case OB_SPEC_O_O:
+			case COB_SPEC_B_O:
+			case BOB_SPEC_O_O:
 			case OLB_SPEC_O_O:
-			case LB_SPEC_O_O:
-			case OB_SPEC_L_O:
-			case OLB_SPEC_L_O:
-			case LB_SPEC_L_O:
-			case OB_SPEC_B_T:
+			case COB_SPEC_O_O:
+			case BOB_SPEC_C_O:
+			case OLB_SPEC_C_O:
+			case COB_SPEC_C_O:
+			case BOB_SPEC_B_T:
 			case OLB_SPEC_B_T:
-			case LB_SPEC_B_T:
-			case OB_SPEC_O_T:
+			case COB_SPEC_B_T:
+			case BOB_SPEC_O_T:
 			case OLB_SPEC_O_T:
-			case LB_SPEC_O_T:
-			case OB_SPEC_L_T:
-			case OLB_SPEC_L_T:
-			case LB_SPEC_L_T:
+			case COB_SPEC_O_T:
+			case BOB_SPEC_C_T:
+			case OLB_SPEC_C_T:
+			case COB_SPEC_C_T:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(366);
 				spec();
 				}
 				break;
-			case OB_SLOT:
+			case BOB_SLOT:
 			case OLB_SLOT:
-			case LB_SLOT:
-			case OB_SLOT_B_O:
+			case COB_SLOT:
+			case BOB_SLOT_B_O:
 			case OLB_SLOT_B_O:
-			case LB_SLOT_B_O:
-			case OB_SLOT_O_O:
+			case COB_SLOT_B_O:
+			case BOB_SLOT_O_O:
 			case OLB_SLOT_O_O:
-			case LB_SLOT_O_O:
-			case OB_SLOT_L_O:
-			case OLB_SLOT_L_O:
-			case LB_SLOT_L_O:
-			case OB_SLOT_B_T:
+			case COB_SLOT_O_O:
+			case BOB_SLOT_C_O:
+			case OLB_SLOT_C_O:
+			case COB_SLOT_C_O:
+			case BOB_SLOT_B_T:
 			case OLB_SLOT_B_T:
-			case LB_SLOT_B_T:
-			case OB_SLOT_O_T:
+			case COB_SLOT_B_T:
+			case BOB_SLOT_O_T:
 			case OLB_SLOT_O_T:
-			case LB_SLOT_O_T:
-			case OB_SLOT_L_T:
-			case OLB_SLOT_L_T:
-			case LB_SLOT_L_T:
+			case COB_SLOT_O_T:
+			case BOB_SLOT_C_T:
+			case OLB_SLOT_C_T:
+			case COB_SLOT_C_T:
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(367);
 				slot();
 				}
 				break;
-			case OB_REFE:
+			case BOB_REFE:
 			case OLB_REFE:
-			case LB_REFE:
-			case OB_REFE_B_O:
+			case COB_REFE:
+			case BOB_REFE_B_O:
 			case OLB_REFE_B_O:
-			case LB_REFE_B_O:
-			case OB_REFE_O_O:
+			case COB_REFE_B_O:
+			case BOB_REFE_O_O:
 			case OLB_REFE_O_O:
-			case LB_REFE_O_O:
-			case OB_REFE_L_O:
-			case OLB_REFE_L_O:
-			case LB_REFE_L_O:
+			case COB_REFE_O_O:
+			case BOB_REFE_C_O:
+			case OLB_REFE_C_O:
+			case COB_REFE_C_O:
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(368);
 				refe();
 				}
 				break;
-			case OB_PLUS:
+			case BOB_PLUS:
 			case OLB_PLUS:
-			case LB_PLUS:
-			case OB_PLUS_B_O:
+			case COB_PLUS:
+			case BOB_PLUS_B_O:
 			case OLB_PLUS_B_O:
-			case LB_PLUS_B_O:
-			case OB_PLUS_O_O:
+			case COB_PLUS_B_O:
+			case BOB_PLUS_O_O:
 			case OLB_PLUS_O_O:
-			case LB_PLUS_O_O:
-			case OB_PLUS_L_O:
-			case OLB_PLUS_L_O:
-			case LB_PLUS_L_O:
+			case COB_PLUS_O_O:
+			case BOB_PLUS_C_O:
+			case OLB_PLUS_C_O:
+			case COB_PLUS_C_O:
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(369);
 				plus();
 				}
 				break;
-			case OB_TEXT:
+			case BOB_TEXT:
 			case OLB_TEXT:
-			case LB_TEXT:
-			case OB_TEXT_B_O:
+			case COB_TEXT:
+			case BOB_TEXT_B_O:
 			case OLB_TEXT_B_O:
-			case LB_TEXT_B_O:
-			case OB_TEXT_O_O:
+			case COB_TEXT_B_O:
+			case BOB_TEXT_O_O:
 			case OLB_TEXT_O_O:
-			case LB_TEXT_O_O:
-			case OB_TEXT_L_O:
-			case OLB_TEXT_L_O:
-			case LB_TEXT_L_O:
-			case OB_TEXT_B_T:
+			case COB_TEXT_O_O:
+			case BOB_TEXT_C_O:
+			case OLB_TEXT_C_O:
+			case COB_TEXT_C_O:
+			case BOB_TEXT_B_T:
 			case OLB_TEXT_B_T:
-			case LB_TEXT_B_T:
-			case OB_TEXT_O_T:
+			case COB_TEXT_B_T:
+			case BOB_TEXT_O_T:
 			case OLB_TEXT_O_T:
-			case LB_TEXT_O_T:
-			case OB_TEXT_L_T:
-			case OLB_TEXT_L_T:
-			case LB_TEXT_L_T:
+			case COB_TEXT_O_T:
+			case BOB_TEXT_C_T:
+			case OLB_TEXT_C_T:
+			case COB_TEXT_C_T:
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(370);
@@ -3967,9 +3968,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME_O_O(int i) {
 			return getToken(SlimeParser.NAME_O_O, i);
 		}
-		public List<TerminalNode> NAME_L_O() { return getTokens(SlimeParser.NAME_L_O); }
-		public TerminalNode NAME_L_O(int i) {
-			return getToken(SlimeParser.NAME_L_O, i);
+		public List<TerminalNode> NAME_C_O() { return getTokens(SlimeParser.NAME_C_O); }
+		public TerminalNode NAME_C_O(int i) {
+			return getToken(SlimeParser.NAME_C_O, i);
 		}
 		public List<TerminalNode> CO_B_O() { return getTokens(SlimeParser.CO_B_O); }
 		public TerminalNode CO_B_O(int i) {
@@ -3979,9 +3980,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode CO_O_O(int i) {
 			return getToken(SlimeParser.CO_O_O, i);
 		}
-		public List<TerminalNode> CO_L_O() { return getTokens(SlimeParser.CO_L_O); }
-		public TerminalNode CO_L_O(int i) {
-			return getToken(SlimeParser.CO_L_O, i);
+		public List<TerminalNode> CO_C_O() { return getTokens(SlimeParser.CO_C_O); }
+		public TerminalNode CO_C_O(int i) {
+			return getToken(SlimeParser.CO_C_O, i);
 		}
 		public ListNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4035,12 +4036,12 @@ public class SlimeParser extends Parser {
 						match(CO_O_O);
 						}
 						break;
-					case NAME_L_O:
+					case NAME_C_O:
 						{
 						setState(377);
-						match(NAME_L_O);
+						match(NAME_C_O);
 						setState(378);
-						match(CO_L_O);
+						match(CO_C_O);
 						}
 						break;
 					default:
@@ -4054,7 +4055,7 @@ public class SlimeParser extends Parser {
 			}
 			setState(384);
 			_la = _input.LA(1);
-			if ( !(_la==NAME_B_O || _la==NAME_O_O || _la==NAME_L_O) ) {
+			if ( !(_la==NAME_B_O || _la==NAME_O_O || _la==NAME_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4084,9 +4085,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME_O_O(int i) {
 			return getToken(SlimeParser.NAME_O_O, i);
 		}
-		public List<TerminalNode> NAME_L_O() { return getTokens(SlimeParser.NAME_L_O); }
-		public TerminalNode NAME_L_O(int i) {
-			return getToken(SlimeParser.NAME_L_O, i);
+		public List<TerminalNode> NAME_C_O() { return getTokens(SlimeParser.NAME_C_O); }
+		public TerminalNode NAME_C_O(int i) {
+			return getToken(SlimeParser.NAME_C_O, i);
 		}
 		public List<TerminalNode> INTE_B_O() { return getTokens(SlimeParser.INTE_B_O); }
 		public TerminalNode INTE_B_O(int i) {
@@ -4096,9 +4097,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode INTE_O_O(int i) {
 			return getToken(SlimeParser.INTE_O_O, i);
 		}
-		public List<TerminalNode> INTE_L_O() { return getTokens(SlimeParser.INTE_L_O); }
-		public TerminalNode INTE_L_O(int i) {
-			return getToken(SlimeParser.INTE_L_O, i);
+		public List<TerminalNode> INTE_C_O() { return getTokens(SlimeParser.INTE_C_O); }
+		public TerminalNode INTE_C_O(int i) {
+			return getToken(SlimeParser.INTE_C_O, i);
 		}
 		public List<TerminalNode> PE_B_O() { return getTokens(SlimeParser.PE_B_O); }
 		public TerminalNode PE_B_O(int i) {
@@ -4108,9 +4109,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode PE_O_O(int i) {
 			return getToken(SlimeParser.PE_O_O, i);
 		}
-		public List<TerminalNode> PE_L_O() { return getTokens(SlimeParser.PE_L_O); }
-		public TerminalNode PE_L_O(int i) {
-			return getToken(SlimeParser.PE_L_O, i);
+		public List<TerminalNode> PE_C_O() { return getTokens(SlimeParser.PE_C_O); }
+		public TerminalNode PE_C_O(int i) {
+			return getToken(SlimeParser.PE_C_O, i);
 		}
 		public VariPathContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4164,12 +4165,12 @@ public class SlimeParser extends Parser {
 						match(PE_O_O);
 						}
 						break;
-					case NAME_L_O:
+					case NAME_C_O:
 						{
 						setState(390);
-						match(NAME_L_O);
+						match(NAME_C_O);
 						setState(391);
-						match(PE_L_O);
+						match(PE_C_O);
 						}
 						break;
 					case INTE_B_O:
@@ -4188,12 +4189,12 @@ public class SlimeParser extends Parser {
 						match(PE_O_O);
 						}
 						break;
-					case INTE_L_O:
+					case INTE_C_O:
 						{
 						setState(396);
-						match(INTE_L_O);
+						match(INTE_C_O);
 						setState(397);
-						match(PE_L_O);
+						match(PE_C_O);
 						}
 						break;
 					default:
@@ -4207,7 +4208,7 @@ public class SlimeParser extends Parser {
 			}
 			setState(403);
 			_la = _input.LA(1);
-			if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (NAME_B_O - 104)) | (1L << (INTE_B_O - 104)) | (1L << (NAME_O_O - 104)) | (1L << (INTE_O_O - 104)))) != 0) || _la==NAME_L_O || _la==INTE_L_O) ) {
+			if ( !(((((_la - 103)) & ~0x3f) == 0 && ((1L << (_la - 103)) & ((1L << (NAME_B_O - 103)) | (1L << (INTE_B_O - 103)) | (1L << (NAME_O_O - 103)) | (1L << (INTE_O_O - 103)))) != 0) || _la==NAME_C_O || _la==INTE_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4237,9 +4238,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME_O_O(int i) {
 			return getToken(SlimeParser.NAME_O_O, i);
 		}
-		public List<TerminalNode> NAME_L_O() { return getTokens(SlimeParser.NAME_L_O); }
-		public TerminalNode NAME_L_O(int i) {
-			return getToken(SlimeParser.NAME_L_O, i);
+		public List<TerminalNode> NAME_C_O() { return getTokens(SlimeParser.NAME_C_O); }
+		public TerminalNode NAME_C_O(int i) {
+			return getToken(SlimeParser.NAME_C_O, i);
 		}
 		public List<TerminalNode> NAME_B_R() { return getTokens(SlimeParser.NAME_B_R); }
 		public TerminalNode NAME_B_R(int i) {
@@ -4249,9 +4250,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME_O_R(int i) {
 			return getToken(SlimeParser.NAME_O_R, i);
 		}
-		public List<TerminalNode> NAME_L_R() { return getTokens(SlimeParser.NAME_L_R); }
-		public TerminalNode NAME_L_R(int i) {
-			return getToken(SlimeParser.NAME_L_R, i);
+		public List<TerminalNode> NAME_C_R() { return getTokens(SlimeParser.NAME_C_R); }
+		public TerminalNode NAME_C_R(int i) {
+			return getToken(SlimeParser.NAME_C_R, i);
 		}
 		public List<TerminalNode> CL_B_O() { return getTokens(SlimeParser.CL_B_O); }
 		public TerminalNode CL_B_O(int i) {
@@ -4261,13 +4262,13 @@ public class SlimeParser extends Parser {
 		public TerminalNode CL_O_O(int i) {
 			return getToken(SlimeParser.CL_O_O, i);
 		}
-		public List<TerminalNode> CL_L_O() { return getTokens(SlimeParser.CL_L_O); }
-		public TerminalNode CL_L_O(int i) {
-			return getToken(SlimeParser.CL_L_O, i);
+		public List<TerminalNode> CL_C_O() { return getTokens(SlimeParser.CL_C_O); }
+		public TerminalNode CL_C_O(int i) {
+			return getToken(SlimeParser.CL_C_O, i);
 		}
-		public List<TerminalNode> CL_L_R() { return getTokens(SlimeParser.CL_L_R); }
-		public TerminalNode CL_L_R(int i) {
-			return getToken(SlimeParser.CL_L_R, i);
+		public List<TerminalNode> CL_C_R() { return getTokens(SlimeParser.CL_C_R); }
+		public TerminalNode CL_C_R(int i) {
+			return getToken(SlimeParser.CL_C_R, i);
 		}
 		public List<TerminalNode> CL_O_R() { return getTokens(SlimeParser.CL_O_R); }
 		public TerminalNode CL_O_R(int i) {
@@ -4329,20 +4330,20 @@ public class SlimeParser extends Parser {
 						match(CL_O_O);
 						}
 						break;
-					case NAME_L_O:
+					case NAME_C_O:
 						{
 						setState(409);
-						match(NAME_L_O);
+						match(NAME_C_O);
 						setState(410);
-						match(CL_L_O);
+						match(CL_C_O);
 						}
 						break;
-					case NAME_L_R:
+					case NAME_C_R:
 						{
 						setState(411);
-						match(NAME_L_R);
+						match(NAME_C_R);
 						setState(412);
-						match(CL_L_R);
+						match(CL_C_R);
 						}
 						break;
 					case NAME_O_R:
@@ -4372,7 +4373,7 @@ public class SlimeParser extends Parser {
 			}
 			setState(422);
 			_la = _input.LA(1);
-			if ( !(((((_la - 50)) & ~0x3f) == 0 && ((1L << (_la - 50)) & ((1L << (NAME_B_R - 50)) | (1L << (NAME_O_R - 50)) | (1L << (NAME_L_R - 50)) | (1L << (NAME_B_O - 50)))) != 0) || _la==NAME_O_O || _la==NAME_L_O) ) {
+			if ( !(((((_la - 50)) & ~0x3f) == 0 && ((1L << (_la - 50)) & ((1L << (NAME_B_R - 50)) | (1L << (NAME_O_R - 50)) | (1L << (NAME_C_R - 50)) | (1L << (NAME_B_O - 50)))) != 0) || _la==NAME_O_O || _la==NAME_C_O) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -4436,7 +4437,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\u00e3\u01ad\4\2\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\u00e0\u01ad\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -4468,35 +4469,35 @@ public class SlimeParser extends Parser {
 		"\63\3\63\3\63\3\63\3\63\3\63\7\63\u01a4\n\63\f\63\16\63\u01a7\13\63\3"+
 		"\63\3\63\3\64\3\64\3\64\2\2\65\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36"+
 		" \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdf\2 \27\2\f\f\25\25\36\36"+
-		"OOXXaavv\177\177\u0088\u0088\u009c\u009c\u00a5\u00a5\u00ae\u00ae\u00c4"+
-		"\u00c4\u00c7\u00c7\u00ca\u00ca\u00d0\u00d0\u00d3\u00d3\u00d6\u00d6\u00dc"+
-		"\u00dc\u00df\u00df\u00e2\u00e2\5\2\u00ba\u00ba\u00bc\u00bc\u00be\u00be"+
-		"\5\2\u00b9\u00b9\u00bb\u00bb\u00bd\u00bd\16\2\7\7\20\20\31\31JJSS\\\\"+
-		"qqzz\u0083\u0083\u0097\u0097\u00a0\u00a0\u00a9\u00a9\5\2\65\65;;AA\5\2"+
-		"\62\6288>>\27\2\5\5\16\16\27\27HHQQZZooxx\u0081\u0081\u0095\u0095\u009e"+
-		"\u009e\u00a7\u00a7\u00c2\u00c2\u00c5\u00c5\u00c8\u00c8\u00ce\u00ce\u00d1"+
-		"\u00d1\u00d4\u00d4\u00da\u00da\u00dd\u00dd\u00e0\u00e0\5\2##))--\27\2"+
-		"\6\6\17\17\30\30IIRR[[ppyy\u0082\u0082\u0096\u0096\u009f\u009f\u00a8\u00a8"+
-		"\u00c3\u00c3\u00c6\u00c6\u00c9\u00c9\u00cf\u00cf\u00d2\u00d2\u00d5\u00d5"+
-		"\u00db\u00db\u00de\u00de\u00e1\u00e1\5\2$$))--\5\2%%**..\16\2\r\r\26\26"+
-		"\37\37PPYYbbww\u0080\u0080\u0089\u0089\u009d\u009d\u00a6\u00a6\u00af\u00af"+
-		"\5\2\u00cb\u00cb\u00d7\u00d7\u00e3\u00e3\5\2\u00bf\u00bf\u00cc\u00cc\u00d8"+
-		"\u00d8\16\2\b\b\21\21\32\32KKTT]]rr{{\u0084\u0084\u0098\u0098\u00a1\u00a1"+
-		"\u00aa\u00aa\5\2ii\u0090\u0090\u00b6\u00b6\5\2gg\u008e\u008e\u00b4\u00b4"+
-		"\5\2DDnn\u0094\u0094\16\2\t\t\22\22\33\33LLUU^^ss||\u0085\u0085\u0099"+
-		"\u0099\u00a2\u00a2\u00ab\u00ab\5\2ee\u008c\u008c\u00b2\u00b2\5\2hh\u008f"+
-		"\u008f\u00b5\u00b5\5\2EEnn\u0094\u0094\16\2\13\13\24\24\35\35NNWW``uu"+
-		"~~\u0087\u0087\u009b\u009b\u00a4\u00a4\u00ad\u00ad\5\2GGnn\u0094\u0094"+
-		"\16\2\n\n\23\23\34\34MMVV__tt}}\u0086\u0086\u009a\u009a\u00a3\u00a3\u00ac"+
-		"\u00ac\5\2dd\u008b\u008b\u00b1\u00b1\5\2FFnn\u0094\u0094\5\2jj\u0091\u0091"+
-		"\u00b7\u00b7\5\2jk\u0091\u0092\u00b7\u00b8\b\2\64\64::@@jj\u0091\u0091"+
-		"\u00b7\u00b7\2\u01b9\2v\3\2\2\2\4y\3\2\2\2\6}\3\2\2\2\b\177\3\2\2\2\n"+
-		"\u0081\3\2\2\2\f\u0083\3\2\2\2\16\u0087\3\2\2\2\20\u0089\3\2\2\2\22\u008c"+
-		"\3\2\2\2\24\u008e\3\2\2\2\26\u0092\3\2\2\2\30\u0094\3\2\2\2\32\u0096\3"+
-		"\2\2\2\34\u009a\3\2\2\2\36\u009c\3\2\2\2 \u00a6\3\2\2\2\"\u00ab\3\2\2"+
-		"\2$\u00af\3\2\2\2&\u00b6\3\2\2\2(\u00c0\3\2\2\2*\u00c4\3\2\2\2,\u00d0"+
-		"\3\2\2\2.\u00d2\3\2\2\2\60\u00d6\3\2\2\2\62\u00dd\3\2\2\2\64\u00e2\3\2"+
-		"\2\2\66\u00ea\3\2\2\28\u00ec\3\2\2\2:\u00f0\3\2\2\2<\u00f7\3\2\2\2>\u00fc"+
+		"OOXXaauu~~\u0087\u0087\u009a\u009a\u00a3\u00a3\u00ac\u00ac\u00c1\u00c1"+
+		"\u00c4\u00c4\u00c7\u00c7\u00cd\u00cd\u00d0\u00d0\u00d3\u00d3\u00d9\u00d9"+
+		"\u00dc\u00dc\u00df\u00df\5\2\u00b7\u00b7\u00b9\u00b9\u00bb\u00bb\5\2\u00b6"+
+		"\u00b6\u00b8\u00b8\u00ba\u00ba\16\2\7\7\20\20\31\31JJSS\\\\ppyy\u0082"+
+		"\u0082\u0095\u0095\u009e\u009e\u00a7\u00a7\5\2\65\65;;AA\5\2\62\6288>"+
+		">\27\2\5\5\16\16\27\27HHQQZZnnww\u0080\u0080\u0093\u0093\u009c\u009c\u00a5"+
+		"\u00a5\u00bf\u00bf\u00c2\u00c2\u00c5\u00c5\u00cb\u00cb\u00ce\u00ce\u00d1"+
+		"\u00d1\u00d7\u00d7\u00da\u00da\u00dd\u00dd\5\2##))--\27\2\6\6\17\17\30"+
+		"\30IIRR[[ooxx\u0081\u0081\u0094\u0094\u009d\u009d\u00a6\u00a6\u00c0\u00c0"+
+		"\u00c3\u00c3\u00c6\u00c6\u00cc\u00cc\u00cf\u00cf\u00d2\u00d2\u00d8\u00d8"+
+		"\u00db\u00db\u00de\u00de\5\2$$))--\5\2%%**..\16\2\r\r\26\26\37\37PPYY"+
+		"bbvv\177\177\u0088\u0088\u009b\u009b\u00a4\u00a4\u00ad\u00ad\5\2\u00c8"+
+		"\u00c8\u00d4\u00d4\u00e0\u00e0\5\2\u00bc\u00bc\u00c9\u00c9\u00d5\u00d5"+
+		"\16\2\b\b\21\21\32\32KKTT]]qqzz\u0083\u0083\u0096\u0096\u009f\u009f\u00a8"+
+		"\u00a8\5\2hh\u008e\u008e\u00b3\u00b3\5\2gg\u008d\u008d\u00b2\u00b2\5\2"+
+		"DDmm\u0092\u0092\16\2\t\t\22\22\33\33LLUU^^rr{{\u0084\u0084\u0097\u0097"+
+		"\u00a0\u00a0\u00a9\u00a9\5\2dd\u008a\u008a\u00af\u00af\5\2ff\u008c\u008c"+
+		"\u00b1\u00b1\5\2EEmm\u0092\u0092\16\2\13\13\24\24\35\35NNWW``tt}}\u0086"+
+		"\u0086\u0099\u0099\u00a2\u00a2\u00ab\u00ab\5\2GGmm\u0092\u0092\16\2\n"+
+		"\n\23\23\34\34MMVV__ss||\u0085\u0085\u0098\u0098\u00a1\u00a1\u00aa\u00aa"+
+		"\5\2cc\u0089\u0089\u00ae\u00ae\5\2FFmm\u0092\u0092\5\2ii\u008f\u008f\u00b4"+
+		"\u00b4\5\2ij\u008f\u0090\u00b4\u00b5\b\2\64\64::@@ii\u008f\u008f\u00b4"+
+		"\u00b4\2\u01b9\2v\3\2\2\2\4y\3\2\2\2\6}\3\2\2\2\b\177\3\2\2\2\n\u0081"+
+		"\3\2\2\2\f\u0083\3\2\2\2\16\u0087\3\2\2\2\20\u0089\3\2\2\2\22\u008c\3"+
+		"\2\2\2\24\u008e\3\2\2\2\26\u0092\3\2\2\2\30\u0094\3\2\2\2\32\u0096\3\2"+
+		"\2\2\34\u009a\3\2\2\2\36\u009c\3\2\2\2 \u00a6\3\2\2\2\"\u00ab\3\2\2\2"+
+		"$\u00af\3\2\2\2&\u00b6\3\2\2\2(\u00c0\3\2\2\2*\u00c4\3\2\2\2,\u00d0\3"+
+		"\2\2\2.\u00d2\3\2\2\2\60\u00d6\3\2\2\2\62\u00dd\3\2\2\2\64\u00e2\3\2\2"+
+		"\2\66\u00ea\3\2\2\28\u00ec\3\2\2\2:\u00f0\3\2\2\2<\u00f7\3\2\2\2>\u00fc"+
 		"\3\2\2\2@\u010b\3\2\2\2B\u010f\3\2\2\2D\u0111\3\2\2\2F\u0115\3\2\2\2H"+
 		"\u011f\3\2\2\2J\u0126\3\2\2\2L\u0128\3\2\2\2N\u012c\3\2\2\2P\u012f\3\2"+
 		"\2\2R\u013a\3\2\2\2T\u0157\3\2\2\2V\u0159\3\2\2\2X\u015b\3\2\2\2Z\u015f"+
@@ -4525,13 +4526,13 @@ public class SlimeParser extends Parser {
 		"\3\2\2\2\u00b6\u00b4\3\2\2\2\u00b6\u00b7\3\2\2\2\u00b7\u00b9\3\2\2\2\u00b8"+
 		"\u00b6\3\2\2\2\u00b9\u00ba\5(\25\2\u00ba\'\3\2\2\2\u00bb\u00c1\5\4\3\2"+
 		"\u00bc\u00c1\5\24\13\2\u00bd\u00c1\5\32\16\2\u00be\u00c1\5,\27\2\u00bf"+
-		"\u00c1\7\u00c1\2\2\u00c0\u00bb\3\2\2\2\u00c0\u00bc\3\2\2\2\u00c0\u00bd"+
+		"\u00c1\7\u00be\2\2\u00c0\u00bb\3\2\2\2\u00c0\u00bc\3\2\2\2\u00c0\u00bd"+
 		"\3\2\2\2\u00c0\u00be\3\2\2\2\u00c0\u00bf\3\2\2\2\u00c1\u00c2\3\2\2\2\u00c2"+
 		"\u00c0\3\2\2\2\u00c2\u00c3\3\2\2\2\u00c3)\3\2\2\2\u00c4\u00c5\t\17\2\2"+
-		"\u00c5+\3\2\2\2\u00c6\u00c7\7\u00c0\2\2\u00c7\u00c9\7\u00c1\2\2\u00c8"+
+		"\u00c5+\3\2\2\2\u00c6\u00c7\7\u00bd\2\2\u00c7\u00c9\7\u00be\2\2\u00c8"+
 		"\u00c6\3\2\2\2\u00c9\u00cc\3\2\2\2\u00ca\u00c8\3\2\2\2\u00ca\u00cb\3\2"+
-		"\2\2\u00cb\u00cd\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cd\u00d1\7\u00c0\2\2\u00ce"+
-		"\u00d1\7\u00cd\2\2\u00cf\u00d1\7\u00d9\2\2\u00d0\u00ca\3\2\2\2\u00d0\u00ce"+
+		"\2\2\u00cb\u00cd\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cd\u00d1\7\u00bd\2\2\u00ce"+
+		"\u00d1\7\u00ca\2\2\u00cf\u00d1\7\u00d6\2\2\u00d0\u00ca\3\2\2\2\u00d0\u00ce"+
 		"\3\2\2\2\u00d0\u00cf\3\2\2\2\u00d1-\3\2\2\2\u00d2\u00d3\5\60\31\2\u00d3"+
 		"\u00d4\5\62\32\2\u00d4\u00d5\5\66\34\2\u00d5/\3\2\2\2\u00d6\u00d7\t\20"+
 		"\2\2\u00d7\61\3\2\2\2\u00d8\u00d9\5\64\33\2\u00d9\u00da\t\21\2\2\u00da"+
@@ -4585,20 +4586,20 @@ public class SlimeParser extends Parser {
 		"\u0176\58\35\2\u0174\u0176\5\4\3\2\u0175\u016d\3\2\2\2\u0175\u016e\3\2"+
 		"\2\2\u0175\u016f\3\2\2\2\u0175\u0170\3\2\2\2\u0175\u0171\3\2\2\2\u0175"+
 		"\u0172\3\2\2\2\u0175\u0173\3\2\2\2\u0175\u0174\3\2\2\2\u0176_\3\2\2\2"+
-		"\u0177\u0178\7j\2\2\u0178\u017e\7h\2\2\u0179\u017a\7\u0091\2\2\u017a\u017e"+
-		"\7\u008f\2\2\u017b\u017c\7\u00b7\2\2\u017c\u017e\7\u00b5\2\2\u017d\u0177"+
+		"\u0177\u0178\7i\2\2\u0178\u017e\7f\2\2\u0179\u017a\7\u008f\2\2\u017a\u017e"+
+		"\7\u008c\2\2\u017b\u017c\7\u00b4\2\2\u017c\u017e\7\u00b1\2\2\u017d\u0177"+
 		"\3\2\2\2\u017d\u0179\3\2\2\2\u017d\u017b\3\2\2\2\u017e\u0181\3\2\2\2\u017f"+
 		"\u017d\3\2\2\2\u017f\u0180\3\2\2\2\u0180\u0182\3\2\2\2\u0181\u017f\3\2"+
-		"\2\2\u0182\u0183\t\35\2\2\u0183a\3\2\2\2\u0184\u0185\7j\2\2\u0185\u0191"+
-		"\7f\2\2\u0186\u0187\7\u0091\2\2\u0187\u0191\7\u008d\2\2\u0188\u0189\7"+
-		"\u00b7\2\2\u0189\u0191\7\u00b3\2\2\u018a\u018b\7k\2\2\u018b\u0191\7f\2"+
-		"\2\u018c\u018d\7\u0092\2\2\u018d\u0191\7\u008d\2\2\u018e\u018f\7\u00b8"+
-		"\2\2\u018f\u0191\7\u00b3\2\2\u0190\u0184\3\2\2\2\u0190\u0186\3\2\2\2\u0190"+
+		"\2\2\u0182\u0183\t\35\2\2\u0183a\3\2\2\2\u0184\u0185\7i\2\2\u0185\u0191"+
+		"\7e\2\2\u0186\u0187\7\u008f\2\2\u0187\u0191\7\u008b\2\2\u0188\u0189\7"+
+		"\u00b4\2\2\u0189\u0191\7\u00b0\2\2\u018a\u018b\7j\2\2\u018b\u0191\7e\2"+
+		"\2\u018c\u018d\7\u0090\2\2\u018d\u0191\7\u008b\2\2\u018e\u018f\7\u00b5"+
+		"\2\2\u018f\u0191\7\u00b0\2\2\u0190\u0184\3\2\2\2\u0190\u0186\3\2\2\2\u0190"+
 		"\u0188\3\2\2\2\u0190\u018a\3\2\2\2\u0190\u018c\3\2\2\2\u0190\u018e\3\2"+
 		"\2\2\u0191\u0194\3\2\2\2\u0192\u0190\3\2\2\2\u0192\u0193\3\2\2\2\u0193"+
 		"\u0195\3\2\2\2\u0194\u0192\3\2\2\2\u0195\u0196\t\36\2\2\u0196c\3\2\2\2"+
-		"\u0197\u0198\7j\2\2\u0198\u01a4\7g\2\2\u0199\u019a\7\u0091\2\2\u019a\u01a4"+
-		"\7\u008e\2\2\u019b\u019c\7\u00b7\2\2\u019c\u01a4\7\u00b4\2\2\u019d\u019e"+
+		"\u0197\u0198\7i\2\2\u0198\u01a4\7g\2\2\u0199\u019a\7\u008f\2\2\u019a\u01a4"+
+		"\7\u008d\2\2\u019b\u019c\7\u00b4\2\2\u019c\u01a4\7\u00b2\2\2\u019d\u019e"+
 		"\7@\2\2\u019e\u01a4\7?\2\2\u019f\u01a0\7:\2\2\u01a0\u01a4\79\2\2\u01a1"+
 		"\u01a2\7\64\2\2\u01a2\u01a4\7\63\2\2\u01a3\u0197\3\2\2\2\u01a3\u0199\3"+
 		"\2\2\2\u01a3\u019b\3\2\2\2\u01a3\u019d\3\2\2\2\u01a3\u019f\3\2\2\2\u01a3"+

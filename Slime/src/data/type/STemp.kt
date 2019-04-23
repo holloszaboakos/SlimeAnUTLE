@@ -43,15 +43,15 @@ class STemp(
         return slotL.filter { it.tag().compareTo(name) == 0 }
     }
 
-    override fun expand(): String {
+    override fun extend(): String {
         var result = ""
-        content.forEach { result += it.expand() }
+        content.forEach { result += it.extend() }
         return result
     }
 
-    override fun expand(divider: String): String {
+    override fun extend(divider: String): String {
         var result = ""
-        content.forEach { result += it.expand() }
+        content.forEach { result += it.extend() }
         return result
     }
 
