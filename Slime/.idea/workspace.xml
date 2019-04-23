@@ -1,66 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeX_diplomaterv/chapter1.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/MySlimeParserVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/MySlimeParserVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/SlimeParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/SlimeParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/SVari.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/SVari.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SInst.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SInst.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SList$SIter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SList$SIter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SRefe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SRefe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SSlot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SSlot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SSpec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/STemp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/STemp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SText.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SText.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/data/type/SType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/data/type/SType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaBodyContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaBodyPartContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaHeadContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$ExpaTailContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$FileContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser$FileContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Slime/parser/SlimeParserVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SlimeLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SlimeParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/SVari.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SVari.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SFile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SFile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SInst.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SInst.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SRefe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SRefe.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SSlot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SSlot.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SSpec.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SSpec.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/STemp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/STemp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SText.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SText.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/type/SType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/SType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParserBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParserBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParserListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParserVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../language_discription" beforeDir="false" afterPath="$PROJECT_DIR$/../language_discription" afterDir="false" />
-    </list>
+    <list default="true" id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -466,7 +407,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32612312" />
       <window_info id="Structure" order="1" weight="0.25" />
