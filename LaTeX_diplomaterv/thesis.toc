@@ -1,0 +1,39 @@
+\select@language {magyar} \contentsline {chapter}{Kivonat}{i}{chapter*.2}
+\select@language {english} \contentsline {chapter}{Abstract}{ii}{chapter*.3}
+\select@language {english} \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\select@language {english} \contentsline {chapter}{\numberline {2}Szemantikai elemz\IeC {\'e}s gr\IeC {\'a}f-transzform\IeC {\'a}ci\IeC {\'o}kkal}{2}{chapter.2}
+\select@language {english} \contentsline {section}{\numberline {2.1}Szintaxis}{2}{section.2.1}
+\select@language {english} \contentsline {subsection}{\numberline {2.1.1}A Szintaktikai Fa}{2}{subsection.2.1.1}
+\select@language {english} \contentsline {subsection}{\numberline {2.1.2}UD \IeC {\'e}s a dependencia elemz\IeC {\'e}s}{3}{subsection.2.1.2}
+\select@language {english} \contentsline {section}{\numberline {2.2}4lang}{4}{section.2.2}
+\select@language {english} \contentsline {section}{\numberline {2.3}A 4lang \IeC {\'e}s az UD k\IeC {\"u}l\IeC {\"o}nbs\IeC {\'e}gei}{5}{section.2.3}
+\select@language {english} \contentsline {section}{\numberline {2.4}A kutat\IeC {\'a}s c\IeC {\'e}lja}{5}{section.2.4}
+\select@language {english} \contentsline {section}{\numberline {2.5}Az IRTG \IeC {\'e}s az al\IeC {\'a}rendelt algebr\IeC {\'a}k}{6}{section.2.5}
+\select@language {english} \contentsline {subsection}{\numberline {2.5.1}Az ALTO}{6}{subsection.2.5.1}
+\select@language {english} \contentsline {subsection}{\numberline {2.5.2}Az IRTG}{6}{subsection.2.5.2}
+\select@language {english} \contentsline {subsection}{\numberline {2.5.3}Az SA}{7}{subsection.2.5.3}
+\select@language {english} \contentsline {subsection}{\numberline {2.5.4}A TTA}{7}{subsection.2.5.4}
+\select@language {english} \contentsline {subsection}{\numberline {2.5.5}Az SGA}{9}{subsection.2.5.5}
+\select@language {english} \contentsline {section}{\numberline {2.6}Az IRTG \IeC {\'e}s az ALTO hi\IeC {\'a}nyoss\IeC {\'a}gai}{10}{section.2.6}
+\select@language {english} \contentsline {subsection}{\numberline {2.6.1}Az IRTG hi\IeC {\'a}nyoss\IeC {\'a}gai}{10}{subsection.2.6.1}
+\select@language {english} \contentsline {subsection}{\numberline {2.6.2}Az ALTO hi\IeC {\'a}nyoss\IeC {\'a}gai}{11}{subsection.2.6.2}
+\select@language {english} \contentsline {section}{\numberline {2.7}Ideiglenes megold\IeC {\'a}sok}{12}{section.2.7}
+\select@language {english} \contentsline {subsection}{\numberline {2.7.1}els\IeC {\H o} gener\IeC {\'a}tor}{12}{subsection.2.7.1}
+\select@language {english} \contentsline {subsection}{\numberline {2.7.2}m\IeC {\'a}sodik gener\IeC {\'a}tor}{13}{subsection.2.7.2}
+\select@language {english} \contentsline {chapter}{\numberline {3}A Slime nyelv}{16}{chapter.3}
+\select@language {english} \contentsline {section}{\numberline {3.1}Bemutatkoz\IeC {\'a}s}{16}{section.3.1}
+\select@language {english} \contentsline {section}{\numberline {3.2}Tervez\IeC {\'e}si szempontjai}{17}{section.3.2}
+\select@language {english} \contentsline {section}{\numberline {3.3}Alternat\IeC {\'\i }v\IeC {\'a}k template-el\IeC {\'e}sre }{18}{section.3.3}
+\select@language {english} \contentsline {section}{\numberline {3.4}T\IeC {\'\i }pusok}{18}{section.3.4}
+\select@language {english} \contentsline {section}{\numberline {3.5}Z\IeC {\'a}r\IeC {\'o}jelek}{19}{section.3.5}
+\select@language {english} \contentsline {subsection}{\numberline {3.5.1}A t\IeC {\'\i }pus jel\IeC {\"o}l\IeC {\H o} z\IeC {\'a}r\IeC {\'o}jelek}{19}{subsection.3.5.1}
+\select@language {english} \contentsline {subsection}{\numberline {3.5.2}m\IeC {\H u}velet jel\IeC {\"o}l\IeC {\H o} z\IeC {\'a}r\IeC {\'o}jelek}{20}{subsection.3.5.2}
+\select@language {english} \contentsline {section}{\numberline {3.6}Szintaxis}{20}{section.3.6}
+\select@language {english} \contentsline {section}{\numberline {3.7}Implement\IeC {\'a}ci\IeC {\'o}}{24}{section.3.7}
+\select@language {english} \contentsline {section}{\numberline {3.8}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{25}{section.3.8}
+\select@language {english} \contentsline {section}{\numberline {3.9}Fejlett megold\IeC {\'a}saink}{25}{section.3.9}
+\select@language {english} \contentsline {chapter}{Acknowledgements}{26}{chapter*.4}
+\select@language {english} \contentsline {chapter}{Appendix}{27}{appendix*.5}
+\select@language {english} \contentsline {section}{\numberline {A.1}A TeXstudio fel\IeC {\"u}lete}{27}{section.A.1}
+\select@language {english} \contentsline {section}{\numberline {A.2}V\IeC {\'a}lasz az ,,\IeC {\'E}let, a vil\IeC {\'a}gmindens\IeC {\'e}g, meg minden'' k\IeC {\'e}rd\IeC {\'e}s\IeC {\'e}re}{28}{section.A.2}
+\select@language {english} \contentsline {chapter}{Bibliography}{27}{chapter*.4}

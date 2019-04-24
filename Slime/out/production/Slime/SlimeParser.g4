@@ -5,107 +5,107 @@ options { tokenVocab=SlimeLexer; }
 file: (text|refe|slot|spec|temp|dele|exte|plus|decl|dele|refe|textOutor)*;
 
 text: textHead textBody textTail;
-textHead:(OB_TEXT|OLB_TEXT|LB_TEXT|
-          OB_TEXT_B_O|OLB_TEXT_B_O|LB_TEXT_B_O|
-          OB_TEXT_O_O|OLB_TEXT_O_O|LB_TEXT_O_O|
-          OB_TEXT_L_O|OLB_TEXT_L_O|LB_TEXT_L_O|
-          OB_TEXT_B_T|OLB_TEXT_B_T|LB_TEXT_B_T|
-          OB_TEXT_O_T|OLB_TEXT_O_T|LB_TEXT_O_T|
-          OB_TEXT_L_T|OLB_TEXT_L_T|LB_TEXT_L_T);
-textBody:(IN_TEXT|IN_OL_TEXT|IN_L_TEXT);
-textTail:(CB_TEXT|NL_TEXT|NW_TEXT);
+textHead:(BOB_TEXT|OLB_TEXT|COB_TEXT|
+          BOB_TEXT_B_O|OLB_TEXT_B_O|COB_TEXT_B_O|
+          BOB_TEXT_O_O|OLB_TEXT_O_O|COB_TEXT_O_O|
+          BOB_TEXT_C_O|OLB_TEXT_C_O|COB_TEXT_C_O|
+          BOB_TEXT_B_T|OLB_TEXT_B_T|COB_TEXT_B_T|
+          BOB_TEXT_O_T|OLB_TEXT_O_T|COB_TEXT_O_T|
+          BOB_TEXT_C_T|OLB_TEXT_C_T|COB_TEXT_C_T);
+textBody:(IN_B_T|IN_O_T|IN_C_T);
+textTail:(BCB_TEXT|NL_TEXT|NW_TEXT);
 
 refe: refeHead refeBody refeTail;
-refeHead:(OB_REFE|OLB_REFE|LB_REFE|
-          OB_REFE_B_O|OLB_REFE_B_O|LB_REFE_B_O|
-          OB_REFE_O_O|OLB_REFE_O_O|LB_REFE_O_O|
-          OB_REFE_L_O|OLB_REFE_L_O|LB_REFE_L_O);
-refeBody: typeName (IN_B_R|IN_O_R|IN_L_R);
-refeTail:(CB_REFE|NL_REFE|NW_REFE);
+refeHead:(BOB_REFE|OLB_REFE|COB_REFE|
+          BOB_REFE_B_O|OLB_REFE_B_O|COB_REFE_B_O|
+          BOB_REFE_O_O|OLB_REFE_O_O|COB_REFE_O_O|
+          BOB_REFE_C_O|OLB_REFE_C_O|COB_REFE_C_O);
+refeBody: typeName (IN_B_R|IN_O_R|IN_C_R);
+refeTail:(BCB_REFE|NL_REFE|NW_REFE);
 
 slot: slotHead spslBody slotTail;
-slotHead: (OB_SLOT|OLB_SLOT|LB_SLOT|
-            OB_SLOT_B_O|OLB_SLOT_B_O|LB_SLOT_B_O|
-            OB_SLOT_O_O|OLB_SLOT_O_O|LB_SLOT_O_O|
-            OB_SLOT_L_O|OLB_SLOT_L_O|LB_SLOT_L_O|
-            OB_SLOT_B_T|OLB_SLOT_B_T|LB_SLOT_B_T|
-            OB_SLOT_O_T|OLB_SLOT_O_T|LB_SLOT_O_T|
-            OB_SLOT_L_T|OLB_SLOT_L_T|LB_SLOT_L_T);
-slotTail:(CB_SLOT|NL_SLSP|NW_SLSP);
+slotHead: (BOB_SLOT|OLB_SLOT|COB_SLOT|
+            BOB_SLOT_B_O|OLB_SLOT_B_O|COB_SLOT_B_O|
+            BOB_SLOT_O_O|OLB_SLOT_O_O|COB_SLOT_O_O|
+            BOB_SLOT_C_O|OLB_SLOT_C_O|COB_SLOT_C_O|
+            BOB_SLOT_B_T|OLB_SLOT_B_T|COB_SLOT_B_T|
+            BOB_SLOT_O_T|OLB_SLOT_O_T|COB_SLOT_O_T|
+            BOB_SLOT_C_T|OLB_SLOT_C_T|COB_SLOT_C_T);
+slotTail:(BCB_SLOT|NL_SLSP|NW_SLSP);
 
 spec: specHead spslBody specTail;
-specHead:( OB_SPEC|OLB_SPEC|LB_SPEC|
-            OB_SPEC_B_O|OLB_SPEC_B_O|LB_SPEC_B_O|
-            OB_SPEC_O_O|OLB_SPEC_O_O|LB_SPEC_O_O|
-            OB_SPEC_L_O|OLB_SPEC_L_O|LB_SPEC_L_O|
-            OB_SPEC_B_T|OLB_SPEC_B_T|LB_SPEC_B_T|
-            OB_SPEC_O_T|OLB_SPEC_O_T|LB_SPEC_O_T|
-            OB_SPEC_L_T|OLB_SPEC_L_T|LB_SPEC_L_T);
-specTail:(CB_SPEC|NL_SLSP|NW_SLSP);
+specHead:( BOB_SPEC|OLB_SPEC|COB_SPEC|
+            BOB_SPEC_B_O|OLB_SPEC_B_O|COB_SPEC_B_O|
+            BOB_SPEC_O_O|OLB_SPEC_O_O|COB_SPEC_O_O|
+            BOB_SPEC_C_O|OLB_SPEC_C_O|COB_SPEC_C_O|
+            BOB_SPEC_B_T|OLB_SPEC_B_T|COB_SPEC_B_T|
+            BOB_SPEC_O_T|OLB_SPEC_O_T|COB_SPEC_O_T|
+            BOB_SPEC_C_T|OLB_SPEC_C_T|COB_SPEC_C_T);
+specTail:(BCB_SPEC|NL_SLSP|NW_SLSP);
 
-spslBody:(NAME_B_S SC_B_S|NAME_O_S SC_O_S|NAME_L_S SC_L_S)* (NAME_B_S|NAME_O_S|NAME_L_S) ;
+spslBody:(NAME_B_S SC_B_S|NAME_O_S SC_O_S|NAME_C_S SC_C_S)* (NAME_B_S|NAME_O_S|NAME_C_S) ;
 
 temp: tempHead tempBody tempTail;
-tempHead:(OB_TEMP|OLB_TEMP|LB_TEMP|
-          OB_TEMP_B_O|OLB_TEMP_B_O|LB_TEMP_B_O|
-          OB_TEMP_O_O|OLB_TEMP_O_O|LB_TEMP_O_O|
-          OB_TEMP_L_O|OLB_TEMP_L_O|LB_TEMP_L_O);
-tempBody:(tempBodyPart (SC_B_T|SC_L_T|SC_O_T))* tempBodyPart;
+tempHead:(BOB_TEMP|OLB_TEMP|COB_TEMP|
+          BOB_TEMP_B_O|OLB_TEMP_B_O|COB_TEMP_B_O|
+          BOB_TEMP_O_O|OLB_TEMP_O_O|COB_TEMP_O_O|
+          BOB_TEMP_C_O|OLB_TEMP_C_O|COB_TEMP_C_O);
+tempBody:(tempBodyPart (SC_B_T|SC_C_T|SC_O_T))* tempBodyPart;
 tempBodyPart:(text|slot|spec|tempText|LINE_DIVIDER)+;
-tempTail:(CB_TEMP|NL_TEMP|NW_TEMP);
-tempText:(TEXT_LINE LINE_DIVIDER)* TEXT_LINE|OL_TEXT_LINE|L_TEXT_LINE;
+tempTail:(BCB_TEMP|NL_TEMP|NW_TEMP);
+tempText:(B_TEXT_LINE LINE_DIVIDER)* B_TEXT_LINE|O_TEXT_LINE|C_TEXT_LINE;
 
 exte: exteHead exteBody exteTail;
-exteHead:(OB_EXTE|OLB_EXTE|LB_EXTE|
-           OB_EXTE_B_O|OLB_EXTE_B_O|LB_EXTE_B_O|
-           OB_EXTE_O_O|OLB_EXTE_O_O|LB_EXTE_O_O|
-           OB_EXTE_L_O|OLB_EXTE_L_O|LB_EXTE_L_O);
-exteBody:(exteBodyPart (SC_B_O|SC_O_O|SC_L_O))* exteBodyPart;
-exteBodyPart:vari ((CL_B_O|CL_O_O|CL_L_O) (temp|spec))?;
-exteTail:(CB_EXTE|NL_OPER|NW_OPER);
+exteHead:(BOB_EXTE|OLB_EXTE|COB_EXTE|
+           BOB_EXTE_B_O|OLB_EXTE_B_O|COB_EXTE_B_O|
+           BOB_EXTE_O_O|OLB_EXTE_O_O|COB_EXTE_O_O|
+           BOB_EXTE_C_O|OLB_EXTE_C_O|COB_EXTE_C_O);
+exteBody:(exteBodyPart (SC_B_O|SC_O_O|SC_C_O))* exteBodyPart;
+exteBodyPart:vari ((CL_B_O|CL_O_O|CL_C_O) (temp|spec))?;
+exteTail:(BCB_EXTE|NL_OPER|NW_OPER);
 
 plus: plusHead plusBody plusTail;
-plusHead:(OB_PLUS|OLB_PLUS|LB_PLUS|
-           OB_PLUS_B_O|OLB_PLUS_B_O|LB_PLUS_B_O|
-           OB_PLUS_O_O|OLB_PLUS_O_O|LB_PLUS_O_O|
-           OB_PLUS_L_O|OLB_PLUS_L_O|LB_PLUS_L_O);
-plusBody:(plusBodyPart (SC_B_O|SC_O_O|SC_L_O))* plusBodyPart;
-plusBodyPart: vari (PLOP_B_O|PLOP_O_O|PLOP_L_O) vari ((CL_B_O|CL_O_O|CL_L_O) (plusElement(CO_B_O|CO_O_O|CO_L_O))* plusElement)?;
-plusElement: variPath (PLOP_B_O|PLOP_O_O|PLOP_L_O) variPath;
-plusTail:(CB_PLUS|NL_OPER|NW_OPER);
+plusHead:(BOB_PLUS|OLB_PLUS|COB_PLUS|
+           BOB_PLUS_B_O|OLB_PLUS_B_O|COB_PLUS_B_O|
+           BOB_PLUS_O_O|OLB_PLUS_O_O|COB_PLUS_O_O|
+           BOB_PLUS_C_O|OLB_PLUS_C_O|COB_PLUS_C_O);
+plusBody:(plusBodyPart (SC_B_O|SC_O_O|SC_C_O))* plusBodyPart;
+plusBodyPart: vari (PLOP_B_O|PLOP_O_O|PLOP_C_O) vari ((CL_B_O|CL_O_O|CL_C_O) (plusElement(CO_B_O|CO_O_O|CO_C_O))* plusElement)?;
+plusElement: variPath (PLOP_B_O|PLOP_O_O|PLOP_C_O) variPath;
+plusTail:(BCB_PLUS|NL_OPER|NW_OPER);
 
 dele: deleHead deleBody deleTail;
-deleHead:(OB_DELE|OLB_DELE|LB_DELE|
-           OB_DELE_B_O|OLB_DELE_B_O|LB_DELE_B_O|
-           OB_DELE_O_O|OLB_DELE_O_O|LB_DELE_O_O|
-           OB_DELE_L_O|OLB_DELE_L_O|LB_DELE_L_O) ;
-deleBody:((variPath|refe) (SC_B_O|SC_O_O|SC_L_O))* (variPath|refe) ;
-deleTail:(CB_DELE|NL_OPER|NW_OPER);
+deleHead:(BOB_DELE|OLB_DELE|COB_DELE|
+           BOB_DELE_B_O|OLB_DELE_B_O|COB_DELE_B_O|
+           BOB_DELE_O_O|OLB_DELE_O_O|COB_DELE_O_O|
+           BOB_DELE_C_O|OLB_DELE_C_O|COB_DELE_C_O) ;
+deleBody:((variPath|refe) (SC_B_O|SC_O_O|SC_C_O))* (variPath|refe) ;
+deleTail:(BCB_DELE|NL_OPER|NW_OPER);
 
 
 decl: declHead  declBody declTail;
-declHead: (OB_DECL|OLB_DECL|LB_DECL|
-            OB_DECL_B_O|OLB_DECL_B_O|LB_DECL_B_O|
-            OB_DECL_O_O|OLB_DECL_O_O|LB_DECL_O_O|
-            OB_DECL_L_O|OLB_DECL_L_O|LB_DECL_L_O) ;
-declNeck:listName? (CL_B_O|CL_O_O|CL_L_O) typeName (EQOP_B_O|EQOP_O_O|EQOP_L_O);
-declBody: (declBodyPart (SC_B_O|SC_O_O|SC_L_O))* declBodyPart;
+declHead: (BOB_DECL|OLB_DECL|COB_DECL|
+            BOB_DECL_B_O|OLB_DECL_B_O|COB_DECL_B_O|
+            BOB_DECL_O_O|OLB_DECL_O_O|COB_DECL_O_O|
+            BOB_DECL_C_O|OLB_DECL_C_O|COB_DECL_C_O) ;
+declNeck:listName? (CL_B_O|CL_O_O|CL_C_O) typeName (EQOP_B_O|EQOP_O_O|EQOP_C_O);
+declBody: (declBodyPart (SC_B_O|SC_O_O|SC_C_O))* declBodyPart;
 declBodyPart: declNeck( listName|listVari|
-                 (nameType (CO_B_O|CO_O_O|CO_L_O))* nameType|
-                 (nameValue (CO_B_O|CO_O_O|CO_L_O))* nameValue)|
+                 (nameType (CO_B_O|CO_O_O|CO_C_O))* nameType|
+                 (nameValue (CO_B_O|CO_O_O|CO_C_O))* nameValue)|
                  vari;
-declTail:(CB_DECL|NL_OPER|NW_OPER);
+declTail:(BCB_DECL|NL_OPER|NW_OPER);
 
 
-nameValue:(listName (EQOP_B_O|EQOP_O_O|EQOP_L_O) listVari);
-nameType:(listName (CL_B_O|CL_O_O|CL_L_O) typeName);
-listVari: (vari (CO_B_O|CO_O_O|CO_L_O))* vari;
+nameValue:(listName (EQOP_B_O|EQOP_O_O|EQOP_C_O) listVari);
+nameType:(listName (CL_B_O|CL_O_O|CL_C_O) typeName);
+listVari: (vari (CO_B_O|CO_O_O|CO_C_O))* vari;
 vari: variPath|decl|temp|spec|slot|refe|plus|text;
-listName: (NAME_B_O CO_B_O|NAME_O_O CO_O_O|NAME_L_O CO_L_O)* (NAME_B_O|NAME_O_O|NAME_L_O);
-variPath: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_L_O PE_L_O|INTE_B_O PE_B_O|INTE_O_O PE_O_O|INTE_L_O PE_L_O)*
-              (NAME_B_O|NAME_O_O|NAME_L_O|INTE_B_O|INTE_O_O|INTE_L_O);
-typeName: (NAME_B_O CL_B_O|NAME_O_O CL_O_O|NAME_L_O CL_L_O|NAME_L_R CL_L_R|NAME_O_R CL_O_R|NAME_B_R CL_B_R)*
-          (NAME_B_O|NAME_O_O|NAME_L_O|NAME_B_R|NAME_O_R|NAME_L_R);
+listName: (NAME_B_O CO_B_O|NAME_O_O CO_O_O|NAME_C_O CO_C_O)* (NAME_B_O|NAME_O_O|NAME_C_O);
+variPath: (NAME_B_O PE_B_O|NAME_O_O PE_O_O|NAME_C_O PE_C_O|INTE_B_O PE_B_O|INTE_O_O PE_O_O|INTE_C_O PE_C_O)*
+              (NAME_B_O|NAME_O_O|NAME_C_O|INTE_B_O|INTE_O_O|INTE_C_O);
+typeName: (NAME_B_O CL_B_O|NAME_O_O CL_O_O|NAME_C_O CL_C_O|NAME_C_R CL_C_R|NAME_O_R CL_O_R|NAME_B_R CL_B_R)*
+          (NAME_B_O|NAME_O_O|NAME_C_O|NAME_B_R|NAME_O_R|NAME_C_R);
 
 
 textOutor:TEXT_OUTOR;
