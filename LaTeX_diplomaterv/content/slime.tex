@@ -116,6 +116,37 @@ Slime esetében az alárendelt Slime kód részeket egyszerűen \{” ”\} szö
 %----------------------------------------------------------------------------
 
 
+
+%----------------------------------------------------------------------------
+\subsection{Mustache}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Underscore Templates}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Embedded JS Templates}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{HandlebarsJS}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Jade templating}
+%----------------------------------------------------------------------------
+
+
+
 %----------------------------------------------------------------------------
 \section{Az Slime alapjai}
 %----------------------------------------------------------------------------
@@ -597,12 +628,6 @@ A File egy text-tel hozható létre, ami a futtató gépen az elérési útvonal
 Ekkor a file le is fut és a generált kimenetet is fogja tartalmazni az outp változója.
 A létrehozott változóiból viszont csak a nem törölt változói lesznek elérhetőek.
 
-Name teljes mértékben Text módjára viselkedik. 
-Deklarációja is Text értéket vár. 
-Ugyanakkor ha egy változóba beleszúrunk egy nevekből álló listát, akkor az a neveihez adódik hozzá. 
-(Későbbiekben ez meg fog szűnni. 
-A változók name attribútumába kell majd Text listát szúrni)
-
 
 
 %----------------------------------------------------------------------------
@@ -844,6 +869,15 @@ Lista viszon készíthető belőle így is:
 
 \{= nList : List:Name := name1, name2, name3 =\}
 
+Egy Vari-hoz hozzáadhatóak a nevek egyesével is meg listával is:
+
+\{+ vari += n +\}
+
+\{+ vari += nList +\}
+
+Mind két esetben a nevek fel is regisztrálódnak az aktuális fájlba, amiből hozzá lettek adva a változóhoz.
+
+
 
 %----------------------------------------------------------------------------
 \section{Implementáció}
@@ -919,11 +953,67 @@ Tartalmaz alap függvényt a nyelv alap működéseihez.
 \item \emph{accept:}Megvalósítja a visitor patternt
 \end{itemize}
 
-SName és SText esetén egy String az egyetlen adat, amit lékezelünk. Azt kapja meg a másolat, azt téríti vissza az extend. Hozzáadni csak a változó neveihez lehet. Lekérdezni csak a minden változóból lekérhető négy attribútumot lehet.
-Az SSpec egy belső enum osztályt tárol, amiben a kulcsszó-karakter megfeleltetéseket tárolja. Ezen kívül minden példány csak a kulccsal rendelkezik, amin keresztül az értékét lekérheti az enumerációból.
-Az SSlot-nak van egy nullable STemp változója. A legtöbb művelete esetén annak továbbítja a hívásokat. cont néven ez a Temp közvetlen a slotból is lekérhető.
-Az STemp
+Az osztájok mindegyike egyedien épül fel és működik:
+\begin{itemize}
+\item \emph{SText:} 
+Csupán a szöveget tárolja egy String-ben.
+\item \emph{SSpec:} 
+Egy statikus enumerációban tartalmazza a speciális karakterek értékeit és a kódok listáját, amin az elérhető.
+Egy példány csak a kódot tartalmazza String formátumban.
+A hozzáadásnál a típus beazonosítására visitor pattern-t használ.
+\item \emph{SSlot:} 
+A címkéjét tárolja és egy nullable referenciát a beleszúrt Temp-re.
+\item \emph{STemp:} 
+A tartalmát egy mutable Vari listában tárolja.
+Lekérdezéskor ezt csomagolja be egy SLIst-be.
+Az iterátora ennek adja vissza az iterátorát.
+Amikor lekérdezik belőle a Text-eket, a Spec-eket vagy a Slot-okat, akkor azt ebből a listából szűri ki mindig újra.
+\item \emph{SList:} osztály csupán egy String-et tárol.
+Egy Mutable List leszármazott.
+Templatet használ.
+Egy mutable List-ben tárolja az elemeit.
+Minden függvényt felül ír és aátírányítja a belső Mutable List-nek.
+Belső osztály ként valósítja meg az iterátort.
+A saját iterátorát tárolja.
+\item \emph{SType:} 
+Egy statikus név szerinti mutable map-ben tárolja a létező típusokat, ami az alap típusokkal inicializálódik.
+Amikor egy új típus létrejön, az is regisztrálódik ebbe a listába.
+Egy NameType nevű belső adatosztály segíti az attribútumok metaadatainak tárolásában.
+A NameType-okat egyszerű listában tárolja.
+\item \emph{SInst:} 
+A konstruktora várja a típusa nevét is.
+A tartalmnát egy nullable Vari-kból álló listában tárolja.
+A lista hossza megegyezik a típus NameType listájáéval.
+\item \emph{SFile:}
+A változóit egy név szerinti mutable Map-ben tárolja, a kimenetét pedig egy darab String-ben.
+\item \emph{SIter:}
+A birtokló SList-re referenciája van.
+Minden hívást továbbít a birtoklónak vagy az elemeinek.
+Utóbbi esetben az eredményt összegzi is.
+\item \emph{SRefe:}
+Csak a mintát tárolja egy String-ben, és a típus megkötést egy List<SType> ban.
+Van egy listMatchingPaths függvénye, amin keresztül lekérdezhetőek a rá illeszkedő a megkötéseknek megfelelő változók.
+\item \emph{SName:} 
+Annyira azonos a funkcionalitása a SText-tel, hogy közvetlen belőle származik.
+Nem ír felül semmit.
+Csak egy konstruktort tartalmaz, ami STextet konvertál Sname-mé.
+\end{itemize}
 
+A Cont-oknak nincsen közös ősosztálya.
+Mindegyik az SList-et használja.
+Ez már önmagában is a data oriented megvalósítás fele mutat.
+Az architektúra még sokat fog ezen az úton haladni.
+Végső állapotában egyetlen adat osztály fogja kezelni az összes Vari adatát.
+Külső osztály fogja csak típustól függően másképp kezelni.
+Ezt nem nehéz megoldani, mivel rengeteg osztály tartalmaz a többihez hasonló elemeket.
+Például nagyon sok osztálynak van egy String adata.
+
+A Const-ok tárolási szokásai is megoldható lenne egyetlen saját tároló típussal.
+Ez a típus egy mutable Array Map lenne nullable Vari-kból.
+Beállítható lenne a minimum hossza, így működhet Array ként.
+A belsejében két lista lenne, egy az értékeknek, egy a kulcsoknak.
+A List és Array esetben egyszerűen az indexek lennének a kulcsok String-ként.
+Ezzel egy konverziót is meg úsznánk indexelésnél.
 
 agramatikus;6-os a maiból;dávid email;szöveg tisztázása;bevezetők;latexbe;ábrák;Slime;egyszerű kétemeletű példa;10 darabra
 
@@ -937,25 +1027,101 @@ Annak az igazolása, hogy eleget tettünk a kritériumnak.
 %----------------------------------------------------------------------------
 \section{A fejlesztés fázisai}
 %----------------------------------------------------------------------------
-A Slime sok iteráción ment keresztül és mégg sok iteráción is fog végig menni. 
-A fázisok sorrendjét is sok szempont befojásolja.
+A Slime sok iteráción ment keresztül és még sok iteráción is fog végig menni. 
+A fejlesztés fázisai nagyon tudatos sorrendben követik egymást.
+Végső soron egy olyan nyelv a cél, ami az objektum orientált és templater nyelvek között félúton van.
+Hosszú távon a cél a data oriented programozás eszközeinek maximális lefedése.
 
-Az első fázis legfőbb célja az alapvető működésnek a megvalósítása volt. 
+\begin{itemize}
+\item \emph{Eddigi fázisok:}
+\begin{itemize}
+\item \emph{base:}
+Legfőbb célja az alapvető működésnek a megvalósítása volt. 
 Csupán a TEXT, SPEC, SLOT, TEMP, DECL, DELE, PLUS és EXTE típusokat tartalmazta.
 Típusok közül is csak a négy típus jelölő zárójelhez tartozó tíousokat jelölte.
 Nem volt lehetséges sem importálni, se referenciát használni, sem a neveket manipulálni.
 Sokkal inkább volt egy prove of concept, mint valós nyelv. 
 Sok jelölés eltért a véglegestől
-
-A második fázisban jelentek meg a többi típus és zárójel.
+\item \emph{cont:}
+Itt jelentek meg a többi típus és zárójel.
 Minden a File, Name és Iter kivételével.
-Már ekkor is a nyelvvel hatékony eredményeket lehetett elérni a redundancia csökkentésben.
+Innentől lehetett egy zárójelben több műveletet is végezni.
+Már ekkor is a nyelvvel hatékony eredményeket lehetett elérni a redundancia csökkentés terén.
+Már itt is működött a Temp Plus List of Inst módszer az adatok hatékony tárolására és a Temp-ek
+hatékony generálására.
+\item \emph{full:}
+Itt jelent meg az Iter, File és Name.
+Illetve itt jelentek meg az egysoros és kompakt zárójelek.
+Az eddigi kódok harmadukra estek össze.
+Innentől a nyelvnek már az összes kezdetektől tervezett funkcionalitása meg van valósítva.
+Ekkora alakult ki a szintaxis végleges formája.
+Minden jövő beli szintaxis ezzel már visszafele kompatibilis lesz.
+\end{itemize}
 
+\item \emph{Már megtervezett fázisok:}
+\begin{itemize}
+\item \emph{clean:}
+A szűk fejlesztési határidő miatt sok ideiglenes megoldás került a nyelvbe.
+Ezeknek letisztitására kerül sor az első tervezett fázisban.
+A Name típus meg fog szűnni.
+Ha Slot-ba Temp-et, Text-et, Slot-ot, Spe-et szúrunk, az az összes tulajdonosában le fogja magát cserélni magát annak a Temp-nek a tartalmára.
+A Cont-oknak lesz egy közös őse.
+Lehetséges lesz egy Slime fájlból több kimeneti fájl generálása.
+\item \emph{comf:}
+A nyelv kényelmes használatának érdekében sok egyszerűsítés fog történni.
+Elhagyhatóak lesznek a felesleges poontosvesszők az egysoros szabályokat tartalmazó sorok végéről.
+Elhagyhatóak lesznek a a felesleges típus megadások.
+A zárójelek által visszatérített Vari-kból egyből lekérdezhetőek lesznek az attribútumaik. 
+Összevonható lesz a négy alap művelet.
+Így minden művelet eredménye egyből kiírható lesz.
+\item \emph{data:}
+Be lesz vezetve a data oriented programming.
+Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
+Meg lesz valósítva a saját tároló típus.
+A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
+\item \emph{test:}
+A nyelv teljes teszt lefedettségének megvalósítása.
+Innentől a fordízó tökéletes működése teljes mértékben biztosított lesz.
+Ez tartva is lesz a jövő beli verziókra is.
+A teszt fájlokból részletes dokumentáció is készülni fog.
+\item \emph{vers:}
+A letisztított és áthangolt nyelvből több verzió fog készülni.
+A sokat említett c++20 verzió lesz az első.
+Ezt egy Kotlin és c++20 library fogja követni.
+A Kotlin verzióból is el lesz hagyva minden túlsúllyos könyvtár.
+\item \emph{vers:}
+A letisztított és áthangolt nyelvből több verzió fog készülni.
+A sokat említett c++20 verzió lesz az első.
+Ezt egy Kotlin és c++20 library fogja követni.
+A Kotlin verzióból is el lesz hagyva minden túlsúllyos könyvtár.
+Ez lesz az első release verzió.
+\end{itemize}
 
+\item \emph{Tervezésre váró fázisok:}
+\begin{itemize}
+\item \emph{logic:}
+Bevezetésre kerülnek az alap vezérlési elemek.
+If-else helyett a kotlinos when struktőrákból fok kiindulni.
+Az iterátorokat tovább fejlesztve az alapvető ciklusok minden típusát tartalmazni fogja.
+A tároláshoz is be lesznek vezetve új Cont típusok.
+\item \emph{algeb:}
+Bevezetésre kerül egy saját gráfalgebra, ami az SGA javítása lesz.
+Ezeknek bejárására és kezelésére is számos módot tesz majd lehetővé.
+Lehetséges lesz float alapon tárolt számokat kezelni.
+\item \emph{func:}
+Bevezetésre kerül egy függvény szerű mechanizmus.
+Ennek lényege az lesz, hogy a Slime kódot tároló Temp-ek (vagy azok alpján nyugvó új osztály) futtathatóak lesznek.
+Ez azt jelenti, hogy hívásnál a függvény bemeneteit beillesztjük a slotokba és futtatjuk a kimenetet fájl ként.
+Ez a névterekkel és Inst-ekkel együtt már egy osztályok fele hajló struktúrát fog alkotni.
+\item \emph{irtg:}
+Lehetséges lesz templatelés szinkronizálása környezet független nyelvtanokkal.
+Ez azt jelentené, hogy a Slime egy az IRTG-t meghaladó nyelv lesz, ami az IRTG funkcionalitásait is megvalósítja.
+\end{itemize}
 
-A harmadik fázisban jelent meg a kommentelés és az egysoros és kompakt zárójelek.
+\end{itemize}
 
 
 %----------------------------------------------------------------------------
 \section{Fejlett megoldásaink}
 %----------------------------------------------------------------------------
+
