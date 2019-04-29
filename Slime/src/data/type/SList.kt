@@ -17,7 +17,6 @@ class SList<T : SVari>(
     class SIter<T : SVari>(val owner: SList<T>) : SVari("Iter", listOf()) {
         override fun listPaths(): SList<SList<SName>> = owner.listPaths()
         override fun copy(names: List<SName>): SVari = owner.copy(names).iter
-        override fun extend(): String = owner.extend()
         override fun extend(divider: String): String = owner.extend(divider)
         override fun plus(v: SVari, i: Int): SVari {
             owner.forEach { it.plus(v, i) }
@@ -29,7 +28,7 @@ class SList<T : SVari>(
             else owner.content.map { it.get(path) }.toSList()
 
         override fun delete(path: SList<SName>): Unit = owner.forEach { it.delete(path) }
-        override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+        override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
     }
 
     val iter = SIter(this)
@@ -84,13 +83,6 @@ class SList<T : SVari>(
 
     override fun copy(names: List<SName>): SList<T> = content.toList().toSList(names)
 
-    override fun extend(): String {
-        var result = ""
-        for (c in content)
-            result += c.extend()
-        return result
-    }
-
     override fun extend(divider: String): String {
         var result = ""
         for (c in content)
@@ -109,7 +101,6 @@ class SList<T : SVari>(
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     "cont" -> content.toSList(owner = this).get(path)
                     "iter" -> iter.get(path)
                     in ctype.attributes.map { it.name } ->
@@ -145,7 +136,7 @@ class SList<T : SVari>(
         }
     }
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 
 
     override fun get(index: Int): T = content[index]

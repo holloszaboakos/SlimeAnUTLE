@@ -43,19 +43,13 @@ class STemp(
         return slotL.filter { it.tag().compareTo(name) == 0 }
     }
 
-    override fun extend(): String {
-        var result = ""
-        content.forEach { result += it.extend() }
-        return result
-    }
-
     override fun extend(divider: String): String {
         var result = ""
         content.forEach { result += it.extend() }
         return result
     }
 
-    override fun plus(v: SVari, i: Int): SVari = v.visit(this, "@add")
+    override fun plus(v: SVari, i: Int): SVari = v.accept(this, "@add")
 
     override fun get(path: SList<SName>): SVari =
         when {
@@ -65,12 +59,11 @@ class STemp(
                 path.removeAt(0)
                 when (next) {
                     "names" -> names.toSList(owner = this).get(path)
+                    "self" -> this.get(path)
+                    "copy" -> copy().get(path)
                     "slots" -> slotL.toSList(owner = this).get(path)
                     "texts" -> content.filter { it is SText }.map { it as SText }.toSList(owner = this).get(path)
                     "specs" -> content.filter { it is SSpec }.map { it as SSpec }.toSList(owner = this).get(path)
-                    "self" -> this.get(path)
-                    "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     "cont" -> content.toSList(owner = this).get(path)
                     "iter" -> content.toSList(owner = this).iter.get(path)
                     in slotL.map { it.tag() } -> {
@@ -119,9 +112,9 @@ class STemp(
         }
     }
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 
-    override fun accept(h: SSlot, mode: String): SVari =
+    override fun visit(h: SSlot, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 h.owner = this;content.add(h); this
@@ -131,7 +124,7 @@ class STemp(
             )
         }
 
-    override fun accept(h: SSpec, mode: String): SVari =
+    override fun visit(h: SSpec, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 content.add(h); this
@@ -141,10 +134,10 @@ class STemp(
             )
         }
 
-    override fun accept(h: SType, mode: String)
+    override fun visit(h: SType, mode: String)
             : SVari = throw Exception("You can not plus type into Temp: ${names.getOrNull(0) ?: "@nameless"}")
 
-    override fun accept(h: SInst, mode: String): SVari =
+    override fun visit(h: SInst, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 for (slot in slotL)
@@ -162,7 +155,7 @@ class STemp(
             )
         }
 
-    override fun accept(h: STemp, mode: String): SVari =
+    override fun visit(h: STemp, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 content.addAll(h.content)
@@ -173,7 +166,7 @@ class STemp(
             )
         }
 
-    override fun accept(h: SText, mode: String): SVari =
+    override fun visit(h: SText, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 content.add(h)
@@ -184,7 +177,7 @@ class STemp(
             )
         }
 
-    override fun accept(h: SName, mode: String): SVari =
+    override fun visit(h: SName, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 addNames(listOf(h))
@@ -195,10 +188,10 @@ class STemp(
             )
         }
 
-    override fun accept(h: SRefe, mode: String)
+    override fun visit(h: SRefe, mode: String)
             : SVari = throw Exception("TODO")
 
-    override fun <T : SVari> accept(h: SList<T>, mode: String): SList<STemp> =
+    override fun <T : SVari> visit(h: SList<T>, mode: String): SList<STemp> =
         when (mode) {
             "@add" -> {
                 if (h[0] is SName) {
@@ -222,7 +215,7 @@ class STemp(
             )
         }
 
-    override fun <T : SVari> accept(h: SList.SIter<T>, mode: String): SList<STemp> =
+    override fun <T : SVari> visit(h: SList.SIter<T>, mode: String): SList<STemp> =
         when (mode) {
             "@add" -> {
                 if (h.owner[0] is SName) {
@@ -247,7 +240,7 @@ class STemp(
         }
 
 
-    override fun accept(h: SFile, mode: String)
+    override fun visit(h: SFile, mode: String)
             : SVari = throw Exception("You can not add File Temp:  ${names.getOrNull(0) ?: "@nameless"}")
 
 }

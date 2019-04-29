@@ -14,8 +14,6 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
 
     override fun copy(names: List<SName>): SText = SText(content, names.toSList())
 
-    override fun extend(): String = content
-
     override fun extend(divider: String): String = content
 
     override fun plus(v: SVari, i: Int): SVari = when {
@@ -38,7 +36,6 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0) ?: "@nameless"}")
                 }
             }
@@ -47,5 +44,5 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
     override fun delete(path: SList<SName>) =
         throw Exception("SText dose not contain anything to delete")
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

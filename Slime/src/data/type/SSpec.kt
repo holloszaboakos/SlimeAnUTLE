@@ -6,7 +6,7 @@ import java.lang.Exception
 class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names) {
 
     enum class Char(val value: String, val names: MutableList<String>) {
-    ENTER("\n", mutableListOf("e", "ent", "enter")),
+        ENTER("\n", mutableListOf("e", "ent", "enter")),
         RENTER("\r", mutableListOf("r", "ren", "renter")),
         TABULATOR("\t", mutableListOf("t", "tab", "tabulator")),
         SPACE(" ", mutableListOf("s", "spa", "space")),
@@ -21,8 +21,6 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
     override fun listPaths(): SList<SList<SName>> = SList()
 
     override fun copy(names: List<SName>): SVari = SSpec(key, names)
-
-    override fun extend(): String = key.value
 
     override fun extend(divider: String): String = key.value
 
@@ -47,7 +45,6 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0) ?: "@nameless"}")
                 }
             }
@@ -56,5 +53,5 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
     override fun delete(path: SList<SName>) =
         throw Exception("You cannot delete SVari from SSpec SVari:{${names.getOrNull(0) ?: "@nameless"}")
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

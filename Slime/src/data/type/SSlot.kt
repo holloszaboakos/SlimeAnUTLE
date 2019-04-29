@@ -17,11 +17,9 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         return result
     }
 
-    override fun extend(): String = content?.extend() ?: "{$ ${tag()} $}"
-
     override fun extend(divider: String): String = content?.extend() ?: "{$ ${tag()} $}"
 
-    override fun plus(v: SVari, i: Int): SVari = v.visit(this, "@add")
+    override fun plus(v: SVari, i: Int): SVari = v.accept(this, "@add")
 
 
     override fun get(path: SList<SName>): SVari =
@@ -34,7 +32,6 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     "cont" -> content?.get(path) ?: throw Exception(
                         "no Template in slot: ${names.getOrNull(0) ?: "@nameless"}"
                     )
@@ -58,9 +55,9 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
     }
 
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 
-    override fun accept(h: SSlot, mode: String): SVari =
+    override fun visit(h: SSlot, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 this.content = STemp(mutableListOf(h)); owner ?: this
@@ -70,7 +67,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             )
         }
 
-    override fun accept(h: SSpec, mode: String): SVari = when (mode) {
+    override fun visit(h: SSpec, mode: String): SVari = when (mode) {
         "@add" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
@@ -79,13 +76,13 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         )
     }
 
-    override fun accept(h: SType, mode: String): SVari =
+    override fun visit(h: SType, mode: String): SVari =
         throw Exception("You can not add a Structure type into Slot ${names.getOrNull(0) ?: "@nameless"}")
 
-    override fun accept(h: SInst, mode: String): SVari =
+    override fun visit(h: SInst, mode: String): SVari =
         throw Exception("You can not add a Structure Instance into Slot ${names.getOrNull(0) ?: "@nameless"}")
 
-    override fun accept(h: STemp, mode: String): SVari =
+    override fun visit(h: STemp, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 this.content = h; owner ?: this
@@ -95,7 +92,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             )
         }
 
-    override fun accept(h: SText, mode: String): SVari = when (mode) {
+    override fun visit(h: SText, mode: String): SVari = when (mode) {
         "@add" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
@@ -104,7 +101,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         )
     }
 
-    override fun accept(h: SName, mode: String): SVari = when (mode) {
+    override fun visit(h: SName, mode: String): SVari = when (mode) {
         "@add" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
@@ -113,9 +110,9 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         )
     }
 
-    override fun accept(h: SRefe, mode: String): SVari = throw Exception("TODO")
+    override fun visit(h: SRefe, mode: String): SVari = throw Exception("TODO")
 
-    override fun <T : SVari> accept(h: SList<T>, mode: String): SVari =
+    override fun <T : SVari> visit(h: SList<T>, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 if (h[0] is SName) {
@@ -129,7 +126,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             )
         }
 
-    override fun <T : SVari> accept(h: SList.SIter<T>, mode: String): SVari =
+    override fun <T : SVari> visit(h: SList.SIter<T>, mode: String): SVari =
         when (mode) {
             "@add" -> {
                 if (h.owner[0] is SName) {
@@ -143,6 +140,6 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             )
         }
 
-    override fun accept(h: SFile, mode: String): SVari =
+    override fun visit(h: SFile, mode: String): SVari =
         throw Exception("You can not insert File int Slot: ${names.getOrNull(0) ?: "@nameless"}")
 }

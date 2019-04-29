@@ -42,7 +42,7 @@ object VariableFactory : Visitor {
             for (i in (typescopy.size - 2)..0)
                 if (typescopy[i] != SType["List"]) throw Exception("Inconsistent type.type List")
             for (i in (typescopy.size - 2)..0)
-                tmp = tmp.visit(this, "BildIntoList")
+                tmp = tmp.accept(this, "BildIntoList")
         }
         return if (iter)
             (tmp as SList<*>).iter
@@ -51,15 +51,15 @@ object VariableFactory : Visitor {
     }
 
 
-    override fun accept(h: SFile, mode: String): SList<SFile> = SList(mutableListOf())
-    override fun accept(h: SSlot, mode: String): SList<SSlot> = SList(mutableListOf())
-    override fun accept(h: SSpec, mode: String): SList<SSpec> = SList(mutableListOf())
-    override fun accept(h: SType, mode: String): SList<SFile> = SList(mutableListOf())
-    override fun accept(h: SInst, mode: String): SList<SInst> = SList(mutableListOf())
-    override fun accept(h: STemp, mode: String): SList<STemp> = SList(mutableListOf())
-    override fun accept(h: SRefe, mode: String): SList<SRefe> = SList(mutableListOf())
-    override fun <T : SVari> accept(h: SList<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
-    override fun <T : SVari> accept(h: SList.SIter<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
-    override fun accept(h: SText, mode: String): SList<SText> = SList(mutableListOf())
-    override fun accept(h: SName, mode: String): SList<SName> = SList(mutableListOf())
+    override fun visit(h: SFile, mode: String): SList<SFile> = SList(mutableListOf())
+    override fun visit(h: SSlot, mode: String): SList<SSlot> = SList(mutableListOf())
+    override fun visit(h: SSpec, mode: String): SList<SSpec> = SList(mutableListOf())
+    override fun visit(h: SType, mode: String): SList<SFile> = SList(mutableListOf())
+    override fun visit(h: SInst, mode: String): SList<SInst> = SList(mutableListOf())
+    override fun visit(h: STemp, mode: String): SList<STemp> = SList(mutableListOf())
+    override fun visit(h: SRefe, mode: String): SList<SRefe> = SList(mutableListOf())
+    override fun <T : SVari> visit(h: SList<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
+    override fun <T : SVari> visit(h: SList.SIter<T>, mode: String): SList<SList<T>> = SList(mutableListOf())
+    override fun visit(h: SText, mode: String): SList<SText> = SList(mutableListOf())
+    override fun visit(h: SName, mode: String): SList<SName> = SList(mutableListOf())
 }

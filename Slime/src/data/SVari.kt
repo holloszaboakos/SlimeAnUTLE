@@ -22,11 +22,10 @@ abstract class SVari(val typeName: String, _names: List<SName>) {
 
     abstract fun listPaths(): SList<SList<SName>>
     abstract fun copy(names: List<SName> = listOf()): SVari
-    abstract fun extend(): String
-    abstract fun extend(divider: String): String
+    abstract fun extend(divider: String=""): String
     abstract fun plus(v: SVari, i: Int = -1): SVari
     abstract fun get(path: SList<SName>): SVari
     abstract fun delete(path: SList<SName>)
-    abstract fun visit(v: Visitor, mod: String): SVari
+    abstract fun accept(v: Visitor, mod: String): SVari
 
 }

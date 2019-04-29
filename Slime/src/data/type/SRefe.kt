@@ -25,8 +25,6 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
 
     override fun copy(names: List<SName>): SRefe = SRefe(pattern, types.toMutableList(), names)
 
-    override fun extend(): String = pattern
-
     override fun extend(divider: String): String = pattern
 
     override fun plus(v: SVari, i: Int): SVari =
@@ -50,7 +48,6 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     else -> throw  Exception("unknown keyword for slot: ${names.getOrNull(0) ?: "@nameless"}")
                 }
             }
@@ -58,5 +55,5 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
 
     override fun delete(path: SList<SName>) = throw Exception("You can not delete variable form a reference.")
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

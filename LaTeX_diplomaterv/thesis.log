@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.24)  24 APR 2019 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.24)  28 APR 2019 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -758,7 +758,7 @@ LaTeX Info: Redefining \cite on input line 694.
 (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-(./include/tdk-variables.tex) (./include/thesis-en.tex) (./include/preamble.tex
+(./include/tdk-variables.tex) (./include/thesis-hu.tex) (./include/preamble.tex
 Package hyperref Info: Option `unicode' set `true' on input line 39.
 Package hyperref Info: Option `pdfnewwindow' set `true' on input line 39.
 Package hyperref Info: Option `colorlinks' set `true' on input line 39.
@@ -870,7 +870,7 @@ LaTeX Info: Redefining \mit on input line 577.
 
 (./include/titlepage.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 1.
-<figures/bme_logo.pdf, id=167, 705.63625pt x 188.705pt>
+<figures/bme_logo.pdf, id=195, 705.63625pt x 188.705pt>
 File: figures/bme_logo.pdf Graphic file (type pdf)
 <use figures/bme_logo.pdf>
 Package pdftex.def Info: figures/bme_logo.pdf  used on input line 7.
@@ -945,7 +945,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 32.
 \openout2 = `content/introduction.aux'.
 
  (./content/introduction.tex
-Chapter 1.
+1. fejezet.
 ) [1
 
 
@@ -954,13 +954,7 @@ Chapter 1.
 \openout2 = `content/semantic_parsing_with_graph_transformations.aux'.
 
  (./content/semantic_parsing_with_graph_transformations.tex
-Chapter 2.
-
-Underfull \hbox (badness 3679) in paragraph at lines 12--13
-\T1/lmr/m/n/10.95 A nyelvészet szem-lélete sz-erint bárme-lyik em-beri nyelv sz
--in-taxisa leírható egy
- []
-
+2. fejezet.
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 17.
 (/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1019,62 +1013,49 @@ LaTeX Warning: Command \' invalid in math mode on input line 69.
 
 LaTeX Warning: Command \' invalid in math mode on input line 131.
 
-[6]
-Underfull \hbox (badness 2334) in paragraph at lines 160--161
-\T1/lmr/m/n/10.95 A TTA(Tag Tree Al-ge-bra) nak, mint az SA-nak, csak egy m¶vel
-ete van, az
- []
-
-[7] [8] [9] [10]
-Underfull \hbox (badness 1292) in paragraph at lines 280--281
-\T1/lmr/m/n/10.95 Az ALTO m¶ködése it-er-atív. Végig iterál az összes lehet-ség
-es lev-ezetési fán a
- []
-
-[11] [12] [13]
+[6] [7] [8] [9] [10] [11] [12]
 Overfull \hbox (61.851pt too wide) in paragraph at lines 329--329
 []\T1/lmtt/m/n/10.95 {$ szül® címke $} -> _{$ szül® címke$}_unary_{$ gyerek cím
 ke $} ({$ gyerek címke $} )[] 
  []
 
-[14]) [15]
+[13]) [14]
 \openout2 = `content/slime.aux'.
 
  (./content/slime.tex
-Chapter 3.
-[16
+3. fejezet.
+[15
 
 
 
-] [17] [18]
+] [16] [17] [18]
 
-LaTeX Warning: Command \textquoteleft invalid in math mode on input line 181.
-
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 181.
+LaTeX Warning: Command \textquoteleft invalid in math mode on input line 295.
 
 
-LaTeX Warning: Command \textquoteleft invalid in math mode on input line 182.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 295.
 
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 182.
+LaTeX Warning: Command \textquoteleft invalid in math mode on input line 296.
 
 
-LaTeX Warning: Command \textquoteleft invalid in math mode on input line 183.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 296.
 
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 183.
+LaTeX Warning: Command \textquoteleft invalid in math mode on input line 297.
 
-[19] [20] [21] [22] [23] [24]) [25]
-\openout2 = `content/acknowledgement.aux'.
 
- (./content/acknowledgement.tex)
-Underfull \hbox (badness 3635) in paragraph at lines 5--87
-\T1/lmr/m/n/10.95 Köszönöm min-denk-inek, aki munkásságá-val és vagy je-len-lét
-ével a sza-k-dol-go-zat
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 297.
+
+[19] [20] [21] [22] [23] [24] [25] [26] [27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 928--929
+[]\T1/lmr/m/n/10.95 agramatikus;6-os a ma-i-ból;dávid email;szöveg tisz-tá-zá-
  []
 
-[26
+) [29]
+\openout2 = `content/acknowledgement.aux'.
+
+ (./content/acknowledgement.tex) [30
 
 
 
@@ -1083,21 +1064,16 @@ No file thesis.bbl.
 \openout2 = `content/appendices.aux'.
 
 (./content/appendices.tex
-<figures/TeXstudio.png, id=326, 1002.74625pt x 799.98875pt>
+<figures/TeXstudio.png, id=373, 1002.74625pt x 799.98875pt>
 File: figures/TeXstudio.png Graphic file (type png)
 <use figures/TeXstudio.png>
 Package pdftex.def Info: figures/TeXstudio.png  used on input line 17.
 (pdftex.def)             Requested size: 426.79134pt x 340.4973pt.
- [27
+ [31
 
 
 
- <./figures/TeXstudio.png (PNG copy)>]
-Underfull \hbox (badness 1400) in paragraph at lines 22--22
-[]\T1/lmr/bx/n/14.4 Válasz az ,,Élet, a világ-min-den-ség, meg min-den''
- []
-
-) [28
+ <./figures/TeXstudio.png (PNG copy)>]) [32
 
 ]
 \tf@thm=\write5
@@ -1105,7 +1081,8 @@ Underfull \hbox (badness 1400) in paragraph at lines 22--22
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
- (./thesis.aux (./include/project.aux) (./include/titlepage.aux)
+
+(./thesis.aux (./include/project.aux) (./include/titlepage.aux)
 (./include/declaration.aux) (./content/abstract.aux)
 (./content/introduction.aux)
 (./content/semantic_parsing_with_graph_transformations.aux)
@@ -1114,25 +1091,25 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 107.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 107.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9D5E30DDD7F141F33236B0BF6060D47C;5860.
+(rerunfilecheck)             Checksum: AC1B2095354B8078DBEEFFEBB1E06A7B;7256.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 107.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 401 ({)
+### simple group (level 1) entered at line 882 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14887 strings out of 492982
- 213709 string characters out of 6134896
- 309271 words of memory out of 5000000
- 18146 multiletter control sequences out of 15000+600000
+ 14902 strings out of 492982
+ 214080 string characters out of 6134896
+ 309085 words of memory out of 5000000
+ 18154 multiletter control sequences out of 15000+600000
  71950 words of font info for 51 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
- 38i,12n,41p,1608b,572s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,41p,1608b,589s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texm
-f/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.e
-nc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/e
-nc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></
+f/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-math
+sy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/e
+nc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></
 usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/
 public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/s
 hare/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/publi
@@ -1143,10 +1120,10 @@ s/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
 ></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type
 1/public/lm/lmtl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on thesis.pdf (35 pages, 534496 bytes).
+Output written on thesis.pdf (39 pages, 553919 bytes).
 PDF statistics:
- 408 PDF objects out of 1000 (max. 8388607)
- 350 compressed objects within 4 object streams
- 44 named destinations out of 1000 (max. 500000)
- 323 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 459 PDF objects out of 1000 (max. 8388607)
+ 397 compressed objects within 4 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 379 words of extra memory for PDF output out of 10000 (max. 10000000)
 

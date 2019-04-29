@@ -478,16 +478,6 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 */
 	void exitVari(SlimeParser.VariContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SlimeParser#listName}.
-	 * @param ctx the parse tree
-	 */
-	void enterListName(SlimeParser.ListNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SlimeParser#listName}.
-	 * @param ctx the parse tree
-	 */
-	void exitListName(SlimeParser.ListNameContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SlimeParser#variPath}.
 	 * @param ctx the parse tree
 	 */
@@ -497,6 +487,16 @@ public interface SlimeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariPath(SlimeParser.VariPathContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SlimeParser#listName}.
+	 * @param ctx the parse tree
+	 */
+	void enterListName(SlimeParser.ListNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SlimeParser#listName}.
+	 * @param ctx the parse tree
+	 */
+	void exitListName(SlimeParser.ListNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SlimeParser#typeName}.
 	 * @param ctx the parse tree

@@ -580,18 +580,6 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterListName(SlimeParser.ListNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitListName(SlimeParser.ListNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterVariPath(SlimeParser.VariPathContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -599,6 +587,18 @@ public class SlimeParserBaseListener implements SlimeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariPath(SlimeParser.VariPathContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListName(SlimeParser.ListNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListName(SlimeParser.ListNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

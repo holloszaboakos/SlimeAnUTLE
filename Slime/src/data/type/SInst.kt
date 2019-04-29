@@ -35,13 +35,6 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         return result
     }
 
-    override fun extend(): String {
-        var result = ""
-        for (d in content)
-            result += d?.extend()
-        return result
-    }
-
     override fun extend(divider: String): String {
         var result = ""
         for (d in content)
@@ -80,7 +73,6 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     "cont" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this).get(path)
                     "iter" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this).iter.get(path)
                     in ctype.attributes.map { it.name } ->
@@ -130,5 +122,5 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         }
     }
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

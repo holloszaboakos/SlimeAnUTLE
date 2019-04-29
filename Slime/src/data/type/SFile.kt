@@ -29,13 +29,6 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
         return result
     }
 
-    override fun extend(): String {
-        var result = ""
-        for (c in content.values)
-            result += c.extend()
-        return result
-    }
-
     override fun extend(divider: String): String {
         var result = ""
         for (c in content.values)
@@ -65,7 +58,6 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    "copyN" -> copy(names).get(path)
                     "cont" -> content.values.toList().toSList(owner = this).get(path)
                     "iter" -> content.values.toList().toSList(owner = this).iter.get(path)
                     "outp" -> SText(output)
@@ -109,5 +101,5 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
         }
     }
 
-    override fun visit(v: Visitor, mod: String): SVari = v.accept(this, mod)
+    override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }
