@@ -14,7 +14,7 @@ irtgBase : Temp :=
 	|}
 =}
 {= 
-irtgDataBase:Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
+irtgDataBase : Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
 =}
 {= 
 termDataDog:irtgDataBase  :=  

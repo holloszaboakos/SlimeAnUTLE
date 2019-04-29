@@ -114,13 +114,117 @@ Slime esetében az alárendelt Slime kód részeket egyszerűen \{” ”\} szö
 %----------------------------------------------------------------------------
 \section{Alternatívák template-elésre }
 %----------------------------------------------------------------------------
-
-
+Rengeteg alternatíva létezik template-lés terén.
+Az itt felsoroltak csak egy ízelítő belőlük.
+Azt kívánom szemléltetni velük, hogy a ma fellelhető megoldások miben térnek el a Slime-tól.
+Nem kívánom a nyelveket kritizálni.
+Más a céljuk, így természetes, hogy nem tudnak a Slime célkitűzéseinek eleget tenni.
 
 %----------------------------------------------------------------------------
 \subsection{Mustache}
 %----------------------------------------------------------------------------
+[https://mustache.github.io]
+A Slime az egyik legtöbb forrással rendelkező templater könyvtár.
+HTML-ekre használják.
+Elérhető többek között Ruby, JavaScript, Python, PHP, Perl, Objective-C, Java, C\# /.NET, Android, C++, Go, Lua, Scala, Delphi, R, C nyelveken.
+A 46 nyelv teljes listája elérhető a hivatalos github oldalukon.
+A Kotlin ugyan még nem szerepel benne, de ami Java alatt elérhető, az Kotlin alatt is.
+Jól működik többek között a TextMate, Vim és Emacs szövegszerkesztőkkel.
 
+Logic-Less templateket használ.
+Ez annyit tesz, hogy elkülöníti a logikát és a a sablonokat.
+A mezőket dupla kapcsos zárójelekkel jelöli.
+Például: Dear \{\{ name \}\},
+A mezőkre tag ként hivatkozunk esetében.
+A "name" a tag kulcsa.
+Ezt a kulcsot fogom használni a későbbi példáimban is.
+
+Több fajtája létezik a tag-eknek:
+\begin{itemize}
+\item \emph{Variables:}
+Ezek a legalapabb tag-ek.
+Amikor a template name kulcsú tag-jébe szúrunk bele, akkor az összesbe szúrunk bele.
+Alapvetően szöktetve vannak a HTML-ből.
+Például a "<b>GitHub</b>" helyett \& lt;b\& gt;GitHub\& lt;/b\& gt; kerül a kódba.
+Ha szeretnénk, hogy ne legyenek szöktetve, akkor \{\{\{ name \}\}\} vagy \{\{\& name \}\} módra kell megadnunk őket.
+\item \emph{Sections:}
+Egy section tartalm egy vagy többször is megjelenhet.
+Elejét \{\{\# name \}\} és végét \{\{/ name \}\} módra jelöljük.
+Egy boolean értéket vár vagy listát.
+Ha false-t vagy üres listát kap, akkor nem jelenik meg.
+True esetén megjelenik egyszer.
+Nem üres lista esetén megjelenik mindegyik adat tal egymás alatt.
+Ha egy paraméter nélkül hívható objektumot adunk át neki, akkor azt meghívja és a kimenetét szúrja be a Section helyére.
+Ez lehet lambda kifejezés, funktor vagy function is.
+Ha nem listát kap, hanem más adatot, akkor egyszer jelenik meg.
+\item \emph{Inverted Sections:}
+Elejét \{\{$\cap$ name \}\} és végét \{\{/ name \}\} módra jelöljük.
+Akkor jelennek meg, ha a kulcsuk a kapott adatban nem létezik, false vagy üres lista.
+Ez például hiányzó kulcsok esetén alkalmas hiba üzenet vagy más visszajelzés megjelenítésére.
+\item \emph{Comments:}
+Mustache-ben kommentet \{\{! ignore me \}\} formátumban írhatunk.
+Ezeket bárhol kezdhetjük a szövegben, de nem kerülhetnek tag-be.
+\item \emph{Partials:}
+A \{\{> name\}\} formátumban adhatóak meg.
+Rekurzívak is lehetnek, ha nem tartalmaznak végtelen ciklust.
+Ezzel valósítja meg a mustache az importálást.
+A felső példa például a name nevű mustache fájl tartalmát jelöli.
+\item \emph{Set Delimiter:}
+Ezzel a funkcióval új jelölés vezethető be a dupla kapcsos zárójelek helyett.
+Például a \{\{=<\% \%>=\}\} a {{ name }} formátumot <\% name \%> re cseréli.
+Ez hasonló módon vissza is állítható: <\%=\{\{ \}\}=\%>
+Ez a Mustache megoldása arra, hogy váratlan szintaxisú környezetben is jól használható legyen.
+\end{itemize}
+
+Összegezve, a Mustache egy egyszerű kreatív és egyszerű templater engine.
+Ugyanakkor külső vezérlést igényel működéséhez és HTML-ekre van szakosodva.
+Nincs szöktetés, csak a tag-ek jelölése állítható dinamikusan.
+Ez ugyanakkor egy olyan képesség, amivel a SLime nem rendelkezik (még). 
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Jade}
+%----------------------------------------------------------------------------
+[https://pugjs.org/api/getting-started.html]
+A Jade az egyik legelterjedtebb templater nyelv.
+2017-ban át lett nevezve pug-gá és az új források is már így hivatkoznak rá.
+Ennek ellenére legtöbben még az eredeti nevén ismerik.
+
+Erősen HTML-re van szakosodva.
+A HTML nyitó jeleket egyszerűbben lehet benne írni.
+Például a <p> helyett p-t írunk.
+És a csukó jel teljes mértékben elhagyható.
+A tag-ek jelölésére a \#\{ name \} jelölést használja.
+\begin{verbatim}
+<a ...> ... </a> helyett 
+a(...) ...
+|
+|
+\end{verbatim}
+
+if is lehetséges benne: body(class=authenticated ? 'authed' : 'anon')
+
+A zárójelekben az elemeket enterrel tagoljuk:
+\begin{verbatim}
+input(
+  type='checkbox'
+  name='agreement'
+  checked
+)
+\end{verbatim}
+
+"-" jellel javascript is ágyazható bele.
+
+class adható meg egyszerűen így is:
+\begin{verbatim}
+a.button
+\end{verbatim}
+
+Hosszasan lehetne sorolni.
+Összegezve a pug egy nagyon fejlett és összetett nyelv.
+Erősen javascriptre és HTML-re van szakosodva.
+Előtérbe a hatékony kódolást helyezi az átláthatósággal szemben.
 
 
 %----------------------------------------------------------------------------
@@ -142,7 +246,31 @@ Slime esetében az alárendelt Slime kód részeket egyszerűen \{” ”\} szö
 
 
 %----------------------------------------------------------------------------
-\subsection{Jade templating}
+\subsection{Twig}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Smarty}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Blade}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Volt}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\subsection{Dwoo}
 %----------------------------------------------------------------------------
 
 
@@ -481,7 +609,7 @@ Szintaxis összefoglaló táblázat:
   \begin{tabular}{ | l | l | c | c | l |}
     \hline
     művelet		& jel	 	& kódnév 		& zárójel neve	& belső szintax		\\ \hline
-    deklaráció	& = 		& Decl		 	& DECL			& meta adat := érték	\\ \hline
+    deklaráció	& = 		& Decl		 	& DECL			& meta adat := érték\\ \hline
     törlés		& X vagy x	& Dele		 	& DELE			& változó neve		\\ \hline
     hozzáadás	& + 		& Plus		 	& PLUS			& elérés:+érték		\\ \hline
     kiterjesztés& * 		& Exte		 	& EXTE			& érték				\\
@@ -489,6 +617,13 @@ Szintaxis összefoglaló táblázat:
   \end{tabular}
 \end{center}
 
+Kommentelni is lehetséges. Erre a \# -es zárójeleket használjuk:
+
+\{\# Ez egy komment, ami nem jelenik meg sehol \#\}
+
+Műveleti zárójelekben szinte bárhol lehet kommentet írni.
+Bármelyik két attribútum és elválasztó jel között.
+A Típus zárójelek közül is bármyelikbe a Text kivételével, ami természetesen szökteti a komment zárójelet is.
 
 %----------------------------------------------------------------------------
 \subsection{Cont típusok}

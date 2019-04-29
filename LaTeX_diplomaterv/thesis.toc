@@ -24,23 +24,33 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.1}Bemutatkoz\IeC {\'a}s}{15}{section.3.1}
 \select@language {magyar} \contentsline {section}{\numberline {3.2}Tervez\IeC {\'e}si szempontjai}{16}{section.3.2}
 \select@language {magyar} \contentsline {section}{\numberline {3.3}Alternat\IeC {\'\i }v\IeC {\'a}k template-el\IeC {\'e}sre }{17}{section.3.3}
-\select@language {magyar} \contentsline {section}{\numberline {3.4}Az Slime alapjai}{17}{section.3.4}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Alap Szintaxis}{17}{subsection.3.4.1}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Vari \IeC {\'e}s Cont \IeC {\H o}st\IeC {\'\i }pus}{18}{subsection.3.4.2}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Sablon t\IeC {\'\i }pusa \IeC {\'e}s alkot\IeC {\'o}elemei}{19}{subsection.3.4.3}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.4}Oper\IeC {\'a}torok \IeC {\'e}s egyszer\IeC {\H u} eseteik}{20}{subsection.3.4.4}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.5}Cont t\IeC {\'\i }pusok}{22}{subsection.3.4.5}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.6}Cont t\IeC {\'\i }pusok Decl m\IeC {\H u}velete}{23}{subsection.3.4.6}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.7}Cont t\IeC {\'\i }pusok Plus m\IeC {\H u}velete}{24}{subsection.3.4.7}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.8}Cont t\IeC {\'\i }pusok \IeC {\'e}s az Exte m\IeC {\H u}velet}{25}{subsection.3.4.8}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.9}A Refe t\IeC {\'\i }pus}{25}{subsection.3.4.9}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.10}Halad\IeC {\'o} Szintaxis}{26}{subsection.3.4.10}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.11}Nevek}{27}{subsection.3.4.11}
-\select@language {magyar} \contentsline {section}{\numberline {3.5}Implement\IeC {\'a}ci\IeC {\'o}}{28}{section.3.5}
-\select@language {magyar} \contentsline {section}{\numberline {3.6}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{30}{section.3.6}
-\select@language {magyar} \contentsline {section}{\numberline {3.7}Fejlett megold\IeC {\'a}saink}{32}{section.3.7}
-\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{33}{chapter*.4}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{34}{appendix*.5}
-\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio fel\IeC {\"u}lete}{34}{section.F.1}
-\select@language {magyar} \contentsline {section}{\numberline {F.2}V\IeC {\'a}lasz az ,,\IeC {\'E}let, a vil\IeC {\'a}gmindens\IeC {\'e}g, meg minden'' k\IeC {\'e}rd\IeC {\'e}s\IeC {\'e}re}{35}{section.F.2}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{34}{chapter*.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Mustache}{17}{subsection.3.3.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Jade}{18}{subsection.3.3.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Underscore Templates}{19}{subsection.3.3.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Embedded JS Templates}{19}{subsection.3.3.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.5}HandlebarsJS}{19}{subsection.3.3.5}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.6}Twig}{19}{subsection.3.3.6}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.7}Smarty}{19}{subsection.3.3.7}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.8}Blade}{19}{subsection.3.3.8}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.9}Volt}{19}{subsection.3.3.9}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.10}Dwoo}{19}{subsection.3.3.10}
+\select@language {magyar} \contentsline {section}{\numberline {3.4}Az Slime alapjai}{19}{section.3.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Alap Szintaxis}{19}{subsection.3.4.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Vari \IeC {\'e}s Cont \IeC {\H o}st\IeC {\'\i }pus}{19}{subsection.3.4.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Sablon t\IeC {\'\i }pusa \IeC {\'e}s alkot\IeC {\'o}elemei}{21}{subsection.3.4.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.4}Oper\IeC {\'a}torok \IeC {\'e}s egyszer\IeC {\H u} eseteik}{22}{subsection.3.4.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.5}Cont t\IeC {\'\i }pusok}{24}{subsection.3.4.5}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.6}Cont t\IeC {\'\i }pusok Decl m\IeC {\H u}velete}{25}{subsection.3.4.6}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.7}Cont t\IeC {\'\i }pusok Plus m\IeC {\H u}velete}{26}{subsection.3.4.7}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.8}Cont t\IeC {\'\i }pusok \IeC {\'e}s az Exte m\IeC {\H u}velet}{27}{subsection.3.4.8}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.9}A Refe t\IeC {\'\i }pus}{27}{subsection.3.4.9}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.10}Halad\IeC {\'o} Szintaxis}{28}{subsection.3.4.10}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.11}Nevek}{29}{subsection.3.4.11}
+\select@language {magyar} \contentsline {section}{\numberline {3.5}Implement\IeC {\'a}ci\IeC {\'o}}{30}{section.3.5}
+\select@language {magyar} \contentsline {section}{\numberline {3.6}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{32}{section.3.6}
+\select@language {magyar} \contentsline {section}{\numberline {3.7}Fejlett megold\IeC {\'a}saink}{34}{section.3.7}
+\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{35}{chapter*.4}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{36}{appendix*.5}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio fel\IeC {\"u}lete}{36}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}V\IeC {\'a}lasz az ,,\IeC {\'E}let, a vil\IeC {\'a}gmindens\IeC {\'e}g, meg minden'' k\IeC {\'e}rd\IeC {\'e}s\IeC {\'e}re}{37}{section.F.2}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{36}{chapter*.4}
