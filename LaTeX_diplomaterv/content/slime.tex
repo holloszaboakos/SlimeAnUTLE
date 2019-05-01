@@ -193,9 +193,10 @@ Ennek ellenére legtöbben még az eredeti nevén ismerik.
 
 Erősen HTML-re van szakosodva.
 A HTML nyitó jeleket egyszerűbben lehet benne írni.
-Például a <p> helyett p-t írunk.
 És a csukó jel teljes mértékben elhagyható.
 A tag-ek jelölésére a \#\{ name \} jelölést használja.
+
+attribútumok:
 \begin{verbatim}
 <a ...> ... </a> helyett 
 a(...) ...
@@ -203,9 +204,9 @@ a(...) ...
 |
 \end{verbatim}
 
-if is lehetséges benne: body(class=authenticated ? 'authed' : 'anon')
+Elágazás is lehetséges benne: body(class=authenticated ? 'authed' : 'anon')
 
-A zárójelekben az elemeket enterrel tagoljuk:
+A zárójelekben az elemeket enterrel tagolja:
 \begin{verbatim}
 input(
   type='checkbox'
@@ -221,7 +222,7 @@ class adható meg egyszerűen így is:
 a.button
 \end{verbatim}
 
-Hosszasan lehetne sorolni.
+Hosszasan lehetne sorolni a szintaxis belüli változtatásokat és javascript trükköket.
 Összegezve a pug egy nagyon fejlett és összetett nyelv.
 Erősen javascriptre és HTML-re van szakosodva.
 Előtérbe a hatékony kódolást helyezi az átláthatósággal szemben.
@@ -230,50 +231,160 @@ Előtérbe a hatékony kódolást helyezi az átláthatósággal szemben.
 %----------------------------------------------------------------------------
 \subsection{Underscore Templates}
 %----------------------------------------------------------------------------
+[https://underscorejs.org]
+Onnan kapta a nevét, hogy minden függvény az \_ névtérből érhető el.
+(Én magam is sokszor használtam saját hasonló nevű Java handler osztályokat, hogy átláthatóbbak legyenek a műveleteim. 
+\_ nevű osztályokat persze a Java újabb verzióiban már nem lehet létrehozni.)
+Az Underscore nem csak templatelésre való.
+A hivatalos oldalán azzal kezdi, hogy ez egy javascript library.
+Más alatt nem is elérhető és nem kíván teljes nyelv lenni.
+Több mint 100 függvényt kínál fel.
+Funkciónális segéd ként tartalmaz map-et, filter-t és invoke-ot.
+Ezen kívül tartalmaz function binding-ot, javascript templating-et, quick index-ek készítését, deep equality testing-et.
 
+A templatelésre is számos ügyes megoldást tartalmaz.
+<\% name \%> formátumban jelöli a mezőket.
+Ennek is több verziója van, amit a mezőt megelőző karakter jelöl:
+\begin{itemize}
+\item \emph{<\%=name\%>:}
+Ezt interpolate-nak hívják. 
+Ez a legalapvetőbb mező.
+A beszúrt adatot egy az egyben beszúrja.
+\item \emph{<\%-name\%>:}
+Ezt escape.nek jóhívják.
+A beszúrt adat \& < > " ' / karakterei HTML szökteteti.
+\item \emph{<\%name\%>:}
+Ezt evaluate-nek hívják.
+Javascript kódrészleteket lehet beleszúrni.
+Például egy foreachet, ami egy listányi adaton végig megy és mindegyiket beleszúrja a mezőkbe, mindegyik beszúrással új példányt hozva létre.
+Alkalamas elágazások implementálására is.
+Képes metadatokat elérni.
+\end{itemize}
 
+A szintaxis is állítható:\_ .templateSettings = \{interpolate : /$\backslash$ \{$\backslash$\{(.+?)$\backslash$\}$\backslash$\}/g \};
+
+Míg a mustache-nál azt mutatták be, hogy hogyan lehet az Underscore mező formátumát használni, addig itt épp fordítva.
+
+Az Underscore a Mustache és a Jade(Pug) szemléletét ötvözi.
+Több féle mezőt használ, de megengedi a javascript elemek beszúrását.
+Ezzel pedig bevállalja, hogy a JavaScript-tel erős függőségben legyen.
+Ez persze JavaScript alatt a legelőnyösebb megoldás.
+A lehető legkevesebb új információ mellett lehet hatékonyan template-lni
+Engedi a szintaxis átállítását is, ami mindig hasznos, ha nincsen a nyelvben hatékony skippelés.
 
 %----------------------------------------------------------------------------
 \subsection{Embedded JS Templates}
 %----------------------------------------------------------------------------
+ [https://github.com/mde/ejs]
 
+Ez is egy libary.
+
+Jelölése az Underscore-ra hasonlít.
+Tele van hasznos funkciókkal.
+<\% \%>-tel JavaScript szúrható bele, amivel control flow is hozható létre.
+<\%= \%> szöktetett beszúrás végezhető. 
+<\%-  \%> szöktetés nélküli beszúrás.
+Tehát pont fordítva, mint az Underscore esetében.
+Newline-trim mód, ha -\%> -kal zárjuk.
+<\%\_  \_ \%>-szel Whitespace-trim mód a Control Flow számára. 
+Saját határoló jelek is bevezethetőek (pl.: <? ?> <\% \%> helyett).
+
+további jelölései:
+\begin{itemize}
+\item \emph{$<\%$ :} 'Scriptlet' tag a control-flow-nak.
+\item \emph{$<\%\_$ :} 'Whitespace Slurping' Scriptlet tag, elhagy minden whitespace-t maga előtt.
+\item \emph{$<\%=$ :} beszúrja az adatot HTML szöktetve.
+\item \emph{$<\%-$ :} beszúrja az adatot HTML szöktetés nélkül.
+\item \emph{$<\%\#$ :} kommentelés
+\item \emph{$<\%\%$ :} Egy '$<\%$'-t ad vissza
+\item \emph{$\%\%>$ :} Egy '$\%>$'-t ad vissza
+\item \emph{$\%>$ :} Egyszerű csukó tag
+\item \emph{$-\%>$ :} Trim-mode ('newline slurp') tag, az utána jövő új sor karaktereket elhagyja.
+\item \emph{$_\%>$ :} 'Whitespace Slurping' csukó tag, elhagy minden whitespace karaktert maga után.
+\end{itemize}
+
+Nagy hangsújt fektet a whitespacek kezelésére.
 
 
 %----------------------------------------------------------------------------
 \subsection{HandlebarsJS}
 %----------------------------------------------------------------------------
+[https://handlebarsjs.com]
+
+Ez a megoldás a mustache működéséhez és jelöléseihez közelít.
+Handlebar ként hivatkozunk a HandlebarsJS mezőire.
+A böngészőbe <script>-ral lehet csak bevinni.
 
 
-
-%----------------------------------------------------------------------------
-\subsection{Twig}
-%----------------------------------------------------------------------------
-
+Handlebar-oknak sok fajtája létezik:
+\begin{itemize}
+\item \emph{\{\{ name \}\} :} 
+Alap Handlebar.
+HTML szöktetést használ.
+\item \emph{\{\{\{ name \}\}\} :} 
+Handlebar HTML szöktetés nélkül.
+\item \emph{\{\{\# list name\}\} ... \{\{/list\}\} :} 
+blokkos kifejezés.
+Például ebben az esetben egy nema címkéjű lista.
+Egy listányi adatot beleszúrva mindegyikkel elvégzi a beszúrást és egymás alá listázza az eredményt.
+\item \emph{\{\{! ... \}\} ... \{\{--! ... --\}\} :} kommentelés
+\end{itemize}
 
 
 %----------------------------------------------------------------------------
 \subsection{Smarty}
 %----------------------------------------------------------------------------
+[https://www.smarty.net]
+A smarty egy rendkívül fejlett templater engine.
+Mint a legtöbb templater, PHP-ra és  HTML-re szakosodott.
+A blokkjait kapcsos zárójellel határolja.
 
+Számos funkcionalitást lehet vele a templaten belül jelölni.
+Ezeknek részletezése nem fér bele a szakdoga kereteibe, így csak a szintaxis szemléltetésének céljával sorolok fel nyelvi elemeket:
 
+\begin{itemize}
+\item \emph{variable: }
+\{\$ name \}
+A Smarty mezői.
+Ugyanakkor sokkal fejlettebbek annál.
+Ők maguk is tartalmazhatnak más változókat. 
+\item \emph{functions: }
+{funcname attr1="val1" attr2="val2"}
+\item \emph{komment: } 
+\{* This is a comment *\}
+\item \emph{import: } 
+\{include 'page\_footer.tpl'\}
+\item \emph{cycle: }
+\begin{verbatim}
+<tr class="{cycle values="odd,even"}">
+   <td>{$data[rows]}</td>
+</tr>
+\end{verbatim}
+A ciklus megvalósítása. 
+Végig iterál az értékeken.
+\item \emph{upper: } 
+\{\$name|upper\}
+Nagy betűkkel szúrja be a szöveget.
+\item \emph{foreach: } 
+\begin{verbatim}
+{foreach $nameList as $name}
+    <li>{$name}</li>
+{/foreach}
+\end{verbatim}
+Loops throw the whole array.
+Egy fejlett megoldás, ami sok féle képpen használható.
+Nem részletezem a szakdoga kereteiben.
+\item \emph{display: } 
+kiír konzolra egy templatet.
+\end{itemize}
 
-%----------------------------------------------------------------------------
-\subsection{Blade}
-%----------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Volt}
-%----------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------
-\subsection{Dwoo}
-%----------------------------------------------------------------------------
-
-
+Összefoglalva a Smarty minden műveletet kapcsos zárójelekbe zár.
+Ezeket figyelmen kívül hagyja, ha whitespace-be vannak foglalva.
+A föggvények nevét a kapcsos zárójelekkel jelöli.
+Igyekszik mindent saját nyelvi elemekkel megoldani.
+Érdekes, hogy a Smarty ismerete nélkül, a slime szintaxisa is ebbe az irányba mozdult el.
+A Smarti egy rendkívül fejlett és tartalmas nyelv.
+A Slime ennél egy sokkal egyszerűbb megközelítést követ.
 
 %----------------------------------------------------------------------------
 \section{Az Slime alapjai}
@@ -1088,7 +1199,7 @@ Tartalmaz alap függvényt a nyelv alap működéseihez.
 \item \emph{accept:}Megvalósítja a visitor patternt
 \end{itemize}
 
-Az osztájok mindegyike egyedien épül fel és működik:
+Az osztályok mindegyike egyedien épül fel és működik:
 \begin{itemize}
 \item \emph{SText:} 
 Csupán a szöveget tárolja egy String-ben.
