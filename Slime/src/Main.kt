@@ -4,7 +4,6 @@ import parser.SlimeParser
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.io.PrintWriter
-import java.util.regex.Pattern
 
 //      /home/boss/Documents/Git/SlimeAnUTLE/test_codes/test_complex_short
 //      output.irtg
@@ -16,7 +15,7 @@ fun main() {
     println("Thanks!")
     val lexer = SlimeLexer(ANTLRInputStream(InputStreamReader(FileInputStream(inputFile))) as CharStream)
     println("Lexer Ready!")
-    val parser = SlimeParser(CommonTokenStream(lexer as TokenSource) as TokenStream)
+    val parser = SlimeParser(CommonTokenStream(lexer as org.antlr.v4.runtime.TokenSource) as org.antlr.v4.runtime.TokenStream)
     println("Parser Ready!")
     val tree = parser.file()
     println("ParsTree Ready!")

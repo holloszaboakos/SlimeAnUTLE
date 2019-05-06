@@ -5,17 +5,17 @@
 They create a nameless instance of a specific Primitive Type
 
 //SLOT
-bracket: {$ name $} 
-one line: [$ name 
-compact:<$name
+bracket: {$ tag $} 
+one line: [$ tag 
+compact:<$tag
 The place where we can plus into the template. 
 It has a name it can be called by for in case the template has more slots
 To plus anything into it the plus relation must be used.
 
 //SPECIAL
-bracket: 	{@ name @} 
-one line: 	[@ name 
-compact: 	<@name
+bracket: 	{@ code @} 
+one line: 	[@ code 
+compact: 	<@code
 
 You can write special characters like this, like backspace characters etc..
 
@@ -27,27 +27,29 @@ The feature is not complite yet
 //TEXT
 bracket: {" words "} 
 one line: [" words 
-compact:+"word
+compact: <"word
 You can use this operation to skip all special character inside it.
 
 //TEMPLATE
-bracket: {| name |} 
-one line: [| name 
-compact:+|name
+bracket: {| content |} 
+one line: [| content 
+compact: <|content
 It marks a template. It can use only slots and special characters. Everithing else is skipped.
 
 
 //REFERENCE
-bracket: {$ name $} line [$ name compact:+$name
+bracket: {& type :& REGEX &} 
+one line: [& type :& REGEX 
+compact: <&type:&REGEX
 It creates a list out of the variables with a name maching the regex
 
 //OPERATION MARKERS
 They make operations on the variables
 
 //EXTEND
-bracket: {* variableName *} 
-one line [* variableName 
-compact:<*variableName
+bracket: {* variable *} 
+one line [* variable 
+compact: <*variable
 You can use this operation to plus the value of a variable into the surrounding language
 It includes a special expression.
 In case you would like to import a file, you have to use this operation too
@@ -65,7 +67,7 @@ expend file (imports file as text):
 //PLUS
 bracket: {+ left :+ right +} 
 one line: [+ left :+ right 
-compact:<+left:+right
+compact: <+left:+right
 You can use this operation to plus an element into a slot or a list of that type of elements
 "into" is the template, "here" is the slot, "this" is the other object.
 In case you would like to plus the content of a text file into a template you can use this variable
@@ -98,9 +100,9 @@ file into surrounding (imports file as code):
 {+ import:file.txt +}
 
 //DECLARE
-bracket: {= meta := value =} 
-one line [= meta := value
-compact:<=meta:=value
+bracket: {= name : type := value =} 
+one line [= name : type := value
+compact: <=name:type:=value
 You can use this operation to declare structures or any type of variable.
 First comes the name than the type than the value
 You do not have to use a name
@@ -123,7 +125,7 @@ structure instance
 //DELETE
 bracket: {x name x} 
 one line: [x name 
-compact:<xname
+compact: <xname
 You can use this operation to delete any allready created structures (including all of its instances) or any type of variable.
 You have to add only the name of the object as input.
 
@@ -132,7 +134,7 @@ You have to add only the name of the object as input.
 //Comment
 bracket: {# name #} 
 one line: [# name 
-compact:<#name
+compact: <#name
 You can add comments anywhere with this It skippes everything and it won't apeare in the final result
 
 examples in the test_codes folder

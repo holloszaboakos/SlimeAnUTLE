@@ -58,7 +58,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitRefeHead(ctx: SlimeParser.RefeHeadContext): SVari? = null
 
     override fun visitRefeBody(ctx: SlimeParser.RefeBodyContext): SRefe =
-        SRefe(ctx.children[1].text.substring(1), visitTypeName(ctx.typeName()))
+        SRefe(ctx.children[2].text, visitTypeName(ctx.typeName()))
 
 
     override fun visitRefeTail(ctx: SlimeParser.RefeTailContext): SVari? = null
@@ -138,12 +138,16 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         val vari1 = visitVari(ctx.vari(0))[0]
         val vari2 = visitVari(ctx.vari(1))[0]
         return if (ctx.childCount == 3) {
-            vari1.plus(vari2)
+            vari1.plus(vari2, SList(mutableListOf()), SList(mutableListOf()))
         } else {
             ctx.plusElement().map { visitPlusElement(it) }
                 .forEach {
                     vari1.get(it[0].map { it2 -> SName(it2) }.toSList())
-                        .plus(vari2.get(it[1].map { it2 -> SName(it2) }.toSList()))
+                        .plus(
+                            vari2.get(it[1].map { it2 -> SName(it2) }.toSList()),
+                            SList(mutableListOf()),
+                            SList(mutableListOf())
+                        )
                 }
             vari1
         }

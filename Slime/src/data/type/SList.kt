@@ -18,8 +18,12 @@ class SList<T : SVari>(
         override fun listPaths(): SList<SList<SName>> = owner.listPaths()
         override fun copy(names: List<SName>): SVari = owner.copy(names).iter
         override fun extend(divider: String): String = owner.extend(divider)
-        override fun plus(v: SVari, i: Int): SVari {
-            owner.forEach { it.plus(v, i) }
+        override fun plus(
+            v: SVari,
+            path: SList<SName>,
+            pairs: SList<SList<SName>>
+        ): SVari {
+            owner.forEach { it.plus(v, SList(mutableListOf()), SList(mutableListOf())) }
             return owner.owner ?: owner
         }
 
@@ -51,33 +55,29 @@ class SList<T : SVari>(
         return result
     }
 
-    override fun plus(v: SVari, i: Int): SVari =
+    override fun plus(
+        v: SVari,
+        path: SList<SName>,
+        pairs: SList<SList<SName>>
+    ): SVari =
         when {
-            v is SList<*> && v[0] is SName && i == -1
-            -> addNames(v.filter { it is SName }.map { it as SName })
-            v is SIter<*> && v.owner[0] is SName && i == -1
-            -> addNames(v.owner.filter { it is SName }.map { it as SName })
-            v is SName && i == -1
-            -> addNames(listOf(v))
-            v is SList<*> && v[0].ctype == content[0].ctype && i == -1
-            -> {
-                addAll(v.map { it as T });this
-            }
-            v is SList<*> && v[0].ctype == content[0].ctype && i != -1
-            -> {
-                addAll(i, v.map { it as T });this
-            }
-            v is SIter<*> && v.owner[0].ctype == content[0].ctype && i == -1
-            -> {
-                addAll(v.owner.map { it as T });this
-            }
-            v is SIter<*> && v.owner[0].ctype == content[0].ctype && i != -1
-            -> {
-                addAll(i, v.owner.map { it as T });this
-            }
+            path.isEmpty() -> {this}
             else -> {
-                content.add(v as T)
-                this
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> {
+                        when {
+                            v is SList<*> && v.size !=0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
+                    }
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
             }
         }
 

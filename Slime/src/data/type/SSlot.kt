@@ -19,7 +19,31 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     override fun extend(divider: String): String = content?.extend() ?: "{$ ${tag()} $}"
 
-    override fun plus(v: SVari, i: Int): SVari = v.accept(this, "@add")
+    override fun plus(
+        v: SVari,
+        path: SList<SName>,
+        pairs: SList<SList<SName>>
+    ): SVari =
+        when {
+            path.isEmpty() -> v.accept(this,"@plus")
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> {
+                        when {
+                            v is SList<*> && v.size !=0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
+                    }
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+        }
 
 
     override fun get(path: SList<SName>): SVari =
@@ -59,7 +83,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     override fun visit(h: SSlot, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 this.content = STemp(mutableListOf(h)); owner ?: this
             }
             else -> throw Exception(
@@ -68,7 +92,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         }
 
     override fun visit(h: SSpec, mode: String): SVari = when (mode) {
-        "@add" -> {
+        "@plus" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
@@ -84,7 +108,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     override fun visit(h: STemp, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 this.content = h; owner ?: this
             }
             else -> throw Exception(
@@ -93,7 +117,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
         }
 
     override fun visit(h: SText, mode: String): SVari = when (mode) {
-        "@add" -> {
+        "@plus" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
@@ -102,7 +126,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
     }
 
     override fun visit(h: SName, mode: String): SVari = when (mode) {
-        "@add" -> {
+        "@plus" -> {
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
@@ -114,12 +138,16 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     override fun <T : SVari> visit(h: SList<T>, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 if (h[0] is SName) {
                     addNames(h.filter { it is SName }.map { it as SName })
                     this
                 } else
-                    SList(h.map { owner?.copy()?.plus(it) ?: copy().plus(it) }.toMutableList())
+                    SList(h.map { owner?.copy()?.plus(it, SList(mutableListOf()), SList(mutableListOf())) ?: copy().plus(
+                        it,
+                        SList(mutableListOf()),
+                        SList(mutableListOf())
+                    ) }.toMutableList())
             }
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
@@ -128,12 +156,16 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     override fun <T : SVari> visit(h: SList.SIter<T>, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 if (h.owner[0] is SName) {
                     addNames(h.owner.filter { it is SName }.map { it as SName })
                     this
                 } else
-                    SList(h.owner.map { owner?.copy()?.plus(it) ?: copy().plus(it) }.toMutableList()).iter
+                    SList(h.owner.map { owner?.copy()?.plus(it, SList(mutableListOf()), SList(mutableListOf())) ?: copy().plus(
+                        it,
+                        SList(mutableListOf()),
+                        SList(mutableListOf())
+                    ) }.toMutableList()).iter
             }
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"

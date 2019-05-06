@@ -3,7 +3,7 @@ RULE_DIV:   ([\n\r\t ]+ { _input.LA(1) == '{' }?
             |[\n\r\t ]+ { _input.LA(1) == '[' }?
             |[\n\r\t ]+ { _input.LA(1) == '<' }?)->skip;
 fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )* '#}')
-              | ('[#' (~[\n\r])*        {_input.LA(1) == '\n'}?)
+              | ('[#' (~[\n\r])*        {_input.LA(1) == '\n'|| _input.LA(1) == '\r' }?)
               | ('<#'  (~[\n\r\t ])*     {_input.LA(1) == '\n'|| _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}? );
 COMM_OUTER:COMM->skip;
 //OPEN BRACKETS
@@ -72,26 +72,29 @@ COMM_REFE: COMM -> skip;
 WS_B_R:[\n\r\t ]->skip;
 BCB_REFE  : '&}' -> popMode ;
 
+REOP:':&';
 CL_B_R:':'-> type(CL);
 NAME_B_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
-REGEX : ','( ~'&' | '&' (~'}'|EOF))+;
+REGEX : {_input.LA(-1) == '&'}? ( ~[&\n\r\t ] | '&' (~[}\n\r\t ]|EOF))+;
 
 mode O_REFE;
 COMM_O_R: COMM -> skip;
 WS_O_R:[ \t]->skip;
 NL_REFE  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
 
+REOP_O_R:':&' -> type(REOP);
 CL_O_R:':'-> type(CL);
 NAME_O_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
-REGEX_O_R : ','( ~[\n\r] )+ ->type(REGEX);
+REGEX_O_R : ( ~[\n\r\t ] )+ ->type(REGEX);
 
 mode C_REFE;
 COMM_C_R: COMM -> skip;
 NW_REFE  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
 
+REOP_C_R:':&' -> type(REOP);
 CL_C_R:':'-> type(CL);
-NAME_C_R: [a-zA-Z_][a-zA-Z_0-9]*-> type(NAME);
-REGEX_C_R : ','( ~[\n\r\t ] )+ ->type(REGEX);
+NAME_C_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
+REGEX_C_R : ( ~[\n\r\t :&] )+ ->type(REGEX);
 
 
 
@@ -255,7 +258,7 @@ IN_C_T : ( ~[\n\r\t ])+ ->type(IN_B_T);
 
 mode B_TEMP;
 BCB_TEMP  : '|}' -> popMode ;
-TEXT_LINE:( ~[|\n\r{[<;] | '|' (~'}'|EOF) | [{[<] (~["@$]|EOF) )+;
+TEXT_LINE:( ~[|\n\r{[<;] | '|' (~'}'|EOF) | [{[<] (~[;"@$|]|EOF)|[{[<] {_input.LA(1) == ';'||_input.LA(1) == '|'}?)+;
 LINE_DIVIDER: ([ \t]*[\n\r][ \t]*) -> skip;
 
 BOB_SLOT_B_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
@@ -274,7 +277,7 @@ SC_B_T:';'-> type(SC);
 
 mode O_TEMP;
 NL_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
-O_TEXT_LINE: ( ~[|\n\r{[<;] | '|' (~[}\n\r]|EOF) | [{[<] (~["@$\n\r]|EOF) )+ ->type(TEXT_LINE);
+O_TEXT_LINE: ( ~[\n\r{[<;] | [{[<] (~[;"@$\n\r]|EOF)|[{[<]{_input.LA(1) == ';'}? )+ ->type(TEXT_LINE);
 
 BOB_SLOT_O_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
 BOB_SPEC_O_T : '{@' 	-> type(BOB_SPEC), pushMode(B_SLSP);
@@ -292,7 +295,7 @@ SC_O_T:';'-> type(SC);
 
 mode C_TEMP;
 NW_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
-C_TEXT_LINE: ( ~[|\n\r\t {[<;] | '|' (~[}\n\r\t ]|EOF) | [{[<] (~["@$\n\r\t ]|EOF) )+ ->type(TEXT_LINE);
+C_TEXT_LINE: ( ~[\n\r\t {[<;] | [{[<] (~[;"@$\n\r\t ]|EOF|{_input.LA(1) == ';'}?) )+ ->type(TEXT_LINE);
 
 BOB_SLOT_C_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
 BOB_SPEC_C_T : '{@' 	-> type(BOB_SPEC), pushMode(B_SLSP);

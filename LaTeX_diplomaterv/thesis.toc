@@ -44,9 +44,20 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.4.11}Nevek}{31}{subsection.3.4.11}
 \select@language {magyar} \contentsline {section}{\numberline {3.5}Implement\IeC {\'a}ci\IeC {\'o}}{32}{section.3.5}
 \select@language {magyar} \contentsline {section}{\numberline {3.6}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{34}{section.3.6}
-\select@language {magyar} \contentsline {section}{\numberline {3.7}Fejlett megold\IeC {\'a}saink}{36}{section.3.7}
-\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{37}{chapter*.4}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{38}{appendix*.5}
-\select@language {magyar} \contentsline {section}{\numberline {F.1}A TeXstudio fel\IeC {\"u}lete}{38}{section.F.1}
-\select@language {magyar} \contentsline {section}{\numberline {F.2}V\IeC {\'a}lasz az ,,\IeC {\'E}let, a vil\IeC {\'a}gmindens\IeC {\'e}g, meg minden'' k\IeC {\'e}rd\IeC {\'e}s\IeC {\'e}re}{39}{section.F.2}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{38}{chapter*.4}
+\select@language {magyar} \contentsline {section}{\numberline {3.7}Felhaszn\IeC {\'a}l\IeC {\'a}s}{36}{section.3.7}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.1}IRTG}{36}{subsection.3.7.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.2}ANTLR}{36}{subsection.3.7.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.3}HTML}{37}{subsection.3.7.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.4}XML}{37}{subsection.3.7.4}
+\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{38}{chapter*.4}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{39}{appendix*.5}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}P\IeC {\'e}lda 1}{39}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}P\IeC {\'e}lda 2}{39}{section.F.2}
+\select@language {magyar} \contentsline {section}{\numberline {F.3}P\IeC {\'e}lda 3}{40}{section.F.3}
+\select@language {magyar} \contentsline {section}{\numberline {F.4}P\IeC {\'e}lda 4}{40}{section.F.4}
+\select@language {magyar} \contentsline {section}{\numberline {F.5}P\IeC {\'e}lda 5}{41}{section.F.5}
+\select@language {magyar} \contentsline {section}{\numberline {F.6}P\IeC {\'e}lda 6}{42}{section.F.6}
+\select@language {magyar} \contentsline {section}{\numberline {F.7}P\IeC {\'e}lda 7}{44}{section.F.7}
+\select@language {magyar} \contentsline {section}{\numberline {F.8}P\IeC {\'e}lda 8}{44}{section.F.8}
+\select@language {magyar} \contentsline {section}{\numberline {F.9}P\IeC {\'e}lda 9}{44}{section.F.9}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{39}{chapter*.4}
