@@ -27,15 +27,30 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
 
     override fun extend(divider: String): String = pattern
 
-    override fun plus(v: SVari, i: Int): SVari =
+    override fun plus(
+        v: SVari,
+        path: SList<SName>,
+        pairs: SList<SList<SName>>
+    ): SVari =
         when {
-            v is SList<*> && v[0] is SName && i == -1
-            -> addNames(v.filter { it is SName }.map { it as SName })
-            v is SList.SIter<*> && v.owner[0] is SName && i == -1
-            -> addNames(v.owner.filter { it is SName }.map { it as SName })
-            v is SName && i == -1
-            -> addNames(listOf(v))
-            else -> throw Exception("You can not add into a reference.")
+            path.isEmpty() -> {this}
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> {
+                        when {
+                            v is SList<*> && v.size !=0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
+                    }
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
         }
 
     override fun get(path: SList<SName>): SVari =

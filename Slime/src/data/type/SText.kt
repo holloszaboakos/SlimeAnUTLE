@@ -16,15 +16,39 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
 
     override fun extend(divider: String): String = content
 
-    override fun plus(v: SVari, i: Int): SVari = when {
-        v is SList<*> && v[0] is SName && i == -1
-        -> addNames(v.filter { it is SName }.map { it as SName })
-        v is SList.SIter<*> && v.owner[0] is SName && i == -1
-        -> addNames(v.owner.filter { it is SName }.map { it as SName })
-        v is SName && i == -1
-        -> addNames(listOf(v))
-        else -> throw Exception("You can not add into a text.")
-    }
+    override fun plus(
+        v: SVari,
+        path: SList<SName>,
+        pairs: SList<SList<SName>>
+    ): SVari =
+        when {
+            path.isEmpty() -> {
+                when {
+                    v is SList<*> && v.size !=0 && v[0] is SText
+                    -> v.filter { it is SText }.map { it as SText }.forEach{content+=it.content}
+                    v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                    -> v.owner.filter { it is SText }.map { it as SText }.forEach{content+=it.content}
+                    v is SText -> content+=v.content
+                }
+                this}
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> {
+                        when {
+                            v is SList<*> && v.size !=0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
+                    }
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+        }
 
     override fun get(path: SList<SName>): SVari =
         when {

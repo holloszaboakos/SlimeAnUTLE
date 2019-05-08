@@ -857,7 +857,9 @@ Például az inst1 nevű Inst attr3 nevű List típusú attribútumának a harma
 
 A Type alapvetően név$--$típus párokkal adható meg:
 
-\{= tempi : Type := te1 : Text, te2 : Text, sp1 : Spec, sp2 : Spec, sl1 : Slot, sl2 : Slot=\}
+\{= tempi : Type := te1 : Text, te2 : Text, 
+
+sp1 : Spec, sp2 : Spec, sl1 : Slot, sl2 : Slot=\}
 
 Ugyanakkor azonos típust attribútumoknál elég a típust egyszer jelölni:
 
@@ -866,11 +868,15 @@ Ugyanakkor azonos típust attribútumoknál elég a típust egyszer jelölni:
 Megadható ugyan a nevek és típus listák két listájával is:
 \todo{Tényleg nem értem, miért \texttt{List:Type}}
 
-\{= tempi : Type := \{+ :List:Name := te1, te2, ... +\}, \{+ :List:List:Type := \{+ List:Type := Text +\}, \{+ List:Type := Text +\}, .... +\} =\}
+\{= tempi : Type := \{+ :List:Name := te1, te2, ... +\}, 
+
+\{+ :List:List:Type := \{+ List:Type := Text +\}, \{+ List:Type := Text +\}, .... +\} =\}
 
 és a név$--$típus párok mint listák listájaként:
 
-\{= tempi : Type := \{+ :List:Vari := te1, \{+ List:Type := Text +\} +\}, \{+ :List:List:Type := te2, \{+ List:Type := Text +\} +\} .... =\}
+\{= tempi : Type := \{+ :List:Vari := te1, \{+ List:Type := Text +\} +\}, 
+
+\{+ :List:List:Type := te2, \{+ List:Type := Text +\} +\} .... =\}
 
 De ezeket magától értetődő okokból nem használjuk.
 Használatuk csak az egységesség okán lehetséges.
@@ -883,7 +889,9 @@ Az Inst-eknél definiálhatjuk, hogy melyik attribútumoknak adunk értéket:
 
 de erre sem vagyunk kötelesek, ha az értékeket sorrendben adjuk meg:
 
-\{= t1 : tempi := \{”text”\}, \{”text”\}, \{”text”\}, \{@e@\}, \{@e@\}, \{@e@\}, \{\$slotty\$\}, \{\$slotty\$\} =\}
+\{= t1 : tempi := \{”text”\}, \{”text”\}, \{”text”\}, 
+
+\{@e@\}, \{@e@\}, \{@e@\}, \{\$slotty\$\}, \{\$slotty\$\} =\}
 
 Nem vagyunk kötelesek minden attribútumnak értéket adni.
 Ha egyes attribútum típusokból az utolsóknak nem kívánunk értéket adni, akkor az a későbbi verziókban kihagyható lesz.
@@ -908,7 +916,9 @@ Plus: \{+ list1 :+ vari1 +\}
 Akár adott indexen is:
 
 \{+ list1.1 :+ vari1 +\} 
+
 \{\# A második eleme lesz a listának. 
+
 A második elem nem cserélődik le, csak eltolódik \#\}
 
 Lehet vele Inst attribútumának értéket adni:
@@ -925,7 +935,9 @@ Az eredményül kapott Temp-eket egy listában téríti vissza.
 Egy Cont változót egy másikba szúrva, specifikálható, hogy az egyik elemeit a másik melyik elemeibe szúrja bele:
 \todo{Itt hol szúrunk Contba? Ez egy template. Megint, példa!}
 
-\{+ temp1 :+ \{= :List:Temp :+ temp2, temp3, temp4 =\} : slot1 :+ 2 , slot2 :+ 1, slot3 :+ 0   +\} 
+\{+ temp1 :+ \{= :List:Temp :+ temp2, temp3, temp4 =\}
+
+ : slot1 :+ 2 , slot2 :+ 1, slot3 :+ 0   +\} 
 
 Ekkor szókásos mód a bal oldali változót téríti vissza. 
 
@@ -1050,13 +1062,18 @@ Ha még csak az NNrule-oknak alapul szolgáló Temp létezik NNruleBase néven,
 akkor a Tempek elkészítése és listába mentése is tömören elvégezhető:
 \todo{Ez tök jó, de gyk. ezt fel kellene bontani az egyes műveletekre (belülről kifelé) és le kellene írni az egyes lépések eredményét}
 
-\{= NNrules : List:Temp := \{+ NNruleBase +: \{= :Iter:Temp := \{\& NNdataBase: NNdata[0-9]+ \&\} =\} +\} =\}
+\{= NNrules : List:Temp := \{+ NNruleBase +: 
+
+\{= :Iter:Temp := \{\& NNdataBase: NNdata[0-9]+ \&\} =\} 
+
++\} =\}
 
 Segítségével a törlés elvégezhető:
 
 \{x temp1 ; specL1; \{\& NNdataBase: NNdata[0-9]+ \&\} x\}
 
 Ekkor a törlés minden név szerint megtörténik.
+
 
 
 %----------------------------------------------------------------------------
@@ -1124,6 +1141,7 @@ Temp-ben ezen kívül nincs minden szöveg Text zárójelben.
 A legtöbb a beágyazott zárójeleken kívül helyezkedik el. 
 Éppen ezért van szükség kompakt Slot és Spec esetén, arra hogy a záró whitespace ne a környezet része legyen. 
 Különben a kompakt zárójelek nagyon beleolvadnának (Refe : Ezt még be kell vezetni … )
+
 
 
 %----------------------------------------------------------------------------
@@ -1317,31 +1335,39 @@ Hosszú távon a cél a data oriented programozás eszközeinek maximális lefed
 
 \begin{itemize}
 \item \emph{Eddigi fázisok:}
+Ezek azok a fázisok, amiket már meghaladtunk.
+Csak absztrakt rétegek magamnak.
+Nem jelennek meg sem a giten, sem jegyzetekben.
 \begin{itemize}
 \item \emph{base:}
 Legfőbb célja az alapvető működésnek a megvalósítása volt. 
-Csupán a TEXT, SPEC, SLOT, TEMP, DECL, DELE, PLUS és EXTE típusokat tartalmazta.
-Típusok közül is csak a négy típus jelölő zárójelhez tartozó tíousokat jelölte.
+Csupán a TEXT, SPEC, SLOT, TEMP, DECL, DELE, PLUS és EXTE zárójeleket tartalmazta.
+Típusok közül is csak a négy típus jelölő zárójelhez tartozó típusokat jelölte.
 Nem volt lehetséges sem importálni, se referenciát használni, sem a neveket manipulálni.
 Sokkal inkább volt egy proof of concept, mint valós nyelv. 
 Sok jelölés eltért a véglegestől
+
 \item \emph{cont:}
-Itt jelentek meg a többi típus és zárójel.
+Itt jelent meg a többi típus és zárójel.
 Minden a File, Name és Iter kivételével.
 Innentől lehetett egy zárójelben több műveletet is végezni.
 Már ekkor is a nyelvvel hatékony eredményeket lehetett elérni a redundancia csökkentés terén.
 Már itt is működött a Temp Plus List of Inst módszer az adatok hatékony tárolására és a Temp-ek
 hatékony generálására.
+A szintaxison innentől csak igazításokat végeztünk.
+A nyelvet innentől minősíthetjük használhhatónak.
 \item \emph{full:}
 Itt jelent meg az Iter, File és Name.
 Illetve itt jelentek meg az egysoros és kompakt zárójelek.
-Az eddigi kódok harmadukra estek össze.
+Az eddigi IRTG generáló kódok harmadukra estek össze.
 Innentől a nyelvnek már az összes kezdetektől tervezett funkcionalitása meg van valósítva.
 Ekkora alakult ki a szintaxis végleges formája.
 Minden jövőbeli szintaxis ezzel már visszafele kompatibilis lesz.
 \end{itemize}
 
 \item \emph{Már megtervezett fázisok:}
+Azok a funkciók, amik csak az implementálásra várnak.
+Csupán a szakdogára jutott időkeret szűkössége miatt nem valósultak meg.
 \begin{itemize}
 \item \emph{clean:}
 A szűk fejlesztési határidő miatt sok ideiglenes megoldás került a nyelvbe.
@@ -1357,17 +1383,35 @@ Elhagyhatóak lesznek a a felesleges típus megadások.
 A zárójelek által visszatérített Vari-kból egyből lekérdezhetőek lesznek az attribútumaik. 
 Összevonható lesz a négy alap művelet.
 Így minden művelet eredménye egyből kiírható lesz.
+
 \item \emph{data:}
 Be lesz vezetve a data oriented programming.
 Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
 Meg lesz valósítva a saját tároló típus.
 A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
 \todo{Meh. Dobd.}
+
 \item \emph{test:}
 A nyelv teljes teszt lefedettségének megvalósítása.
 Innentől a fordító tökéletes működése teljes mértékben biztosított lesz.
 Ez tartva is lesz a jövőbeli verziókra is. \todo{Középső két mondatot dobd el.}
 A teszt fájlokból részletes dokumentáció is készülni fog.
+\item \emph{text:}
+Ebben a fázisban ki fogjuk bővíteni a szöveg kezelési műveleteket.
+A szöveget karakter lánc ként fogjuk látni, és tudni fogjuk kezelni.
+A templateket is szöveg ként fogjuk látni, ahol minden Spec és Slot egy karakternyi helyet foglal.
+Bejön a replace, substring és minden a C nyelvekből ismert String művelet.
+\end{itemize}
+
+\item \emph{A következő lépések:}
+Azok a lépések, amik körül már sok párbeszéd történt.
+Szándék és erőforrás is van arra, hogy meg valósuljanak pár éven belül.
+\begin{itemize}
+\item \emph{data:}
+Be lesz vezetve a data oriented programming.
+Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
+Meg lesz valósítva a saját tároló típus.
+A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
 \item \emph{vers:}
 A letisztított és áthangolt nyelvből több verzió fog készülni.
 A sokat említett c++20 verzió lesz az első.
@@ -1385,11 +1429,20 @@ említetted korábban (C++). Szóval az OK, de itt inkább indokolni kellene, mi
 megtervezni.}
 \item \emph{Tervezésre váró fázisok:}
 \begin{itemize}
+
 \item \emph{logic:}
 Bevezetésre kerülnek az alap vezérlési elemek.
 If-else helyett a kotlinos when struktőrákból fog kiindulni.
 Az iterátorokat tovább fejlesztve az alapvető ciklusok minden típusát tartalmazni fogja.
 A tároláshoz is be lesznek vezetve új Cont típusok.
+\end{itemize}
+
+\item \emph{További koncepciók:}
+Azok a lépések, amik meghaladják a jelenlegi erőforrásokat.
+Vagy túl sok vagy túl bonyolult módosításokat igényelnek.
+Ugyanakkor még így is hatással vannak a nyelvre.
+Amikor két túl hasonló design irány között kell dönteni, gyakran ezek a lépések is tervben vannak.
+\begin{itemize}
 \item \emph{algeb:}
 Bevezetésre kerül egy saját gráfalgebra, ami az SGA javítása lesz.
 Ezeknek bejárására és kezelésére is számos módot tesz majd lehetővé.
@@ -1407,9 +1460,85 @@ Ez azt jelentené, hogy a Slime egy az IRTG-t meghaladó nyelv lesz, ami az IRTG
 
 \end{itemize}
 
+Természetesen ezek a fázisok minél nagyobb távra mutatnak, annál rugalmasabbak.
+Ugyanakkor fontos irányvonalakat szemléltetnek, és jól mutatják a projekt mögötti ambíciót.
+
+
 
 %----------------------------------------------------------------------------
-\section{Fejlett megoldásaink}
+\section{Felhasználás}
 %----------------------------------------------------------------------------
+
 \todo{Yuck, ez rossz cím. :)}
+
+A nyelv elsődleges célja az IRTG kiegészítése volt, de ennél több helyen is hatékonynak bizonyult.
+Az IRTG-n kívül a nyelv jól használható az ANTLR nyelvtanain, HTML kódokon és XML kódokon.
+Ezeken kívánom bemutatni alap példákon.
+
+
+%----------------------------------------------------------------------------
+\subsection{IRTG}
+%----------------------------------------------------------------------------
+Mivel az IRTG volt a fő célpontunk, ebből készült a legtöbb példakód.
+IRTG-n teszteltük a nyelv szintaxisát és működését.
+Ezen szemléltettük a különböző szintű műveleteket.
+A nyelvtanok közül hármat kívánok bemutatni.
+Mind a három ugyanazt a feladatot látja el, de a nyelv más szintjén.
+
+Az első nyelvtan a base fázis után készült közvetlen.
+Csak a legalapvetőbb zárójel típusokat tartalmazta.
+Például tárolókból is kizárólag a Temp-et.
+[lásd példa ... ]
+
+A második már a nyelvet egy mechanikailag fejlett szinten mutatja be.
+Az adatokkat is külön fájlba rendezi.
+Szintaxisból viszont csak a legalapvetőbb megoldásokat tartalmazza.
+[lásd példa ...]
+
+A harmadik megoldás a fejlett szintaxis szemléltetését célozza meg.
+Az adatokat egy fájlban tárolja a műveletekkel, de egy sokkal tömörebb formában.
+Alkalmaz minden elérhetőfunkciót a Slime-ból, ami indokolt.
+[lásd példa ...]
+
+Ezeken kívül jelenleg is dolgozunk egy megoldáson, hogy beépítjük a Slime-ot a jelenlegi IRTG generátorba.
+Itt a generált nyelvtan átlátását segíti elsősorban.
+A példa a két gyermekű NP-kre íródott és adata ezeknek egy pici részhalmazát fedi le.
+A legfejlettebb szintaxist és módszereket használja. Puzzle Strike
+[lásd példa ...]
+
+%----------------------------------------------------------------------------
+\subsection{ANTLR}
+%----------------------------------------------------------------------------
+Az ANTLR esetében a leg kézreesőbb példát hozom, a Slime lexer nyelvtanát. 
+Ezen ugyan tudtunk egyszerűsíteni, de amennyit nyertünk, annyit vesztettünk a parser egyszerűsítéséhez bevezetett type() műveletekkel.
+A lexeren belül is egy kisebb részt, a nyitó és csukó speciális zárójelek szabályait fogom leírni.
+[lásd példa ...]
+
+Így ezek a kódrészek közel negyedükre estek össze.
+
+
+%----------------------------------------------------------------------------
+\subsection{HTML}
+%----------------------------------------------------------------------------
+A HTML-ek hatékony kezelésére számos templater engine létezik.
+Ezek mivel rászakosodnak a HTML-re általánosan hatékonyabbak is a Slime-nál.
+Ennek elsődleges oka az, hogy elérhetőek library ként egy magasabb nyelvből, és onnan vezérelhetőek, vagy egy magasabb nyelv ágyazható beléjük.
+Ebben a példában azt kívánom szemléltetni, hogy a kész adatok esetén, hogyan érhetőek el a Mustache-hoz hasonló technikák.
+[lásd példa ...]
+
+Hiszek benne, hogy a Slime hamar verseny képes lesz más templater enginekkel szemben is.
+Nem cél egy az összes többinél hatékonyabb megoldást nyújtani.
+A cél egy univerzális, könnyen tanulható megközelítése a feladatnak.
+
+
+%----------------------------------------------------------------------------
+\subsection{XML}
+%----------------------------------------------------------------------------
+ XML-lel gyakran találkozunk Android fejlesztés terén.
+ Egyes gombos menük esetén is nagyon hasonló beállításokkal látjuk el a gombjainkat.
+ Ezeket pedig ha csak nem szervezzük külső fájlokba, akkor minden egyes gomb esetén kötelesek vagyunk megadni.
+ Ez Slime-mal is elkerülhető.
+ [lásd példa ...]
+
+
 

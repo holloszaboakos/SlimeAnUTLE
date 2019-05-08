@@ -60,7 +60,7 @@
 =}
 {=
 	{# I have to mark that this is a reference given by a regex #}
-	datas2 : List:Temp := {& irtgDataBase ,^termData[123]$&}
+	datas2 : List:Temp := {& irtgDataBase :& ^termData[123]$&}
 =}
 
 
@@ -84,7 +84,7 @@
 {# delete all variables #}
 {x irtgBase x}
 {x termDataBase x}
-{x {& irtgDataBase ,^termData[1,2,3]$&} x}
+{x {& irtgDataBase :& ^termData[1,2,3]$&} x}
 {x datas1 x}
 {x datas2 x}
 

@@ -42,10 +42,13 @@ object VariableFactory : Visitor {
             for (i in (typescopy.size - 2)..0)
                 if (typescopy[i] != SType["List"]) throw Exception("Inconsistent type.type List")
             for (i in (typescopy.size - 2)..0)
-                tmp = tmp.accept(this, "BildIntoList")
+                tmp = tmp.accept(this, "@BildIntoList")
         }
         return if (iter)
-            (tmp as SList<*>).iter
+            if (tmp is SList<*>)
+                tmp.iter
+            else
+                (tmp.accept(this,"@BildIntoList") as SList<*>).iter
         else
             tmp
     }

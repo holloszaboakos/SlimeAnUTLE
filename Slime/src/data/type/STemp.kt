@@ -26,8 +26,8 @@ class STemp(
                 for (path in slotPaths) {
                     val p = path.toMutableList()
                     p.add(0, slot.tag)
-                    result.plus(SList(p))
-                    result.plus(SList(mutableListOf(slot.tag)))
+                    result.plus(SList(p), SList(mutableListOf()), SList(mutableListOf()))
+                    result.plus(SList(mutableListOf(slot.tag)), SList(mutableListOf()), SList(mutableListOf()))
                 }
             }
 
@@ -49,7 +49,31 @@ class STemp(
         return result
     }
 
-    override fun plus(v: SVari, i: Int): SVari = v.accept(this, "@add")
+    override fun plus(
+        v: SVari,
+        path: SList<SName>,
+        pairs: SList<SList<SName>>
+    ): SVari =
+        when {
+            path.isEmpty() -> v.accept(this,"@plus")
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names"-> {
+                        when {
+                            v is SList<*> && v.size !=0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
+                    }
+                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                }
+            }
+        }
 
     override fun get(path: SList<SName>): SVari =
         when {
@@ -116,7 +140,7 @@ class STemp(
 
     override fun visit(h: SSlot, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 h.owner = this;content.add(h); this
             }
             else -> throw Exception(
@@ -126,7 +150,7 @@ class STemp(
 
     override fun visit(h: SSpec, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 content.add(h); this
             }
             else -> throw Exception(
@@ -139,13 +163,15 @@ class STemp(
 
     override fun visit(h: SInst, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 for (slot in slotL)
                     if (h.ctype.attributes.any { it.name.compareTo(slot.tag()) == 0 }) {
                         val a = h.ctype.attributes.find { it.name.compareTo(slot.tag()) == 0 }
                             ?: throw Exception("attribute disappeared")
                         slot.plus(
-                            h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value")
+                            h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value"),
+                            SList(mutableListOf()),
+                            SList(mutableListOf())
                         )
                     }
                 this
@@ -157,7 +183,7 @@ class STemp(
 
     override fun visit(h: STemp, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 content.addAll(h.content)
                 this
             }
@@ -168,7 +194,7 @@ class STemp(
 
     override fun visit(h: SText, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 content.add(h)
                 this
             }
@@ -179,7 +205,7 @@ class STemp(
 
     override fun visit(h: SName, mode: String): SVari =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 addNames(listOf(h))
                 this
             }
@@ -193,14 +219,14 @@ class STemp(
 
     override fun <T : SVari> visit(h: SList<T>, mode: String): SList<STemp> =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 if (h[0] is SName) {
                     addNames(h.filter { it is SName }.map { it as SName })
                     SList(listOf(this))
                 } else {
                     val result = SList<STemp>()
                     for (item in h) {
-                        val v = copy().plus(item)
+                        val v = copy().plus(item, SList(mutableListOf()), SList(mutableListOf()))
                         if (v is STemp)
                             result.add(v)
                         if (v is SList<*>)
@@ -217,14 +243,14 @@ class STemp(
 
     override fun <T : SVari> visit(h: SList.SIter<T>, mode: String): SList<STemp> =
         when (mode) {
-            "@add" -> {
+            "@plus" -> {
                 if (h.owner[0] is SName) {
                     addNames(h.owner.filter { it is SName }.map { it as SName })
                     SList(listOf(this))
                 } else {
                     val result = SList<STemp>()
                     for (item in h.owner) {
-                        val v = copy().plus(item)
+                        val v = copy().plus(item, SList(mutableListOf()), SList(mutableListOf()))
                         if (v is STemp)
                             result.add(v)
                         if (v is SList<*>)
