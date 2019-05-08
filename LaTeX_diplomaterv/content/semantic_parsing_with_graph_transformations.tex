@@ -93,19 +93,112 @@ A dependencianyelvtanok általában az információt egy DAO gráfon szemléltet
 Az UD projekt egy nyelvek közötti konzisztens annotációs rendszer és fa-adatbázis hatvannál is több nyelvre. Kategóriák és annotációk univerzális készletét nyújtja, miközben miközben megenged nyelvfüggő kiterjesztéseket is. A szavak közötti nyelvtani viszonyt szemlélteti, mint például az alany-állítmányi vagy tárgy-állítmányi vagy jelzői. Az UD a Stanford Dependencies-ből [hivatkozás: (De Marneffe and Manning (2008)] fejlődött ki, amelyet egyesítettek a Google univerzális címkékkel [Petrov et al. (2011)], az “Interset feature inventory”-nak egy átdolgozott részhalmazával [Zeman (2008)] és  a CoNLL-X formátum egy átdolgozott verziójával [Buchholz and
 Marsi (2006)]. Az UD lehetővé teszi nyelvfüggetlen dependenciaparszerek kiértékelését.
 
-[példaelemzést LaTexben]
+\begin{figure}[h]
+\centering 
+\xytext{
+    \xybarnode{I} 
+    &~~~&
+    \xybarnode{saw} 
+      \xybarconnect(UL,U){-2}"_{\small nsubj}"
+      \xybarconnect[18](U,UR){8}"^{\small punct}"
+      \xybarconnect[12](UR,UR){6}"^{\small obj}"
+    &~~~&
+    \xybarnode{the} 
+    &~~~&
+    \xybarnode{white} 
+    &~~~&
+    \xybarnode{cat} 
+      \xybarconnect[8](U,U){-4}"_{\small det}"
+      \xybarconnect(UL,U){-2}"_{\small amod}"
+    &~~~&
+    \xybarnode{.}
+}
+\caption{A 'I saw the white cat.' függőségi elemzése}
+\label{fig:deptreeEN}  
+\end{figure}
 
-[[a példaelemzést lophatod a diplomamunkámból (the dog was chased by the cat), aztán elmagyarázhatod az ábrát, hogy melyik dependencia mit jelent, ezzel visszanyerjük azt a terjedelmet, amit most kitöröltem, és meg is értik az olvasók, hogy miről van szó :) ]]
+\begin{figure}[h]
+\centering 
+\xytext{
+    \xybarnode{A} 
+    &~~~&
+    \xybarnode{fehér} 
+    &~~~&
+    \xybarnode{macskát} 
+      \xybarconnect[8](U,U){-4}"_{\small det}"
+      \xybarconnect (UL,U){-2}"_{\small amod}"
+    &~~~&
+    \xybarnode{láttam} 
+      \xybarconnect(U,UR){-2}"_{\small obj}"
+      \xybarconnect(UR,UL){2}"^{\small punct}"
+    &~~~&
+    \xybarnode{.}
+}
+\caption{Az 'A fehér macskát láttam.' függőségi elemzése }
+\label{fig:deptreeHU}  
+\end{figure}
+
+Ebből a két példából is jól látszik az UD nyelv függetlensége.
+A mondat angol és magyar verziójában a szavakat megfeleltetve az élek is könnyen megfeleltethetőek.
+Itt az élek jelentése a következő:
+\begin{itemize}
+\item \emph{punct : } 
+A feje az állítmány, a dependense pedig a mondatot záró pont vagy más írásjel.
+A mondat végi írásjelet nem mindig tűntetik fel.
+\item \emph{det : } 
+Azt jelöli, hogy a fej a dependens determinánsa. 
+Például a \textit{The} a \textit{cat}-nek és az \textit{a} a \textit{macskát}-nak determinánsa.
+\item \emph{amod: } 
+Azt jelöli, hogy a fejnek a dependens a mellékknévi módosítója.
+Például a \textit{white} a \textit{cat}-nek és az \textit{fehér} a \textit{macskát}-nak determinánsa.
+\item \emph{obj : }  
+A feje az állítmány, a dependense pedig a tárgy.
+Thát jelen esetben például a tárgy a \textit{cat} vagy a \textit{macskát}.
+\item \emph{nsubj : } 
+Azt jelöli, hogy a fejnek a dependens a névszói alanya. 
+Ekkor persze a fej a mondat állítmánya.
+Ez azért nem jelenik meg a magyar mondat esetén, mert a magyarban nem vagyunk kötelesek megadni az "én" személyes névmást.
+Magyarban az állítmány ragozása jelöli a bújtatott alanyt.
+\end{itemize}
 
 szavak közötti viszonyok, angolul és jelölésük:
 [(Jurafsky and Martin, 2018b, p. 3)]
 
-[itt meg lehetne olyan alfejezet, hogy “Szemantika”
-írhatnád benne, hogy mi az a szemantikai elemzés, hogy lehet csinálni (shallow vs. deep, vektorterek vs. gráfos cucc), de az ilyen átvezető részeket segítek majd megírni, vagyis átírok majd egyet-kettőt, ha megírtad, de olyasmik legyenek, mint a szakdolgozatomban amik vannak]
+
+%----------------------------------------------------------------------------
+\section{Szemantika}
+%----------------------------------------------------------------------------
+
+A szemantika nem foglalkozik a jelek külalakjával és szerkezetével.
+Középpontjában a jelentés áll.
+A jelentést viszont nehéz reprezentálni.
+Azt is nehéz megfogni, hogy egyes szavak mit jelentenek.
+A gyakorlatban számos megközelítés létezik a jelentés reprezentálására.
+
+Az egyik a szóvektorok.
+E szerint a szavak jelentését a környezetében felbukkanó szavak adják.
+Pontosabban annak gyakorisága, hogy amikor a szó feltűnik, akkor egyes szavak is megjelennek a környezetében.
+Ezekből a gyakoriságokból egy szótárnyi hosszú vektor készíthető.
+Itt a szavak jelentése nem más, mint egy szótár számosságnyi dimenziós térben a pozíciója.
+Itt nem csak hogy a közel azonos jelentésű szavak közel helyezkednek el egymáshoz képest, de egyes összefüggések is kihozhatóak vektor műveletek ként.
+Például a \textit{királynő} vektora megkapható a \textit{király} vektorából.
+Csak ki kell belőle vonni a \textit{férfi} vektorát és hozzá kell adnunk a \textit{nő} vektorát.
+Ugyanakkor ez a módszer csak a szavak jelentését reprezentálja.
+ 
+A másik módszer az irányított gráfok használata.
+Itt azt feltételezzük, hogy a szavak mögötti fogalmak és az azok közötti kapcsolatok adják a mondat jelentését.
+Ekkor egy gráf csúcsaiban fogalmakkal, és azok között címkézett élekkel reprezentáljuk a jelentést.
+Ennek mezei példája például egy mindmap, ahol az egymással asszociatív viszonyban lévő szavakat cimkézetlen élekkel kötjük össze.
+Ez a módszer viszont csak a mondattal foglalkozik.
+Az már más kérdés, hogy az emberek az adott fogalmakhoz milyen további jelentéseket tárasítanak.
+A 4lang is egy ilyen megközelítést alkalmaz.
+
+A szemantikai elemzés célja, hogy a nyers szövegből, vagy valamely szintaktikai reprezentációból előállítsa a szemantikai reprezentációkat.
+
 
 
 %----------------------------------------------------------------------------
-\section{4lang}
+\subsection{4lang}
 %----------------------------------------------------------------------------
 A 4lang  [(Kornai et al. (2015))] egy formalizmus, ami irányított gráfokat épít szemantikai reprezentáció céljával. A gráfban a csúcsok nem szavakat, hanem nyelvfüggetlen fogalmakat jelölnek. Ezeknek a fogalmaknak már nincsenek nyelvtani jellemzőik és a kompetens beszélők közös tudását reprezentálják a fogalomról. Például a \textit{fagy} mint főnév vagy mint ige, illetve a \textit{fagyás} vagy \textit{fagyott} szavak nincsenek megkülönböztetve a 4lang reprezentációban [itt hivatkozzuk, akinél ezt a példát először olvastuk]. Ezáltal a 4lang fogalmak és a nekik egy nyelvben megfelelő szavak között egy a többhöz kapcsolat áll fenn.
 
@@ -121,19 +214,70 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 
 
 %----------------------------------------------------------------------------
-\section{A 4lang és az UD különbségei}
+\subsection{A 4lang és az UD különbségei}
 %----------------------------------------------------------------------------
 A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a \textit{$w_1 -amod-> w_2$} viszony az UD-ból megfelel a \textit{$w_1 -0-> w_2$} viszonynak a 4lang-ból.
 
 A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikai jelentését. Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai függőségekket. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak, és a 4lang beli fogalmak között is. Ez persze azt jelenti, hogy az UD már tartalmazza a szemantikára vonatkozó információkat is, de csak közvetetten.
 
-[UD-4lang megfeleltetéses táblázat]
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+    \textbf{Dependency} & \textbf{Edge}                                      \\ \hline
+    advcl      & \edge{$w_1$}{0}{$w_2$}          \\
+    advmod     &                                           \\
+    amod       &                                           \\
+    nmod       &                                           \\
+    nummod     &                                           \\ \hline
+    appos      & \twoedges{$w_1$}{0}{0}{$w_2$}     \\
+    dislocated &                                           \\ \hline
+    csubj      & \twoedges{$w_1$}{1}{0}{$w_2$} \\
+    nsubj      &                                           \\ \hline
+    ccomp      & \edge{$w_1$}{2}{$w_2$}          \\
+    obj        &                                           \\
+    xcomp      &                                           \\                            
+    \end{tabular}
+    \caption{UD-conform version of the mapping of Table~\ref{table:mapping}.}
+    \label{table:deps}
+    \end{table}
 
 Bár a mondat UD gráfjából a 4lang gráfja levezethető, a két formalizmus tartalma mégsem ekvivalens. A 4lang gráfból már nem mindig vezethető le egyértelműen az UD.
 
-[[ide tegyél be egy példát, mert aki nem ismeri az ud-t és a 4langot, el se tudja képzelni, hogy miről van szó! vmi egyszerű UD gráf jó lesz, pl. 'the white cats'-hot hasonló (ud: cats-ből amod a white-ba és cats-ből det a the-be; 4lang: cat-ből nullás él a white-ba); ezzel illusztráljuk, hogy a 4lang gráfban nincs a szónak szófaja, egyes/többes száma (cats vs. cat), ill. a 'the' nincs benne a 4langban, így nem lehet egyértelműen visszafejteni: a cat -0-> white gráfból nem következik egyértelműen, hogy 'the white cats', mert white cat, a white cat, white cats stb. is lehetne]]
+\begin{figure}[h]
+\centering 
+\xytext{
+    \xybarnode{The} 
+    &~~~&
+    \xybarnode{white} 
+    &~~~&
+    \xybarnode{cats} 
+      \xybarconnect[8](U,U){-4}"_{\small det}"
+      \xybarconnect (UL,U){-2}"_{\small amod}"
+}
+\caption{A 'The white cat' függőségi elemzése }
+\label{fig:deptreetiny}  
+\end{figure}
 
-A többjelentésű szavak is nehezítik a helyzetet, mivel ekkor a szónak megfelelő fogalom már függ a szó környezetétől is. 
+\begin{figure}[h]
+\centering 
+\xytext{
+    \xybarnode{white} 
+    &~~~&
+    \xybarnode{cat} 
+      \xybarconnect (UL,U){-2}"_{\small 0}"
+}
+\caption{A 'The white cat' szemantikai elemzése }
+\label{fig:deptreetiny}  
+\end{figure}
+
+Ezen a példán jól látható, hogy az \textit{amod} él megfeleltethető egy \textit{0} élnek.
+Az is megfiggyelhető, hogy a névelő nem jelenik meg a 4lang gráfban, mivel nincsen önálló jelentése.
+A \textit{cats} is elveszti a többes számát, mivel fogalommá általánosul.
+A szavaknak a \textit{white} és \textit{cat} szavak szófaja sem jelenik meg a 4lang gráfon.
+A 4lang gráf nem is alakítható vissza egyértelműen UD gráffá ez elveszett információk miatt.
+
+A többjelentésű szavak is nehezítik a helyzetet, mivel ekkor a szónak megfelelő fogalom már függ a szó környezetétől is.
+Sőt egyes esetekben még a környezetből sem határozható meg egyértelműen a szóhoz társuló fogalom. 
 
 
 %----------------------------------------------------------------------------
@@ -300,7 +444,10 @@ Ugyanakkor ez már túlzottan eltér a gráfleíró nyelvek hagyományos stílus
 %----------------------------------------------------------------------------
 \section{Az IRTG és az ALTO hiányosságai}
 %----------------------------------------------------------------------------
-[Ide is kéne egy bevezető]
+Mivel a szakdogám célja az IRTG nyelv fejlesztése, ezért ebben a fejezetben az IRTG és az ALTO hiányosságairól kívánok részletes áttekintést nyújtani.
+Arra is ki kívánok térni, hogy hogyan lehetett volna, és lehetne az ezek által okozott problémákat megoldani.
+Először az IRTG-ről lesz szó, majd az LATO-val folytatom.
+
 %----------------------------------------------------------------------------
 \subsection{Az IRTG hiányosságai}
 %----------------------------------------------------------------------------
@@ -333,7 +480,7 @@ Az ALTO rengeteg felesleges munkát végez, mivel azokat a megoldásokat is kige
 Az ALTO mindennek ellenére a jelenlegi legfejlettebb program az IRTG futtatására, és állandó fejlesztés alatt áll. A pontos működését még nem ismerjük. A módosítások többsége viszont a belső működés alapos átdolgozását igényli. Erre jelenleg még nincs erőforrásunk.
 
 %----------------------------------------------------------------------------
-\section{Ideiglenes megoldások}
+\section{Jelenlegi megoldások}
 %----------------------------------------------------------------------------
 A kutatás során az IRTG-t illető problémák többségét kód generálás segítségével küszöböltük ki. Két implementáció készült python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. Kezdetben csak NP-k feldolgozása volt a cél, majd onnan terjesztettük ki az implementációkat VP-k és ADJP-k re. A generátor kódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. Nem tudtunk többen párhuzamosan fejleszteni, mert egyikünk sem értette a másik megoldását kellő mélységben.
 Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford Parserral kapott UD gráfokat kapja bemenet ként, amiket python scriptekkel készítettünk elő . Ezek a scriptek végezték a fákból a megfelelő kifejezések részfáinak a kiszedését, a részfák rendezését típus szerint és a fák UD gráfjainak a generálását a Stanford Parserrel.
@@ -362,21 +509,24 @@ Végeredményben viszont még ekkor is egy olyan programunk lett volna, ami az I
 \subsection{második generátor}
 %----------------------------------------------------------------------------
 A második generátort Ács Evelin kezdte el fejleszteni 2018 őszén.
-Ez az első generátortól teljesen független.
-Ennek oka, hogy a dokumentálás hiányában nem látták át a működést, és hogy én már nem dolgoztam ekkor a projektben.
-A generátor vívmánya, hogy a bemeneti adatokat gráf ként kezeli.
+Ez az első generátortól teljesen függetlenül készült.
+Ennek oka, hogy a dokumentálás hiányában nem látták át az első generátor működését.
+Ekkor én sem dolgoztam már a projektben, hogy orvosoljam a problémát.
+A generátor vívmánya, hogy a bemeneti adatokat gráf ként kezeli, nem pedig egyszerű szöveg ként.
 Már ez a megoldás is első sorban sablonolást használ a szabályok előállítására.
 
 Ebben a verzióban a kommentelés és tagolás a legnagyobb hiányosság. 
 Bár a projekt jelenlegi tagjai jól átlátják a szabályokat, a szükséges háttér nélkül nehéz a 2700 szabály között eligazodni. 
 Ezt persze nem lenne nehéz megoldani, mivel a szükséges adatok már rendelkezésre állnak. 
 Ha a szabályokat a baloldali szimbólum szerint és a közös ős fokszáma szerint csoportosítjuk, akkor a tagolás sem nehézkes. 
-Persze itt is a Merge és a BAR szabályok külön kategóriát képeznek. 
+Persze itt is a Merge és a BAR szabályok (a trenáris csúcsokelkészítésének két lépését megvalósító szabályok) külön kategóriát képeznének. 
 A szabályok jelenleg gyakoriság szerint vannak sorba rendezve de a név szerinti sorba rendezés is sokat segítene. 
 A kategóriákat mélység szerint is több főkategóriába lehet rendezni.
 
-A kódot legtöbben itt sem látjuk át, mivel még részletes dokumentáció nem készült. 
-A Slime első verziója nem lesz képes ilyen gráf műveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető, aki az IRTG-t és a Slime-t ismeri. 
+A kódot persze legtöbben itt sem látjuk át, mivel még részletes dokumentáció nem készült természetesen.
+Elvégre a fejlesztés jelenleg is folyamatban van. 
+A Slime első verziója nem lesz képes ilyen gráf műveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető.
+Ennek persze az IRTG és a Slime szintaxisának ismerete alapfeltétel. 
 Mindezt pedig minimális overhead-del, így csak a bemeneti adatokat szükséges generálni hozzá. 
 Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz REGEX és templatelés segítségével, a sorrend sem jelent majd problémát.
-Jelenleg úgy tűnik, hogy a hatékony megoldás a Slime és a második generátor kombinációja.
+Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a második generátor kombinációja.

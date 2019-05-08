@@ -4,6 +4,12 @@
 % TODO Change language to en_GB (recommended) or en_US for English documents
 \documentclass[11pt,a4paper,oneside]{report}             % Single-side
 %\documentclass[11pt,a4paper,twoside,openright]{report}  % Duplex
+\usepackage{xytree}
+\newcommand{\edge}[3]{\texttt{#1}~$\xrightarrow#2$~\texttt{#3}}
+\newcommand{\twoedges}[4]{\texttt{#1}~$\overset{#2}{\underset{#3}{\rightleftharpoons}}$~\texttt{#4}}
+\newcommand{\bin}[3]{
+    \texttt{#2}~$\xleftarrow1$~\texttt{#1}~$\xrightarrow2$~\texttt{#3}}
+%\usepackage{tikz}
 
 \input{include/packages}
 
