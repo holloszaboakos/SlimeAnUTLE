@@ -1328,10 +1328,12 @@ Annak az igazolása, hogy eleget tettünk a kritériumnak.
 \section{A fejlesztés fázisai}
 %----------------------------------------------------------------------------
 A Slime sok iteráción ment keresztül és még sok iteráción is fog végig menni. 
-A fejlesztés fázisai nagyon tudatos sorrendben követik egymást.
-Végső soron egy olyan nyelv a cél, ami az objektum orientált és templater nyelvek között félúton van.
-Hosszú távon a cél a data oriented programozás eszközeinek maximális lefedése.
-\todo{Írd le, miért névvel és nem verziószámmal (vagy ilyesmi) hivatkozol a verziókra.}
+A fejlesztés fázisai nagyon tudatos sorrendben követik egymást kisebb-nagyobb átfedésekkel.
+Egy olyan nyelv a cél, ami hatékony és mégis könnyen bővíthető.
+Igyekszünk mindig szem előtt tartani a modern nyelvek szintaxisát és megoldásait.
+Idővel szeretnénk minden alapvető funkcionalitást behozni a Slime-ba.
+Mérföld kövekről van szó, nem verziókról, mivel az egyes fázisok között lehetnek idő beli átfedések.
+Éppen ezért nem is verzió számmal hivatkozunk a fázisokra, hanem a céljukat összefoglaló kódnevekkel.
 
 \begin{itemize}
 \item \emph{Eddigi fázisok:}
@@ -1346,7 +1348,6 @@ Típusok közül is csak a négy típus jelölő zárójelhez tartozó típusoka
 Nem volt lehetséges sem importálni, se referenciát használni, sem a neveket manipulálni.
 Sokkal inkább volt egy proof of concept, mint valós nyelv. 
 Sok jelölés eltért a véglegestől
-
 \item \emph{cont:}
 Itt jelent meg a többi típus és zárójel.
 Minden a File, Name és Iter kivételével.
@@ -1374,7 +1375,7 @@ A szűk fejlesztési határidő miatt sok ideiglenes megoldás került a nyelvbe
 Ezeknek letisztitására kerül sor az első tervezett fázisban.
 A Name típus meg fog szűnni.
 Ha Slot-ba Temp-et, Text-et, Slot-ot, Spec-et szúrunk, az az összes tulajdonosában le fogja magát cserélni magát annak a Temp-nek a tartalmára.
-A Cont-oknak lesz egy közös őse. \todo{Nem a Cont az?}
+A Cont-oknak az implementációban is lesz egy közös őse, az SCont.
 Lehetséges lesz egy Slime fájlból több kimeneti fájl generálása.
 \item \emph{comf:}
 A nyelv kényelmes használatának érdekében sok egyszerűsítés fog történni.
@@ -1383,18 +1384,8 @@ Elhagyhatóak lesznek a a felesleges típus megadások.
 A zárójelek által visszatérített Vari-kból egyből lekérdezhetőek lesznek az attribútumaik. 
 Összevonható lesz a négy alap művelet.
 Így minden művelet eredménye egyből kiírható lesz.
-
-\item \emph{data:}
-Be lesz vezetve a data oriented programming.
-Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
-Meg lesz valósítva a saját tároló típus.
-A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
-\todo{Meh. Dobd.}
-
 \item \emph{test:}
 A nyelv teljes teszt lefedettségének megvalósítása.
-Innentől a fordító tökéletes működése teljes mértékben biztosított lesz.
-Ez tartva is lesz a jövőbeli verziókra is. \todo{Középső két mondatot dobd el.}
 A teszt fájlokból részletes dokumentáció is készülni fog.
 \item \emph{text:}
 Ebben a fázisban ki fogjuk bővíteni a szöveg kezelési műveleteket.
@@ -1403,59 +1394,74 @@ A templateket is szöveg ként fogjuk látni, ahol minden Spec és Slot egy kara
 Bejön a replace, substring és minden a C nyelvekből ismert String művelet.
 \end{itemize}
 
-\item \emph{A következő lépések:}
+\item \emph{Távlati tervek:}
 Azok a lépések, amik körül már sok párbeszéd történt.
+Éppen ezért rendelkeznek kód névvel is, bár még sok változáson mehetnek keresztül.
 Szándék és erőforrás is van arra, hogy meg valósuljanak pár éven belül.
-\begin{itemize}
-\item \emph{data:}
-Be lesz vezetve a data oriented programming.
-Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
-Meg lesz valósítva a saját tároló típus.
-A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
-\item \emph{vers:}
-A letisztított és áthangolt nyelvből több verzió fog készülni.
-A sokat említett c++20 verzió lesz az első.
-Ezt egy Kotlin és c++20 library fogja követni.
-A Kotlin verzióból is el lesz hagyva minden túlsúlyos könyvtár.
-Ez lesz az első release verzió.
-\end{itemize}
 
-\todo{Ezek már kicsit összevisszák. Én inkább ``távlati tervek'' (vagy ilyesmi)
-név alatt írnám. Nem lennének külön neveik, hanem folyó szövegben írnám, és nem
-ilyen biztosan abban, hogy mi lesz. Lehet, hogy te már tudod, de aztán úgyse
-úgy lesz... Inkább arra koncentrálnék, miért van szükség ezekre a dolgokra.
-Ugye az előző listában viszonylag egyértelmű mi miért kell (teszt), vagy már
-említetted korábban (C++). Szóval az OK, de itt inkább indokolni kellene, mint
-megtervezni.}
-\item \emph{Tervezésre váró fázisok:}
 \begin{itemize}
-
-\item \emph{logic:}
-Bevezetésre kerülnek az alap vezérlési elemek.
-If-else helyett a kotlinos when struktőrákból fog kiindulni.
+\item \emph{ctrl:}
+Be akarjuk vezetni az alap vezérlési elemeket.
+Ezekre mindenképp szükség van egy hatékony nyelvhez.
+If-else helyett a kotlinos when struktúrából fog kiindulni.
+Avagy egy zárójelben lesznek a feltétel, következmény párok.
+Ezek közül fog az első igazra kiértékelődő feltétel következménye teljesülni.
+E mellé fog készülni egy if verzió is, ami minden igazra teljesülő feltétel következményét végrehajtja.
 Az iterátorokat tovább fejlesztve az alapvető ciklusok minden típusát tartalmazni fogja.
+Itt első sorban a lambdás foreach szintaxist fogja követni, de megadható lesz Select és megállási feltétel.
 A tároláshoz is be lesznek vezetve új Cont típusok.
+
+\item \emph{dosv:}
+Ez a kódnév azt rövidíti, hogy \textit{data oriented slime version}
+Fontos, hogy a Slime fordítása hatékony legyen.
+Ezért be akarjuk vezetni a data oriented programminget.
+Minden eddigi Vari osztály egyesítve lesz egy Vari osztájjá.
+Meg lesz valósítva Egy saját tároló típus, ami az összes többit helyettesíti.
+A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
+Például minden típusnak lesz Cont és Iter attribútuma, legfeljebb üres lesz.
+Ezektől azt reméljük, hogy sokat fogunk spórolni a típus vizsgálatok és kód ismétlések elhagyásával.
+
+\item \emph{vers:}
+A letisztított és áthangolt nyelvből több verziót is akarunk készülni.
+Készülni fog egy optimalizált c++20 verzió, mivel sokkal hatékonyabb minden magasabb szintű nyelvnél.
+A Python is csak a hátterében lévő C++ könyvtárakkal tud hatékony Deep Learning tool lenni.
+Ezt egy Kotlin és c++20 library fogja követni.
+Ez azért fontos, hogy a Slime tágabb körben is alkalmazható legyen.
+Így HTML és XML esetben is hatékony eszközzé válik.
+A Kotlin verzióból is el lesz hagyva minden túlsúlyos könyvtár.
+Ez ugyan azt jelenti, hogy a parsolást is ANTLR nélkül kell megoldani, de egy saját parszer kis áldozat a potenciális teljesítményért.
+A Slime-ra az ANTLR által alkalmazottaknál jóval hatékonyabb módszerek is léteznek.
+Ez persze főleg a sűrű zárójelezésnek köszönhető.
 \end{itemize}
 
-\item \emph{További koncepciók:}
+\item \emph{Távlati koncepciók:}
 Azok a lépések, amik meghaladják a jelenlegi erőforrásokat.
 Vagy túl sok vagy túl bonyolult módosításokat igényelnek.
+Éppen ezért csak sokadlagos jelentőséggel bírnak.
 Ugyanakkor még így is hatással vannak a nyelvre.
-Amikor két túl hasonló design irány között kell dönteni, gyakran ezek a lépések is tervben vannak.
+Amikor két túl hasonló design irány között kell dönteni, ezeknek a funkcionalitásoknak a tervezett bevezetését is szem előtt tartjuk.
+Ilyenkor kényelmes a döntést a koncepció kódnevével indokolni.
 \begin{itemize}
-\item \emph{algeb:}
-Bevezetésre kerül egy saját gráfalgebra, ami az SGA javítása lesz.
-Ezeknek bejárására és kezelésére is számos módot tesz majd lehetővé.
-Lehetséges lesz float alapon tárolt számokat kezelni.
+\item \emph{alge:}
+A templatelés folyamata felfogható egy fa felépítése ként is, ahol a csúcsok a sablonok, és a csúcsoknak annyi gyermeke lehet, ahány mező van a sablonban.
+Ebben az ismétlődő részfákat összevonva már egy irányított kör mentes gráfot kezelünk.
+Ezért hasznos lenne bevezetni egy saját gráfalgebrát, ami az SGA javítása lesz.
+Ezeknek bejárására és kezelésére is számos módot tesz majd lehetővé a Slime.
+Ezen kívül az indexek és más szám adatok is nehezen kezelhetőek a Slime-ban.
+Hasznos lenne, ha a számokat kezelni lehetne.
+Ez történhetne lebegő pontos és egész ként is.
+A Slime irányzatát követve, nyilván célszerűbb lesz egy típussal kezelni a számokat. 
 \item \emph{func:}
-Bevezetésre kerül egy függvény szerű mechanizmus.
-Ennek lényege az lesz, hogy a Slime kódot tároló Temp-ek (vagy azok alpján nyugvó új osztály) futtathatóak lesznek.
+Hasznos lenne egy függvény szerű mechanizmus.
+Sokat csökkentene a Slime redundanciáján.
+Ennek lényege az lenne, hogy a Slime kódot tároló Temp-ek (vagy azok alpján nyugvó új osztály) futtathatóak lesznek.
 Ez azt jelenti, hogy hívásnál a függvény bemeneteit beillesztjük a slotokba és futtatjuk a kimenetet fájlként.
 Ez a névterekkel és Inst-ekkel együtt már egy osztályok fele hajló struktúrát fog alkotni.
 \item \emph{irtg:}
 Lehetséges lesz templatelés szinkronizálása környezet független nyelvtanokkal.
 Ez azt jelentené, hogy a Slime egy az IRTG-t meghaladó nyelv lesz, ami az IRTG funkcionalitásait is megvalósítja.
-\todo{Miért?! Nem alárendelt nyelvtől függetlennek képzelted a Slime-ot? Miért kell akkor beleragadni az IRTG-be?!}
+Ezeknek a funkcionalitásoknak a használata viszont nem lesz kötelező, így továbbra is függetlenek maradunk az IRTGtől.
+A többféle algebra kimenetét lehetséges lesz külön fájlba, vagy más bemenetre irányítani.
 \end{itemize}
 
 \end{itemize}
@@ -1466,10 +1472,8 @@ Ugyanakkor fontos irányvonalakat szemléltetnek, és jól mutatják a projekt m
 
 
 %----------------------------------------------------------------------------
-\section{Felhasználás}
+\section{Példák a Slime alkalmazására}
 %----------------------------------------------------------------------------
-
-\todo{Yuck, ez rossz cím. :)}
 
 A nyelv elsődleges célja az IRTG kiegészítése volt, de ennél több helyen is hatékonynak bizonyult.
 Az IRTG-n kívül a nyelv jól használható az ANTLR nyelvtanain, HTML kódokon és XML kódokon.

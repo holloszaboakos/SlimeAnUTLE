@@ -26,38 +26,38 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.3}Alternat\IeC {\'\i }v\IeC {\'a}k template-el\IeC {\'e}sre }{16}{section.3.3}
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Mustache}{16}{subsection.3.3.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Jade}{17}{subsection.3.3.2}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Underscore Templates}{17}{subsection.3.3.3}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Embedded JS Templates}{18}{subsection.3.3.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Underscore Templates}{18}{subsection.3.3.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.4}Embedded JS Templates}{19}{subsection.3.3.4}
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.5}HandlebarsJS}{19}{subsection.3.3.5}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.6}Smarty}{19}{subsection.3.3.6}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.6}Smarty}{20}{subsection.3.3.6}
 \select@language {magyar} \contentsline {section}{\numberline {3.4}Az Slime alapjai}{20}{section.3.4}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Alap Szintaxis}{20}{subsection.3.4.1}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Vari \IeC {\'e}s Cont \IeC {\H o}st\IeC {\'\i }pus}{20}{subsection.3.4.2}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Sablon t\IeC {\'\i }pusa \IeC {\'e}s alkot\IeC {\'o}elemei}{22}{subsection.3.4.3}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.4}Oper\IeC {\'a}torok \IeC {\'e}s egyszer\IeC {\H u} eseteik}{23}{subsection.3.4.4}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.5}Cont t\IeC {\'\i }pusok}{25}{subsection.3.4.5}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.6}Cont t\IeC {\'\i }pusok Decl m\IeC {\H u}velete}{26}{subsection.3.4.6}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.7}Cont t\IeC {\'\i }pusok Plus m\IeC {\H u}velete}{27}{subsection.3.4.7}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.8}Cont t\IeC {\'\i }pusok \IeC {\'e}s az Exte m\IeC {\H u}velet}{28}{subsection.3.4.8}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.9}A Refe t\IeC {\'\i }pus}{28}{subsection.3.4.9}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.10}Halad\IeC {\'o} Szintaxis}{29}{subsection.3.4.10}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.11}Nevek}{30}{subsection.3.4.11}
-\select@language {magyar} \contentsline {section}{\numberline {3.5}Implement\IeC {\'a}ci\IeC {\'o}}{31}{section.3.5}
-\select@language {magyar} \contentsline {section}{\numberline {3.6}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{33}{section.3.6}
-\select@language {magyar} \contentsline {section}{\numberline {3.7}Felhaszn\IeC {\'a}l\IeC {\'a}s}{35}{section.3.7}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.7.1}IRTG}{35}{subsection.3.7.1}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.7.2}ANTLR}{35}{subsection.3.7.2}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.7.3}HTML}{36}{subsection.3.7.3}
-\select@language {magyar} \contentsline {subsection}{\numberline {3.7.4}XML}{36}{subsection.3.7.4}
-\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{37}{chapter*.4}
-\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{38}{appendix*.5}
-\select@language {magyar} \contentsline {section}{\numberline {F.1}P\IeC {\'e}lda 1}{38}{section.F.1}
-\select@language {magyar} \contentsline {section}{\numberline {F.2}P\IeC {\'e}lda 2}{38}{section.F.2}
-\select@language {magyar} \contentsline {section}{\numberline {F.3}P\IeC {\'e}lda 3}{39}{section.F.3}
-\select@language {magyar} \contentsline {section}{\numberline {F.4}P\IeC {\'e}lda 4}{39}{section.F.4}
-\select@language {magyar} \contentsline {section}{\numberline {F.5}P\IeC {\'e}lda 5}{40}{section.F.5}
-\select@language {magyar} \contentsline {section}{\numberline {F.6}P\IeC {\'e}lda 6}{41}{section.F.6}
-\select@language {magyar} \contentsline {section}{\numberline {F.7}P\IeC {\'e}lda 7}{43}{section.F.7}
-\select@language {magyar} \contentsline {section}{\numberline {F.8}P\IeC {\'e}lda 8}{43}{section.F.8}
-\select@language {magyar} \contentsline {section}{\numberline {F.9}P\IeC {\'e}lda 9}{43}{section.F.9}
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{38}{chapter*.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Alap Szintaxis}{21}{subsection.3.4.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Vari \IeC {\'e}s Cont \IeC {\H o}st\IeC {\'\i }pus}{21}{subsection.3.4.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.3}Sablon t\IeC {\'\i }pusa \IeC {\'e}s alkot\IeC {\'o}elemei}{23}{subsection.3.4.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.4}Oper\IeC {\'a}torok \IeC {\'e}s egyszer\IeC {\H u} eseteik}{24}{subsection.3.4.4}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.5}Cont t\IeC {\'\i }pusok}{26}{subsection.3.4.5}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.6}Cont t\IeC {\'\i }pusok Decl m\IeC {\H u}velete}{27}{subsection.3.4.6}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.7}Cont t\IeC {\'\i }pusok Plus m\IeC {\H u}velete}{29}{subsection.3.4.7}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.8}Cont t\IeC {\'\i }pusok \IeC {\'e}s az Exte m\IeC {\H u}velet}{30}{subsection.3.4.8}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.9}A Refe t\IeC {\'\i }pus}{30}{subsection.3.4.9}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.10}Halad\IeC {\'o} Szintaxis}{31}{subsection.3.4.10}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4.11}Nevek}{32}{subsection.3.4.11}
+\select@language {magyar} \contentsline {section}{\numberline {3.5}Implement\IeC {\'a}ci\IeC {\'o}}{32}{section.3.5}
+\select@language {magyar} \contentsline {section}{\numberline {3.6}A fejleszt\IeC {\'e}s f\IeC {\'a}zisai}{35}{section.3.6}
+\select@language {magyar} \contentsline {section}{\numberline {3.7}P\IeC {\'e}ld\IeC {\'a}k a Slime alkalmaz\IeC {\'a}s\IeC {\'a}ra}{37}{section.3.7}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.1}IRTG}{38}{subsection.3.7.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.2}ANTLR}{38}{subsection.3.7.2}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.3}HTML}{38}{subsection.3.7.3}
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7.4}XML}{38}{subsection.3.7.4}
+\select@language {magyar} \contentsline {chapter}{K\IeC {\"o}sz\IeC {\"o}netnyilv\IeC {\'a}n\IeC {\'\i }t\IeC {\'a}s}{39}{chapter*.4}
+\select@language {magyar} \contentsline {chapter}{F\IeC {\"u}ggel\IeC {\'e}k}{40}{appendix*.5}
+\select@language {magyar} \contentsline {section}{\numberline {F.1}P\IeC {\'e}lda 1}{40}{section.F.1}
+\select@language {magyar} \contentsline {section}{\numberline {F.2}P\IeC {\'e}lda 2}{40}{section.F.2}
+\select@language {magyar} \contentsline {section}{\numberline {F.3}P\IeC {\'e}lda 3}{41}{section.F.3}
+\select@language {magyar} \contentsline {section}{\numberline {F.4}P\IeC {\'e}lda 4}{41}{section.F.4}
+\select@language {magyar} \contentsline {section}{\numberline {F.5}P\IeC {\'e}lda 5}{42}{section.F.5}
+\select@language {magyar} \contentsline {section}{\numberline {F.6}P\IeC {\'e}lda 6}{43}{section.F.6}
+\select@language {magyar} \contentsline {section}{\numberline {F.7}P\IeC {\'e}lda 7}{45}{section.F.7}
+\select@language {magyar} \contentsline {section}{\numberline {F.8}P\IeC {\'e}lda 8}{45}{section.F.8}
+\select@language {magyar} \contentsline {section}{\numberline {F.9}P\IeC {\'e}lda 9}{45}{section.F.9}
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{40}{chapter*.4}
