@@ -1,8 +1,9 @@
 %----------------------------------------------------------------------------
 \chapter{Szemantikai elemzés gráf-transzformációkkal}
-\label{sec:SemParsWithGraphTrans}
+\label{sec:spwgt}
 %----------------------------------------------------------------------------
 \section{Szintaxis}
+\label{sec:syntax}
 %----------------------------------------------------------------------------
 A szavak önmagukban „csak” szavak: bármennyi legyen is belőlük, puszta felsorolásuk csupán szavak listája.
 Vegyünk a Magyar Szinoníma szótár élőfejéről pár címszót: textit{hárul haszontalan hasztalan hatásos hátborzongató házas}
@@ -30,6 +31,7 @@ Ebben a fejezetben ezt a két formalizmust fejtem ki részletesebben.
 
 %----------------------------------------------------------------------------
 \subsection{A Szintaktikai Fa}
+\label{sec:tree}
 %----------------------------------------------------------------------------
 A nyelvészet szemlélete szerint bármelyik emberi nyelv szintaxisa leírható egy Környezetfüggetlen Nyelvtannal.
 
@@ -85,6 +87,7 @@ Végezetül megkeressük valószínűségi súlyozásokkal gyorsítva a legvaló
 
 %----------------------------------------------------------------------------
 \subsection{Dependenciaelemzés és az UD}
+\label{sec:ud}
 %----------------------------------------------------------------------------
 A dependencia-alapú megközelítés szerint a szintaktikai szerkezet lexikai elemekből áll, amelyeket bináris kapcsolatok kötnek össze. A dependencia fogalma azt jelenti, hogy a szavak (fej és dependens) irányított kapcsolatokkal vannak összekötve.  Általában az állítmány a gráf gyökércsomópontja vagy a strukturális középpontja a mondatnak. A mondat szerkezetét a fejek és dependensek közötti viszonyok adják. Sok jól ismert elmélete van a függőségi nyelvtanoknak, összefoglalásért lásd (Nivre, 2005, p.  3).
 
@@ -167,6 +170,7 @@ szavak közötti viszonyok, angolul és jelölésük:
 
 %----------------------------------------------------------------------------
 \section{Szemantika}
+\label{sec:semantics}
 %----------------------------------------------------------------------------
 
 A szemantika nem foglalkozik a jelek külalakjával és szerkezetével.
@@ -199,6 +203,7 @@ A szemantikai elemzés célja, hogy a nyers szövegből, vagy valamely szintakti
 
 %----------------------------------------------------------------------------
 \subsection{4lang}
+\label{sec:4lang}
 %----------------------------------------------------------------------------
 A 4lang  [(Kornai et al. (2015))] egy formalizmus, ami irányított gráfokat épít szemantikai reprezentáció céljával. A gráfban a csúcsok nem szavakat, hanem nyelvfüggetlen fogalmakat jelölnek. Ezeknek a fogalmaknak már nincsenek nyelvtani jellemzőik és a kompetens beszélők közös tudását reprezentálják a fogalomról. Például a \textit{fagy} mint főnév vagy mint ige, illetve a \textit{fagyás} vagy \textit{fagyott} szavak nincsenek megkülönböztetve a 4lang reprezentációban [itt hivatkozzuk, akinél ezt a példát először olvastuk]. Ezáltal a 4lang fogalmak és a nekik egy nyelvben megfelelő szavak között egy a többhöz kapcsolat áll fenn.
 
@@ -215,6 +220,7 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 
 %----------------------------------------------------------------------------
 \subsection{A 4lang és az UD különbségei}
+\label{sec:4LvsUD}
 %----------------------------------------------------------------------------
 A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a \textit{$w_1 -amod-> w_2$} viszony az UD-ból megfelel a \textit{$w_1 -0-> w_2$} viszonynak a 4lang-ból.
 
@@ -223,21 +229,21 @@ A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek v
 \begin{table}[h]
     \centering
     \begin{tabular}{ll}
-    \textbf{Dependency} & \textbf{Edge}                                      \\ \hline
-    advcl      & \edge{$w_1$}{0}{$w_2$}          \\
-    advmod     &                                           \\
-    amod       &                                           \\
-    nmod       &                                           \\
-    nummod     &                                           \\ \hline
-    appos      & \twoedges{$w_1$}{0}{0}{$w_2$}     \\
-    dislocated &                                           \\ \hline
-    csubj      & \twoedges{$w_1$}{1}{0}{$w_2$} \\
-    nsubj      &                                           \\ \hline
-    ccomp      & \edge{$w_1$}{2}{$w_2$}          \\
-    obj        &                                           \\
-    xcomp      &                                           \\                            
+    \textbf{Függőség} 	& \textbf{Él} 					\\ \hline
+    advcl      			& \edge{$w_1$}{0}{$w_2$}    	\\
+    advmod     			&                               \\
+    amod       			&                               \\
+    nmod       			&                               \\
+    nummod     			&                               \\ \hline
+    appos      			& \twoedges{$w_1$}{0}{0}{$w_2$} \\
+    dislocated 			&                               \\ \hline
+    csubj      			& \twoedges{$w_1$}{1}{0}{$w_2$} \\
+    nsubj      			&                               \\ \hline
+    ccomp      			& \edge{$w_1$}{2}{$w_2$}        \\
+    obj        			&                               \\
+    xcomp      			&                               \\                            
     \end{tabular}
-    \caption{UD-conform version of the mapping of Table~\ref{table:mapping}.}
+    \caption{UD függőségek megfeleltetése 4lang éleknek.}
     \label{table:deps}
     \end{table}
 
@@ -282,6 +288,7 @@ Sőt egyes esetekben még a környezetből sem határozható meg egyértelműen 
 
 %----------------------------------------------------------------------------
 \section{A kutatás célja}
+\label{sec:goals}
 %----------------------------------------------------------------------------
 
 
@@ -289,12 +296,14 @@ A kutatásunk célja az, hogy a nyers szöveg és a feljebb leírt interpretáci
 
 %----------------------------------------------------------------------------
 \section{Az IRTG és az alárendelt algebrák}
+\label{sec:aists}
 %----------------------------------------------------------------------------
 Ebben a fejezetben a kutatás során használt környezetről (Alto), formalizmusról (IRTG), algebrákról(SA,TTA,SGA), hátrányaikról és az ezeket kiküszöbölő ideiglenes megoldásainkról lesz szó.
 
 
 %----------------------------------------------------------------------------
 \subsection{Az Alto}
+\label{sec:alto}
 %----------------------------------------------------------------------------
 A kutatás során a kódot az Algebraic Language Toolkit-tel, avagy Alto-val [[hivatkozás!!! a diplomamunkámban megtalálod]] fordítjuk és futtatjuk. Az Alto egy nyílt forrású parszer, ami többféle algebrát is megvalósít, amelyek IRTG-be ágyazva használhatók.
 Ezek egyike az s-graph és a tag tree algebra. Ezen kívül is szabadon bővíthető új algebrákkal. Már korábban is használták gráftranszformációra és szemantikai elemzésre is [[hivatkozás!!! ez is benne van a diplomamunkámban :)]]. Nagy előnyt jelent, hogy Java-ban lett implementálva , így szinte bármely platformon futtatható. Ezen kívül rendelkezik grafikus és konzolos felhasználói felülettel is.
@@ -302,6 +311,7 @@ Ezek egyike az s-graph és a tag tree algebra. Ezen kívül is szabadon bővíth
 
 %----------------------------------------------------------------------------
 \subsection{Az IRTG}
+\label{sec:irtg}
 %----------------------------------------------------------------------------
 Az IRTG (Interpreted Regular Tree Grammar, interpretált reguláris fa-nyelvtan) [[hivatkozás!!!!]] egy kontextusfüggetlen nyelvtan, ami egy vagy több algebrába beágyazott újraíró szabályokból áll.
 \begin{verbatim}
@@ -331,6 +341,7 @@ A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti 
 
 %----------------------------------------------------------------------------
 \subsection{Az SA}
+\label{sec:sa}
 %----------------------------------------------------------------------------
 Az SA (\texttt{string algebra}) kétségtelenül az összes IRTG alatt elérhető algebra közül a legegyszerűbb. Itt csak szövegek konkatenációjára (összefűzésére) van lehetőség. A bemenet és kimenet nem tartalmaz slotokat vagy egyéb nyelvi elemeket. A műveletet a következő formátumban lehet megadni:
 \begin{verbatim}
@@ -348,6 +359,7 @@ Például a \textit{*( "Every mouse”, *( “loves”, “cheese.” ) )} kifej
 
 %----------------------------------------------------------------------------
 \subsection{A TTA}
+\label{sec:tta}
 %----------------------------------------------------------------------------
 A TTA (\texttt{tag tree algebra})-nak, mint az SA-nak, csak egy művelete van, a \textit{merge} (egyesítés). A TTA esetében viszont  már a bemenetek nem nyers szövegek, hanem csúcs sorrend tartó fa gráfok. Tartalmazhatnak slot-okat, amiket TTA esetében \textit{hole}-nak(lyuk) nevezünk. A hole-okat ‘*’-gal jelöljük. Nem lehet őket címkékkel vagy más módon megkülönböztetni, sem eltörölni. A gráf csúcsaiba helyezhetőek. Az ilyen slot-okat tartalmazó fákat nevezzük \textit{tag tree}-nek. A TTA merge műveletének két operandusa van. Mindkét operandus egy tag tree. A jobb oldali fát szúrjuk be a bal oldali fa minden hole-jába a merge során. A merge jele a ‘@’ szimbólum, és se nem kommutatív, se nem asszociatív. A fákat zárójelekkel adjuk meg. Egy csúcs közvetlen gyermekeit és az azok alatti részfát a tőle jobb oldali zárójelben kell megadni vesszőkkel elválasztva. Például így írható le a \textit{John loves Mary} (\textit{János szereti Marit.}) mondat szintaktikai fája:
 
@@ -406,6 +418,7 @@ Négy gyermekű csúcs egy helyes szintaktikai fában nem fordul elő. A közép
 
 %----------------------------------------------------------------------------
 \subsection{Az SGA}
+\label{sec:sga}
 %----------------------------------------------------------------------------
 Az SGA (\texttt{s-graph algebra}) a legbonyolultabb algebra, amit használunk. Több műveletet és összetett gráfnyelvet használ. Az egyetlen hiányossága, hogy nem képes a csúcsok sorrendjét kezelni. Ezért szorulunk a TTA használatára csúcssorrendet tartó fák esetén. Az SGA-ban egy csúcsnak három attribútuma van, \texttt{name} (név), \texttt{tag} (címke) és \texttt{mark} (megjelölés). Ezeket a következő szintaxissal tudjuk megadni: \{\$ name \$\}/\{\$ tag \$\}<\{\$ mark \$\}>. Az attribútumok közül a tag és a mark elhagyható. A név azonosítja a csúcsot adott környezetben, a címke jelenik meg a gráf kirajzolásakor és a jelöléssel hivatkozhatunk a csúcsokra egyes műveletek során. Az éleket :-tal jelölik, és címkézhetőek. Alapesetben az él balról jobbra mutat, de van mód jobbról balra mutató él definiálására is. A gráfokat stringként kell megadni, például a:
 
@@ -443,6 +456,7 @@ Ugyanakkor ez már túlzottan eltér a gráfleíró nyelvek hagyományos stílus
 
 %----------------------------------------------------------------------------
 \section{Az IRTG és az ALTO hiányosságai}
+\label{sec:shortcomming}
 %----------------------------------------------------------------------------
 Mivel a szakdogám célja az IRTG nyelv fejlesztése, ezért ebben a fejezetben az IRTG és az ALTO hiányosságairól kívánok részletes áttekintést nyújtani.
 Arra is ki kívánok térni, hogy hogyan lehetett volna, és lehetne az ezek által okozott problémákat megoldani.
@@ -450,6 +464,7 @@ Először az IRTG-ről lesz szó, majd az LATO-val folytatom.
 
 %----------------------------------------------------------------------------
 \subsection{Az IRTG hiányosságai}
+\label{sec:IRTGshortcomming}
 %----------------------------------------------------------------------------
 
 Az IRTG nem egy programozási nyelv, hanem egy nyelvtan. A szabályok egymás alatt adhatóak meg és csak backspace karakterekkel és kommentekkel tagolhatóak. Egy nyelvtan több fájlra nem szedhető szét. A fájl elején fel kell sorolni az interpretációkat, és egyik interpretáció sem hagyható el egyik szabályból sem, még akkor sem, ha semmit sem adnak vissza. A kutatás során egy olyan nyelvtant készítettünk, ami 2700 szabályból áll és négy interpretációból. Ez ha a szabályokat üres sorokkal választjuk el, akkor 16204 sor kódot jelent egyetlen fájlban. Egy ekkora kódot nehéz karbantartani, átlátni, fejleszteni. Tehát szükség van IRTG-ben az importálásra.
@@ -469,6 +484,7 @@ Gyakori az IRTG-ben az, hogy kulcsszavak ütköznek pár változónak a nevével
 
 %----------------------------------------------------------------------------
 \subsection{Az ALTO hiányosságai}
+\label{sec:ALTOshortcomming}
 %----------------------------------------------------------------------------
 
 Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. [Ennek neve is van, erről kaptam forrást is.]
@@ -481,6 +497,7 @@ Az ALTO mindennek ellenére a jelenlegi legfejlettebb program az IRTG futtatás�
 
 %----------------------------------------------------------------------------
 \section{Jelenlegi megoldások}
+\label{sec:solutions}
 %----------------------------------------------------------------------------
 A kutatás során az IRTG-t illető problémák többségét kód generálás segítségével küszöböltük ki. Két implementáció készült python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. Kezdetben csak NP-k feldolgozása volt a cél, majd onnan terjesztettük ki az implementációkat VP-k és ADJP-k re. A generátor kódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. Nem tudtunk többen párhuzamosan fejleszteni, mert egyikünk sem értette a másik megoldását kellő mélységben.
 Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford Parserral kapott UD gráfokat kapja bemenet ként, amiket python scriptekkel készítettünk elő . Ezek a scriptek végezték a fákból a megfelelő kifejezések részfáinak a kiszedését, a részfák rendezését típus szerint és a fák UD gráfjainak a generálását a Stanford Parserrel.
@@ -488,6 +505,7 @@ Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford 
 
 %----------------------------------------------------------------------------
 \subsection{első generátor}
+\label{sec:generator1}
 %----------------------------------------------------------------------------
 Az első generátort én készítettem el 2018 augusztusában. Ez egy objektumorientált megoldás volt. Képes volt kommenteket is generálni, kezelni a rövidítéseket és könnyen bővíthető volt. Ugyanakkor rush development során keletkezett a szakmai gyakorlatom végén, így a kód még nincsen se letisztázva, se alaposan dokumentálva.
 
@@ -507,6 +525,7 @@ Végeredményben viszont még ekkor is egy olyan programunk lett volna, ami az I
 
 %----------------------------------------------------------------------------
 \subsection{második generátor}
+\label{sec:generator2}
 %----------------------------------------------------------------------------
 A második generátort Ács Evelin kezdte el fejleszteni 2018 őszén.
 Ez az első generátortól teljesen függetlenül készült.
