@@ -300,7 +300,7 @@ Ezek egyike az s-graph és a tag tree algebra. Ezen kívül is szabadon bővíth
 \subsection{Az IRTG}
 \label{sec:irtg}
 %----------------------------------------------------------------------------
-Az IRTG (Interpreted Regular Tree Grammar, interpretált reguláris fa-nyelvtan) \todo{hivatkozás!!!!} egy kontextusfüggetlen nyelvtan, ami egy vagy több algebrába beágyazott újraíró szabályokból áll.
+Az IRTG (Interpreted Regular Tree Grammar, interpretált reguláris fa-nyelvtan) \cite{Koller:2011} egy kontextusfüggetlen nyelvtan, ami egy vagy több algebrába beágyazott újraíró szabályokból áll.
 
 \begin{figure}[h]
 \begin{verbatim}
@@ -474,7 +474,7 @@ Gyakori az IRTG-ben az, hogy kulcsszavak ütköznek pár változónak a nevével
 \label{sec:ALTOshortcomming}
 %----------------------------------------------------------------------------
 
-Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. \todo{Ennek neve is van, erről kaptam forrást is.}
+Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. Ezt hívják \textit{optimalizált DFS Parsing}-nak
 
 Az elvi működés és a megvalósítás következtében az ALTO rendkívül lassú. A feljebb említett 2700 szabályos és négy interpretációs nyelvtan $10^5$ nagyságrendű adaton nagyjából 30 óráig futott, pedig a rendelkezésünkre álló tanszéki szerveren futtattuk. Ez a mi feladatunk esetében elfogadhatatlan. Ezért nem ártana egy hatékonyabb C++ verzió az ilyen méretű munkákhoz. Ma már a C++17 és a hamarosan érkező C++20 is kényelmes programozási nyelv, és nem nagy ördöngösség az alap platformokon futtatható verziókat legenerálni a nyílt forráskódból. Egy könyvtár formájában pythonból is elérhető lenne ez a verzió.
 
