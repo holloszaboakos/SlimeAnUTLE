@@ -43,3 +43,13 @@ Thumbs.db
 /Slime/out/*
 *.aux
 
+
+LaTeX_diplomaterv/thesis\.dvi
+
+LaTeX_diplomaterv/thesis\.bbl
+
+LaTeX_diplomaterv/thesis\.blg
+
+LaTeX_diplomaterv/thesis\.out
+
+LaTeX_diplomaterv/thesis\.toc
