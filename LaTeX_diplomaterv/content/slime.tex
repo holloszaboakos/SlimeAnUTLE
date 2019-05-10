@@ -12,7 +12,7 @@ avagy egy más nyelvek fölé szánt univerzális bővítmény, ami template-el�
 
 A fejlesztés során az IRTG kiegészítése az elsődleges cél, de ezt a sok iteráció alatt kinőtte a koncepció. 
 Ennek több oka volt. 
-Először is az IRTG-nek a legtöbb hiányossága későbbi fejlesztés során megszűnhet a nyelv kiegészítésével (\todo{Lásd fejezet … }).
+Először is az IRTG-nek a legtöbb hiányossága későbbi fejlesztés során megszűnhet a nyelv kiegészítésével (Lásd fejezet ~\ref{sec:SStatesOfDevelopment}).
 A kiegészítéshez a belső működés módosítására nincs feltétlen szükség. 
 Az ALTO-t ugyan viszonylag könnyű kiegészíteni és módosítani, mivel kellően objektum orientált és nyílt forráskódú,
 ugyanakkor állandó fejlesztés alatt áll, ezért a forráskód módosítása és kiegészítése is verzió követést igényel. 
@@ -54,7 +54,7 @@ A kódjában legtöbbször könnyű, de nem mindig elkerülhető a repetitivitá
 Még hosszú út áll előtte. 
 Ezekre a problémákra és tervezett megoldásaikra a későbbiekben fogok kitérni. 
 A Slime így is jelentős fejlődést jelent olyan nyelvek számára, amikben a tünetek sokkal súlyosabban jelentkeznek. 
-Ilyen nyelv az IRTG, HTML, XML és irónikusan annak az ANTLR-nek a lexer és parser nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (\todo{lást Példák …}). 
+Ilyen nyelv az IRTG, HTML, XML és irónikusan annak az ANTLR-nek a lexer és parser nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (lást Példák ~\ref{sec:SEIRTG}). 
 Tehát végső soron a Slime egy olyan nyelv, ami saját magának az implementálását is határozottan könnyebbé tette volna.
 
 
@@ -89,7 +89,7 @@ Itt a legfontosabb az átláthatóság.
 Fontos, hogy szép kódunk legyen, amiben a nyelvi elemek jól felismerhetőek.
 Ugyanakkor az is fontos, hogy a Slime kódja kitűnjön az alárendelt nyelv kódjából. (lásd fejezet ~\ref{sec:SBaseSyntax})
 
-A szabad tördelhetőségben segítenek sokat a zárójelek, változók és az importálás megvalósítása. (\todo{lásd fejezet ...}) 
+A szabad tördelhetőségben segítenek sokat a zárójelek, változók és az importálás megvalósítása. (lásd Példák ~\ref{sec:SEIRTG}) 
 A könnyen tanulhatóságot a beszédes, de tömör jelölések, kevés, de sok oldalú műveletek és következetes működés és a kódok átláthatósága is segíti.
 
 A hatékony programozást a tömörített kifejezések és a szükségtelen jelölések elhagyása segítik.
@@ -433,17 +433,17 @@ De az átláthatósághoz az is fontos volt, hogy a jelölések egyediek legyene
 A bevett jelölésekhez népszerű templater enginek, a Kotlin és más C alapú nyelvek szolgáltak alapul.
 \begin{itemize}
 \item \emph{sablon nyelvek:}
-A Smarty-hoz hasonlóan (\todo{Lásd fejezet ...}) a parancsokat az alárendelt kódba ágyazzuk.
+A Smarty-hoz hasonlóan (Lásd fejezet ~\ref{sec:smarty}) a parancsokat az alárendelt kódba ágyazzuk.
 Minden művelet kapcsos zárójelbe kerül, hogy elkülönüljön az alárendelt kódtól.
 Ez rendes tördelés mellett az átláthatóságot is segíti, és használatával a műveleti sorrend is egyértelmű. 
-A Mustache-hoz hasonlóan (\todo{Lásd fejezet ...}) a blokkok típusát a blokkon belül jelöli egy-két karakterrel.
+A Mustache-hoz hasonlóan (Lásd fejezet ~\ref{sec:mustache}) a blokkok típusát a blokkon belül jelöli egy-két karakterrel.
 Ez is segíti az alárendelt kódtól való elkülönülést.
 Igaz Slime esetén a csukó zárójel előtt is jelöljük a blokk típusát az átláthatóság kedvéért.
 \item \emph{Kotlin:}
 Deklarációnál a név, típus érték sorrendet követi.
 Ekkor a nevet és a típust kettősponttal választja el.
 \item \emph{C alapú nyelvek:}
-A több parancsot tartalmazó zárójelekben(\todo{Lásd fejezet ...}) a parancsokat pontosvesszűvel választjuk el.
+A több parancsot tartalmazó zárójelekben(Lásd bővebben ~\ref{sec:SAdvaSyntax}) a parancsokat pontosvesszűvel választjuk el.
 A zárójeleken belül az attribútumokat vesszővel és kettősponttal választjuk el.
 A \textit{':'} választja el a függőségben lévő attribútumokat és a \textit{','} a függetleneket. 
 Például a kulcs érték párokat \textit{':'} köti össze.
@@ -481,7 +481,7 @@ A Slime-ban van importálás.
 Az importált fájl változói a fájl változójának nevén, mint namespacen keresztül érhetőek el.
 Például az f1 néven importált fájl v1 változója f1.v1 néven érhetőek el.
 Ez fontos ahhoz, hogy elkerülhessük a váratlan névütközéseket.
-Egy változóhoz nevek később is adhatóak a Name típus segítségével (\todo{lásd fejezet... }).
+Egy változóhoz nevek később is adhatóak a Name típus segítségével (Lásd fejezet~\ref{sec:SName}).
 Az új nevek annak a Slime fájlnak a namespace-éhez fognak tartozni, amelyikben hozzá lettek adva az adott változóhoz. 
 Így lehet például egy importált fájl változóit könnyebben elérhetővé tenni.
 Ha egy név már foglalt az adott fájlban, akkor egyszerűen felülíródik.
@@ -500,7 +500,7 @@ A változó maga.
 Ez a "referencia" helyett magára a változóra hivatkozik.
 Ha egy változó közvetlen elérhető, akkor a meghivatkozása nem tartalmaz pontot.
 Bizonyos esetekben a parszer az ilyen meghivatkozást Name típusú változónak tévesztheti.
-Például, ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (\todo{Lásd fejezet ...}).
+Például, ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (Lásd fejezet~\ref{sec:SContDecl}).
 Ilyenkor a self attribútummal egyértelműsíthetjük, hogy a változó elérésre gondoltunk, és nem Name típusú változóra. 
 \item \emph{copy:}
 Ez az attribútum a változóból egy új másolatot ad vissza név nélkül.
@@ -581,7 +581,7 @@ Egy sablonkezelésre szakosodott nyelvben a legfontosabb, hogy hatékonyan lehes
 
 A Slime-ban a sablonokat a Temp(template) típus segítségével kezeljük. Ez felelős minden sablonművelet megvalósításáért.
 
-A legtöbb nyelvben a sablonoknak két féle komponense van, a szöveg és a mező. (\todo{lásd fejezet mustache})
+A legtöbb nyelvben a sablonoknak két féle komponense van, a szöveg és a mező. (Lásd fejezet ~\ref{sec:mustache})
 A Slime-ban ez nem elegendő.
 Ugyanis a Slime nem különíti el a kódot és az adatot külön fájlba.
 Nem akarjuk azt, hogy az adat tördelése befolyással legyen a kód tördelésére.
@@ -601,7 +601,7 @@ Kezeli a sablon mezőit.
 Egy template-hez ezek később is hozzáadhatóak.
 Egy mezőnek több címkéje is lehet.
 A mezők címkéi egyezhetnek is.
-Ha a Temp egy mezőjébe szúrnak valamit, akkor az megszűnik. \todo{clean fase}
+Ha a Temp egy mezőjébe szúrnak valamit, akkor a mező megszűnik. \todo{Not implemented yet}
 \item \emph{Spec:} 
 Ezzel adhatóak meg speciális karakterek 3-3 kódnévvel.
 Jelenleg a Slime 10 féle speciális karaktert kezel:
@@ -656,7 +656,7 @@ vagy:
 \end{verbatim}
 
 Ez ugyan összetettebb, mint más nyelvekben, de a speciális karakterek használata teljesen opcionális.
-A TEMP-ek tömörségéről pedig a haladó szintaxis gondolkodik.( \todo{lásd fejezet ...})
+A TEMP-ek tömörségéről pedig a haladó szintaxis gondolkodik.( Lásd fejezet ~\ref{sec:SAdvaSyntax})
 
 
 %----------------------------------------------------------------------------
@@ -821,7 +821,7 @@ Például, ha bevezetjük majd a dictionary-ket Dict néven:
 
 List:Dict:(Text, List:Temp)
 
-Itt azért nem a kacsacsőr zárójeleket használjuk, mert azokkal már a kompakt zárójelezést jelöljük. (\todo{Lásd fejezet ...})
+Itt azért nem a kacsacsőr zárójeleket használjuk, mert azokkal már a kompakt zárójelezést jelöljük. (Lásd fejezet ~\ref{sec:SAdvaSyntax})
 
 Egy List beágyazott típusa Vari is lehet vagy Cont és akkor bármely Cont vagy Vari tárolására képes.
 
@@ -860,7 +860,7 @@ A kimenetük egy Text típusú outp változóban érhető el.
 Az aktuális fájlban létrehozott változók is egy File-ban vannak tárolva.
 Az aktuális fájl File változója self néven el is érhető.
 A \textit{names, self, copy, type, cont, iter, \{\$szám\$\} és outp} változók felülírhatatlanul az aktuális File attribútumait jelentik.
-(\todo{lásd fejezetek ..., ...})
+(lásd fejezetek ~\ref{sec:SVariSuper}, \ref{sec:SContSuper})
 Éppen ezért bár az előbbi nevekkel változókat lehet deklarálni, elérhetetlenek lesznek ezeken a már a File által foglalt neveken. 
 Viszont az aktuális File összes attribútuma a létrehozott változók kivételével nem törölhető.
 Ezért a fenttartott(korábbi felsorolásban szereplő) neveken törölve legalább az azokkal a nevekkel a fájlból létrehozott változók törölhetőek.
@@ -1300,7 +1300,7 @@ A kompakt zárójelek jelölésére sokkal alkalmasabb a kerek zárójelnél a k
 Könnyebb észrevenni az alárendelt kódrészletekben.
 Éppen ezért jelöli ez a kompakt zátójelet és a kerek a beágyazott típusok csoportjait.
 
-(\todo{Ismétlés a ... fejezetből})
+(Ismétlés a ~\ref{sec:SCont} fejezetből)
 A második megoldás az, hogy egy zárójelben többet is végezhetünk az annak megfelelő műveletből. 
 Ekkor a műveleteket pontosvesszővel választjuk el.
 Ez a jelölés is természetesen a C alapú nyelvekből származik.
@@ -1353,7 +1353,7 @@ E helyett mindkettőt a sor végi sortörés zárja.
 A whitespace-k kezelése másban is eltérhet zárójeltípusonként. 
 Például az egysoros és kompakt zárójeleknek legtöbbször nem része az őket záró whitespace. 
 Ezért zár több egymásba ágyazott egysoros zárójelet is a sort záró sortörés. 
-A kompakt Spec és Slot zárójeleknek viszont része az őket záró whitesspace \todo{[Ezt még be kell vezetni … ]}.
+A kompakt Spec és Slot zárójeleknek viszont része az őket záró whitesspace \todo{Not implemented yet}.
 Általánosságban a zárójelek minden belső whitespace karaktert figyelmen kívül hagynak. 
 Az alárendelt nyelvbe ágyazott minden speciális zárójel előtti whitespace is kimarad a kimenetből. 
 Text zárójelben minden whitespace megmarad. 
