@@ -5,37 +5,26 @@
 \section{Szintaxis}
 \label{sec:syntax}
 %----------------------------------------------------------------------------
-A szavak önmagukban „csak” szavak: bármennyi legyen is belőlük, puszta felsorolásuk csupán szavak listája.
-Vegyünk a Magyar Szinoníma szótár élőfejéről pár címszót: textit{hárul haszontalan hasztalan hatásos hátborzongató házas}
-Hiába vannak a felsorolásban igék, főnevek és melléknevek is, nem tudunk neki értelmet tulajdonítani.
-Hiányzik belőle az ahhoz szükséges rend.
-Ezt a rendet, avagy azon szabályok összességét, amik mentén a szavakból szószerkezeteket és mondatokat építhetünk, hívjuk szintaxisnak.
-Ide tartoznak példáula a szavak sorrendjére vomnnatkozó megkötések.
-Például a melléknév–főnév–ige sorrend megkötés szintaktikailag helyes mondatokat ad: textit{Szőke fiúk szaladgálnak}.
-Ezek a szavak más sorrendben nem értelmesek: textit{Fiúk szőke szaladgálnak}. 
-Ugyanakkor kibővítve a mondatot arra, hogy textit{Szőke fiúk és lányok szaladgálnak}, egy problémával találkozunk.
-Nem egyértelmű ugyanis a mondat jelentése.
-A Szőke jelző csak a fiúkra vonatkozik vagy a lányokra is?
-Itt az okoz problémát, hogy a szavak sorrendjéből nem dől ell, hogy mely szavak tartoznak össze.
-Ezt jelölhetjük zárójelezéssel is: textit{(Szőke (fiúk és lányok)) szaladgálnak} vagy textit{(Szőke fiúk) és lányok szaladgálnak}
-Ugyanakkor ez sem teszi a szavak szerepét mindig egyértelművé. 
-Például a textit{Az oroszlán simogatása veszélyes} esetében az a veszélyes, ha mi simogatjuk az oroszlánt, vagy az ha az simogat minket.
-Mindkét esetben ugyanaz a zárójelezés: (Az oroszlán simogatása) veszélyes.
-Az egyik esetben viszont az textit{oroszlán} a tárgy, a másikban az alany.
-Tehát az is fontos, hogy a szavak és szószerkezetek milyen szerepet töltenek be.
-Szintaxisról beszélhetünk programozási nyelvek esetén is.
-Ekkor minden speciális önálló jelentéssel bíró karaktersorozat szónak számít.
-A nyelvészetben a szintaxist konstituens fával szemléltetik.
-Az NLP-ben e helyett a függőségi gráfok terjedtek el, amik a szavak közötti címkézett irányított élekből építenek egy irányított gráfot. 
-Ebben a fejezetben ezt a két formalizmust fejtem ki részletesebben.
+A szavak önmagukban, egymás után leírva nem állnak össze mondattá: bármennyi legyen is belőlük, puszta felsorolásuk nem jólformált mondat, csupán szavak listája. Vegyünk a Magyar szinonimaszótár élőfejéről pár címszót: \textit{hárul haszontalan hasztalan hatásos hátborzongató házas}. Hiába vannak a felsorolásban igék, főnevek és melléknevek is, nem tudunk neki értelmet tulajdonítani. Hiányzik belőle az ahhoz szükséges rend.
+
+Ezt a rendet - avagy azon szabályok összességét, amelyek mentén a szavakból szószerkezeteket és mondatokat építhetünk - hívjuk szintaxisnak. Ide tartoznak például a szavak sorrendjére vonatkozó megkötések.
+Például a melléknév–főnév–ige sorrendi megkötés szintaktikailag helyes mondatokat ad: \textit{Fekete kutyák szaladgálnak}.Ezek a szavak más sorrendben nem értelmesek: \textit{Kutyák fekete szaladgálnak}. Ugyanakkor kibővítve a mondatot arra, hogy \textit{Fekete kutyák és macskák szaladgálnak}, egy problémával találkozunk. Nem egyértelmű ugyanis a mondat jelentése: a \textit{fekete} jelző csak a kutyákra vonatkozik, vagy a macskákra is?
+Itt az okoz problémát, hogy a szavak sorrendjéből nem derül ki, hogy mely szavak tartoznak össze, tehát a szerkezet nem azonos az elemek lineáris elrendezésével.
+Ezt jelölhetjük zárójelezéssel is: \textit{(Fekete (kutyák és macskák)) szaladgálnak} vagy \textit{(Fekete kutyák) és macskák szaladgálnak}. Az első példa szerkezetileg a \textit{Fekete állatok szaladgálnak}, a második pedig a \textit{Kutyák és macskák szaladgálnak} mondatnak feleltethető meg, tehát két darab, alakilag egybeeső elemsorról beszélhetünk, nem pedig egyetlen "kétértelmű" szerkezetről.
+
+Ugyanakkor a zárójelezés sem teszi a szavak szerepét mindig egyértelművé. Például a \textit{Az oroszlán simogatása veszélyes} esetében az a veszélyes, ha mi simogatjuk az oroszlánt, vagy az, ha ő simogat minket? Mindkét esetben ugyanaz a zárójelezés: \textit{(Az oroszlán simogatása) veszélyes}, az egyik esetben viszont az \textit{oroszlán} a tárgy, a másikban az alany, tehát az is fontos, hogy a szavak és szószerkezetek milyen szerepet töltenek be a mondatban. (\cite{Kenesei:2004}) 
+
+Szintaxisról beszélhetünk programozási nyelvek esetén is. Ekkor minden speciális, önálló jelentéssel bíró karaktersorozat szónak számít.
+A nyelvészetben a mondatrészek közötti viszonyokat konstituensfával vagy dependenciagráfokkal szemléltetik, az NLP-ben ez utóbbit nagyon széles körben használják, amely a szavak közötti címkézett irányított élekből építi fel a szintaktikai viszonyokat reprezentáló irányított gráfot. Ebben a fejezetben ezt a két formalizmust fejtem ki részletesebben.
 
 %----------------------------------------------------------------------------
-\subsection{A Szintaktikai Fa}
+\subsection{A szintaktikai fa}
 \label{sec:tree}
 %----------------------------------------------------------------------------
-A nyelvészet szemlélete szerint bármelyik emberi nyelv szintaxisa leírható egy Környezetfüggetlen Nyelvtannal.
 
-Környezet Független Nyelvtannak egy $G=(V,\Sigma ,P,S)$ rendezett négyest nevezünk, ahol:
+A természetes nyelvek struktúráját számos nyelvészeti elméleti keretben \texttt{környezetfüggetlen nyelvtan} segítségével írják le.
+
+Környezetfüggetlen nyelvtannak egy $G=(V,\Sigma ,P,S)$ rendezett négyest nevezünk, ahol:
 
 \begin{itemize}
 	\item \emph{$V$} s változók halmaza, avagy a nem terminális abc.
@@ -45,56 +34,47 @@ Környezet Független Nyelvtannak egy $G=(V,\Sigma ,P,S)$ rendezett négyest nev
 $\alpha \to \beta$ alakúak, $\alpha$ és $\beta$ tetszőleges, V és $\Sigma$ elemeiből képzett sorozat, az egyetlen
 megkötés, hogy $\alpha$ tartalmazzon legalább egy változót is ($\beta$ lehet akár az üres szó is).
 \end{itemize}
-$[ másik forrást]$
-Ebben a nyelvtanban a terminális szimbólumok a szavak. 
-A nemterminális szimbólumok pedig a szófajtokenekké, szószerkezetek, mondatrészek és mondatok.
-A szófaj tokenek azok a szimbólumok, amik közvetlen szavakká írhatóak át.
-Mindegyik pontosan egy szóvá. 
-A szószerkezeteket szófajtokenek és más szószerkezetek sorozatává írhatóak át.
-A mondatok és mondatrészek pedig szószerkezetek és mondatrészek sorozatává alakulnak.
-A lehetséges levezetési fákon kivehető, az egyes nem terminális szimbólum típusok rétegződése, hierarchiája.
+(\cite{Friedl:2003})
+Ebben a nyelvtanban a terminális szimbólumok a szavak, a nemterminális szimbólumok pedig a \textit{szófaji kategóriák}, \textit{frázisok} és \textit{mondatok}. A szófaji kategóriák (pl. \textit{főnév}, \textit{ige}) azok a szimbólumok, amik közvetlen szavakká írhatóak át, mindegyik pontosan egy szóvá. Frázisoknak azokat a szerkezeteket nevezzük, amelyeknek egy-egy szó a feje, és az adott szó szófajáról nevezzük el (pl. \textit{NP - noun phrase, főnévi frázis/kifejezés}). Ezeket szófaji kategóriák és más frázisok sorozatává írhatjuk át, a mondatokat pedig frázisokká.
+A lehetséges levezetési fákon kivehető az egyes nemterminális szimbólumtípusok rétegződése, hierarchiája.  A~\ref{fig:john_zarojel} ábrán láthatjuk a \textit{John loves Mary.} mondat szerkezetére vonatkozó újraíró szabályokat.
 
-
-Ezek például a 2.2.4-es pontban található szintaktikai fa szabályai
-
-( a \textit{John loves Mary.} mondaté: 
-
-\textit{S3( NP1( NNP( John ) ), VP2( VBZ( loves ),  NP1( NNP( Mary ) ) ), .( . ) ) )} :
+\begin{figure}[h]
+\texttt{S( NP( NNP( John ) ), VP( VBZ( loves ),  NP( NNP( Mary ) ) ) ) )} :
 \begin{itemize}
 \item$S \to NP VP$ .
 \item$NP \to NNP$
 \item$VP \to VBZ NP$
 \item$NNP \to John | Mary$
 \item$VBZ \to loves$
-\item$. \to .$
 \end{itemize}
+\caption{A \textit{John loves Mary.} mondat újraíró szabályai}
+\label{fig:john_zarojel}
+\end{figure}
 
-Itt az írásjel is megjelennek ugyan, de a szintaxis azokkal a szintaxis nem törődik.
-Mi viszont a Stanford Parser által használt formátum szerint dolgoztunk, amiben megjelennek.
-Ekkor ezeket is szavak módjára kezeljük.
-A mondatnak így néz ki a levezetési fája:
+A zárójelezés és az ágrajz egymással ekvivalens ábrázolási módok. A fenti mondat ágrajzát a~\ref{fig:john_agrajz} mutatja.
 
-Ekkor jól látszik , hogy a levelek a szavak(\textit{John}, \textit{Loves}, \textbf{Mary}, \textit{.}), amik fölött a szófajokat jelölő tokenek(\textit{NNP}, \textit{VBZ}, \textit{.}) helyezkednek el, mint unáris csúcsok.
-Az \textit{NP}, \textit{VP} a főnévi és igei kifejezéseket, szószerkezeteket jelölik, az \textit{S} pedig a mondat gyökere, mint sentence.
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.32]{TeXstudio.png}
+\todo{ITT LESZ MAJD A FA, HA KÉPKÉNT ILLESZTED BE; A SCALE-NÉL ÁLLÍTGATHATOD A MÉRETET} 
+\caption{A \textit{John loves Mary.} mondat ágrajzon ábrázolva}
+\label{fig:john_agrajz}
+\end{figure}
 
-
-
-A szintaktikai fa a legbevettebb reprezentációja a mondatok szintaxisának a nyelvészetben és fordító pogramok terén is. 
-Analitikus megközelítés esetén is legtöbbször a szintaktikai fa az első, amit elkészítünk. 
-Ehhez először a szavakat feltokenezzük, avagy meghatározzuk a terminális szimbólumok határait és kigeneráljuk a megfelelő szófaj tokeneket mindegyikhez. 
-Végezetül megkeressük valószínűségi súlyozásokkal gyorsítva a legvalószínűbb levezetését az adott nyelv átírási szabályai alapján.
+Jól látszik , hogy a fa levelei a szavak(\textit{John}, \textit{loves}, \textit{Mary}), amik fölött a szófaji kategóriák (\textit{NNP}, \textit{VBZ}) helyezkednek el, mint unáris csúcsok.
+Az \textit{NP}, \textit{VP} a főnévi és igei kifejezéseket jelölik, az \textit{S} pedig a mondat gyökere (az angol \textit{sentence} szó után).
 
 
 %----------------------------------------------------------------------------
 \subsection{Dependenciaelemzés és az UD}
 \label{sec:ud}
 %----------------------------------------------------------------------------
-A dependencia-alapú megközelítés szerint a szintaktikai szerkezet lexikai elemekből áll, amelyeket bináris kapcsolatok kötnek össze. A dependencia fogalma azt jelenti, hogy a szavak (fej és dependens) irányított kapcsolatokkal vannak összekötve.  Általában az állítmány a gráf gyökércsomópontja vagy a strukturális középpontja a mondatnak. A mondat szerkezetét a fejek és dependensek közötti viszonyok adják. Sok jól ismert elmélete van a függőségi nyelvtanoknak, összefoglalásért lásd (Nivre, 2005, p.  3).
+A dependencia-alapú megközelítés szerint a szintaktikai szerkezet lexikai elemekből áll, amelyeket bináris kapcsolatok kötnek össze. A \texttt{dependencia} fogalma azt jelenti, hogy a szavak (\texttt{fej} és \texttt{dependens}) irányított kapcsolatokkal vannak összekötve.  Általában az állítmány a gráf gyökércsomópontja vagy a strukturális középpontja a mondatnak. A mondat szerkezetét a fejek és dependensek közötti viszonyok adják. Sok jól ismert elmélete van a függőségi nyelvtanoknak, összefoglalásért lásd \cite{Nivre:2005}.
 
-A dependencianyelvtanok általában az információt egy DAO gráfon szemléltetik, amelyek csúcsai a szavak, és élei pedig a szavak közötti viszonyok. Az ilyen függőségi gráfok leírására többféle formalizmus létezik. Az NLP területén a függőségi gráfokat használják legtöbbször a szintaxis reprezentálására. Mi a kutatásunk során az UD-t (Universal Dependencies) UD weboldalát, (De Marneffe et al. (2014))] használtuk.
+A dependencianyelvtanok általában az információt egy DAO gráfon szemléltetik, amelyek csúcsai a szavak, és élei pedig a szavak közötti viszonyok. Az ilyen függőségi gráfok leírására többféle formalizmus létezik. Az NLP területén a függőségi gráfokat használják legtöbbször a szintaxis reprezentálására. Mi a kutatásunk során az \texttt{UD}-t (Universal Dependencies)\cite{deMarneffe:2014} használtuk.
 
-Az UD projekt egy nyelvek közötti konzisztens annotációs rendszer és fa-adatbázis hatvannál is több nyelvre. Kategóriák és annotációk univerzális készletét nyújtja, miközben miközben megenged nyelvfüggő kiterjesztéseket is. A szavak közötti nyelvtani viszonyt szemlélteti, mint például az alany-állítmányi vagy tárgy-állítmányi vagy jelzői. Az UD a Stanford Dependencies-ből [hivatkozás: (De Marneffe and Manning (2008)] fejlődött ki, amelyet egyesítettek a Google univerzális címkékkel [Petrov et al. (2011)], az “Interset feature inventory”-nak egy átdolgozott részhalmazával [Zeman (2008)] és  a CoNLL-X formátum egy átdolgozott verziójával [Buchholz and
-Marsi (2006)]. Az UD lehetővé teszi nyelvfüggetlen dependenciaparszerek kiértékelését.
+Az UD projekt egy nyelvek közötti konzisztens annotációs rendszer és fa-adatbázis hatvannál is több nyelvre. Kategóriák és annotációk univerzális készletét nyújtja, miközben megenged nyelvfüggő kiterjesztéseket is. Az UD a Stanford Dependencies-ből \cite{deMarneffe:2008} fejlődött ki, amelyet egyesítettek a Google univerzális címkékkel \cite{Petrov:2011}, az “Interset feature inventory”-nak egy átdolgozott részhalmazával \cite{Zeman:2008} és  a CoNLL-X formátum egy átdolgozott verziójával \cite{Buchholz:2006}. Az UD lehetővé teszi nyelvfüggetlen dependenciaparszerek kiértékelését.
 
 \begin{figure}[h]
 \centering 
@@ -116,7 +96,7 @@ Marsi (2006)]. Az UD lehetővé teszi nyelvfüggetlen dependenciaparszerek kiér
     &~~~&
     \xybarnode{.}
 }
-\caption{A 'I saw the white cat.' függőségi elemzése}
+\caption{Az \textit{I saw the white cat.} mondat függőségi elemzése}
 \label{fig:deptreeEN}  
 \end{figure}
 
@@ -137,52 +117,41 @@ Marsi (2006)]. Az UD lehetővé teszi nyelvfüggetlen dependenciaparszerek kiér
     &~~~&
     \xybarnode{.}
 }
-\caption{Az 'A fehér macskát láttam.' függőségi elemzése }
+\caption{Az \textit{A fehér macskát láttam.} mondat függőségi elemzése}
 \label{fig:deptreeHU}  
 \end{figure}
 
-Ebből a két példából is jól látszik az UD nyelv függetlensége.
-A mondat angol és magyar verziójában a szavakat megfeleltetve az élek is könnyen megfeleltethetőek.
+Ebből a két példából is jól látszik az UD nyelvfüggetlensége. A mondat angol és magyar verziójában a szavakat megfeleltetve az élek is könnyen megfeleltethetőek.
 Itt az élek jelentése a következő:
 \begin{itemize}
 \item \emph{punct : } 
 A feje az állítmány, a dependense pedig a mondatot záró pont vagy más írásjel.
-A mondat végi írásjelet nem mindig tűntetik fel.
 \item \emph{det : } 
-Azt jelöli, hogy a fej a dependens determinánsa. 
-Például a \textit{The} a \textit{cat}-nek és az \textit{a} a \textit{macskát}-nak determinánsa.
+A szerkezet fejét a rá vonatkozó névelővel (determinánssal) köti össze. 
+Például a \textit{The} a \textit{cat}-nek, és az \textit{a} pedig a \textit{macskát}-nak determinánsa.
 \item \emph{amod: } 
 Azt jelöli, hogy a fejnek a dependens a mellékknévi módosítója.
-Például a \textit{white} a \textit{cat}-nek és az \textit{fehér} a \textit{macskát}-nak determinánsa.
+Például a \textit{white} a \textit{cat}-et, a \textit{fehér} a \textit{macskát} szót módosítja.
 \item \emph{obj : }  
 A feje az állítmány, a dependense pedig a tárgy.
-Thát jelen esetben például a tárgy a \textit{cat} vagy a \textit{macskát}.
+Jelen esetben a \textit{cat} vagy a \textit{macskát} a mondat tárgya.
 \item \emph{nsubj : } 
 Azt jelöli, hogy a fejnek a dependens a névszói alanya. 
 Ekkor persze a fej a mondat állítmánya.
-Ez azért nem jelenik meg a magyar mondat esetén, mert a magyarban nem vagyunk kötelesek megadni az "én" személyes névmást.
-Magyarban az állítmány ragozása jelöli a bújtatott alanyt.
+Ez azért nem jelenik meg a magyar mondat esetén, mert a magyarban nem vagyunk kötelesek megadni az "én" személyes névmást, mivel az állítmány ragozása jelöli a rejtett alanyt.
 \end{itemize}
-
-szavak közötti viszonyok, angolul és jelölésük:
-[(Jurafsky and Martin, 2018b, p. 3)]
-
 
 %----------------------------------------------------------------------------
 \section{Szemantika}
 \label{sec:semantics}
 %----------------------------------------------------------------------------
 
-A szemantika nem foglalkozik a jelek külalakjával és szerkezetével.
-Középpontjában a jelentés áll.
-A jelentést viszont nehéz reprezentálni.
-Azt is nehéz megfogni, hogy egyes szavak mit jelentenek.
-A gyakorlatban számos megközelítés létezik a jelentés reprezentálására.
+A szemantika nem foglalkozik a jelek külalakjával és szerkezetével, középpontjában a jelentés áll.
+A jelentést viszont nehéz reprezentálni. Azt is nehéz megfogni, hogy az egyes szavak mit jelentenek.
+Az NLP-ben számos megközelítés létezik a jelentés reprezentálására. A \texttt{szemantikai elemzés} (semantic parsing) célja, hogy a nyers szövegből, vagy valamely szintaktikai reprezentációból előállítsa a szemantikai reprezentációkat.
 
-Az egyik a szóvektorok.
-E szerint a szavak jelentését a környezetében felbukkanó szavak adják.
-Pontosabban annak gyakorisága, hogy amikor a szó feltűnik, akkor egyes szavak is megjelennek a környezetében.
-Ezekből a gyakoriságokból egy szótárnyi hosszú vektor készíthető.
+Az egyik a szóvektorok. Eszerint a szavak jelentését a környezetében felbukkanó szavak adják.
+Pontosabban annak gyakorisága, hogy amikor a szó feltűnik, akkor egyes szavak is megjelennek a környezetében. Ezekből a gyakoriságokból egy szótárnyi hosszú vektor készíthető.
 Itt a szavak jelentése nem más, mint egy szótár számosságnyi dimenziós térben a pozíciója.
 Itt nem csak hogy a közel azonos jelentésű szavak közel helyezkednek el egymáshoz képest, de egyes összefüggések is kihozhatóak vektor műveletek ként.
 Például a \textit{királynő} vektora megkapható a \textit{király} vektorából.
@@ -195,27 +164,22 @@ Ekkor egy gráf csúcsaiban fogalmakkal, és azok között címkézett élekkel 
 Ennek mezei példája például egy mindmap, ahol az egymással asszociatív viszonyban lévő szavakat cimkézetlen élekkel kötjük össze.
 Ez a módszer viszont csak a mondattal foglalkozik.
 Az már más kérdés, hogy az emberek az adott fogalmakhoz milyen további jelentéseket tárasítanak.
-A 4lang is egy ilyen megközelítést alkalmaz.
-
-A szemantikai elemzés célja, hogy a nyers szövegből, vagy valamely szintaktikai reprezentációból előállítsa a szemantikai reprezentációkat.
-
-
+A ~\ref{sec:4lang}. fejezetben tárgyalt \texttt{4lang} is egy ilyen megközelítést alkalmaz.
 
 %----------------------------------------------------------------------------
 \subsection{4lang}
 \label{sec:4lang}
 %----------------------------------------------------------------------------
-A 4lang  [(Kornai et al. (2015))] egy formalizmus, ami irányított gráfokat épít szemantikai reprezentáció céljával. A gráfban a csúcsok nem szavakat, hanem nyelvfüggetlen fogalmakat jelölnek. Ezeknek a fogalmaknak már nincsenek nyelvtani jellemzőik és a kompetens beszélők közös tudását reprezentálják a fogalomról. Például a \textit{fagy} mint főnév vagy mint ige, illetve a \textit{fagyás} vagy \textit{fagyott} szavak nincsenek megkülönböztetve a 4lang reprezentációban [itt hivatkozzuk, akinél ezt a példát először olvastuk]. Ezáltal a 4lang fogalmak és a nekik egy nyelvben megfelelő szavak között egy a többhöz kapcsolat áll fenn.
+A \texttt{4lang}  \cite{Kornai:2015} egy formalizmus, ami irányított gráfokat épít szemantikai reprezentáció céljával. A gráfban a csúcsok nem szavakat, hanem nyelvfüggetlen fogalmakat jelölnek. Ezeknek a fogalmaknak már nincsenek nyelvtani jellemzőik és a kompetens beszélők közös tudását reprezentálják a fogalomról. Például a \textit{fagy} mint főnév vagy mint ige, illetve a \textit{fagyás} vagy \textit{fagyott} szavak nincsenek megkülönböztetve a 4lang reprezentációban \cite{Recski:2018}. Ezáltal a 4lang fogalmak és a nekik egy nyelvben megfelelő szavak között egy a többhöz kapcsolat áll fenn.
 
 A csúcsokat háromféle él kapcsolhatja össze:
 0-él reprezentálja a tulajdonságokat. Például \textit{$virág -0-> szép$}, az \textit{$IS\_A$} viszony \textit{$virág -0->  növény$} és unáris predikáció \textit{$virág -0-> bimbózás$}.
 1 és 2-élek bináris predikációkat kapcsolnak az argumentumaikhoz. Például \textit{$James <-1- szeretet -2> kutya$}.
-Binary (tranzitív) elemek, amik nem felelnek meg egyik szónak sem egy kifejezésben vagy mondatban, NAGYBETŰS nyomtatott nevekkel vannak jelölve.
 
-Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \textit{$w_1 <-0-1-> w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I’am writing.}(\textit{Én éppen írok})  mondatot az \textit{$i -0> write$} 4lang gráffal és az \textit{I’am writing a letter}(textit{Én egy levelet írok éppen}) mondatot az \textit{$i <-1- write -2-> letter$} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. [Recski (2018)]
+Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \textit{$w_1 <-0-1-> w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I’am writing.}(\textit{Én éppen írok})  mondatot az \textit{$i -0> write$} 4lang gráffal és az \textit{I’am writing a letter}(textit{Én egy levelet írok éppen}) mondatot az \textit{$i <-1- write -2-> letter$} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. \cite{Recski:2018}
 
-A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_ to\_ 4lang, dict\_ to\_ 4lang). A dep\_ to\_ 4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser [DeMarneffe et al. (2006)] kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
-4lang a neve egy kézzel alkotott  fogalmi szótárnak is, amely négy nyelven tartalmaz több mint 2000 fogalom nyelvfüggetlen definícióját (magyar, angol, latin, lengyel). [Kornai and Makrai (2013)]
+A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_ to\_ 4lang, dict\_ to\_ 4lang). A dep\_ to\_ 4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser \cite{DeMarneffe:2006} kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
+4lang a neve egy kézzel alkotott  fogalmi szótárnak is, amely négy nyelven tartalmaz több mint 2000 fogalom nyelvfüggetlen definícióját (magyar, angol, latin, lengyel). \cite{Kornai:2013}
 
 
 %----------------------------------------------------------------------------
@@ -224,26 +188,49 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 %----------------------------------------------------------------------------
 A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a \textit{$w_1 -amod-> w_2$} viszony az UD-ból megfelel a \textit{$w_1 -0-> w_2$} viszonynak a 4lang-ból.
 
-A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikai jelentését. Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai függőségekket. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak, és a 4lang beli fogalmak között is. Ez persze azt jelenti, hogy az UD már tartalmazza a szemantikára vonatkozó információkat is, de csak közvetetten.
+A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikáját (jelentését). Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai függőségekket. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak, és a 4lang beli fogalmak között is. Ez persze azt jelenti, hogy az UD már tartalmazza a szemantikára vonatkozó információkat is, de csak közvetetten.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ll}
-    \textbf{Függőség} 	& \textbf{Él} 					\\ \hline
-    advcl      			& \edge{$w_1$}{0}{$w_2$}    	\\
-    advmod     			&                               \\
-    amod       			&                               \\
-    nmod       			&                               \\
-    nummod     			&                               \\ \hline
-    appos      			& \twoedges{$w_1$}{0}{0}{$w_2$} \\
-    dislocated 			&                               \\ \hline
-    csubj      			& \twoedges{$w_1$}{1}{0}{$w_2$} \\
-    nsubj      			&                               \\ \hline
-    ccomp      			& \edge{$w_1$}{2}{$w_2$}        \\
-    obj        			&                               \\
-    xcomp      			&                               \\                            
+    \begin{tabular}{lc}
+        \toprule
+        Függőség & Él \\
+        \midrule
+        amod & \multirow{7}{*}{\edge{$w_1$}{0}{$w_2$}} \\
+        advmod & \\
+        npadvmod & \\
+        acomp & \\
+        dep & \\
+        num & \\
+        prt & \\
+        \midrule
+        nsubj & \multirow{4}{*}{\twoedges{$w_1$}{1}{0}{$w_2$}} \\
+        csubj & \\
+        xsubj & \\
+        agent & \\
+        \midrule
+        dobj & \multirow{6}{*}{\edge{$w_1$}{2}{$w_2$}} \\
+        pobj & \\
+        nsubjpass & \\
+        csubjpass & \\
+        pcomp & \\ 
+        xcomp & \\
+        \midrule
+        appos & \twoedges{$w_1$}{0}{0}{$w_2$} \\
+        \midrule
+        poss & \multirow{2}{*}{$w_2\xleftarrow1$ \texttt{HAS} $\xrightarrow2w_1$} \\
+        prep\_of & \\
+        \midrule
+        tmod & $w_1\xleftarrow1$ \texttt{AT} $\xrightarrow2w_2$ \\
+        \midrule
+        prep\_with & $w_1\xleftarrow1$ \texttt{INSTRUMENT} $\xrightarrow2w_2$ \\
+        \midrule
+        prep\_without & $w_1\xleftarrow1$ \texttt{LACK} $\xrightarrow2w_2$ \\
+        \midrule
+        prep\_P & $w_1\xleftarrow1$ \texttt{P} $\xrightarrow2w_2$ \\
+        \bottomrule                         
     \end{tabular}
-    \caption{UD függőségek megfeleltetése 4lang éleknek.}
+    \caption{UD függőségek megfeleltetése 4lang részgráfoknak \cite[p. 12.]{Recski:2018}.}
     \label{table:deps}
     \end{table}
 
@@ -305,15 +292,17 @@ Ebben a fejezetben a kutatás során használt környezetről (Alto), formalizmu
 \subsection{Az Alto}
 \label{sec:alto}
 %----------------------------------------------------------------------------
-A kutatás során a kódot az Algebraic Language Toolkit-tel, avagy Alto-val [[hivatkozás!!! a diplomamunkámban megtalálod]] fordítjuk és futtatjuk. Az Alto egy nyílt forrású parszer, ami többféle algebrát is megvalósít, amelyek IRTG-be ágyazva használhatók.
-Ezek egyike az s-graph és a tag tree algebra. Ezen kívül is szabadon bővíthető új algebrákkal. Már korábban is használták gráftranszformációra és szemantikai elemzésre is [[hivatkozás!!! ez is benne van a diplomamunkámban :)]]. Nagy előnyt jelent, hogy Java-ban lett implementálva , így szinte bármely platformon futtatható. Ezen kívül rendelkezik grafikus és konzolos felhasználói felülettel is.
+A kutatás során a kódot az Algebraic Language Toolkit-tel, avagy Alto-val \footnote{\url{https://github.com/coli-saar/alto}} fordítjuk és futtatjuk. Az Alto egy nyílt forrású parszer, ami többféle algebrát is megvalósít, amelyek IRTG-be ágyazva használhatók.
+Ezek egyike az s-graph és a tag tree algebra. Ezen kívül is szabadon bővíthető új algebrákkal. Már korábban is használták gráftranszformációra és szemantikai elemzésre is \footnote{\url{https://github.com/kornai/4lang/blob/master/exp/alto/ud/en_ud_bi.irtg}}. Nagy előnyt jelent, hogy Java-ban lett implementálva , így szinte bármely platformon futtatható. Ezen kívül rendelkezik grafikus és konzolos felhasználói felülettel is.
 
 
 %----------------------------------------------------------------------------
 \subsection{Az IRTG}
 \label{sec:irtg}
 %----------------------------------------------------------------------------
-Az IRTG (Interpreted Regular Tree Grammar, interpretált reguláris fa-nyelvtan) [[hivatkozás!!!!]] egy kontextusfüggetlen nyelvtan, ami egy vagy több algebrába beágyazott újraíró szabályokból áll.
+Az IRTG (Interpreted Regular Tree Grammar, interpretált reguláris fa-nyelvtan) \todo{hivatkozás!!!!} egy kontextusfüggetlen nyelvtan, ami egy vagy több algebrába beágyazott újraíró szabályokból áll.
+
+\begin{figure}[h]
 \begin{verbatim}
 NP -> _NP2_amod_JJ_NN(JJ, NN)
 [string] *(?1,?2)
@@ -321,10 +310,9 @@ NP -> _NP2_amod_JJ_NN(JJ, NN)
 [ud] merge(f_dep(merge("(r<root> :amod (d<dep>))", r_dep(?1))),?2)
 [fourlang] merge(f_dep(merge("(r<root> :0 (d<dep>))", r_dep(?1))),?2)
 \end{verbatim}
-
-1. ábra: Egy, az \texttt{amod} relációt leíró IRTG-szabály négy algebrával
-
-[[ az ábrát ne így nevezd el 1. ábrának,ez is benne van a diplomamunkámban, hogy hogyan kell, a labelt nézd; ahol elmagyarázod, ott tudsz rá hivatkozni a label alapján ]]
+\caption{Egy, az \texttt{amod} relációt leíró IRTG-szabály négy algebrával}
+\label{fig:amod_irtg}
+\end{figure}
 
 A szabálysorok egy környezetfüggetlen nyelvtan átírási szabályait adják meg. A szabályok feldolgozásakor először egy \texttt{levezetési fa} (derivation tree) épül, amelyek a nonterminálisokat lecserélő szabályokat tartalmazzák. Egy szabályt a következő módon lehet definiálni (a sablonban a változó részeket \{\$ \$\}zárójellel jelöltem, ahol a \$ a Slot kifejezésből ered, a \{\} pedig a nem szöveg elemeket jelöli):
 \begin{verbatim}
@@ -335,7 +323,7 @@ A interpretációk nyelve és kimenete többféle is lehet.  Választható péld
 Tekintsük az 1.ábrán bemutatott szabályt. Ez a szabály egy melléknévből (adjective, JJ) és egy főnévből(noun, NN) készít egy két gyermekű főnévi kifejezést (noun phrase, NP). A két szó között melléknévi módosítói (adjectival modifier, amod) viszony áll fenn az UD gráfban. Ennek megfelelően neveztük el a szabályt “\_ NP2\_ amod\_ JJ\_ NN”-nek. Az interpretációk sorban a nyers szöveg, a szintaktikai fa, az UD gráf és a 4lang gráf.
 Itt minden reprezentációban a “?1” és “?2” az, ahova a “JJ” és “NN” jobb oldali nemterminális szimbólumok átírásánál keletkező kifejezések kerülnek. Ezek az interpretációk bemenetei. Jelen esetben a “?1” a “JJ” és a “?2” az “NN” szimbólum interpretációinak a helye. A két jobb oldali nemterminális kiértékelése után minden interpretációba a vele azonos interpretáció kimenete kerül, stringé a stringbe stb.
 
-A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti két szót fűzi össze. A tree interpretációhoz a tag tree algebra tartozik, ami egy “NP2” címkéjű csúcs alá szúrja be a két bemenetet. Ez az algebra állítja elő a szintaktikai fát. A bemenete két-két csúcs.  A negyedik és ötödik sorhoz is az s-graph algebra tartozik. Mindkettő irányított éllel köti össze a két bemenetet. Az UD egy \textit{amod}, a 4lang pedig egy \textit{0} címkéjű éllel. Itt mindkét esetben mindkét bemenet csak egy címkézett csúcs. A nevüknek megfelelő gráfokat állítják elő. Magasabb szintű szabályoknál már az UD és 4lang bemenetek összetett irányított gráfok lesznek. Mi elsősorban az előbb említett három algebrát használjuk, de ezeken kívül más algebra is használható az IRTG nyelvben, mint például… [alto wiki]. Ezek nem részei a dolgozat fókuszának.
+A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti két szót fűzi össze. A tree interpretációhoz a tag tree algebra tartozik, ami egy “NP2” címkéjű csúcs alá szúrja be a két bemenetet. Ez az algebra állítja elő a szintaktikai fát. A bemenete két-két csúcs.  A negyedik és ötödik sorhoz is az s-graph algebra tartozik. Mindkettő irányított éllel köti össze a két bemenetet. Az UD egy \textit{amod}, a 4lang pedig egy \textit{0} címkéjű éllel. Itt mindkét esetben mindkét bemenet csak egy címkézett csúcs. A nevüknek megfelelő gráfokat állítják elő. Magasabb szintű szabályoknál már az UD és 4lang bemenetek összetett irányított gráfok lesznek. Mi elsősorban az előbb említett három algebrát használjuk, de ezeken kívül más algebra is használható az IRTG nyelvben, mint például a wide string algebra, a tree with arities algebra vagy a set algebra. Ezek nem részei a dolgozat fókuszának.
 
 
 
@@ -391,25 +379,24 @@ fát előállítani, mert már az első szóhoz tartozó csúcsok, az “NNP(Joh
 
 S3( NP1( NNP( John ) ), VP2( NNP( John ),  NP1( NNP( John )) ), NNP( John ) )
 
-fát kapjuk. Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. Lásd [Példa 1].
+fát kapjuk. Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. Lásd példa~\ref{sec:example1}.
 
 Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank Szintaktikai Fáiban.  Ilyen a \textit{the black cat} (\textit{a fekete macska}) főnévi kifejezés is, aminek a szintaktikai fája az:
 
 NP3( DT( the ), JJ( black ), NN( cat ) ).
 
 A fát merge nélkül praktikusan csak három bemenetű szabállyal lehetséges implementálni.
-Lásd [Példa 2].
+Lásd példa~\ref{sec:example2}.
 
-Merge segítségével sokkal optimálisabban is megoldható. Lásd [Példa 3].
+Merge segítségével sokkal optimálisabban is megoldható. Lásd példa~\ref{sec:example3}.
 
 Négy gyermekű főneves kifejezések esetében ez már nem lehetséges. Ilyen például a \textit{this British industrial conglomerate} (ez a brit ipari összetömörülés), amihez  a:
 
 NP4( DT( this), JJ( British), JJ( industrial), NN( conglomerate) )
 
-fa tartozik. Ezt a fenti logikával nem tudjuk helyesen megoldani. Lásd [Példa 4].
+fa tartozik. Ezt a fenti logikával nem tudjuk helyesen megoldani. Lásd példa~\ref{sec:example4}.
 
-Itt a második\begin{verbatim}NP_BAR 
-\end{verbatim}elkészítésekor, a merge művelet során a JJ  mindkét lyukba beszúródik, így a: NP4( DT( this), JJ( British), JJ( British), NN( conglomerate) )
+Itt a második NP\_BAR elkészítésekor, a merge művelet során a JJ  mindkét lyukba beszúródik, így a: NP4( DT( this), JJ( British), JJ( British), NN( conglomerate) )
 
 Ezt a TTA korlátai miatt nem tudjuk megkerülni.
 
@@ -432,9 +419,9 @@ A nyelvtan legfontosabb három művelete a \texttt{forget} (elfelejt), \texttt{r
 \begin{verbatim}
 r_{$ régi_jelölés $}_{$ új_jelölés $}( {$ gráf $} )
 \end{verbatim}
-formátumban lehet megadni. A rename esetén a leváltandó jelölés neve elhagyható és abban az esetben a “root” jelölésű csúcsokon fogja végrehajtani. A merge formátuma hasonlít leginkább a közismert programozási nyelvek függvényhívásaira.: merge(\{\$ gráf1 \$\}, \{\$ gráf2 \$\}) Lásd [Példa 5].
+formátumban lehet megadni. A rename esetén a leváltandó jelölés neve elhagyható és abban az esetben a “root” jelölésű csúcsokon fogja végrehajtani. A merge formátuma hasonlít leginkább a közismert programozási nyelvek függvényhívásaira.: merge(\{\$ gráf1 \$\}, \{\$ gráf2 \$\}) Lásd példa~\ref{sec:example5}.
 
-A példa sok szabálya megfeleltethető a tree reprezentáció esetében használttal. Ennek oka az, hogy a nyelvtanokat úgy írtuk meg, hogy azokat könnyű legyen összeilleszteni. Általában a szintaktikai fa egy csúcsát vagy egy három gyermekű csúcsának a felét rakjuk össze egy szabály alatt, és az UD gráfba kerülő élek és a jobb oldali nemterminális szimbólumok szerint nevezzük el a szabályokat. Mivel az UD gráfban és 4lang gráfban sok a hasonlóság, azt is hozzá adom az egyesített nyelvtan példában. Lásd [Példa 6]
+A példa sok szabálya megfeleltethető a tree reprezentáció esetében használttal. Ennek oka az, hogy a nyelvtanokat úgy írtuk meg, hogy azokat könnyű legyen összeilleszteni. Általában a szintaktikai fa egy csúcsát vagy egy három gyermekű csúcsának a felét rakjuk össze egy szabály alatt, és az UD gráfba kerülő élek és a jobb oldali nemterminális szimbólumok szerint nevezzük el a szabályokat. Mivel az UD gráfban és 4lang gráfban sok a hasonlóság, azt is hozzá adom az egyesített nyelvtan példában. Lásd példa~\ref{sec:example6}.
 
 Az s-graph algebra egy jól használható nyelv, de módosítani és javítani is nehéz. Ennek elsődleges oka a bonyolult szintaxis.
 
@@ -447,9 +434,9 @@ A csúcsok deklarációjában az attribútumok egymástól teljesen eltérő szi
 \begin{verbatim}
 [{$ name $} | {$ tag $} | {$ mark $}].
 \end{verbatim}
-Lásd [Példa 7]
+ Lásd példa~\ref{sec:example7}.
 
-Véleményem szerint ez sokkal tisztább módja lenne és tördelni is sokkal egyszerűbb. Ha az egyik forget vagy rename műveletetre nincs szükség, akkor csak elhagyjuk a hozzá tartozó attribútumokat . Még ennél is szebb lenne, ha a műveleteket operációs jelek jelölnék. Lásd [Példa 8]
+Véleményem szerint ez sokkal tisztább módja lenne és tördelni is sokkal egyszerűbb. Ha az egyik forget vagy rename műveletetre nincs szükség, akkor csak elhagyjuk a hozzá tartozó attribútumokat . Még ennél is szebb lenne, ha a műveleteket operációs jelek jelölnék. Lásd példa~\ref{sec:example8}.
 
 Ugyanakkor ez már túlzottan eltér a gráfleíró nyelvek hagyományos stílusától, és tördelni is nehézkesebb. Operátoros esetben pedig szükség lenne egy sorrendiségre is, ami nem lenne mindenki számára triviális. Arról nem is beszélve, hogy a rename művelet három bemenetű, így nem lehet egy operátorral elvégezni, ahogy az összetett merge négy operátorát is erőltetetten hat.
 
@@ -470,7 +457,7 @@ Először az IRTG-ről lesz szó, majd az LATO-val folytatom.
 Az IRTG nem egy programozási nyelv, hanem egy nyelvtan. A szabályok egymás alatt adhatóak meg és csak backspace karakterekkel és kommentekkel tagolhatóak. Egy nyelvtan több fájlra nem szedhető szét. A fájl elején fel kell sorolni az interpretációkat, és egyik interpretáció sem hagyható el egyik szabályból sem, még akkor sem, ha semmit sem adnak vissza. A kutatás során egy olyan nyelvtant készítettünk, ami 2700 szabályból áll és négy interpretációból. Ez ha a szabályokat üres sorokkal választjuk el, akkor 16204 sor kódot jelent egyetlen fájlban. Egy ekkora kódot nehéz karbantartani, átlátni, fejleszteni. Tehát szükség van IRTG-ben az importálásra.
 
 
-Rengeteg esetben a szabályok alig egy-egy szóban térnek el. Lásd [Példa 6.]
+Rengeteg esetben a szabályok alig egy-egy szóban térnek el. Lásd példa~\ref{sec:example6}.
 Itt a \textit{John} és a \textit{Mary} szóhoz tartozó terminális szabályok között csupán maguk a szavak jelentik a különbséget. A string interpretációban is csak maga a szó jelenik meg. Más szófajú szavak esetében is csak a szabály sort és tree reprezentációt kell még módosítani. Az ilyen esetek miatt nagy kár, hogy az IRTG-ben nem lehet szabályokat egymásból vagy egy közös ősből származtatni.
 
 
@@ -487,7 +474,7 @@ Gyakori az IRTG-ben az, hogy kulcsszavak ütköznek pár változónak a nevével
 \label{sec:ALTOshortcomming}
 %----------------------------------------------------------------------------
 
-Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. [Ennek neve is van, erről kaptam forrást is.]
+Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. \todo{Ennek neve is van, erről kaptam forrást is.}
 
 Az elvi működés és a megvalósítás következtében az ALTO rendkívül lassú. A feljebb említett 2700 szabályos és négy interpretációs nyelvtan $10^5$ nagyságrendű adaton nagyjából 30 óráig futott, pedig a rendelkezésünkre álló tanszéki szerveren futtattuk. Ez a mi feladatunk esetében elfogadhatatlan. Ezért nem ártana egy hatékonyabb C++ verzió az ilyen méretű munkákhoz. Ma már a C++17 és a hamarosan érkező C++20 is kényelmes programozási nyelv, és nem nagy ördöngösség az alap platformokon futtatható verziókat legenerálni a nyílt forráskódból. Egy könyvtár formájában pythonból is elérhető lenne ez a verzió.
 
