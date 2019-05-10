@@ -6,10 +6,10 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}A szintaktikai fa}{4}{subsection.2.1.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Dependenciaelemz\IeC {\'e}s \IeC {\'e}s az UD}{4}{subsection.2.1.2}
 \select@language {magyar} \contentsline {section}{\numberline {2.2}Szemantika}{6}{section.2.2}
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}4lang}{7}{subsection.2.2.1}
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}4lang}{6}{subsection.2.2.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}A 4lang \IeC {\'e}s az UD k\IeC {\"u}l\IeC {\"o}nbs\IeC {\'e}gei}{7}{subsection.2.2.2}
 \select@language {magyar} \contentsline {section}{\numberline {2.3}A kutat\IeC {\'a}s c\IeC {\'e}lja}{8}{section.2.3}
-\select@language {magyar} \contentsline {section}{\numberline {2.4}Az IRTG \IeC {\'e}s az al\IeC {\'a}rendelt algebr\IeC {\'a}k}{8}{section.2.4}
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Az IRTG \IeC {\'e}s az al\IeC {\'a}rendelt algebr\IeC {\'a}k}{9}{section.2.4}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}Az Alto}{9}{subsection.2.4.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.2}Az IRTG}{9}{subsection.2.4.2}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.3}Az SA}{10}{subsection.2.4.3}
@@ -18,7 +18,7 @@
 \select@language {magyar} \contentsline {section}{\numberline {2.5}Az IRTG \IeC {\'e}s az ALTO hi\IeC {\'a}nyoss\IeC {\'a}gai}{13}{section.2.5}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.5.1}Az IRTG hi\IeC {\'a}nyoss\IeC {\'a}gai}{13}{subsection.2.5.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.5.2}Az ALTO hi\IeC {\'a}nyoss\IeC {\'a}gai}{14}{subsection.2.5.2}
-\select@language {magyar} \contentsline {section}{\numberline {2.6}Jelenlegi megold\IeC {\'a}sok}{14}{section.2.6}
+\select@language {magyar} \contentsline {section}{\numberline {2.6}Jelenlegi megold\IeC {\'a}sok}{15}{section.2.6}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.6.1}els\IeC {\H o} gener\IeC {\'a}tor}{15}{subsection.2.6.1}
 \select@language {magyar} \contentsline {subsection}{\numberline {2.6.2}m\IeC {\'a}sodik gener\IeC {\'a}tor}{16}{subsection.2.6.2}
 \select@language {magyar} \contentsline {chapter}{\numberline {3}A Slime nyelv}{17}{chapter.3}
