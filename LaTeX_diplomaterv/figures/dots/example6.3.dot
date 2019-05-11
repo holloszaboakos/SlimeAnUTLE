@@ -11,7 +11,7 @@ merge(
  		merge(
 			f_dep( 
 					merge(
-						"(r<root> :_ (d<dep>))", 
+						"(r<root> :2 (d<dep>))", 
 						r_dep( 
 							"(Mary<root> / Mary)" 	
 							)
@@ -32,6 +32,6 @@ Mary
 Root->loves[label="root"]
 loves->John[label="1"]
 John->loves[label="0"]
-loves->Mary[label="_"]
+loves->Mary[label="2"]
 
  }

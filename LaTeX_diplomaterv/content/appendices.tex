@@ -43,16 +43,14 @@ PUNCT -> punct_PUNCT
 [tree] .(.)
 \end{verbatim}
 
-Ebből a levezetési fa:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example1.png}
-\caption{~\ref{sec:example1} levezetési fája}
+\caption{~\ref{sec:example1}-ben leírt IRTG által generált levezetési fa a \textit{John Loves Mary.} mondat TT-jére.}
 \label{fig:example1}
 \end{figure}
 
-és a TTA-i kifejezés: 
 \begin{verbatim}
 @(
 	S3( *, VP2( VBZ( loves ),  NP1( NNP( Mary ) ) ), .( . ) ), 
@@ -88,11 +86,11 @@ Ebből a levezetési fa:
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example2.png}
-\caption{~\ref{sec:example2} levezetési fája}
+\caption{~\ref{sec:example2}-ben leírt IRTG által generált levezetési fa a \textit{the black cat} szószerkezet TT-jére.}
 \label{fig:example2}
 \end{figure}
 
-és a TTA kifejezés maga a fa: NP3( DT( the ), JJ( black ), NN( cat ) )
+TTA kifejezés (maga a fa): NP3( DT( the ), JJ( black ), NN( cat ) )
 
 
 
@@ -124,11 +122,11 @@ Ebből a levezetési fa:
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example3.png}
-\caption{~\ref{sec:example3} levezetési fája}
+\caption{~\ref{sec:example3}-ban leírt IRTG által generált levezetési fa a \textit{the black cat} szószerkezet TT-jére.}
 \label{fig:example3}
 \end{figure}
 
-és a TTA kifejezés: @(  NP3( *, JJ( black ), NN( cat ) ), DT( the ) )
+TTA kifejezés: @(  NP3( *, JJ( black ), NN( cat ) ), DT( the ) )
 
 
 
@@ -161,12 +159,11 @@ NN -> conglomerate_NN
 [tree] NN(conglomerate)
 \end{verbatim}
 
-és ebből ez a levezetési fa generálódna:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example4.png}
-\caption{~\ref{sec:example4} levezetési fája}
+\caption{~\ref{sec:example4}-ben leírt IRTG által generált levezetési fa a \textit{this British indastrial conglomerate} szószerkezet TT-jére.}
 \label{fig:example4}
 \end{figure}
 
@@ -208,16 +205,15 @@ PUNCT -> punct_PUNCT
 [ud] "(punct<root> / punct)"
 \end{verbatim}
 
-Ebből a levezetési fa:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example5_1.png}
-\caption{~\ref{sec:example5} levezetési fája}
+\caption{~\ref{sec:example5}-ben leírt IRTG által generált levezetési fa a \textit{John loves Mary.} szószerkezet ud-jét leíró s-graph-ra}
 \label{fig:example5.1}
 \end{figure}
 
-Ebből az SGA kifejezés:
+\begin{figure}[h]
 \begin{verbatim}
 merge(
 	f_dep( merge(
@@ -233,23 +229,24 @@ merge(
 		)
 	)
 \end{verbatim}
+\caption{~\ref{sec:example5} ud interpretációjának kimenete}
+\label{fig:example6fourlang}
+\end{figure}
 
-Ebből a műveleti fa:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.4]{figures/dots/example5_2.png}
-\caption{~\ref{sec:example5} kimenetének műveleti fája}
+\caption{~\ref{sec:example5}-ben leírt IRTG ud interpretációja által generált s-graph kifejezés műveleti fája}
 \label{fig:example5.2}
 \end{figure}
 
-Ebből az ud kimenete:
 "(Root/Root :root loves<root>/loves :nsubj (John/John) :dobj (Mary/Mary))"
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example5_3.png}
-\caption{~\ref{sec:example5} kimenetének végeredménye}
+\caption{~\ref{sec:example5}-ben leírt IRTG ud interpretációja által generált s-graph kifejezés végeredménye}
 \label{fig:example5.3}
 \end{figure}
 
@@ -285,7 +282,7 @@ VP -> dobj_VB_NP(VB,NP)
 			?1
 			)
 [fourlang] merge(
-				f_dep(merge("(r<root> :_ (d<dep>))", r_dep(?2))),
+				f_dep(merge("(r<root> :2 (d<dep>))", r_dep(?2))),
 				?1
 				)
 
@@ -316,16 +313,15 @@ PUNCT -> punct_PUNCT
 [fourlang] "(punct<root> / punct)"
 \end{verbatim}
 
-Ebből a levezetési fa:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example6_1.png}
-\caption{~\ref{sec:example6} levezetési fája}
+\caption{~\ref{sec:example6}-ban leírt IRTG által generált levezetési fa a \textit{John loves Mary.} szószerkezet 4lang-ját leíró s-graph-ra}
 \label{fig:example6}
 \end{figure}
 
-Ebből a 2. SGA kifejezés:
+\begin{figure}[h]
 \begin{verbatim}
 merge(
 	f_dep( 
@@ -339,7 +335,7 @@ merge(
  		merge(
 			f_dep( 
 					merge(
-						"(r<root> :_ (d<dep>))", 
+						"(r<root> :2 (d<dep>))", 
 						r_dep( 
 							"(Mary<root> / Mary)" 	
 							)
@@ -349,22 +345,23 @@ merge(
 			)
 )
 \end{verbatim}
+\caption{~\ref{sec:example6} fourlang interpretációjának kimenete}
+\label{fig:example6fourlang}
+\end{figure}
 
-Ebből a műveleti fa:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.4]{figures/dots/example6_2.png}
-\caption{~\ref{sec:example6} kimenetének műveleti fája}
+\caption{~\ref{sec:example6}-ben leírt IRTG fourlang interpretációja által generált s-graph kifejezés műveleti fája}
 \label{fig:example6.2}
 \end{figure}
 
-Ebből az fourlang kimenete:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example6_3.png}
-\caption{~\ref{sec:example6} levezetési fája}
+\caption{~\ref{sec:example6}-ben leírt IRTG fourlang interpretációja által generált s-graph kifejezés végeredménye}
 \label{fig:example6.3}
 \end{figure}
 

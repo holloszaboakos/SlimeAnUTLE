@@ -11,7 +11,7 @@ merge(
  		merge(
 			f_dep( 
 					merge(
-						"(r<root> :_ (d<dep>))", 
+						"(r<root> :2 (d<dep>))", 
 						r_dep( 
 							"(Mary<root> / Mary)" 	
 							)
@@ -32,7 +32,7 @@ G2[label="\"(John<root> / John)\""]
 M3[label="merge",peripheries=2]
 F2[label="f_dep",peripheries=2]
 M4[label="merge",peripheries=2]
-G3[label="\"(r<root> :_ (d<dep>))\""]
+G3[label="\"(r<root> :2 (d<dep>))\""]
 R2[label="r_dep",peripheries=2]
 G4[label="\"(Mary<root> / Mary)\""]
 G5[label="\"(loves<root> / loves)\""]
