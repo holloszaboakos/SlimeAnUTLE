@@ -1,0 +1,42 @@
+/*
+S! -> NP_DT_NP_BAR( DT, NP_BAR)
+[tree] @(?2,?1)
+
+NP_BAR -> NP_BAR_JJ_NP_BAR(JJ,NP_BAR)
+[tree] @(?2,?1)
+
+NP_BAR -> NP_BAR_JJ_NN(JJ,NN)
+[tree] NP4(* ,* ,?1 ,?2)
+
+DT -> this_DT
+[tree] DT(this)
+
+JJ -> British_JJ
+[tree] JJ(British)
+
+JJ -> indastrial_JJ
+[tree] JJ(indastrial)
+
+NN -> conglomerate_NN
+[tree] NN(conglomerate)
+
+NP4( DT( this), JJ( British), JJ( industrial), NN( conglomerate) )
+*/
+digraph G {
+S[label="S!",peripheries=3]
+DTNP_BAR[label="DT NP_BAR",peripheries=2]
+empty1[label="ε"]
+JJNP_BAR[label="JJ NP_BAR",peripheries=2]
+empty2[label="ε"]
+JJNN[label="JJ NN",peripheries=2]
+empty3[label="ε"]
+empty4[label="ε"]
+
+S->DTNP_BAR[label="NP_DT_NP_BAR"]
+DTNP_BAR->empty1[label="this_DT"]
+DTNP_BAR->JJNP_BAR[label="NP_BAR_JJ_NP_BAR"]
+JJNP_BAR->empty2[label="British_JJ"]
+JJNP_BAR->JJNN[label="NP_BAR_JJ_NN"]
+JJNN->empty3[label="indastrial_JJ"]
+JJNN->empty4[label="conglomerate_NN"]
+ }

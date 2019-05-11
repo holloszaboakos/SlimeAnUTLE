@@ -1,0 +1,27 @@
+/*
+S! -> NP( DT, JJ, NN )
+[tree] NP3(?1,?2,?3)
+
+DT -> the_DT
+[tree] DT(the)
+
+JJ -> black_JJ
+[tree] NN(black)
+
+VB -> cat_VB
+[tree] VB(cat)
+
+NP3( DT( the ), JJ( black ), NN( cat ) )
+*/
+digraph G {
+S[label="S!",peripheries=3]
+DTJJNN[label="DT JJ NN",peripheries=2]
+empty1[label="ε"]
+empty2[label="ε"]
+empty3[label="ε"]
+
+S->DTJJNN[label="NP"]
+DTJJNN->empty1[label="the_DT"]
+DTJJNN->empty2[label="black_JJ"]
+DTJJNN->empty3[label="cat_VB"]
+ }

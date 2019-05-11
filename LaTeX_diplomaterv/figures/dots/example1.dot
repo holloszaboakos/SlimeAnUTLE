@@ -1,0 +1,27 @@
+//S3( NP1( NNP( John ) ), VP2( VBZ( loves ),  NP1( NNP( Mary ) ) ), .( . ) )
+//[label="text",peripheries=2]
+digraph G {
+S3[peripheries=3]
+
+NP1john[label="NP1",peripheries=2]
+NNPjohn[label="NNP"]
+John[shape=plaintext]
+S3->NP1john->NNPjohn->John
+
+VP2[peripheries=2]
+VBZ
+loves[shape=plaintext]
+S3->VP2->VBZ->loves
+
+NP1mary[label="NP1",peripheries=2]
+NNPmary[label="NNP"]
+Mary[shape=plaintext]
+VP2->NP1mary->NNPmary->Mary
+
+puncttype[label="."]
+punct[label=".",shape=plaintext]
+S3->puncttype->punct
+
+
+
+ }

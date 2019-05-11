@@ -1,0 +1,37 @@
+/*
+merge(
+	f_dep( 
+		merge(
+			"(Root/Root :root r<root> :1,0 (d<dep>))",
+ 			r_dep( 
+				"(John<root> / John)" 
+				)
+			) 
+		),
+ 		merge(
+			f_dep( 
+					merge(
+						"(r<root> :_ (d<dep>))", 
+						r_dep( 
+							"(Mary<root> / Mary)" 	
+							)
+						) 
+				),
+			 “(loves<root> / loves)”
+			)
+)
+Ebből az fourlang kimenete:
+"(Root/Root :root (loves/loves :1,0 (John/John) :_ (Mary/Mary)))"
+*/
+digraph G {
+Root
+loves
+John
+Mary
+
+Root->loves[label="root"]
+loves->John[label="1"]
+John->loves[label="0"]
+loves->Mary[label="_"]
+
+ }

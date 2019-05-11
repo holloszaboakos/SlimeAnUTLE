@@ -1,0 +1,30 @@
+//[shape=box] [shape=plaintext] [shape=polygon,sides=5]
+//[color=red] [color=lightblue]
+//[label="NNP"] 
+//[peripheries=3]
+//[color=lightblue]
+//[style=filled]
+//a -> b [label="root"]
+//a -> b [color=blue]
+
+digraph G {
+ a -> b -> c;
+ b -> d;
+ a [shape=polygon,sides=5,peripheries=3,color=lightblue,style=filled];
+ c [shape=polygon,sides=4,skew=.4,label="hello world"]
+ d [shape=invtriangle];
+ e [shape=polygon,sides=4,distortion=.7];
+ size ="4,4";
+ main [shape=box]; /* this is a comment */
+ main -> parse [weight=8];
+ parse -> execute;
+ main -> init [style=dotted];
+ main -> cleanup;
+ execute -> { make_string; printf}
+ init -> make_string;
+ edge [color=red]; // so is this
+ main -> printf [style=bold,label="100 times"];
+ make_string [label="make a\nstring"];
+ node [shape=box,style=filled,color=".7 .3 1.0"];
+ execute -> compare;
+ }

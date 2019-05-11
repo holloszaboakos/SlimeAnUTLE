@@ -1,0 +1,28 @@
+/*
+merge(
+	f_dep( merge(
+		"(Root/Root :root r<root> :nsubj (d<dep>))",
+ 		r_dep( "(John<root> / John)" )
+		) ),
+	 merge(
+		f_dep( merge(
+					"(r<root> :dobj (d<dep>))", 
+					r_dep( "(Mary<root> / Mary)" )
+					) ),
+ 		“(loves<root> / loves)”
+		)
+	)
+Ebből az ud kimenete:
+"(Root/Root :root loves<root>/loves :nsubj (John/John) :dobj (Mary/Mary))"
+*/
+digraph G {
+Root
+loves
+John
+Mary
+
+Root->loves[label="root"]
+loves->John[label="nsubj"]
+loves->Mary[label="dobj"]
+
+ }

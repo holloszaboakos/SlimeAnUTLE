@@ -1,0 +1,32 @@
+/*
+S! -> NP_DT_NP_BAR( DT, NP_BAR)
+[tree] @(?2,?1)
+
+NP_BAR -> NP_BAR_JJ_NN(JJ,NN)
+[tree] NP3(*,?1,?2)
+
+DT -> the_DT
+[tree] DT(the)
+
+JJ -> black_JJ
+[tree] NN(black)
+
+VB -> cat_VB
+[tree] VB(cat)
+
+@(  NP3( *, JJ( black ), NN( cat ) ), DT( the ) )
+*/
+digraph G {
+S[label="S!",peripheries=3]
+DTNP_BAR[label="DT NP_BAR",peripheries=2]
+empty1[label="ε"]
+JJNN[label="JJ NN",peripheries=2]
+empty2[label="ε"]
+empty3[label="ε"]
+
+S->DTNP_BAR[label="NP_DT_NP_BAR"]
+DTNP_BAR->empty1[label="the_DT"]
+DTNP_BAR->JJNN[label="NP_BAR_JJ_NN"]
+JJNN->empty2[label="black_JJ"]
+JJNN->empty3[label="cat_VB"]
+ }

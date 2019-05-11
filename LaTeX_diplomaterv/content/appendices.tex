@@ -43,6 +43,15 @@ PUNCT -> punct_PUNCT
 [tree] .(.)
 \end{verbatim}
 
+Ebből a levezetési fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example1.png}
+\caption{~\ref{sec:example1} levezetési fája}
+\label{fig:example1}
+\end{figure}
+
 és a TTA-i kifejezés: 
 \begin{verbatim}
 @(
@@ -72,12 +81,19 @@ JJ -> black_JJ
 
 VB -> cat_VB
 [tree] VB(cat)
+\end{verbatim}
 
 Ebből a levezetési fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example2.png}
+\caption{~\ref{sec:example2} levezetési fája}
+\label{fig:example2}
+\end{figure}
 
 és a TTA kifejezés maga a fa: NP3( DT( the ), JJ( black ), NN( cat ) )
 
-\end{verbatim}
 
 
 
@@ -101,12 +117,19 @@ JJ -> black_JJ
 
 VB -> cat_VB
 [tree] VB(cat)
+\end{verbatim}
 
 Ebből a levezetési fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example3.png}
+\caption{~\ref{sec:example3} levezetési fája}
+\label{fig:example3}
+\end{figure}
 
 és a TTA kifejezés: @(  NP3( *, JJ( black ), NN( cat ) ), DT( the ) )
 
-\end{verbatim}
 
 
 
@@ -129,17 +152,24 @@ DT -> this_DT
 [tree] DT(this)
 
 JJ -> British_JJ
-[tree] NN(British)
+[tree] JJ(British)
 
 JJ -> indastrial_JJ
-[tree] NN(indastrial)
+[tree] JJ(indastrial)
 
-VB -> conglomerate_VB
-[tree] VB(conglomerate)
+NN -> conglomerate_NN
+[tree] NN(conglomerate)
+\end{verbatim}
 
 és ebből ez a levezetési fa generálódna:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example4.png}
+\caption{~\ref{sec:example4} levezetési fája}
+\label{fig:example4}
+\end{figure}
 
-\end{verbatim}
 
 
 
@@ -155,7 +185,7 @@ S! -> root_nsubj_NP_S_BAR(NP, S_BAR)
 	 		?2
 	 		)
 
-S_BAR -> S_NP_VP(VP, PUNCT)
+S_BAR -> S_BAR_VP_PUNCT(VP, PUNCT)
 [ud] ?1
 
 VP -> dobj_VB_NP(VB,NP)
@@ -176,13 +206,22 @@ VB -> loves_VBZ
 
 PUNCT -> punct_PUNCT
 [ud] "(punct<root> / punct)"
+\end{verbatim}
 
 Ebből a levezetési fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example5_1.png}
+\caption{~\ref{sec:example5} levezetési fája}
+\label{fig:example5.1}
+\end{figure}
 
 Ebből az SGA kifejezés:
+\begin{verbatim}
 merge(
 	f_dep( merge(
-		"(Root/Root :root r<root> :dobj (d<dep>))",
+		"(Root/Root :root r<root> :nsubj (d<dep>))",
  		r_dep( "(John<root> / John)" )
 		) ),
 	 merge(
@@ -193,12 +232,27 @@ merge(
  		“(loves<root> / loves)”
 		)
 	)
+\end{verbatim}
 
 Ebből a műveleti fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.4]{figures/dots/example5_2.png}
+\caption{~\ref{sec:example5} kimenetének műveleti fája}
+\label{fig:example5.2}
+\end{figure}
 
 Ebből az ud kimenete:
+"(Root/Root :root loves<root>/loves :nsubj (John/John) :dobj (Mary/Mary))"
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example5_3.png}
+\caption{~\ref{sec:example5} kimenetének végeredménye}
+\label{fig:example5.3}
+\end{figure}
 
-\end{verbatim}
 
 
 
@@ -260,10 +314,19 @@ PUNCT -> punct_PUNCT
 [tree] .(.)
 [ud] "(punct<root> / punct)"
 [fourlang] "(punct<root> / punct)"
+\end{verbatim}
 
 Ebből a levezetési fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example6_1.png}
+\caption{~\ref{sec:example6} levezetési fája}
+\label{fig:example6}
+\end{figure}
 
 Ebből a 2. SGA kifejezés:
+\begin{verbatim}
 merge(
 	f_dep( 
 		merge(
@@ -285,11 +348,26 @@ merge(
 			 “(loves<root> / loves)”
 			)
 )
+\end{verbatim}
 
+Ebből a műveleti fa:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.4]{figures/dots/example6_2.png}
+\caption{~\ref{sec:example6} kimenetének műveleti fája}
+\label{fig:example6.2}
+\end{figure}
 
 Ebből az fourlang kimenete:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.5]{figures/dots/example6_3.png}
+\caption{~\ref{sec:example6} levezetési fája}
+\label{fig:example6.3}
+\end{figure}
 
-\end{verbatim}
 
 
 
@@ -299,25 +377,44 @@ Ebből az fourlang kimenete:
 %----------------------------------------------------------------------------
 
 \begin{verbatim}
-@(																				//merge start
-	@(																			//merge start
-		"( [ Root | | Root ] <root- ( [ r | root ] <nsubj- [ d | dep ] ) )",	//graph1
-	 	"( [ John | root | John ] )",					//graph2
-		dep,							//tag of graph1
-		root,							//tag of graph2
-		dep							//tag to forget
-	),								//merge end
- 	@(								//merge start
-		@(							//merge start
-			"([ r | root ] <dobj- [ d | dep ] )", 			//graph1
-			"( [ Mary | root | Mary] )",				//graph2
-			dep,						//tag of graph1
-			root,						//tag of graph2
-			dep						//tag to forget
-		) ,							//merge end
-		“( [ loves | root | loves ] )”					//graph2
-	)								//megre end
-)									//merge end
+//merge start
+@(																				
+	//merge start
+	@(																			
+		//graph1
+		"( [ Root | | Root ] <root- ( [ r | root ] <nsubj- [ d | dep ] ) )",	
+		//graph2
+	 	"( [ John | root | John ] )",
+	 	//tag of graph1
+		dep,							
+		//tag of graph2
+		root,						
+		//tag to forget	
+		dep							
+	//merge end
+	),								
+	//merge start
+ 	@(								
+ 		//merge start
+		@(							
+			//graph1
+			"([ r | root ] <dobj- [ d | dep ] )", 		
+			//graph2	
+			"( [ Mary | root | Mary] )",
+			//tag of graph1				
+			dep,						
+			//tag of graph2
+			root,					
+			//tag to forget	
+			dep						
+		//merge end
+		) ,							
+		//graph2
+		“( [ loves | root | loves ] )”
+	//megre end					
+	)								
+//merge end
+)									
 \end{verbatim}
 
 
@@ -329,21 +426,25 @@ Ebből az fourlang kimenete:
 
 \begin{verbatim}
 
-( 
 
+//merge the root of the left graph with root of the right graph
+( 
+//merge the dep of left graph with the root of the right graph, then we forget dep
 ( "( [ Root | | Root ] <root- ( [ r | root ] <nsubj- [ d | dep ] ) )" 
 >dep@root< 
 "( [ John | root | John ] )" X dep ) 
 
 >root@root<
 
+//merge the root of the left graph with root of the right graph
 ( 
 
+//merge the dep of left graph with the root of the right graph, then we forget dep
 ( "([ r | root ] <dobj- [ d | dep ] )" 
->dep@root< 
+>dep@root< 	//merge on dep of left graph and root of right graph
 "( [ Mary | root | Mary ]  )" X	dep ) 
 
->root@root<
+>root@root<	//merge on root of left graph and root of right graph
 
 “( [ loves | root | loves ]  )” )
 
@@ -355,6 +456,34 @@ Ebből az fourlang kimenete:
 %----------------------------------------------------------------------------
 \section{Példa 9}
 \label{sec:example9}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\section{Példa 10}
+\label{sec:example10}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\section{Példa 11}
+\label{sec:example11}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\section{Példa 11}
+\label{sec:example11}
+%----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+\section{Példa 100}
+\label{sec:example100}
 %----------------------------------------------------------------------------
 
 \begin{verbatim}

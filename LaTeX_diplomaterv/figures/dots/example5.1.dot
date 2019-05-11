@@ -1,0 +1,36 @@
+/*
+S! -> root_nsubj_NP_S_BAR(NP, S_BAR)
+S_BAR -> S_BAR_VP_PUNCT(VP, PUNCT)
+VP -> dobj_VB_NP(VB,NP)
+NP -> NP_NN(NN)
+NN -> John_NNP
+NN -> Mary_NNP
+VB -> loves_VBZ
+PUNCT -> punct_PUNCT
+Ebből a levezetési fa:
+*/
+digraph G {
+S[label="S!",peripheries=3]
+NPS_BAR[label="NP S_BAR",peripheries=3]
+NN1[label="NN",peripheries=2]
+empty1[label="ε"]
+VPPUNCT[label="VP PUNCT",peripheries=2]
+VBNP[label="VB NP",peripheries=2]
+empty2[label="ε"]
+NN2[label="NN",peripheries=2]
+empty3[label="ε"]
+empty4[label="ε"]
+
+S->NPS_BAR[label="root_nsubj_NP_S_BAR"]
+NPS_BAR->NN1[label="NP_NN"]
+NN1->empty1[label="John_NNP"]
+
+NPS_BAR->VPPUNCT[label="S_BAR_VP_PUNCT"]
+VPPUNCT->VBNP[label="dobj_VB_NP"]
+VBNP->empty2[label="loves_VBZ"]
+
+VBNP->NN2[label="NP_NN"]
+NN2->empty3[label="Mary_NNP"]
+
+VPPUNCT->empty4[label="punct_PUNCT"]
+ }

@@ -56,8 +56,7 @@ A zárójelezés és az ágrajz egymással ekvivalens ábrázolási módok. A fe
 \begin{figure}[h]
 \centering
 \graphicspath{./}
-\includegraphics[scale=0.32]{TeXstudio.png}
-\todo{ITT LESZ MAJD A FA, HA KÉPKÉNT ILLESZTED BE; A SCALE-NÉL ÁLLÍTGATHATOD A MÉRETET} 
+\includegraphics[scale=0.32]{figures/dots/john_agrajz.png}
 \caption{A \textit{John loves Mary.} mondat ágrajzon ábrázolva}
 \label{fig:john_agrajz}
 \end{figure}
@@ -379,7 +378,9 @@ fát előállítani, mert már az első szóhoz tartozó csúcsok, az “NNP(Joh
 
 S3( NP1( NNP( John ) ), VP2( NNP( John ),  NP1( NNP( John )) ), NNP( John ) )
 
-fát kapjuk. Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. Lásd példa~\ref{sec:example1}.
+fát kapjuk. 
+Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. 
+Lásd példa~\ref{sec:example1}.
 
 Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank Szintaktikai Fáiban.  Ilyen a \textit{the black cat} (\textit{a fekete macska}) főnévi kifejezés is, aminek a szintaktikai fája az:
 
@@ -390,7 +391,8 @@ Lásd példa~\ref{sec:example2}.
 
 Merge segítségével sokkal optimálisabban is megoldható. Lásd példa~\ref{sec:example3}.
 
-Négy gyermekű főneves kifejezések esetében ez már nem lehetséges. Ilyen például a \textit{this British industrial conglomerate} (ez a brit ipari összetömörülés), amihez  a:
+Négy gyermekű főneves kifejezések esetében ez már nem lehetséges. 
+Ilyen például a \textit{this British industrial conglomerate} (ez a brit ipari összetömörülés), amihez  a:
 
 NP4( DT( this), JJ( British), JJ( industrial), NN( conglomerate) )
 
@@ -412,6 +414,13 @@ Az SGA (\texttt{s-graph algebra}) a legbonyolultabb algebra, amit használunk. T
 “(ROOT :root (loves/loves :nsubj (John/John) :dobj (Mary/Mary) ) )”
 
 a “John Loves Mary.” mondat UD Gráfját írja le, ami így néz ki:
+\begin{figure}[h]
+\centering
+\graphicspath{./}
+\includegraphics[scale=0.32]{figures/dots/example5_3.png}
+\caption{A \textit{John loves Mary.} mondat UD gráfja}
+\label{fig:JLM_UD}
+\end{figure}
 
 
 A nyelvtan legfontosabb három művelete a \texttt{forget} (elfelejt), \texttt{rename} (átnevez) és a \texttt{merge} (egyesít). A forget és a rename a jelölések manipulációjára való. A forget művelettel lehet egy jelölést az összes vele megjelölt csúcsról törölni. A rename művelettel egy adott jelölés minden megjelölt csúcson lecserélhető egy másik jelölésre. A merge művelet bemenete az előzőekkel ellentétben két gráf. A bal oldali gráf minden megjelölt csúcsába beszúrja a jobb oldali gráf minden ugyanazzal a jelöléssel megjelölt csúcsát. A műveletek egymásba ágyazhatóak. Csak az egymást követő forget műveletek cserélhetőek fel minden esetben. Forget-et a “f\_ \{\$ jelölés\_ neve \$\}(\{\$ gráf \$\})”

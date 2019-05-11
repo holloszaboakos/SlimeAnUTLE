@@ -1,0 +1,19 @@
+digraph G {
+S[peripheries=3]
+
+NPjohn[label="NP",peripheries=2]
+NPmary[label="NP",peripheries=2]
+VP[peripheries=2]
+
+NNPjohn[label="NNP"]
+NNPmary[label="NNP"]
+VBZ
+
+John[shape=plaintext]
+loves[shape=plaintext]
+Mary[shape=plaintext]
+
+S->NPjohn->NNPjohn->John
+S->VP->VBZ->loves
+VP->NPmary->NNPmary->Mary
+ }
