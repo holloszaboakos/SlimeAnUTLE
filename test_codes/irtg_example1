@@ -1,0 +1,202 @@
+{= 
+irtgBase : Temp := 
+	{|
+		{@e@}{@t@}{$left$} -> {$header$}
+		{@e@}{@t@}[string] {$string$}
+		{@e@}{@t@}[tree] {$syntax_tree$}
+		{@e@}{@t@}[ud] {$ud_graph$}
+		{@e@}{@t@}[4lang] {$fourlang_graph$}
+	|}
+=}
+{= 
+irtgDataBase : Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
+=}
+{= 
+irtgData : irtgDataBase  :=  
+		left		:={|{$word_class$}|},
+		header		:={|{$word$}_{$word_class$}|},
+		string		:={|{$word$}|},
+		syntax_tree	:={|{$word_class$}({$word$})|},
+		ud_graph	:={|"({$word$}<root>\{$word$})"|},
+		fourlang_graph	:={|"({$concept$}<root>\{$concept$})"|}
+=}
+{= 
+termBase : Temp  :=  {+ irtgBase :+ irtgData +}
+=}
+{= 
+termDataBase : Type  :=  word_class, word, concept : Template
+=}
+{=data0 :termDataBase  := word_class := {"NN"}, word := {"dog"}, concept := {"dog"} =}
+{=data1 :termDataBase  := word_class := {"NN"}, word := {"cat"}, concept := {"cat"} =}
+{=data2 :termDataBase  := word_class := {"NN"}, word := {"fish"}, concept := {"fish"} =}
+{=data3 :termDataBase  := word_class := {"NN"}, word := {"mouse"}, concept := {"mouse"} =}
+{=data4 :termDataBase  := word_class := {"NN"}, word := {"lion"}, concept := {"lion"} =}
+{=data5 :termDataBase  := word_class := {"NN"}, word := {"monkey"}, concept := {"monkey"} =}
+{=data6 :termDataBase  := word_class := {"NN"}, word := {"fox"}, concept := {"fox"} =}
+{=data7 :termDataBase  := word_class := {"NN"}, word := {"bird"}, concept := {"bird"} =}
+{=data8 :termDataBase  := word_class := {"NN"}, word := {"tiger"}, concept := {"tiger"} =}
+{=data9 :termDataBase  := word_class := {"NN"}, word := {"owl"}, concept := {"owl"} =}
+{* 
+	{+ 
+	termBase.copy :+ data0 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data1 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data2 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data3 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data4 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data5 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data6 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data7 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data8 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+{* 
+	{+ 
+	termBase.copy :+ data9 : 
+		left.cont.word_class 		:+ word_class,
+		header.cont.word 		:+ word,
+		header.cont.word_class 		:+ word_class,
+		string.cont.word	 	:+ word,
+		syntax_tree.cont.word_class	:+ word_class,
+		syntax_tree.cont.word 		:+ word,
+		ud_graph.cont.word.0		:+ word,
+		ud_graph.cont.word.1		:+ word,
+		fourlang_graph.cont.concept.0	:+ concept,
+		fourlang_graph.cont.concept.1	:+ concept
+	+}
+*}
+{@e@}
+
+
+
+

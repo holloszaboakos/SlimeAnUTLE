@@ -26,7 +26,7 @@ spslBody:(NAME SC?)* NAME ;
 
 temp: tempHead tempBody tempTail;
 tempHead:(BOB_TEMP|OLB_TEMP|COB_TEMP);
-tempBody:(tempBodyPart SC?)* tempBodyPart;
+tempBody:(tempBodyPart SC)* tempBodyPart;
 tempBodyPart:(text|slot|spec|tempText|LINE_DIVIDER)+;
 tempTail:(BCB_TEMP|NL_TEMP|NW_TEMP);
 tempText:(TEXT_LINE LINE_DIVIDER)* TEXT_LINE;

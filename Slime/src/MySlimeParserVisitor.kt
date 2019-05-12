@@ -117,12 +117,12 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         if (ctx.childCount == 1) {
             SText(visitVari(ctx.vari()).extend())
         } else {
-            var seperater = ""
+            var separator = ""
             if (ctx.children[2] is SlimeParser.SpecContext)
-                visitSpec(ctx.children[2] as SlimeParser.SpecContext).forEach { seperater += it.extend() }
+                visitSpec(ctx.children[2] as SlimeParser.SpecContext).forEach { separator += it.extend() }
             else
-                visitTemp(ctx.children[2] as SlimeParser.TempContext).forEach { seperater += it.extend() }
-            SText(visitVari(ctx.vari()).extend(seperater))
+                visitTemp(ctx.children[2] as SlimeParser.TempContext).forEach { separator += it.extend() }
+            SText(visitVari(ctx.vari()).extend(separator))
         }
 
     override fun visitExteTail(ctx: SlimeParser.ExteTailContext): SVari? = null
@@ -286,18 +286,9 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                         val inst = SInst(typeIndicator.typeName, names)
                         val datas = ctx.nameValue().map { visitNameValue(it) }
                         datas.forEach {
-                            for (name in (it()[0] as SList<*>?
-                                ?: throw Exception(
-                                    "You have to add the name of the variables," +
-                                            " when declaring an instance by name value pairs"
-                                )))
-                                for (vari in (it()[1] as SList<*>?
-                                    ?: throw Exception(
-                                        "You have to add the value of the variables," +
-                                                " when declaring an instance by name value pairs"
-                                    ))) {
-                                    val meta =
-                                        inst.ctype.attributes.first { it.name.compareTo((name as SText)()) == 0 }
+                            for (name in (it()[0] as SList<*>))
+                                for (vari in (it()[1] as SList<*>)) {
+                                    val meta = inst.ctype.attributes.first { it.name.compareTo((name as SText)()) == 0 }
                                     val leftIx = inst.ctype.attributes.indexOf(meta)
                                     inst()[leftIx] = vari
                                 }
@@ -340,7 +331,8 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                         if (vari.size == 1 && vari[0] is SFile)
                             return (vari[0] as SFile).copy(names)
                         if (vari.size == 1 && vari[0] is SText) {
-                            DataContainer.loadFile((vari[0] as SText)(), names)
+                            return DataContainer.loadFile((vari[0] as SText)(), names)
+
                         }
                     }
                 }

@@ -22,8 +22,8 @@ termDataDog:irtgDataBase  :=
 	header := {"dog_NN"}, 
 	string := {"dog"}, 
 	syntax_tree := {"NN(dog)"}, 
-	ud_graph := {"dog"}, 
-	fourlang_graph := {"dog"}
+	ud_graph := {""(dog<root>\dog)""}, 
+	fourlang_graph := {""(dog<root>\dog)""}
 =}
 {# plus the structure instance into the template and print it out #}
 {* {+ 

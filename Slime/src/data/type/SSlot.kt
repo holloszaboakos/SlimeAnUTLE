@@ -40,7 +40,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception("unknown keyword for special char: ${tag()}")
                 }
             }
         }
@@ -57,9 +57,9 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
                     "cont" -> content?.get(path) ?: throw Exception(
-                        "no Template in slot: ${names.getOrNull(0) ?: "@nameless"}"
+                        "no Template in slot: ${tag()}"
                     )
-                    else -> throw  Exception("unknown keyword for slot: ${names.getOrNull(0) ?: "@nameless"}")
+                    else -> throw  Exception("unknown keyword for slot: ${tag()}")
                 }
             }
         }
@@ -67,7 +67,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from Slot: ${names.getOrNull(0) ?: "@nameless"}"
+                "path shouldn't be empty when deleting from Slot: ${tag()}"
             )
             path.size == 1 && path[0]() == "@content" -> {
                 content = null
@@ -87,7 +87,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                 this.content = STemp(mutableListOf(h)); owner ?: this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Slot: ${tag()}"
             )
         }
 
@@ -96,15 +96,15 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
-            "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+            "wrong variable or in wrong mode visiting Slot: ${tag()}"
         )
     }
 
     override fun visit(h: SType, mode: String): SVari =
-        throw Exception("You can not add a Structure type into Slot ${names.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You can not add a Structure type into Slot ${tag()}")
 
     override fun visit(h: SInst, mode: String): SVari =
-        throw Exception("You can not add a Structure Instance into Slot ${names.getOrNull(0) ?: "@nameless"}")
+        content?.plus(h,SList()) ?: throw Exception("You can not add a Structure Instance into Slot ${tag()}")
 
     override fun visit(h: STemp, mode: String): SVari =
         when (mode) {
@@ -112,7 +112,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                 this.content = h; owner ?: this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Slot: ${tag()}"
             )
         }
 
@@ -121,7 +121,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
-            "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+            "wrong variable or in wrong mode visiting Slot: ${tag()}"
         )
     }
 
@@ -130,11 +130,29 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             this.content = STemp(mutableListOf(h)); owner ?: this
         }
         else -> throw Exception(
-            "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+            "wrong variable or in wrong mode visiting Slot: ${tag()}"
         )
     }
 
-    override fun visit(h: SRefe, mode: String): SVari = throw Exception("TODO")
+    override fun visit(h: SRefe, mode: String): SVari =
+        when (mode) {
+            "@plus" -> {
+                val varis=h.listMatchingPaths().map{DataContainer.focus?.get(it)}
+                if (varis[0] is SName) {
+                    addNames(varis.filter { it is SName }.map { it as SName })
+                    this
+                } else
+                    SList(varis.filter { it is SVari }.map{it as SVari}.map {
+                        owner?.copy()?.plus(it, SList(mutableListOf()), SList(mutableListOf())) ?: copy().plus(
+                        it,
+                        SList(mutableListOf()),
+                        SList(mutableListOf())
+                    ) }.toMutableList())
+            }
+            else -> throw Exception(
+                "wrong variable or in wrong mode visiting Slot: ${tag()}"
+            )
+        }
 
     override fun <T : SVari> visit(h: SList<T>, mode: String): SVari =
         when (mode) {
@@ -143,14 +161,15 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                     addNames(h.filter { it is SName }.map { it as SName })
                     this
                 } else
-                    SList(h.map { owner?.copy()?.plus(it, SList(mutableListOf()), SList(mutableListOf())) ?: copy().plus(
+                    SList(h.map { owner?.copy()?.slotL?.first {s -> s.tag().compareTo(tag())==0 }?.plus(it) ?:
+                    copy().plus(
                         it,
                         SList(mutableListOf()),
                         SList(mutableListOf())
                     ) }.toMutableList())
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Slot: ${tag()}"
             )
         }
 
@@ -168,10 +187,10 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                     ) }.toMutableList()).iter
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Slot: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Slot: ${tag()}"
             )
         }
 
     override fun visit(h: SFile, mode: String): SVari =
-        throw Exception("You can not insert File int Slot: ${names.getOrNull(0) ?: "@nameless"}")
+        throw Exception("You can not insert File int Slot: ${tag()}")
 }

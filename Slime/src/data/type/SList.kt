@@ -23,7 +23,7 @@ class SList<T : SVari>(
             path: SList<SName>,
             pairs: SList<SList<SName>>
         ): SVari {
-            owner.forEach { it.plus(v, SList(mutableListOf()), SList(mutableListOf())) }
+            owner.forEach { it.plus(v) }
             return owner.owner ?: owner
         }
 
@@ -70,7 +70,7 @@ class SList<T : SVari>(
                         when {
                             v is SList<*> && v.size !=0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SIter<*> && v.owner.size !=0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
@@ -86,7 +86,7 @@ class SList<T : SVari>(
     override fun extend(divider: String): String {
         var result = ""
         for (c in content)
-            result += (divider + c.extend())
+            result += (divider + c.extend(divider))
         result = result.substring(divider.length)
         return result
     }

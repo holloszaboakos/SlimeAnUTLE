@@ -1,0 +1,79 @@
+{= 
+irtgBase,IB : Temp := 
+	{|
+		<@e;t //[$comm
+		<@e;t <$left  -> [$header
+		<@e;t [string] [$string
+		<@e;t [tree] [$tree
+		<@e;t [ud] [$ud
+		<@e;t [4lang] [$four
+	|}
+
+IDB,irtgDataBase : Type  :=  comm, left, header, string, tree, ud, four : Temp
+
+irtgData1,ID1 : IDB  :=  
+	{|
+		{$comm$};
+		NP;_NP2_{$edge_ud$}_{$arg1$}_{$arg2$}({$arg1$}, {$arg2$}); 
+        	*(?1, ?2);
+		NP2(?1,?2); 
+		merge(f_dep(merge("(r<root> :{$edge_ud$} (d<dep>))",r_dep(?1))),?2);
+		merge(f_dep(merge("(r<root> :{$edge_4lang$}) (d<dep>))",r_dep(?1))),?2)
+	|}
+
+irtgData2,ID2 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
+	{|?2|}
+	
+
+irtgData3,ID3 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
+	{|f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))|}
+
+nounPhraseBase1,NPB1 : Temp  :=  <+IB.copy:+ID1
+nounPhraseBase1,NPB2 : Temp  :=  <+IB.copy:+ID2
+nounPhraseBase1,NPB3 : Temp  :=  <+IB.copy:+ID3
+
+NPDB,nounPhraseDataBase : Type  :=  comm,  arg1, arg2, edge_ud, edge_4lang : Text
+
+datas1,D1 :List:NPDB :=
+	 [=:NPDB:= {"cute cat"}			,{"JJ"}	,{"NN"}		,{"amod"}	,{"0"}
+	,[=:NPDB:= {"electricity charges"}	,{"NN"}	,{"NNS"}	,{"compound"}	,{"0_compound_nouns"}
+	,[=:NPDB:= {"car safety"}		,{"NN"}	,{"NN"}		,{"compound"}	,{"0_compound_nouns"}
+	,[=:NPDB:= {"one dog"}			,{"CD"}	,{"NN"}		,{"nummod"}	,{"0"}
+	,[=:NPDB:= {"three dogs"}		,{"CD"}	,{"NNS"}	,{"nummod"}	,{"0"}
+	,[=:NPDB:= {"cute cats"}		,{"JJ"}	,{"NNS"}	,{"amod"}	,{"0"}
+	,[=:NPDB:= {"John Smith"}		,{"NNP"},{"NNP"}	,{"flat"}	,{"0_flat_name"}
+	
+datas2,D2 :List:NPDB :=
+	 [=:NPDB:= {"the Examiner"}	,{"DT"}	,{"NNP"}	,{"det"}
+	,[=:NPDB:= {"a cat"}		,{"DT"}	,{"NN"}		,{"det"}
+	,[=:NPDB:= {"the cats"}		,{"DT"}	,{"NNS"}	,{"det"}
+	
+datas3,D3 :List:NPDB :=
+	 [=:NPDB:= {"my cat"}		,{"PRPDOLLAR"}	,{"NN"}		,{"nmod:poss"}
+	,[=:NPDB:= {"my cats"}		,{"PRPDOLLAR"}	,{"NNS"}	,{"nmod:poss"}
+
+result1,R1 :List:Temp := <+NPB1:+D1
+result2,R2 :List:Temp := <+NPB2:+D2
+result3,R3 :List:Temp := <+NPB3:+D3
+=}
+<*{+ 
+R1 :+ D1 : 
+	0.slots.iter:+0, 
+	1.slots.iter:+1, 
+	2.slots.iter:+2, 
+	3.slots.iter:+3, 
+	4.slots.iter:+4, 
+	5.slots.iter:+5, 
+	6.slots.iter:+6
+R2 :+ D2 : 
+	0.slots.iter:+0, 
+	1.slots.iter:+1, 
+	2.slots.iter:+2
+R3 :+ D3 : 
+	0.slots.iter:+0, 
+	1.slots.iter:+1
++}:<@e 
+
+
+
+

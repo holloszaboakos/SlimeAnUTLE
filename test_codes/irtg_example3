@@ -1,0 +1,56 @@
+{= 
+irtgBase,IB : Temp := 
+	{|
+		<@e;t <$left  -> [$header
+		<@e;t [string] [$string
+		<@e;t [tree] [$syntax_tree
+		<@e;t [ud] [$ud_graph
+		<@e;t [4lang] [$fourlang_graph
+	|}
+
+IDB,irtgDataBase : Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Template
+
+irtgData,ID : IDB  :=  
+	{|
+		<$word_class ;<$word _<$word_class ;
+		<$word ;
+		<$word_class (<$word );
+		"(<$word <root>\<$word )";
+		"(<$concept <root>\<$concept )"
+	|}
+
+termBase,TB : Temp  :=  <+IB:+ID
+
+TDB,termDataBase : Type  :=  word_class, word, concept : Temp
+
+datas,D :List:TDB :=
+	 [=:TDB:= [|NN;dog;dog 
+	,[=:TDB:= [|NN;cat;cat 
+	,[=:TDB:= [|NN;owl;owl 
+	,[=:TDB:= [|NN;fox;fox 
+	,[=:TDB:= [|NN;fish;fish 
+	,[=:TDB:= [|NN;lion;lion 
+	,[=:TDB:= [|NN;bird;bird 
+	,[=:TDB:= [|NN;mouse;mouse 
+	,[=:TDB:= [|NN;tiger;tiger 
+	,[=:TDB:= [|NN;monkey;monkey 
+
+result,R :List:Temp := <+TB:+D 
+=}
+<*{+ 
+R :+ D : 
+	0.slots.iter:+0, 
+	1.slots.iter:+1, 
+	2.slots.iter:+2, 
+	3.slots.iter:+3, 
+	4.slots.iter:+4, 
+	5.slots.iter:+5, 
+	6.slots.iter:+6, 
+	7.slots.iter:+7, 
+	8.slots.iter:+8, 
+	9.slots.iter:+9 
++}:<@e
+
+
+
+

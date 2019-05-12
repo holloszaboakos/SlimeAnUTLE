@@ -8,7 +8,7 @@
 
 	;irtgDataBase : Type :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
 
-	;termDataDog : irtgDataBase := [|NN;dog_NN;dog;NN(dog);dog;dog
+	;termDataDog : irtgDataBase := [|NN;dog_NN;dog;NN(dog);"(dog<root>\dog)";"(dog<root>\dog)"
 =}
 [# plus the structure instance into the template and print it out
 [*[+irtgBase :+ termDataDog
