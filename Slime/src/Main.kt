@@ -5,8 +5,10 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.io.PrintWriter
 
-//      /home/boss/Documents/Git/SlimeAnUTLE/test_codes/irtg_example4
-//      output.irtg
+/*
+/home/boss/Documents/Git/SlimeAnUTLE/test_codes/antlr_example
+output.irtg
+*/
 fun main() {
     println("Give me the path to the input file!")
     val inputFile = readLine()

@@ -75,7 +75,7 @@ BCB_REFE  : '&}' -> popMode ;
 REOP:':&';
 CL_B_R:':'-> type(CL);
 NAME_B_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
-REGEX : {_input.LA(-1) == '&'}? ( ~[&\n\r\t ] | '&' (~[}\n\r\t ]|EOF))+;
+REGEX : {_input.LA(-1) == '&'}? ( ~[&\n\r\t :] | '&' (~[}\n\r\t ]|EOF))+;
 
 mode O_REFE;
 COMM_O_R: COMM -> skip;
