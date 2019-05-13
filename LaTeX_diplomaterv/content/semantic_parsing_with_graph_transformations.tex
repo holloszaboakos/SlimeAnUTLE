@@ -185,7 +185,7 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 \subsection{A 4lang és az UD különbségei}
 \label{sec:4LvsUD}
 %----------------------------------------------------------------------------
-A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a $w_1$-\textit{amod}->$w_2$ viszony az UD-ból megfelel a \edge{$w_1$}{0}{$w_2$}  viszonynak a 4lang-ból.
+A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például az amod viszony az UD-ból megfelel a \edge{$w_1$}{0}{$w_2$}  viszonynak a 4lang-ból.
 
 A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikáját (jelentését). Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai függőségekket. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak, és a 4lang beli fogalmak között is. Ez persze azt jelenti, hogy az UD már tartalmazza a szemantikára vonatkozó információkat is, de csak közvetetten.
 
@@ -488,22 +488,32 @@ Az ALTO rengeteg felesleges munkát végez, mivel azokat a megoldásokat is kige
 Az ALTO mindennek ellenére a jelenlegi legfejlettebb program az IRTG futtatására, és állandó fejlesztés alatt áll. A pontos működését még nem ismerjük. A módosítások többsége viszont a belső működés alapos átdolgozását igényli. Erre jelenleg még nincs erőforrásunk.
 
 %----------------------------------------------------------------------------
-\section{Jelenlegi megoldások}
+\section{IRTG automatikus generálása}
 \label{sec:solutions}
 %----------------------------------------------------------------------------
-A kutatás során az IRTG-t illető problémák többségét kód generálás segítségével küszöböltük ki. Két implementáció készült python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. Kezdetben csak NP-k feldolgozása volt a cél, majd onnan terjesztettük ki az implementációkat VP-k és ADJP-k re. A generátor kódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. Nem tudtunk többen párhuzamosan fejleszteni, mert egyikünk sem értette a másik megoldását kellő mélységben.
-Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford Parserral kapott UD gráfokat kapja bemenet ként, amiket python scriptekkel készítettünk elő . Ezek a scriptek végezték a fákból a megfelelő kifejezések részfáinak a kiszedését, a részfák rendezését típus szerint és a fák UD gráfjainak a generálását a Stanford Parserrel.
+A kutatás során az IRTG-t illető problémák többségét kód generálás segítségével küszöböltük ki. 
+Két implementáció készült python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. 
+Kezdetben csak NP-k feldolgozása volt a cél, majd onnan terjesztettük ki az implementációkat VP-k és ADJP-k re. 
+A generátor kódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. 
+Nem tudtunk többen párhuzamosan fejleszteni, mert egyikünk sem értette a másik megoldását kellő mélységben.
+Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford Parserral kapott UD gráfokat kapja bemenet ként, amiket python scriptekkel készítettünk elő . 
+Ezek a scriptek végezték a fákból a megfelelő kifejezések részfáinak a kiszedését, a részfák rendezését típus szerint és a fák UD gráfjainak a generálását a Stanford Parserrel.
 
+Az első generátort én készítettem el 2018 augusztusában. 
+Ez egy objektumorientált megoldás volt. 
+Képes volt kommenteket is generálni, kezelni a rövidítéseket és könnyen bővíthető volt. 
+Ugyanakkor rush development során keletkezett a szakmai gyakorlatom végén, így a kód még nincsen se letisztázva, se alaposan dokumentálva.
 
-%----------------------------------------------------------------------------
-\subsection{első generátor}
-\label{sec:generator1}
-%----------------------------------------------------------------------------
-Az első generátort én készítettem el 2018 augusztusában. Ez egy objektumorientált megoldás volt. Képes volt kommenteket is generálni, kezelni a rövidítéseket és könnyen bővíthető volt. Ugyanakkor rush development során keletkezett a szakmai gyakorlatom végén, így a kód még nincsen se letisztázva, se alaposan dokumentálva.
+Külön osztályban tárolta a nyers szöveg szavait, a fát és az UD-t, majd ezeket rendezte egy közös osztályba. 
+A közös osztály a Data, a nyers szövegé a Terminal, a fáé a Tree, az UD-é és a 4lang-é a Dependency. 
+Az összes osztály rendelkezett saját szöveg bemenetű konstruktorral, ami közvetlen a bemeneti adatok formátumából inicializálja az osztájt.
 
-Külön osztályban tárolta a nyers szöveg szavait, a fát és az UD-t, majd ezeket rendezte egy közös osztályba. A közös osztály a Data, a nyers szövegé a Terminal, a fáé a Tree, az UD-é és a 4lang-é a Dependency. Az összes osztály rendelkezett saját szöveg bemenetű konstruktorral, ami közvetlen a bemeneti adatok formátumából inicializálja az osztájt.
-
-A Terminal egy szót tárolt és annak a szófaját. A Tree tartalmazta a részfát a Stanford parser formátumában, a TTA formátumában, a TTA formátumában levelek nélkül és külön a szavakat. A Tree legtöbb formátuma csak a kommentek generálásához volt hasznos, de ideiglenesen mindegyiket generálta a program a kommentek végleges formátumától függetlenül. A Dependency tárolta a fej-szót, a dependens-szót, az él UD típusát és az él 4lang típusát. Az UD él 4lang-ra vetítését a Fourlang enum és egy dictionary segítségével végezte. Mint korábban említettem, a szavak és 4lang fogalmak megfeleltetésével még mai napig sem foglalkozunk, de az is ebbe az osztályba került volna és feltételezhetően szintén egy dictionary és enum segítségével.
+A Terminal egy szót tárolt és annak a szófaját. 
+A Tree tartalmazta a részfát a Stanford parser formátumában, a TTA formátumában, a TTA formátumában levelek nélkül és külön a szavakat. 
+A Tree legtöbb formátuma csak a kommentek generálásához volt hasznos, de ideiglenesen mindegyiket generálta a program a kommentek végleges formátumától függetlenül. 
+A Dependency tárolta a fej-szót, a dependens-szót, az él UD típusát és az él 4lang típusát. 
+Az UD él 4lang-ra vetítését a Fourlang enum és egy dictionary segítségével végezte. 
+Mint korábban említettem, a szavak és 4lang fogalmak megfeleltetésével még mai napig sem foglalkozunk, de az is ebbe az osztályba került volna és feltételezhetően szintén egy dictionary és enum segítségével.
 
 A generálás innentől szövegkonkatenációból áll az adatok függvényében.
 A kifejezés generátor függvények először betöltötték az adatokat a Data osztályokba, majd kiszűrte az egyedi adatokat a levél nélküli fák és UD élek alapján. A komment első sorát aszerint generálta, hogy van-e kapcsolat a szavak között, és hogy a fej vagy a dependens van-e  előrébb. Ez a sor azt írta le, hogy milyen kifejezést milyen típusú szavakból épít a szabály és, hogy a dependens milyen szerepet lát el a mondatban. Ehhez az adatok rövidítéseit a Short2Long osztály segítségével oldotta fel, aminek a betöltendő adatai  a viszonylag kevés szófaj- és éltípus okán kézzel készültek. A következő két komment a szintaktikai fa első példányát tartalmazta a TTA és Stanford Parser formátumában. 
@@ -534,9 +544,7 @@ Persze itt is a Merge és a BAR szabályok (a trenáris csúcsokelkészítésén
 A szabályok jelenleg gyakoriság szerint vannak sorba rendezve de a név szerinti sorba rendezés is sokat segítene. 
 A kategóriákat mélység szerint is több főkategóriába lehet rendezni.
 
-A kódot persze legtöbben itt sem látjuk át, mivel még részletes dokumentáció nem készült természetesen.
-Elvégre a fejlesztés jelenleg is folyamatban van. 
-A Slime első verziója nem lesz képes ilyen gráf műveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető.
+A Slime első verziója nem lesz képes gráf műveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető.
 Ennek persze az IRTG és a Slime szintaxisának ismerete alapfeltétel. 
 Mindezt pedig minimális overhead-del, így csak a bemeneti adatokat szükséges generálni hozzá. 
 Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz RegEx és templatelés segítségével, a sorrend sem jelent majd problémát.
