@@ -1,5 +1,5 @@
 {= 
-dataFile :File := {"/home/boss/Documents/Git/SlimeAnUTLE/test_codes/irtg_example2data"};
+dataFile :File := {"../test_codes/irtg_example2data"};
 result :List:Temp := {+ dataFile.termBase :+ dataFile.datas +} 
 =}
 {*

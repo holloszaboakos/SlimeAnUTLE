@@ -1,166 +1,63 @@
-BOB_SLOT : '{$' -> pushMode(B_SLSP);
-BOB_SPEC : '{@' -> pushMode(B_SLSP);
-BOB_REFE : '{&' -> pushMode(B_REFE);
-BOB_EXTE : '{*' -> pushMode(B_OPER);
-BOB_PLUS : '{+' -> pushMode(B_OPER);
-BOB_DECL : '{=' -> pushMode(B_OPER);
-BOB_DELE : '{X' -> pushMode(B_OPER);
-BOB_TEXT : '{"' -> pushMode(B_TEXT);
-BOB_TEMP : '{|' -> pushMode(B_TEMP);
 
-OLB_SLOT : '[$' -> pushMode(O_SLSP);
-OLB_SPEC : '[@' -> pushMode(O_SLSP);
-OLB_REFE : '[&' -> pushMode(O_REFE);
-OLB_EXTE : '[*' -> pushMode(O_OPER);
-OLB_PLUS : '[+' -> pushMode(O_OPER);
-OLB_DECL : '[=' -> pushMode(O_OPER);
-OLB_DELE : '[X' -> pushMode(O_OPER);
-OLB_TEXT : '["' -> pushMode(O_TEXT);
-OLB_TEMP : '[|' -> pushMode(O_TEMP);
+	NN -> dog_NN
+	[string] dog
+	[tree] NN(dog)
+	[ud] "(dog<root>\dog)"
+	[4lang] "(dog<root>\dog)"
 
-COB_SLOT : '<$' -> pushMode(C_SLSP);
-COB_SPEC : '<@' -> pushMode(C_SLSP);
-COB_REFE : '<&' -> pushMode(C_REFE);
-COB_EXTE : '<*' -> pushMode(C_OPER);
-COB_PLUS : '<+' -> pushMode(C_OPER);
-COB_DECL : '<=' -> pushMode(C_OPER);
-COB_DELE : '<X' -> pushMode(C_OPER);
-COB_TEXT : '<"' -> pushMode(C_TEXT);
-COB_TEMP : '<|' -> pushMode(C_TEMP);
+	NN -> cat_NN
+	[string] cat
+	[tree] NN(cat)
+	[ud] "(cat<root>\cat)"
+	[4lang] "(cat<root>\cat)"
 
+	NN -> fish_NN
+	[string] fish
+	[tree] NN(fish)
+	[ud] "(fish<root>\fish)"
+	[4lang] "(fish<root>\fish)"
 
-BOB_SLOT_B_O : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_B_O : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_REFE_B_O : '{&' -> type(BOB_REFE), pushMode(B_REFE);
-BOB_EXTE_B_O : '{*' -> type(BOB_EXTE), pushMode(B_OPER);
-BOB_PLUS_B_O : '{+' -> type(BOB_PLUS), pushMode(B_OPER);
-BOB_DECL_B_O : '{=' -> type(BOB_DECL), pushMode(B_OPER);
-BOB_DELE_B_O : '{X' -> type(BOB_DELE), pushMode(B_OPER);
-BOB_TEXT_B_O : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-BOB_TEMP_B_O : '{|' -> type(BOB_TEMP), pushMode(B_TEMP);
+	NN -> mouse_NN
+	[string] mouse
+	[tree] NN(mouse)
+	[ud] "(mouse<root>\mouse)"
+	[4lang] "(mouse<root>\mouse)"
 
-OLB_SLOT_B_O : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_B_O : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_REFE_B_O : '[&' -> type(OLB_REFE), pushMode(O_REFE);
-OLB_EXTE_B_O : '[*' -> type(OLB_EXTE), pushMode(O_OPER);
-OLB_PLUS_B_O : '[+' -> type(OLB_PLUS), pushMode(O_OPER);
-OLB_DECL_B_O : '[=' -> type(OLB_DECL), pushMode(O_OPER);
-OLB_DELE_B_O : '[X' -> type(OLB_DELE), pushMode(O_OPER);
-OLB_TEXT_B_O : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-OLB_TEMP_B_O : '[|' -> type(OLB_TEMP), pushMode(O_TEMP);
+	NN -> lion_NN
+	[string] lion
+	[tree] NN(lion)
+	[ud] "(lion<root>\lion)"
+	[4lang] "(lion<root>\lion)"
 
-COB_SLOT_B_O : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_B_O : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_REFE_B_O : '<&' -> type(COB_REFE), pushMode(C_REFE);
-COB_EXTE_B_O : '<*' -> type(COB_EXTE), pushMode(C_OPER);
-COB_PLUS_B_O : '<+' -> type(COB_PLUS), pushMode(C_OPER);
-COB_DECL_B_O : '<=' -> type(COB_DECL), pushMode(C_OPER);
-COB_DELE_B_O : '<X' -> type(COB_DELE), pushMode(C_OPER);
-COB_TEXT_B_O : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-COB_TEMP_B_O : '<|' -> type(COB_TEMP), pushMode(C_TEMP);
+	NN -> monkey_NN
+	[string] monkey
+	[tree] NN(monkey)
+	[ud] "(monkey<root>\monkey)"
+	[4lang] "(monkey<root>\monkey)"
 
+	NN -> fox_NN
+	[string] fox
+	[tree] NN(fox)
+	[ud] "(fox<root>\fox)"
+	[4lang] "(fox<root>\fox)"
 
-BOB_SLOT_O_O : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_O_O : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_REFE_O_O : '{&' -> type(BOB_REFE), pushMode(B_REFE);
-BOB_EXTE_O_O : '{*' -> type(BOB_EXTE), pushMode(B_OPER);
-BOB_PLUS_O_O : '{+' -> type(BOB_PLUS), pushMode(B_OPER);
-BOB_DECL_O_O : '{=' -> type(BOB_DECL), pushMode(B_OPER);
-BOB_DELE_O_O : '{X' -> type(BOB_DELE), pushMode(B_OPER);
-BOB_TEXT_O_O : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-BOB_TEMP_O_O : '{|' -> type(BOB_TEMP), pushMode(B_TEMP);
+	NN -> bird_NN
+	[string] bird
+	[tree] NN(bird)
+	[ud] "(bird<root>\bird)"
+	[4lang] "(bird<root>\bird)"
 
-OLB_SLOT_O_O : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_O_O : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_REFE_O_O : '[&' -> type(OLB_REFE), pushMode(O_REFE);
-OLB_EXTE_O_O : '[*' -> type(OLB_EXTE), pushMode(O_OPER);
-OLB_PLUS_O_O : '[+' -> type(OLB_PLUS), pushMode(O_OPER);
-OLB_DECL_O_O : '[=' -> type(OLB_DECL), pushMode(O_OPER);
-OLB_DELE_O_O : '[X' -> type(OLB_DELE), pushMode(O_OPER);
-OLB_TEXT_O_O : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-OLB_TEMP_O_O : '[|' -> type(OLB_TEMP), pushMode(O_TEMP);
+	NN -> tiger_NN
+	[string] tiger
+	[tree] NN(tiger)
+	[ud] "(tiger<root>\tiger)"
+	[4lang] "(tiger<root>\tiger)"
 
-COB_SLOT_O_O : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_O_O : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_REFE_O_O : '<&' -> type(COB_REFE), pushMode(C_REFE);
-COB_EXTE_O_O : '<*' -> type(COB_EXTE), pushMode(C_OPER);
-COB_PLUS_O_O : '<+' -> type(COB_PLUS), pushMode(C_OPER);
-COB_DECL_O_O : '<=' -> type(COB_DECL), pushMode(C_OPER);
-COB_DELE_O_O : '<X' -> type(COB_DELE), pushMode(C_OPER);
-COB_TEXT_O_O : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-COB_TEMP_O_O : '<|' -> type(COB_TEMP), pushMode(C_TEMP);
-
-
-BOB_SLOT_C_O : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_C_O : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_REFE_C_O : '{&' -> type(BOB_REFE), pushMode(B_REFE);
-BOB_EXTE_C_O : '{*' -> type(BOB_EXTE), pushMode(B_OPER);
-BOB_PLUS_C_O : '{+' -> type(BOB_PLUS), pushMode(B_OPER);
-BOB_DECL_C_O : '{=' -> type(BOB_DECL), pushMode(B_OPER);
-BOB_DELE_C_O : '{X' -> type(BOB_DELE), pushMode(B_OPER);
-BOB_TEXT_C_O : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-BOB_TEMP_C_O : '{|' -> type(BOB_TEMP), pushMode(B_TEMP);
-
-OLB_SLOT_C_O : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_C_O : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_REFE_C_O : '[&' -> type(OLB_REFE), pushMode(O_REFE);
-OLB_EXTE_C_O : '[*' -> type(OLB_EXTE), pushMode(O_OPER);
-OLB_PLUS_C_O : '[+' -> type(OLB_PLUS), pushMode(O_OPER);
-OLB_DECL_C_O : '[=' -> type(OLB_DECL), pushMode(O_OPER);
-OLB_DELE_C_O : '[X' -> type(OLB_DELE), pushMode(O_OPER);
-OLB_TEXT_C_O : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-OLB_TEMP_C_O : '[|' -> type(OLB_TEMP), pushMode(O_TEMP);
-
-COB_SLOT_C_O : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_C_O : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_REFE_C_O : '<&' -> type(COB_REFE), pushMode(C_REFE);
-COB_EXTE_C_O : '<*' -> type(COB_EXTE), pushMode(C_OPER);
-COB_PLUS_C_O : '<+' -> type(COB_PLUS), pushMode(C_OPER);
-COB_DECL_C_O : '<=' -> type(COB_DECL), pushMode(C_OPER);
-COB_DELE_C_O : '<X' -> type(COB_DELE), pushMode(C_OPER);
-COB_TEXT_C_O : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-COB_TEMP_C_O : '<|' -> type(COB_TEMP), pushMode(C_TEMP);
-
-
-
-BOB_SLOT_B_T : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_B_T : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_TEXT_B_T : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-
-OLB_SLOT_B_T : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_B_T : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_TEXT_B_T : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-
-COB_SLOT_B_T : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_B_T : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_TEXT_B_T : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-
-
-BOB_SLOT_O_T : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_O_T : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_TEXT_O_T : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-
-OLB_SLOT_O_T : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_O_T : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_TEXT_O_T : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-
-COB_SLOT_O_T : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_O_T : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_TEXT_O_T : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-
-
-BOB_SLOT_C_T : '{$' -> type(BOB_SLOT), pushMode(B_SLSP);
-BOB_SPEC_C_T : '{@' -> type(BOB_SPEC), pushMode(B_SLSP);
-BOB_TEXT_C_T : '{"' -> type(BOB_TEXT), pushMode(B_TEXT);
-
-OLB_SLOT_C_T : '[$' -> type(OLB_SLOT), pushMode(O_SLSP);
-OLB_SPEC_C_T : '[@' -> type(OLB_SPEC), pushMode(O_SLSP);
-OLB_TEXT_C_T : '["' -> type(OLB_TEXT), pushMode(O_TEXT);
-
-COB_SLOT_C_T : '<$' -> type(COB_SLOT), pushMode(C_SLSP);
-COB_SPEC_C_T : '<@' -> type(COB_SPEC), pushMode(C_SLSP);
-COB_TEXT_C_T : '<"' -> type(COB_TEXT), pushMode(C_TEXT);
-
+	NN -> owl_NN
+	[string] owl
+	[tree] NN(owl)
+	[ud] "(owl<root>\owl)"
+	[4lang] "(owl<root>\owl)"
 
 
 
