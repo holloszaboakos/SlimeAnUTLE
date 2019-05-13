@@ -1,7 +1,8 @@
 lexer grammar SlimeLexer;
 RULE_DIV:   ([\n\r\t ]+ { _input.LA(1) == '{' }?
             |[\n\r\t ]+ { _input.LA(1) == '[' }?
-            |[\n\r\t ]+ { _input.LA(1) == '<' }?)->skip;
+            |[\n\r\t ]+ { _input.LA(1) == '<' }?
+            |[\n\r\t ]+ EOF )->skip;
 fragment COMM : ('{#'  ( ~'#' | '#' (~'}'|EOF) )* '#}')
               | ('[#' (~[\n\r])*        {_input.LA(1) == '\n'|| _input.LA(1) == '\r' }?)
               | ('<#'  (~[\n\r\t ])*     {_input.LA(1) == '\n'|| _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}? );

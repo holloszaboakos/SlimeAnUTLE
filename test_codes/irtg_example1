@@ -1,3 +1,6 @@
+//TERMINAL RULES
+{#simple example for terminal IRTG rule generation#}
+{#declaration of the template for an IRTG rule with the four interpretation#}
 {= 
 irtgBase : Temp := 
 	{|
@@ -8,9 +11,11 @@ irtgBase : Temp :=
 		{@e@}{@t@}[4lang] {$fourlang_graph$}
 	|}
 =}
+{#declaration of the datatype for the template#}
 {= 
 irtgDataBase : Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
 =}
+{#declaration of the data for the template#}
 {= 
 irtgData : irtgDataBase  :=  
 		left		:={|{$word_class$}|},
@@ -20,22 +25,32 @@ irtgData : irtgDataBase  :=
 		ud_graph	:={|"({$word$}<root>\{$word$})"|},
 		fourlang_graph	:={|"({$concept$}<root>\{$concept$})"|}
 =}
+{#declaration of a template specialized for terminal IRTG#}
 {= 
-termBase : Temp  :=  {+ irtgBase :+ irtgData +}
+termBase : Temp  :=  {+ irtgBase.copy :+ irtgData:
+				left		:+ left,
+				header		:+ header,
+				string		:+ string,
+				syntax_tree	:+ syntax_tree,
+				ud_graph	:+ ud_graph,
+				fourlang_graph	:+ fourlang_graph +}
 =}
+{#declaration of datatype for the trerminal IRTG template#}
 {= 
-termDataBase : Type  :=  word_class, word, concept : Template
+termDataBase : Type  :=  word_class, word, concept : Temp
 =}
-{=data0 :termDataBase  := word_class := {"NN"}, word := {"dog"}, concept := {"dog"} =}
-{=data1 :termDataBase  := word_class := {"NN"}, word := {"cat"}, concept := {"cat"} =}
-{=data2 :termDataBase  := word_class := {"NN"}, word := {"fish"}, concept := {"fish"} =}
-{=data3 :termDataBase  := word_class := {"NN"}, word := {"mouse"}, concept := {"mouse"} =}
-{=data4 :termDataBase  := word_class := {"NN"}, word := {"lion"}, concept := {"lion"} =}
-{=data5 :termDataBase  := word_class := {"NN"}, word := {"monkey"}, concept := {"monkey"} =}
-{=data6 :termDataBase  := word_class := {"NN"}, word := {"fox"}, concept := {"fox"} =}
-{=data7 :termDataBase  := word_class := {"NN"}, word := {"bird"}, concept := {"bird"} =}
-{=data8 :termDataBase  := word_class := {"NN"}, word := {"tiger"}, concept := {"tiger"} =}
-{=data9 :termDataBase  := word_class := {"NN"}, word := {"owl"}, concept := {"owl"} =}
+{#declaration of data for the trerminal IRTG template#}
+{=data0 :termDataBase  := word_class := {|NN|}, word := {|dog|}, concept := {|dog|} =}
+{=data1 :termDataBase  := word_class := {|NN|}, word := {|cat|}, concept := {|cat|} =}
+{=data2 :termDataBase  := word_class := {|NN|}, word := {|fish|}, concept := {|fish|} =}
+{=data3 :termDataBase  := word_class := {|NN|}, word := {|mouse|}, concept := {|mouse|} =}
+{=data4 :termDataBase  := word_class := {|NN|}, word := {|lion|}, concept := {|lion|} =}
+{=data5 :termDataBase  := word_class := {|NN|}, word := {|monkey|}, concept := {|monkey|} =}
+{=data6 :termDataBase  := word_class := {|NN|}, word := {|fox|}, concept := {|fox|} =}
+{=data7 :termDataBase  := word_class := {|NN|}, word := {|bird|}, concept := {|bird|} =}
+{=data8 :termDataBase  := word_class := {|NN|}, word := {|tiger|}, concept := {|tiger|} =}
+{=data9 :termDataBase  := word_class := {|NN|}, word := {|owl|}, concept := {|owl|} =}
+{#adding data to copies of the template end extend it to the surroundings#}
 {* 
 	{+ 
 	termBase.copy :+ data0 : 
@@ -197,6 +212,69 @@ termDataBase : Type  :=  word_class, word, concept : Template
 *}
 {@e@}
 
+{#
+OUTPUT:
+//TERMINAL RULES
 
+	NN -> dog_NN
+	[string] dog
+	[tree] NN(dog)
+	[ud] "(dog<root>\dog)"
+	[4lang] "(dog<root>\dog)"
+
+	NN -> cat_NN
+	[string] cat
+	[tree] NN(cat)
+	[ud] "(cat<root>\cat)"
+	[4lang] "(cat<root>\cat)"
+
+	NN -> fish_NN
+	[string] fish
+	[tree] NN(fish)
+	[ud] "(fish<root>\fish)"
+	[4lang] "(fish<root>\fish)"
+
+	NN -> mouse_NN
+	[string] mouse
+	[tree] NN(mouse)
+	[ud] "(mouse<root>\mouse)"
+	[4lang] "(mouse<root>\mouse)"
+
+	NN -> lion_NN
+	[string] lion
+	[tree] NN(lion)
+	[ud] "(lion<root>\lion)"
+	[4lang] "(lion<root>\lion)"
+
+	NN -> monkey_NN
+	[string] monkey
+	[tree] NN(monkey)
+	[ud] "(monkey<root>\monkey)"
+	[4lang] "(monkey<root>\monkey)"
+
+	NN -> fox_NN
+	[string] fox
+	[tree] NN(fox)
+	[ud] "(fox<root>\fox)"
+	[4lang] "(fox<root>\fox)"
+
+	NN -> bird_NN
+	[string] bird
+	[tree] NN(bird)
+	[ud] "(bird<root>\bird)"
+	[4lang] "(bird<root>\bird)"
+
+	NN -> tiger_NN
+	[string] tiger
+	[tree] NN(tiger)
+	[ud] "(tiger<root>\tiger)"
+	[4lang] "(tiger<root>\tiger)"
+
+	NN -> owl_NN
+	[string] owl
+	[tree] NN(owl)
+	[ud] "(owl<root>\owl)"
+	[4lang] "(owl<root>\owl)"
+#}
 
 

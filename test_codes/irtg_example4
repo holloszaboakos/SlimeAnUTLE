@@ -1,4 +1,7 @@
+//NP RULES
+{#simple example for terminal IRTG rule generation#}
 {= 
+{#declaration of the template for an IRTG rule with the four interpretation#}
 irtgBase,IB : Temp := 
 	{|
 		<@e;t //[$comm
@@ -9,8 +12,10 @@ irtgBase,IB : Temp :=
 		<@e;t [4lang] [$four
 	|}
 
+{#declaration of the datatype for the template#}
 IDB,irtgDataBase : Type  :=  comm, left, header, string, tree, ud, four : Temp
 
+{#declaration of the data for the template#}
 irtgData1,ID1 : IDB  :=  
 	{|
 		{$comm$};
@@ -28,12 +33,15 @@ irtgData2,ID2 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
 irtgData3,ID3 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
 	{|f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))|}
 
+{#declaration of a templates specialized for NP2 IRTGs#}
 nounPhraseBase1,NPB1 : Temp  :=  <+IB.copy:+ID1
 nounPhraseBase1,NPB2 : Temp  :=  <+IB.copy:+ID2
 nounPhraseBase1,NPB3 : Temp  :=  <+IB.copy:+ID3
 
+{#declaration of datatype for the trerminal IRTG template#}
 NPDB,nounPhraseDataBase : Type  :=  comm,  arg1, arg2, edge_ud, edge_4lang : Text
 
+{#declaration of data for the NP2 IRTG rule templates#}
 datas1,D1 :List:NPDB :=
 	 [=:NPDB:= {"cute cat"}			,{"JJ"}	,{"NN"}		,{"amod"}	,{"0"}
 	,[=:NPDB:= {"electricity charges"}	,{"NN"}	,{"NNS"}	,{"compound"}	,{"0_compound_nouns"}
@@ -52,10 +60,12 @@ datas3,D3 :List:NPDB :=
 	 [=:NPDB:= {"my cat"}		,{"PRPDOLLAR"}	,{"NN"}		,{"nmod:poss"}
 	,[=:NPDB:= {"my cats"}		,{"PRPDOLLAR"}	,{"NNS"}	,{"nmod:poss"}
 
+{#create list for the output out of copies of the NP2 IRTG rule templates#} 
 result1,R1 :List:Temp := <+NPB1:+D1
 result2,R2 :List:Temp := <+NPB2:+D2
 result3,R3 :List:Temp := <+NPB3:+D3
 =}
+{#adding data to copies of the template end extend it to the surroundings#}
 <*{+ 
 R1 :+ D1 : 
 	0.slots.iter:+0, 
@@ -74,6 +84,93 @@ R3 :+ D3 :
 	1.slots.iter:+1
 +}:<@e 
 
+{#
+OUTPUT:
+//NP RULES
 
+	//cute cat
+	NP -> _NP2_amod_JJ_NN(JJ, NN)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :amod (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0) (d<dep>))",r_dep(?1))),?2)
+
+	//electricity charges
+	NP -> _NP2_compound_NN_NNS(NN, NNS)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :compound (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0_compound_nouns) (d<dep>))",r_dep(?1))),?2)
+
+	//car safety
+	NP -> _NP2_compound_NN_NN(NN, NN)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :compound (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0_compound_nouns) (d<dep>))",r_dep(?1))),?2)
+
+	//one dog
+	NP -> _NP2_nummod_CD_NN(CD, NN)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :nummod (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0) (d<dep>))",r_dep(?1))),?2)
+
+	//three dogs
+	NP -> _NP2_nummod_CD_NNS(CD, NNS)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :nummod (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0) (d<dep>))",r_dep(?1))),?2)
+
+	//cute cats
+	NP -> _NP2_amod_JJ_NNS(JJ, NNS)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :amod (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0) (d<dep>))",r_dep(?1))),?2)
+
+	//John Smith
+	NP -> _NP2_flat_NNP_NNP(NNP, NNP)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :flat (d<dep>))",r_dep(?1))),?2)
+	[4lang] merge(f_dep(merge("(r<root> :0_flat_name) (d<dep>))",r_dep(?1))),?2)
+
+	//the Examiner
+	NP -> _NP2_det_DT_NNP(DT, NNP)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :det (d<dep>))",r_dep(?1))),?2)
+	[4lang] ?2
+
+	//a cat
+	NP -> _NP2_det_DT_NN(DT, NN)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :det (d<dep>))",r_dep(?1))),?2)
+	[4lang] ?2
+
+	//the cats
+	NP -> _NP2_det_DT_NNS(DT, NNS)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :det (d<dep>))",r_dep(?1))),?2)
+	[4lang] ?2
+
+	//my cat
+	NP -> _NP2_nmod:poss_PRPDOLLAR_NN(PRPDOLLAR, NN)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :nmod:poss (d<dep>))",r_dep(?1))),?2)
+	[4lang] f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))
+
+	//my cats
+	NP -> _NP2_nmod:poss_PRPDOLLAR_NNS(PRPDOLLAR, NNS)
+	[string] *(?1, ?2)
+	[tree] NP2(?1,?2)
+	[ud] merge(f_dep(merge("(r<root> :nmod:poss (d<dep>))",r_dep(?1))),?2)
+	[4lang] f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))
+#}
 
 

@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 
 /*
-/home/boss/Documents/Git/SlimeAnUTLE/test_codes/antlr_example
+/home/boss/Documents/Git/SlimeAnUTLE/test_codes/xml_example
 output.irtg
 */
 fun main() {

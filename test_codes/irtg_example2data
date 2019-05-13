@@ -1,5 +1,6 @@
 {# Data for example 2 #}
 {= 
+{#declaration of the template for an IRTG rule with the four interpretation#}
 irtgBase : Temp := 
 	{|
 		{@e;t@}{$left$} -> {$header$}
@@ -9,8 +10,10 @@ irtgBase : Temp :=
 		{@e;t@}[4lang] {$fourlang_graph$}
 	|};
 
+{#declaration of the datatype for the template#}
 irtgDataBase : Type  :=  left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp;
 
+{#declaration of the data for the template#}
 irtgData : irtgDataBase  :=  
 	{|
 		{$word_class$};{$word$}_{$word_class$};
@@ -20,20 +23,26 @@ irtgData : irtgDataBase  :=
 		"({$concept$}<root>\{$concept$})"
 	|};
 
-termBase : Temp  :=  {+ irtgBase :+ irtgData +};
+{#declaration of a template specialized for terminal IRTG#}
+termBase : Temp  :=  {+ irtgBase.copy :+ irtgData +};
 
-termDataBase : Type  :=  word_class, word, concept : Template;
+{#declaration of datatype for the trerminal IRTG template#}
+termDataBase : Type  :=  word_class, word, concept : Temp;
 
+{#declaration of data for the trerminal IRTG template#}
 datas :List:termDataBase :=
-	{= :termDataBase  := 	{"NN"}, {"dog"},   {"dog"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"cat"},   {"cat"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"fish"},  {"fish"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"mouse"}, {"mouse"} 	=},
-	{= :termDataBase  :=	{"NN"}, {"lion"},  {"lion"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"monkey"},{"monkey"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"fox"},   {"fox"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"bird"},  {"bird"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"tiger"}, {"tiger"} 	=},
-	{= :termDataBase  := 	{"NN"}, {"owl"},   {"owl"} 	=}
+	{= :termDataBase  := 	{|NN|}, {|dog|},   {|dog|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|cat|},   {|cat|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|fish|},  {|fish|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|mouse|}, {|mouse|} 	=},
+	{= :termDataBase  :=	{|NN|}, {|lion|},  {|lion|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|monkey|},{|monkey|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|fox|},   {|fox|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|bird|},  {|bird|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|tiger|}, {|tiger|} 	=},
+	{= :termDataBase  := 	{|NN|}, {|owl|},   {|owl|} 	=}
 =}
 
+{#
+OUTPUT:
+#}

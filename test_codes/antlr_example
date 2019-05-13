@@ -1,15 +1,20 @@
+{# Slime code for Slime's lexer grammar grammar#}
 {=
+{# declaration of the shorter type of mode switch line #}
 shortRuleBase, SRB	:Temp := {|<$typeB _<$typeM  : '<$pattB;pattM ' -> 
 					pushMode(<$modeB _<$modeM )<@sc <$wrap |}
+{# declaration of the longer type of mode switch line #}
 longRuleBase, LRB    	:Temp := {|<$typeB _<$typeM _<$fromB _<$fromM  : '<$pattB;pattM ' ->
 					type(<$typeB _<$typeM ), pushMode(<$modeB _<$modeM )<@sc <$wrap |}
 
+{# data type and data for the three bracket types (block, one line, compact) #}
 BDB,bracDataBase : Type := typeB, pattB, modeB :Temp
 bracDatas,BD :List:BDB :=
 	 [=:BDB:= [|BOB;{;B
 	,[=:BDB:= [|OLB;[;O
 	,[=:BDB:= [|COB;<;C
 
+{# data type and data for the nine mode types (refe,exte,plus,decl,dele,text,temp) #}
 MDB,modeDataBase : Type := typeM, pattM, modeM, wrap :Temp
 modeDatas3,MD3 :List:MDB :=
 	 [=:MDB:= [|SLOT;$;SLSP;<@e 
@@ -23,10 +28,13 @@ modeDatas9,MD9 :List:MDB := MD3.0, MD3.1
 	,[=:MDB:= [|DELE;X;OPER;<@e 
 	,[=:MDB:= [|TEXT;";TEXT;<@e 
 	,[=:MDB:= [|TEMP;|;TEMP;<@e;e 
+
+{# lexer mode dependent data #}
 fromBData ,FBD	:List:Temp := [|B;O;C
 fromMData ,FMD	:List:Temp := [|O;T
 =}
 
+{# generation of rules for the default lexer mode #}
 {=
 datasBasic, DB	: List:Temp := [+SRB:+BD
 
@@ -39,6 +47,7 @@ dataBasicComp, DBC	:List:Temp := [+ DB.2 :+ MD9
 {@e@}
 *}
 
+{# generation of rules for the OPER and TEMP lexer modes #}
 {=
 datasLong, DL		: List:Temp := [+ LRB.fromM :+ FMD
 DLOper, DLO	: List:Temp := [+ DL.0.fromB :+ FBD
@@ -70,7 +79,6 @@ DLCTBloc, DLCTB: List:Temp := [+ DLCT.0 :+ MD3
 DLCTOnel, DLCTO: List:Temp := [+ DLCT.1 :+ MD3
 DLCTComp, DLCTC: List:Temp := [+ DLCT.2 :+ MD3
 =}
-
 {*
 	{&List:Temp:&DLBO[BOC]&}{@e@}
 	{&List:Temp:&DLOO[BOC]&}{@e@}
@@ -82,3 +90,168 @@ DLCTComp, DLCTC: List:Temp := [+ DLCT.2 :+ MD3
 *}
 
 
+{#
+OUTPUT:
+BOB_SLOT : '{$' -> pushMode(B_SLSP);
+BOB_SPEC : '{@' -> pushMode(B_SLSP);
+BOB_REFE : '{&' -> pushMode(B_REFE);
+BOB_EXTE : '{*' -> pushMode(B_OPER);
+BOB_PLUS : '{+' -> pushMode(B_OPER);
+BOB_DECL : '{=' -> pushMode(B_OPER);
+BOB_DELE : '{X' -> pushMode(B_OPER);
+BOB_TEXT : '{"' -> pushMode(B_TEXT);
+BOB_TEMP : '{|' -> pushMode(B_TEMP);
+
+OLB_SLOT : '[$' -> pushMode(O_SLSP);
+OLB_SPEC : '[@' -> pushMode(O_SLSP);
+OLB_REFE : '[&' -> pushMode(O_REFE);
+OLB_EXTE : '[*' -> pushMode(O_OPER);
+OLB_PLUS : '[+' -> pushMode(O_OPER);
+OLB_DECL : '[=' -> pushMode(O_OPER);
+OLB_DELE : '[X' -> pushMode(O_OPER);
+OLB_TEXT : '["' -> pushMode(O_TEXT);
+OLB_TEMP : '[|' -> pushMode(O_TEMP);
+
+COB_SLOT : '<$' -> pushMode(C_SLSP);
+COB_SPEC : '<@' -> pushMode(C_SLSP);
+COB_REFE : '<&' -> pushMode(C_REFE);
+COB_EXTE : '<*' -> pushMode(C_OPER);
+COB_PLUS : '<+' -> pushMode(C_OPER);
+COB_DECL : '<=' -> pushMode(C_OPER);
+COB_DELE : '<X' -> pushMode(C_OPER);
+COB_TEXT : '<"' -> pushMode(C_TEXT);
+COB_TEMP : '<|' -> pushMode(C_TEMP);
+
+
+BOB_SLOT_B_O : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_B_O : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_REFE_B_O : '{&' ->type(BOB_REFE), pushMode(B_REFE);
+BOB_EXTE_B_O : '{*' ->type(BOB_EXTE), pushMode(B_OPER);
+BOB_PLUS_B_O : '{+' ->type(BOB_PLUS), pushMode(B_OPER);
+BOB_DECL_B_O : '{=' ->type(BOB_DECL), pushMode(B_OPER);
+BOB_DELE_B_O : '{X' ->type(BOB_DELE), pushMode(B_OPER);
+BOB_TEXT_B_O : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+BOB_TEMP_B_O : '{|' ->type(BOB_TEMP), pushMode(B_TEMP);
+
+OLB_SLOT_B_O : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_B_O : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_REFE_B_O : '[&' ->type(OLB_REFE), pushMode(O_REFE);
+OLB_EXTE_B_O : '[*' ->type(OLB_EXTE), pushMode(O_OPER);
+OLB_PLUS_B_O : '[+' ->type(OLB_PLUS), pushMode(O_OPER);
+OLB_DECL_B_O : '[=' ->type(OLB_DECL), pushMode(O_OPER);
+OLB_DELE_B_O : '[X' ->type(OLB_DELE), pushMode(O_OPER);
+OLB_TEXT_B_O : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+OLB_TEMP_B_O : '[|' ->type(OLB_TEMP), pushMode(O_TEMP);
+
+COB_SLOT_B_O : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_B_O : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_REFE_B_O : '<&' ->type(COB_REFE), pushMode(C_REFE);
+COB_EXTE_B_O : '<*' ->type(COB_EXTE), pushMode(C_OPER);
+COB_PLUS_B_O : '<+' ->type(COB_PLUS), pushMode(C_OPER);
+COB_DECL_B_O : '<=' ->type(COB_DECL), pushMode(C_OPER);
+COB_DELE_B_O : '<X' ->type(COB_DELE), pushMode(C_OPER);
+COB_TEXT_B_O : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+COB_TEMP_B_O : '<|' ->type(COB_TEMP), pushMode(C_TEMP);
+
+
+BOB_SLOT_O_O : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_O_O : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_REFE_O_O : '{&' ->type(BOB_REFE), pushMode(B_REFE);
+BOB_EXTE_O_O : '{*' ->type(BOB_EXTE), pushMode(B_OPER);
+BOB_PLUS_O_O : '{+' ->type(BOB_PLUS), pushMode(B_OPER);
+BOB_DECL_O_O : '{=' ->type(BOB_DECL), pushMode(B_OPER);
+BOB_DELE_O_O : '{X' ->type(BOB_DELE), pushMode(B_OPER);
+BOB_TEXT_O_O : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+BOB_TEMP_O_O : '{|' ->type(BOB_TEMP), pushMode(B_TEMP);
+
+OLB_SLOT_O_O : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_O_O : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_REFE_O_O : '[&' ->type(OLB_REFE), pushMode(O_REFE);
+OLB_EXTE_O_O : '[*' ->type(OLB_EXTE), pushMode(O_OPER);
+OLB_PLUS_O_O : '[+' ->type(OLB_PLUS), pushMode(O_OPER);
+OLB_DECL_O_O : '[=' ->type(OLB_DECL), pushMode(O_OPER);
+OLB_DELE_O_O : '[X' ->type(OLB_DELE), pushMode(O_OPER);
+OLB_TEXT_O_O : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+OLB_TEMP_O_O : '[|' ->type(OLB_TEMP), pushMode(O_TEMP);
+
+COB_SLOT_O_O : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_O_O : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_REFE_O_O : '<&' ->type(COB_REFE), pushMode(C_REFE);
+COB_EXTE_O_O : '<*' ->type(COB_EXTE), pushMode(C_OPER);
+COB_PLUS_O_O : '<+' ->type(COB_PLUS), pushMode(C_OPER);
+COB_DECL_O_O : '<=' ->type(COB_DECL), pushMode(C_OPER);
+COB_DELE_O_O : '<X' ->type(COB_DELE), pushMode(C_OPER);
+COB_TEXT_O_O : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+COB_TEMP_O_O : '<|' ->type(COB_TEMP), pushMode(C_TEMP);
+
+
+BOB_SLOT_C_O : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_C_O : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_REFE_C_O : '{&' ->type(BOB_REFE), pushMode(B_REFE);
+BOB_EXTE_C_O : '{*' ->type(BOB_EXTE), pushMode(B_OPER);
+BOB_PLUS_C_O : '{+' ->type(BOB_PLUS), pushMode(B_OPER);
+BOB_DECL_C_O : '{=' ->type(BOB_DECL), pushMode(B_OPER);
+BOB_DELE_C_O : '{X' ->type(BOB_DELE), pushMode(B_OPER);
+BOB_TEXT_C_O : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+BOB_TEMP_C_O : '{|' ->type(BOB_TEMP), pushMode(B_TEMP);
+
+OLB_SLOT_C_O : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_C_O : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_REFE_C_O : '[&' ->type(OLB_REFE), pushMode(O_REFE);
+OLB_EXTE_C_O : '[*' ->type(OLB_EXTE), pushMode(O_OPER);
+OLB_PLUS_C_O : '[+' ->type(OLB_PLUS), pushMode(O_OPER);
+OLB_DECL_C_O : '[=' ->type(OLB_DECL), pushMode(O_OPER);
+OLB_DELE_C_O : '[X' ->type(OLB_DELE), pushMode(O_OPER);
+OLB_TEXT_C_O : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+OLB_TEMP_C_O : '[|' ->type(OLB_TEMP), pushMode(O_TEMP);
+
+COB_SLOT_C_O : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_C_O : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_REFE_C_O : '<&' ->type(COB_REFE), pushMode(C_REFE);
+COB_EXTE_C_O : '<*' ->type(COB_EXTE), pushMode(C_OPER);
+COB_PLUS_C_O : '<+' ->type(COB_PLUS), pushMode(C_OPER);
+COB_DECL_C_O : '<=' ->type(COB_DECL), pushMode(C_OPER);
+COB_DELE_C_O : '<X' ->type(COB_DELE), pushMode(C_OPER);
+COB_TEXT_C_O : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+COB_TEMP_C_O : '<|' ->type(COB_TEMP), pushMode(C_TEMP);
+
+
+
+BOB_SLOT_B_T : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_B_T : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_TEXT_B_T : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+
+OLB_SLOT_B_T : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_B_T : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_TEXT_B_T : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+
+COB_SLOT_B_T : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_B_T : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_TEXT_B_T : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+
+
+BOB_SLOT_O_T : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_O_T : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_TEXT_O_T : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+
+OLB_SLOT_O_T : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_O_T : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_TEXT_O_T : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+
+COB_SLOT_O_T : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_O_T : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_TEXT_O_T : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+
+
+BOB_SLOT_C_T : '{$' ->type(BOB_SLOT), pushMode(B_SLSP);
+BOB_SPEC_C_T : '{@' ->type(BOB_SPEC), pushMode(B_SLSP);
+BOB_TEXT_C_T : '{"' ->type(BOB_TEXT), pushMode(B_TEXT);
+
+OLB_SLOT_C_T : '[$' ->type(OLB_SLOT), pushMode(O_SLSP);
+OLB_SPEC_C_T : '[@' ->type(OLB_SPEC), pushMode(O_SLSP);
+OLB_TEXT_C_T : '["' ->type(OLB_TEXT), pushMode(O_TEXT);
+
+COB_SLOT_C_T : '<$' ->type(COB_SLOT), pushMode(C_SLSP);
+COB_SPEC_C_T : '<@' ->type(COB_SPEC), pushMode(C_SLSP);
+COB_TEXT_C_T : '<"' ->type(COB_TEXT), pushMode(C_TEXT);
+#}
