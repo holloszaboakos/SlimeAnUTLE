@@ -12,7 +12,7 @@ Például a melléknév–főnév–ige sorrendi megkötés szintaktikailag hely
 Itt az okoz problémát, hogy a szavak sorrendjéből nem derül ki, hogy mely szavak tartoznak össze, tehát a szerkezet nem azonos az elemek lineáris elrendezésével.
 Ezt jelölhetjük zárójelezéssel is: \textit{(Fekete (kutyák és macskák)) szaladgálnak} vagy \textit{(Fekete kutyák) és macskák szaladgálnak}. Az első példa szerkezetileg a \textit{Fekete állatok szaladgálnak}, a második pedig a \textit{Kutyák és macskák szaladgálnak} mondatnak feleltethető meg, tehát két darab, alakilag egybeeső elemsorról beszélhetünk, nem pedig egyetlen "kétértelmű" szerkezetről.
 
-Ugyanakkor a zárójelezés sem teszi a szavak szerepét mindig egyértelművé. Például a \textit{Az oroszlán simogatása veszélyes} esetében az a veszélyes, ha mi simogatjuk az oroszlánt, vagy az, ha ő simogat minket? Mindkét esetben ugyanaz a zárójelezés: \textit{(Az oroszlán simogatása) veszélyes}, az egyik esetben viszont az \textit{oroszlán} a tárgy, a másikban az alany, tehát az is fontos, hogy a szavak és szószerkezetek milyen szerepet töltenek be a mondatban. (\cite{Kenesei:2004}) 
+Ugyanakkor a zárójelezés sem teszi a szavak szerepét mindig egyértelművé. Például a \textit{Az oroszlán simogatása veszélyes} esetében az a veszélyes, ha mi simogatjuk az oroszlánt, vagy az, ha ő simogat minket? Mindkét esetben ugyanaz a zárójelezés: \textit{(Az oroszlán simogatása) veszélyes}, az egyik esetben viszont az \textit{oroszlán} a tárgy, a másikban az alany, tehát az is fontos, hogy a szavak és szószerkezetek milyen szerepet töltenek be a mondatban. \cite{Kenesei:2004} 
 
 Szintaxisról beszélhetünk programozási nyelvek esetén is. Ekkor minden speciális, önálló jelentéssel bíró karaktersorozat szónak számít.
 A nyelvészetben a mondatrészek közötti viszonyokat konstituensfával vagy dependenciagráfokkal szemléltetik, az NLP-ben ez utóbbit nagyon széles körben használják, amely a szavak közötti címkézett irányított élekből építi fel a szintaktikai viszonyokat reprezentáló irányított gráfot. Ebben a fejezetben ezt a két formalizmust fejtem ki részletesebben.
@@ -34,7 +34,7 @@ Környezetfüggetlen nyelvtannak egy $G=(V,\Sigma ,P,S)$ rendezett négyest neve
 $\alpha \to \beta$ alakúak, $\alpha$ és $\beta$ tetszőleges, V és $\Sigma$ elemeiből képzett sorozat, az egyetlen
 megkötés, hogy $\alpha$ tartalmazzon legalább egy változót is ($\beta$ lehet akár az üres szó is).
 \end{itemize}
-(\cite{Friedl:2003})
+\cite{Friedl:2003}
 Ebben a nyelvtanban a terminális szimbólumok a szavak, a nemterminális szimbólumok pedig a \textit{szófaji kategóriák}, \textit{frázisok} és \textit{mondatok}. A szófaji kategóriák (pl. \textit{főnév}, \textit{ige}) azok a szimbólumok, amik közvetlen szavakká írhatóak át, mindegyik pontosan egy szóvá. Frázisoknak azokat a szerkezeteket nevezzük, amelyeknek egy-egy szó a feje, és az adott szó szófajáról nevezzük el (pl. \textit{NP - noun phrase, főnévi frázis/kifejezés}). Ezeket szófaji kategóriák és más frázisok sorozatává írhatjuk át, a mondatokat pedig frázisokká.
 A lehetséges levezetési fákon kivehető az egyes nemterminális szimbólumtípusok rétegződése, hierarchiája.  A~\ref{fig:john_zarojel} ábrán láthatjuk a \textit{John loves Mary.} mondat szerkezetére vonatkozó újraíró szabályokat.
 
@@ -145,25 +145,25 @@ Ez azért nem jelenik meg a magyar mondat esetén, mert a magyarban nem vagyunk 
 \label{sec:semantics}
 %----------------------------------------------------------------------------
 
-A szemantika nem foglalkozik a jelek külalakjával és szerkezetével, középpontjában a jelentés áll.
-A jelentést viszont nehéz reprezentálni. Azt is nehéz megfogni, hogy az egyes szavak mit jelentenek.
-Az NLP-ben számos megközelítés létezik a jelentés reprezentálására. A \texttt{szemantikai elemzés} (semantic parsing) célja, hogy a nyers szövegből, vagy valamely szintaktikai reprezentációból előállítsa a szemantikai reprezentációkat.
+A szemantika nem foglalkozik a jelek külalakjával és szerkezetével, középpontjában csak a jelentés áll.
+A jelentést viszont nehéz reprezentálni. 
+Azt is nehéz megfogni, hogy az egyes szavak mit jelentenek.
+Az NLP-ben számos megközelítés létezik a jelentés reprezentálására. 
+A \texttt{szemantikai elemzés} (semantic parsing) célja, hogy a nyers szövegből, vagy valamely szintaktikai reprezentációból előállítsa a szemantikai reprezentációkat.
 
-Az egyik a szóvektorok. Eszerint a szavak jelentését a környezetében felbukkanó szavak adják.
-Pontosabban annak gyakorisága, hogy amikor a szó feltűnik, akkor egyes szavak is megjelennek a környezetében. Ezekből a gyakoriságokból egy szótárnyi hosszú vektor készíthető.
-Itt a szavak jelentése nem más, mint egy szótár számosságnyi dimenziós térben a pozíciója.
-Itt nem csak hogy a közel azonos jelentésű szavak közel helyezkednek el egymáshoz képest, de egyes összefüggések is kihozhatóak vektor műveletek ként.
-Például a \textit{királynő} vektora megkapható a \textit{király} vektorából.
-Csak ki kell belőle vonni a \textit{férfi} vektorát és hozzá kell adnunk a \textit{nő} vektorát.
-Ugyanakkor ez a módszer csak a szavak jelentését reprezentálja.
- 
-A másik módszer az irányított gráfok használata.
-Itt azt feltételezzük, hogy a szavak mögötti fogalmak és az azok közötti kapcsolatok adják a mondat jelentését.
-Ekkor egy gráf csúcsaiban fogalmakkal, és azok között címkézett élekkel reprezentáljuk a jelentést.
-Ennek mezei példája például egy mindmap, ahol az egymással asszociatív viszonyban lévő szavakat cimkézetlen élekkel kötjük össze.
-Ez a módszer viszont csak a mondattal foglalkozik.
-Az már más kérdés, hogy az emberek az adott fogalmakhoz milyen további jelentéseket tárasítanak.
-A ~\ref{sec:4lang}. fejezetben tárgyalt \texttt{4lang} is egy ilyen megközelítést alkalmaz.
+A modernebb, jellemzően Deep Learning-et alkalmazó módszerek szóvektorokat alkalmaznak.
+A szavak jelentését sokdimenziós terek vektorai ként reprezentálják.
+Ezekkel a módszerekkel a legnagyobb probléma az, hogy csak nagyon csekély belátást biztosítanak a háttérben meghúzódó struktúrákra.
+Nehéz a megoldásukat menetét analizálni, és abból következtetéseket levonni.
+
+Ezzel ellentétben mi a kutatás során fogalmi hálózatokon alapuló szemantikai reprezentációkat alkalmaztunk.
+Lehetővé teszik a struktúrák mélyreható analízisét.
+Így jobb rálátást nyújtanak olyan problémákra, mint a természetes nyelvi következtetés (natural language inference) vagy a gépi szövegértés (machine comprehension).
+Ezekre a problémákra a Deep Learning-es módszerek mai napig nem nyújtottak átfogó módszereket.
+A fogalmi hálózatok legfőbb korlátja, hogy nehéz őket automatikusan generálni.
+A kutatás legfőbb célja ennek kiküszöbölése.
+
+Mi a kutatás során a 4lang formalizmust használtuk szemantikai reprezentáció ként.
 
 %----------------------------------------------------------------------------
 \subsection{4lang}
@@ -172,12 +172,12 @@ A ~\ref{sec:4lang}. fejezetben tárgyalt \texttt{4lang} is egy ilyen megközelí
 A \texttt{4lang}  \cite{Kornai:2015} egy formalizmus, ami irányított gráfokat épít szemantikai reprezentáció céljával. A gráfban a csúcsok nem szavakat, hanem nyelvfüggetlen fogalmakat jelölnek. Ezeknek a fogalmaknak már nincsenek nyelvtani jellemzőik és a kompetens beszélők közös tudását reprezentálják a fogalomról. Például a \textit{fagy} mint főnév vagy mint ige, illetve a \textit{fagyás} vagy \textit{fagyott} szavak nincsenek megkülönböztetve a 4lang reprezentációban \cite{Recski:2018}. Ezáltal a 4lang fogalmak és a nekik egy nyelvben megfelelő szavak között egy a többhöz kapcsolat áll fenn.
 
 A csúcsokat háromféle él kapcsolhatja össze:
-0-él reprezentálja a tulajdonságokat. Például \textit{$virág -0-> szép$}, az \textit{$IS\_A$} viszony \textit{$virág -0->  növény$} és unáris predikáció \textit{$virág -0-> bimbózás$}.
-1 és 2-élek bináris predikációkat kapcsolnak az argumentumaikhoz. Például \textit{$James <-1- szeretet -2> kutya$}.
+0-él reprezentálja a tulajdonságokat. Például \edge{virág}{0}{szép}, az \textit{$IS\_A$} viszony \edge{virág}{0}{növény} és unáris predikáció \edge{virág}{0}{bimbózás}.
+1 és 2-élek bináris predikációkat kapcsolnak az argumentumaikhoz. Például \bin{szeretet}{James}{kutya}.
 
-Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \textit{$w_1 <-0-1-> w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I’am writing.}(\textit{Én éppen írok})  mondatot az \textit{$i -0> write$} 4lang gráffal és az \textit{I’am writing a letter}(textit{Én egy levelet írok éppen}) mondatot az \textit{$i <-1- write -2-> letter$} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. \cite{Recski:2018}
+Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \twoedges{$w_1$}{1}{0}{$w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I’am writing.}(\textit{Én éppen írok})  mondatot az \edge{i}{0}{write} 4lang gráffal és az \textit{I’am writing a letter}(\textit{Én egy levelet írok éppen}) mondatot az \bin{write}{i}{letter} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. \cite{Recski:2018}
 
-A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_ to\_ 4lang, dict\_ to\_ 4lang). A dep\_ to\_ 4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser \cite{DeMarneffe:2006} kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
+A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_ to\_ 4lang, dict\_ to\_ 4lang). A dep\_ to\_ 4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser \cite{deMarneffe:2008} kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
 4lang a neve egy kézzel alkotott  fogalmi szótárnak is, amely négy nyelven tartalmaz több mint 2000 fogalom nyelvfüggetlen definícióját (magyar, angol, latin, lengyel). \cite{Kornai:2013}
 
 
@@ -185,7 +185,7 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 \subsection{A 4lang és az UD különbségei}
 \label{sec:4LvsUD}
 %----------------------------------------------------------------------------
-A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a \textit{$w_1 -amod-> w_2$} viszony az UD-ból megfelel a \textit{$w_1 -0-> w_2$} viszonynak a 4lang-ból.
+A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetében egy irányított gráfról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek szavak közötti viszonyokat jelölik. Maguk a függőségek is sok esetben megfeleltethetőek egymásnak. Például a $w_1$-\textit{amod}->$w_2$ viszony az UD-ból megfelel a \edge{$w_1$}{0}{$w_2$}  viszonynak a 4lang-ból.
 
 A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikáját (jelentését). Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai függőségekket. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak, és a 4lang beli fogalmak között is. Ez persze azt jelenti, hogy az UD már tartalmazza a szemantikára vonatkozó információkat is, de csak közvetetten.
 
@@ -229,7 +229,7 @@ A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek v
         prep\_P & $w_1\xleftarrow1$ \texttt{P} $\xrightarrow2w_2$ \\
         \bottomrule                         
     \end{tabular}
-    \caption{UD függőségek megfeleltetése 4lang részgráfoknak \cite[p. 12.]{Recski:2018}.}
+    \caption{UD függőségek megfeleltetése 4lang részgráfoknak. \cite[p. 12.]{Recski:2018}}
     \label{table:deps}
     \end{table}
 
@@ -246,20 +246,16 @@ Bár a mondat UD gráfjából a 4lang gráfja levezethető, a két formalizmus t
       \xybarconnect[8](U,U){-4}"_{\small det}"
       \xybarconnect (UL,U){-2}"_{\small amod}"
 }
-\caption{A 'The white cat' függőségi elemzése }
-\label{fig:deptreetiny}  
-\end{figure}
 
-\begin{figure}[h]
-\centering 
+
 \xytext{
     \xybarnode{white} 
     &~~~&
     \xybarnode{cat} 
       \xybarconnect (UL,U){-2}"_{\small 0}"
 }
-\caption{A 'The white cat' szemantikai elemzése }
-\label{fig:deptreetiny}  
+\caption{A 'The white cat' UD és 4lang gráfja }
+\label{fig:thewhitecat}  
 \end{figure}
 
 Ezen a példán jól látható, hogy az \textit{amod} él megfeleltethető egy \textit{0} élnek.
@@ -382,7 +378,7 @@ fát kapjuk.
 Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. 
 Lásd példa~\ref{sec:example1}.
 
-Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank Szintaktikai Fáiban.  Ilyen a \textit{the black cat} (\textit{a fekete macska}) főnévi kifejezés is, aminek a szintaktikai fája az:
+Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank szintaktikai fáiban.  Ilyen a \textit{the black cat} (\textit{a fekete macska}) főnévi kifejezés is, aminek a szintaktikai fája az:
 
 NP3( DT( the ), JJ( black ), NN( cat ) ).
 
@@ -470,7 +466,7 @@ Rengeteg esetben a szabályok alig egy-egy szóban térnek el. Lásd példa~\ref
 Itt a \textit{John} és a \textit{Mary} szóhoz tartozó terminális szabályok között csupán maguk a szavak jelentik a különbséget. A string interpretációban is csak maga a szó jelenik meg. Más szófajú szavak esetében is csak a szabály sort és tree reprezentációt kell még módosítani. Az ilyen esetek miatt nagy kár, hogy az IRTG-ben nem lehet szabályokat egymásból vagy egy közös ősből származtatni.
 
 
-Sokszor egy szó szófaja egy másik szófaj alkategóriája. Ilyen például az NNP (proper noun, tulajdonnév), ami az N (noun, főnév) alketegórája. Az egy főkategóriába tartozó szófajok sok esetben ugyanúgy viselkednek. Például egy NP-ben, ami egy N-ből és egy JJ-ből áll, minden esetben a két szó között egy amod él lesz az UD gráfban. Ugyanakkor vannak olyan esetek is, amikor az alkategóriáknak csak egy részhalmaza viselkedik hasonlóan. Egy alkategória esetében kétféleképpen lehet megoldani ezt. Az egyik verzióban általánosítunk, tehát az alkategóriákat ugyanúgy kezeljük. Ekkor jelentős áldozatot hozunk a pontosság terén. Más esetben minden egyes alfajra előállítunk minden szabályt, amivel előfordul. Ekkor jelentős áldozatot hozunk hatékonyság terén, mivel sokkal több szabályon kell végigiterálnia az ALTO-nak az IRTG futtatásakor. Erre jó megoldás lenne, ha egy szabálysorban minden olyan nemterminális szimbólumot meg tudnánk adni, amire a szabálynak minden interpretációhoz ugyanaz a lépés tartozik. Erre jó megoldás lenne, ha a szabálysorban regexszel lehetne megadni mindegyik jobb oldali nemterminális szimbólumot.
+Sokszor egy szó szófaja egy másik szófaj alkategóriája. Ilyen például az NNP (proper noun, tulajdonnév), ami az N (noun, főnév) alketegórája. Az egy főkategóriába tartozó szófajok sok esetben ugyanúgy viselkednek. Például egy NP-ben, ami egy N-ből és egy JJ-ből áll, minden esetben a két szó között egy amod él lesz az UD gráfban. Ugyanakkor vannak olyan esetek is, amikor az alkategóriáknak csak egy részhalmaza viselkedik hasonlóan. Egy alkategória esetében kétféleképpen lehet megoldani ezt. Az egyik verzióban általánosítunk, tehát az alkategóriákat ugyanúgy kezeljük. Ekkor jelentős áldozatot hozunk a pontosság terén. Más esetben minden egyes alfajra előállítunk minden szabályt, amivel előfordul. Ekkor jelentős áldozatot hozunk hatékonyság terén, mivel sokkal több szabályon kell végigiterálnia az ALTO-nak az IRTG futtatásakor. Erre jó megoldás lenne, ha egy szabálysorban minden olyan nemterminális szimbólumot meg tudnánk adni, amire a szabálynak minden interpretációhoz ugyanaz a lépés tartozik. Erre jó megoldás lenne, ha a szabálysorban RegEx-szel lehetne megadni mindegyik jobb oldali nemterminális szimbólumot.
 
 
 Az IRTG szabályokban mindenre más és más algebrát használunk más és más nyelvvel. Ennek az az oka, hogy mint már az algebráknál részleteztem, minden algebrának vannak hiányosságai. Az IRTG maga lehet önmagában átlátható, de ha az algebrái sokfélék, és némelyiket önmagában is nehéz átlátni, akkor az az IRTG-re is közvetlen hatással lesz (lásd s-graph algebra). Hiába a sokféleség, ha egyes feladatokra csak egy olyan algebra létezik, ami megfelel a célnak és az is erősen korlátozott. Egy algebrára van csak szükség. Egy olyan algebrára, ami az s-graph algebra szintjén van, de átlátható és képes mint a csúcsok sorrendjét kezelni, mint a címkék konkatenációját. Elvégre a szöveg is kezelhető egyetlen csúcs ként. Egy ilyen algebrában az is fontos, hogy ne kelljen az egyszerű műveleteket sokkal terjedelmesebben megoldani, mint ha azt az egyszerű algebrákkal végeznénk. Az s-graph javítására az algebra kapcsán mutattam példát, de egy ilyen univerzális algebra már szemantikai változtatásokat is igényelne.
@@ -543,5 +539,5 @@ Elvégre a fejlesztés jelenleg is folyamatban van.
 A Slime első verziója nem lesz képes ilyen gráf műveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető.
 Ennek persze az IRTG és a Slime szintaxisának ismerete alapfeltétel. 
 Mindezt pedig minimális overhead-del, így csak a bemeneti adatokat szükséges generálni hozzá. 
-Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz REGEX és templatelés segítségével, a sorrend sem jelent majd problémát.
+Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz RegEx és templatelés segítségével, a sorrend sem jelent majd problémát.
 Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a második generátor kombinációja.
