@@ -144,9 +144,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                 .forEach {
                     vari1.get(it[0].map { it2 -> SName(it2) }.toSList())
                         .plus(
-                            vari2.get(it[1].map { it2 -> SName(it2) }.toSList()),
-                            SList(mutableListOf()),
-                            SList(mutableListOf())
+                            vari2.get(it[1].map { it2 -> SName(it2) }.toSList())
                         )
                 }
             vari1

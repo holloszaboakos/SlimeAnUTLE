@@ -1,0 +1,89 @@
+{=
+{#declaration of template and type for the simple HTML site#}
+html :Temp := [|<@e <!DOCTYPE html><@e <html><@e <head><@e <title>{$title$}</title><@e </head><@e <body><@e {$body$}<@e </body><@e </html>
+htmlDT :Type := title,body:Temp
+
+{#declaration of template and type for the paragraphs#}
+p :Temp := [|<@e {$wrap$}<p{$attrL$}>{$text$}<\p>
+pDT :Type := wrap,attrL:Temp,text:Text
+{#declaration of template and type for the headers#}
+h :Temp := [|<@e {$wrap$}<h{$level$}{$attrL$}>{$text$}<\h{$level$}>
+hDT :Type := wrap,attrL:Temp, level,text:Text
+=}
+
+{#create and print HTML site#}
+<*[+html:+[=:htmlDT:= <|MyFirstHTMLDocument ,<*{=:List:Temp:=
+	 <+h.copy:+<=:hDT:=[|<@t ; ;1;Chapter1
+	,<+p.copy:+<=:pDT:=[|<@t;t ; ;this is a paragraph introducing the content of the chapter
+	,<+h.copy:+<=:hDT:=[|<@t;t ; ;2;Section1
+	,<+p.copy:+<=:pDT:=[|<@t;t;t ; ;this is a paragraph introducing the content of the section
+	,<+h.copy:+<=:hDT:=[|<@t;t;t ; ;3;Subection1.1
+	,<+p.copy:+<=:pDT:={|<@t;t;t;t ; ;
+				this is the content of the section
+				<@e;t;t;t;t It is the second line of its content
+				<@e;t;t;t;t It is the third line of its content
+				<@e;t;t;t;t It is the fourth line of its content
+				|}
+	,<+h.copy:+<=:hDT:=[|<@t;t;t ; ;3;Subection1.2
+	,<+p.copy:+<=:pDT:={|<@t;t;t;t ; ;
+				this is the content of the section
+				<@e;t;t;t;t It is the second line of its content
+				<@e;t;t;t;t It is the third line of its content
+				<@e;t;t;t;t It is the fourth line of its content
+				|}
+	,<+h.copy:+<=:hDT:=[|<@t;t ; ;2;Section2
+	,<+p.copy:+<=:pDT:=[|<@t;t;t ; ;this is a paragraph introducing the content of the section
+	,<+h.copy:+<=:hDT:=[|<@t;t;t ; ;3;Subection2.1
+	,<+p.copy:+<=:pDT:={|<@t;t;t;t ; ;
+				this is the content of the section
+				<@e;t;t;t;t It is the second line of its content
+				<@e;t;t;t;t It is the third line of its content
+				<@e;t;t;t;t It is the fourth line of its content
+				|}
+	,<+h.copy:+<=:hDT:=[|<@t;t;t ; ;3;Subection2.2
+	,<+p.copy:+<=:pDT:={|<@t;t;t;t ; ;
+				this is the content of the section
+				<@e;t;t;t;t It is the second line of its content
+				<@e;t;t;t;t It is the third line of its content
+				<@e;t;t;t;t It is the fourth line of its content
+				|}
+=}
+{#
+OUTPUT:
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyFirstHTMLDocument</title>
+</head>
+<body>
+
+	<h1 >Chapter1<\h1>
+		<p >this is a paragraph introducing the content of the chapter<\p>
+		<h2 >Section1<\h2>
+			<p >this is a paragraph introducing the content of the section<\p>
+			<h3 >Subection1.1<\h3>
+				<p >this is the content of the section
+				It is the second line of its content
+				It is the third line of its content
+				It is the fourth line of its content<\p>
+			<h3 >Subection1.2<\h3>
+				<p >this is the content of the section
+				It is the second line of its content
+				It is the third line of its content
+				It is the fourth line of its content<\p>
+		<h2 >Section2<\h2>
+			<p >this is a paragraph introducing the content of the section<\p>
+			<h3 >Subection2.1<\h3>
+				<p >this is the content of the section
+				It is the second line of its content
+				It is the third line of its content
+				It is the fourth line of its content<\p>
+			<h3 >Subection2.2<\h3>
+				<p >this is the content of the section
+				It is the second line of its content
+				It is the third line of its content
+				It is the fourth line of its content<\p>
+</body>
+</html>
+#}

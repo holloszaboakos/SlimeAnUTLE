@@ -22,7 +22,7 @@ spec: specHead spslBody specTail;
 specHead:( BOB_SPEC|OLB_SPEC|COB_SPEC);
 specTail:(BCB_SPEC|NL_SLSP|NW_SLSP);
 
-spslBody:(NAME SC?)* NAME ;
+spslBody:NAME (SC NAME)*  ;
 
 temp: tempHead tempBody tempTail;
 tempHead:(BOB_TEMP|OLB_TEMP|COB_TEMP);
@@ -64,7 +64,7 @@ declTail:(BCB_DECL|NL_OPER|NW_OPER);
 nameValue:(listName EQOP listVari);
 nameType:(listName CL typeName);
 listVari: (vari CO)* vari;
-vari: variPath|decl|temp|spec|slot|refe|plus|text;
+vari: variPath|decl|temp|spec|slot|refe|plus|text|exte;
 variPath: ((NAME|INTE) PE)* (NAME|INTE);
 listName: (NAME CO)* NAME;
 typeName: (NAME CL)* NAME;

@@ -1,15 +1,15 @@
 {#simple example for terminal IRTG rule generation#}
 {= 
-
+{#declaration of template for a line of constrain and two types to add data easier#}
 consBaseTemp, CBT : Temp := {|<@e;t;t app:layout_constraint{$ what $}_to{$ whatTo $}Of="{$ whatOf $}"|}
 CTDT, ConsTypeDataType :Type	:= what, whatTo :Text
 WODT, WhatOfDataType :Type	:= whatOf :Text
 
-consListTypeTT,   CL3T : Temp   := <|<$stst;enst;toto 
-consListTypeTB,	  CLTTB : Temp  := <|<$stst;enst;tobo 
-consListTypeTBBB, CLTT3B : Temp := <|<$stst;enst;tobo;bobo 
+{#declaration of templates for all the warients of constrain lists and a type to add data easier#}
+consListTypeList,   CLTL : List:Temp   := <|<$stst;enst;toto ;<$stst;enst;tobo ;<$stst;enst;tobo;bobo 
 CLDT, consListDataType :Type	:= stst, sten, enst, enen, toto, tobo, boto, bobo :Temp
 
+{#declaration of template for a button and two types to add data easier#}
 buttBase,BB : Temp := 
 	{|
 		<@e;t <Button
@@ -21,33 +21,44 @@ buttBase,BB : Temp :=
 		<@e;e;t;t android:layout_marginTop="{$ marginT $}dp"
 		<@e;t;t android:layout_marginBottom="{$ marginB $}8dp"
 		<@e;e;t;t app:layout_constraintVertical_bias="{$ biasV $}"
-		<@e {$cons$}
+		<@e {$cons$}/>
 	|}
-BDT,buttDataType : Type  := textID ,idNumber, marginT, marginB, biasV : Text, cons : Temp
+BDT,buttDataType : Type  := textID ,idNumber, marginT, marginB, biasV, cons : Temp
 
-consListDatas, CLD :CLDT	:= 
-	 [+CBT.copy :+ [=:CTDT:= <"Start 	,<"Start
-	,[+CBT.copy :+ [=:CTDT:= <"Start 	,<"End
-	,[+CBT.copy :+ [=:CTDT:= <"End 		,<"Start
-	,[+CBT.copy :+ [=:CTDT:= <"End 		,<"End
-	,[+CBT.copy :+ [=:CTDT:= <"Top 		,<"Top
-	,[+CBT.copy :+ [=:CTDT:= <"Top 		,<"Bottom
-	,[+CBT.copy :+ [=:CTDT:= <"Bottom 	,<"Top
-	,[+CBT.copy :+ [=:CTDT:= <"Bottom 	,<"Bottom
-consDataList, CDL : List:Temp :=
-	 [+ <+CL3T:+CLD		:+ <=:List:WODT:={=:WODT:= <"@+id/guideline =},{=:WODT:= <"@+id/guideline =},{=:WODT:= <"parent =} :0:+0,1:+1,2:+2
-	,[+ <+CLTTB:+CLD	:+ <=:List:WODT:={=:WODT:= <"@+id/guideline =},{=:WODT:= <"@+id/guideline =},{=:WODT:= <"@+id/button1 =} :0:+0,1:+1,2:+2
-	,[+ <+CLTT3B:+CLD	:+ <=:List:WODT:={=:WODT:= <"@+id/guideline =},{=:WODT:= <"@+id/guideline =},{=:WODT:= <"@+id/button2 =},{=:WODT:= <"parent =} :0:+0,1:+1,2:+2,3:+3
-	,[+ <+CL3T:+CLD		:+ <=:List:WODT:={=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"parent =} :0:+0,1:+1,2:+2
-	,[+ <+CLTTB:+CLD	:+ <=:List:WODT:={=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"@+id/button4 =} :0:+0,1:+1,2:+2
-	,[+ <+CLTT3B:+CLD	:+ <=:List:WODT:={=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"@+id/guideline2 =},{=:WODT:= <"@+id/button5 =},{=:WODT:= <"parent =} :0:+0,1:+1,2:+2,3:+3
+{#declaration of type and data for easier handle of the button ids#}
+IDDT, IDDataType : Type := b1,b2,b3,b4,b5,b6,g1,g2,p : WODT
+ID : IDDT := <=:WODT:=<"@+id/button1 ,<=:WODT:=<"@+id/button2
+		,<=:WODT:=<"@+id/button3 ,<=:WODT:=<"@+id/button4
+		,<=:WODT:=<"@+id/button5 ,<=:WODT:=<"@+id/button6
+		,<=:WODT:=<"@+id/guideline ,<=:WODT:=<"@+id/guideline2
+		,<=:WODT:=<"parent
+
+{#declaration of type and data for easier handle of sides#}
+SDT, SideDataType : Type := s,e,t,b : Text
+sides,S : SDT := <"Start ,<"End ,<"Top ,<"Button
+
+{#declaration of struct out of all possible constrain type#}
+consListDatasList, CLDL :List:Temp:=
+	 [+CBT :+ {=:List:CTDT:= 
+			<=:CTDT:=S.s,S.s ,<=:CTDT:=S.s,S.e ,<=:CTDT:=S.e,S.s ,<=:CTDT:=S.e,S.e ,
+			<=:CTDT:=S.t,S.t ,<=:CTDT:=S.t,S.b ,<=:CTDT:=S.b,S.t ,<=:CTDT:=S.b,S.b
+			=}
+consListDatas, CLD :CLDT:= CLDL.0, CLDL.1, CLDL.2, CLDL.3, CLDL.4, CLDL.5, CLDL.6, CLDL.7
+			
+{#declaration of constrain lists#}
+D4B, DataForButtons : Type := b1,b2,b3,b4,b5,b6 : Temp
+consDataList, CDL : D4B :=
+	 [+ <+CLTL.0.copy:+CLD.copy	:+ ID :0:+g1, 1:+g1, 2:+p
+	,[+ <+CLTL.1.copy:+CLD.copy	:+ ID :0:+g1, 1:+g1, 2:+b1
+	,[+ <+CLTL.2.copy:+CLD.copy	:+ ID :0:+g1, 1:+g1, 2:+b2, 3:+p
+	,[+ <+CLTL.0.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+p
+	,[+ <+CLTL.1.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+b4
+	,[+ <+CLTL.2.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+b5, 3:+p
+{#declaration of the datas of the buttons#}
 buttDatas, BD : List:BDT :=
-	 [=:BDT:= <"contine 	,<"1	,<"176	,<"0	,<"1	,CDL.0
-	,[=:BDT:= <"connect 	,<"2	,<"52	,<"0	,<"1	,CDL.1
-	,[=:BDT:= <"achivements 	,<"3	,<"52	,<"8	,<"0.03	,CDL.2
-	,[=:BDT:= <"new_game 	,<"4	,<"176	,<"0	,<"1	,CDL.3
-	,[=:BDT:= <"options 	,<"5	,<"52	,<"0	,<"1	,CDL.4
-	,[=:BDT:= <"records 	,<"6	,<"52	,<"0	,<"0.03	,CDL.5
+	 <=:BDT:=<|contine;1;176;0;1;1 ,[=:BDT:= <|connect;2;52;0;1;1 
+	,<=:BDT:=<|achivements;3;52;8;0.03;1 ,[=:BDT:= <|new_game;4;176;0;1;1 
+	,<=:BDT:=<|options;5;52;0;1;1 ,[=:BDT:= <|records;6;52;0;0.03;1 
 =}
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
@@ -57,9 +68,8 @@ buttDatas, BD : List:BDT :=
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".MainActivity">
-
-<*<+BB:+BD
-
+{#create and extend buttons#}
+<*<+BB:+[+BD:+CDL : 0.cons:+b1, 1.cons:+b2, 2.cons:+b3, 3.cons:+b4, 4.cons:+b5, 5.cons:+b6
 {#end of file#} 
 	<android.support.constraint.Guideline
 		android:orientation="vertical"
@@ -83,7 +93,6 @@ buttDatas, BD : List:BDT :=
 </android.support.constraint.ConstraintLayout>
 {#
 OUTPUT:
-
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
@@ -92,7 +101,6 @@ OUTPUT:
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".MainActivity">
-
 
 	<Button
 		android:text="@string/contine"
@@ -106,10 +114,10 @@ OUTPUT:
 		android:layout_marginBottom="08dp"
 
 		app:layout_constraintVertical_bias="1"
-
-		app:layout_constraintStart_toStartOf="@+id/guideline2"
-		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toTopOf="parent"
+1
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toTopOf="parent"/>
 	<Button
 		android:text="@string/connect"
 		android:id="@+id/button2"
@@ -122,10 +130,10 @@ OUTPUT:
 		android:layout_marginBottom="08dp"
 
 		app:layout_constraintVertical_bias="1"
-
-		app:layout_constraintStart_toStartOf="@+id/guideline2"
-		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toBottomOf="@+id/button5"
+1
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toButtonOf="@+id/button1"/>
 	<Button
 		android:text="@string/achivements"
 		android:id="@+id/button3"
@@ -138,11 +146,11 @@ OUTPUT:
 		android:layout_marginBottom="88dp"
 
 		app:layout_constraintVertical_bias="0.03"
-
-		app:layout_constraintStart_toStartOf="@+id/guideline2"
-		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toBottomOf="@+id/button5"
-		app:layout_constraintBottom_toBottomOf="parent"
+1
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toButtonOf="@+id/button2"
+		app:layout_constraintButton_toButtonOf="parent"/>
 	<Button
 		android:text="@string/new_game"
 		android:id="@+id/button4"
@@ -155,10 +163,10 @@ OUTPUT:
 		android:layout_marginBottom="08dp"
 
 		app:layout_constraintVertical_bias="1"
-
+1
 		app:layout_constraintStart_toStartOf="@+id/guideline2"
 		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
 	<Button
 		android:text="@string/options"
 		android:id="@+id/button5"
@@ -171,10 +179,10 @@ OUTPUT:
 		android:layout_marginBottom="08dp"
 
 		app:layout_constraintVertical_bias="1"
-
+1
 		app:layout_constraintStart_toStartOf="@+id/guideline2"
 		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toBottomOf="@+id/button5"
+		app:layout_constraintTop_toButtonOf="@+id/button4"/>
 	<Button
 		android:text="@string/records"
 		android:id="@+id/button6"
@@ -187,11 +195,11 @@ OUTPUT:
 		android:layout_marginBottom="08dp"
 
 		app:layout_constraintVertical_bias="0.03"
-
+1
 		app:layout_constraintStart_toStartOf="@+id/guideline2"
 		app:layout_constraintEnd_toStartOf="@+id/guideline2"
-		app:layout_constraintTop_toBottomOf="@+id/button5"
-		app:layout_constraintBottom_toBottomOf="parent" 
+		app:layout_constraintTop_toButtonOf="@+id/button5"
+		app:layout_constraintButton_toButtonOf="parent"/> 
 	<android.support.constraint.Guideline
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
@@ -212,6 +220,7 @@ OUTPUT:
 		android:layout_marginTop="16dp"
 		app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>
+
 #}
 
 

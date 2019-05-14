@@ -3,18 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="30495477-5bb9-4629-a1f0-e622e17c0982" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.irtg" beforeDir="false" afterPath="$PROJECT_DIR$/output.irtg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ouutput.irtg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SlimeLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SlimeParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlimeParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/type/STemp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/type/STemp.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/antlr_example" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/antlr_example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/irtg_example1" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/irtg_example1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/irtg_example2" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/irtg_example2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/irtg_example2data" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/irtg_example2data" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/irtg_example3" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/irtg_example3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test_codes/irtg_example4" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/irtg_example4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/SlimeParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/SlimeParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test_codes/xml_example" beforeDir="false" afterPath="$PROJECT_DIR$/../test_codes/xml_example" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,10 +40,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1577">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1102">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="156">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -52,8 +69,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/output.irtg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="152">
+              <caret line="8" column="34" lean-forward="true" selection-end-line="128" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5377">
+              <caret line="296" selection-start-line="296" selection-end-line="296" />
+              <folding>
+                <element signature="n#!!block;n#visitChildren#0;n#!!block;n#MySlimeParserVisitor#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1596">
+              <caret line="86" selection-start-line="86" selection-end-line="86" />
+              <folding>
+                <element signature="e#19#90#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="35758">
+              <caret line="1889" selection-start-line="1889" selection-end-line="1889" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2203">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="3230">
+              <caret line="172" selection-start-line="172" selection-end-line="172" />
             </state>
           </provider>
         </entry>
@@ -70,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+            <state relative-caret-position="152">
+              <caret line="276" column="22" lean-forward="true" selection-start-line="276" selection-start-column="22" selection-end-line="276" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -90,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.get(0)</find>
       <find>.content</find>
       <find>getOrNull</find>
       <find>?.</find>
@@ -120,6 +172,7 @@
       <find>@add</find>
       <find>${names.getOrNull(0)?:&quot;@nameless&quot;}</find>
       <find>${names.getOrNull(0) ?: &quot;@nameless&quot;}</find>
+      <find>{$</find>
     </findStrings>
     <replaceStrings>
       <replace>.children[0]</replace>
@@ -202,14 +255,14 @@
         <option value="$PROJECT_DIR$/src/data/type/SInst.kt" />
         <option value="$PROJECT_DIR$/src/data/type/SFile.kt" />
         <option value="$PROJECT_DIR$/src/data/SVari.kt" />
-        <option value="$PROJECT_DIR$/src/data/type/STemp.kt" />
         <option value="$PROJECT_DIR$/src/data/type/SType.kt" />
-        <option value="$PROJECT_DIR$/src/SlimeParser.g4" />
         <option value="$PROJECT_DIR$/src/data/DataContainer.kt" />
         <option value="$PROJECT_DIR$/src/data/type/SSlot.kt" />
         <option value="$PROJECT_DIR$/src/data/type/SList.kt" />
-        <option value="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" />
+        <option value="$PROJECT_DIR$/src/data/type/STemp.kt" />
         <option value="$PROJECT_DIR$/src/Main.kt" />
+        <option value="$PROJECT_DIR$/src/MySlimeParserVisitor.kt" />
+        <option value="$PROJECT_DIR$/src/SlimeParser.g4" />
         <option value="$PROJECT_DIR$/src/SlimeLexer.g4" />
       </list>
     </option>
@@ -232,6 +285,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -271,8 +326,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -382,7 +435,7 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16805324" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17692734" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -450,12 +503,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/data/type/STemp.kt</url>
-          <line>254</line>
-          <properties />
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/data/type/SFile.kt</url>
           <line>85</line>
           <properties />
@@ -469,7 +516,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt</url>
-          <line>374</line>
+          <line>372</line>
           <properties />
           <option name="timeStamp" value="93" />
         </line-breakpoint>
@@ -485,11 +532,44 @@
           <properties />
           <option name="timeStamp" value="99" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/data/type/SSlot.kt</url>
+          <line>59</line>
+          <properties />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/data/type/STemp.kt</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/data/type/SInst.kt</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt</url>
+          <line>296</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JetRunConfigurationType">
         <watch expression="DataContainer.focus" language="kotlin" custom="import data.DataContainer" />
+        <watch expression="SType.types" language="kotlin" />
       </configuration>
     </watches-manager>
   </component>
@@ -500,12 +580,6 @@
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>DataContainer.focus</expression-string>
-        <language-id>kotlin</language-id>
-        <custom-info>import data.DataContainer</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>SType.types</expression-string>
         <language-id>kotlin</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -513,6 +587,12 @@
       <expression>
         <expression-string>SType</expression-string>
         <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>DataContainer.focus</expression-string>
+        <language-id>kotlin</language-id>
+        <custom-info>import data.DataContainer</custom-info>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
@@ -697,13 +777,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output.urtg" />
     <entry file="file://$PROJECT_DIR$/output.ierg" />
-    <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output.iter" />
     <entry file="file://$PROJECT_DIR$/src/data/DataContainer.kt">
       <provider selected="true" editor-type-id="text-editor">
@@ -711,38 +784,6 @@
           <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#14#259#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2394">
-          <caret line="139" selection-start-line="139" selection-end-line="139" />
-          <folding>
-            <element signature="n#!!block;n#visitChildren#0;n#!!block;n#MySlimeParserVisitor#0" />
-            <element signature="e#9251#9581#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32395">
-          <caret line="1900" selection-start-line="1900" selection-end-line="1900" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#55845#55846#0" expanded="true" />
-            <element signature="e#55896#55897#0" expanded="true" />
-            <element signature="e#96132#96133#0" expanded="true" />
-            <element signature="e#96182#96183#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -757,37 +798,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ouutput.irtg" />
+    <entry file="file://$PROJECT_DIR$/src/data/type/SFile.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1577">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/type/SSlot.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MySlimeParserVisitor.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5377">
+          <caret line="296" selection-start-line="296" selection-end-line="296" />
+          <folding>
+            <element signature="n#!!block;n#visitChildren#0;n#!!block;n#MySlimeParserVisitor#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/type/SInst.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+        <state relative-caret-position="1596">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
           <folding>
             <element signature="e#19#90#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ouutput.irtg">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
+    <entry file="file://$PROJECT_DIR$/src/parser/SlimeParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2203">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="35758">
+          <caret line="1889" selection-start-line="1889" selection-end-line="1889" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+    <entry file="file://$PROJECT_DIR$/src/data/type/STemp.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="3230">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SlimeLexer.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+        <state relative-caret-position="152">
+          <caret line="276" column="22" lean-forward="true" selection-start-line="276" selection-start-column="22" selection-end-line="276" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SlimeParser.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -803,8 +876,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output.irtg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+        <state relative-caret-position="152">
+          <caret line="8" column="34" lean-forward="true" selection-end-line="128" />
         </state>
       </provider>
     </entry>

@@ -54,15 +54,16 @@ NAME_B_S   : [a-zA-Z_][a-zA-Z_0-9]*-> type(NAME);
 SC_B_S : ';'-> type(SC);
 
 mode O_SLSP;
-COMM_L_S: COMM -> skip;
-WS_L_S:[\t ]->skip;
+COMM_O_S: COMM -> skip;
+WS_O_S:[\t ]->skip;
 NL_SLSP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
 NAME_O_S   : [a-zA-Z_][a-zA-Z_0-9]*-> type(NAME);
 SC_O_S : ';'-> type(SC);
 
 mode C_SLSP;
 COMM_C_S: COMM -> skip;
-NW_SLSP  : ' ' -> popMode ;
+WS_C_S:[\r\n]->skip;
+NW_SLSP  : ([ \t]|{_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
 NAME_C_S   : [a-zA-Z_][a-zA-Z_0-9]*-> type(NAME);
 SC_C_S : ';'-> type(SC);
 
@@ -259,7 +260,6 @@ IN_C_T : ( ~[\n\r\t ])+ ->type(IN_B_T);
 
 mode B_TEMP;
 BCB_TEMP  : '|}' -> popMode ;
-TEXT_LINE:( ~[|\n\r{[<;] | '|' (~'}'|EOF) | [{[<] (~[;"@$|]|EOF)|[{[<] {_input.LA(1) == ';'||_input.LA(1) == '|'}?)+;
 LINE_DIVIDER: ([ \t]*[\n\r][ \t]*) -> skip;
 
 BOB_SLOT_B_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
@@ -275,10 +275,10 @@ COB_SPEC_B_T : '<@' 	-> type(COB_SPEC), pushMode(C_SLSP);
 COB_TEXT_B_T : '<"' 	-> type(COB_TEXT), pushMode(C_TEXT);
 
 SC_B_T:';'-> type(SC);
+TEXT_LINE:( ~[|\n\r{[<;] | '|' (~'}'|EOF) | [{[<] (~[;"@$|]|EOF|{_input.LA(1) == ';'||_input.LA(1) == '|'}?))+;
 
 mode O_TEMP;
 NL_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
-O_TEXT_LINE: ( ~[\n\r{[<;] | [{[<] (~[;"@$\n\r]|EOF)|[{[<]{_input.LA(1) == ';'}? )+ ->type(TEXT_LINE);
 
 BOB_SLOT_O_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
 BOB_SPEC_O_T : '{@' 	-> type(BOB_SPEC), pushMode(B_SLSP);
@@ -293,10 +293,10 @@ COB_SPEC_O_T : '<@' 	-> type(COB_SPEC), pushMode(C_SLSP);
 COB_TEXT_O_T : '<"' 	-> type(COB_TEXT), pushMode(C_TEXT);
 
 SC_O_T:';'-> type(SC);
+O_TEXT_LINE: ( ~[\n\r{[<;] | [{[<] (~[;"@$\n\r]|EOF|{_input.LA(1) == ';'}?) )+ ->type(TEXT_LINE);
 
 mode C_TEMP;
 NW_TEMP  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t' || _input.LA(1) == ' '}?) -> popMode ;
-C_TEXT_LINE: ( ~[\n\r\t {[<;] | [{[<] (~[;"@$\n\r\t ]|EOF|{_input.LA(1) == ';'}?) )+ ->type(TEXT_LINE);
 
 BOB_SLOT_C_T : '{$' 	-> type(BOB_SLOT), pushMode(B_SLSP);
 BOB_SPEC_C_T : '{@' 	-> type(BOB_SPEC), pushMode(B_SLSP);
@@ -311,3 +311,4 @@ COB_SPEC_C_T : '<@' 	-> type(COB_SPEC), pushMode(C_SLSP);
 COB_TEXT_C_T : '<"' 	-> type(COB_TEXT), pushMode(C_TEXT);
 
 SC_C_T:';'-> type(SC);
+C_TEXT_LINE: ( ~[\n\r\t {[<;] | [{[<] (~[;"@$\n\r\t ]|EOF|{_input.LA(1) == ';'}?) )+ ->type(TEXT_LINE);
