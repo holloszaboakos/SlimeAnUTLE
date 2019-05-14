@@ -87,51 +87,64 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //We ignore close tokens
     override fun visitSlotTail(ctx: SlimeParser.SlotTailContext): SVari? = null
 
+    //In case of SPEC
     override fun visitSpec(ctx: SlimeParser.SpecContext): SList<SSpec> =
         SList(visitSpslBody(ctx.spslBody()).filter { it is SSpec }.map { it as SSpec }.toMutableList())
 
+    //We ignore open brackets
     override fun visitSpecHead(ctx: SlimeParser.SpecHeadContext): SVari? = null
 
     //We ignore close tokens
     override fun visitSpecTail(ctx: SlimeParser.SpecTailContext): SVari? = null
 
+    //In case of SLOT and SPEC body we check if the parent node is slot or spec
     override fun visitSpslBody(ctx: SlimeParser.SpslBodyContext): SList<*> =
         if (ctx.parent.ruleIndex == SlimeParser.RULE_spec)
+            //In case of SPEC parent we remove semicolons and transform the names to SSpec instances
             SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
                 .map {
                     SSpec(SSpec.Char.values().first { it2 -> it2.names.any { it3 -> it3.compareTo(it()) == 0 } })
                 }.toMutableList())
         else
+        //In case of SPEC parent we remove semicolons and transform the names to SSlot instances
             SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
                 .map { SSlot(SName(it)) }.toMutableList())
 
+    //In case of TEMP
     override fun visitTemp(ctx: SlimeParser.TempContext): SList<STemp> = visitTempBody(ctx.tempBody())
 
+    //We ignore open brackets
     override fun visitTempHead(ctx: SlimeParser.TempHeadContext): SVari? = null
 
+    //In case of TEMP body we simply gather the return values of the body parts.
     override fun visitTempBody(ctx: SlimeParser.TempBodyContext): SList<STemp> =
         SList(ctx.tempBodyPart().map { visitTempBodyPart(it) }.toMutableList())
 
-
     override fun visitTempBodyPart(ctx: SlimeParser.TempBodyPartContext): STemp {
+        //We visit children and gather the output into a list
         val children2 = mutableListOf<SVari>()
         visitChildren(ctx).forEach { if (it is SList<*>) children2.addAll(it) else children2.add(it) }
+        //We inicialize a Temp with the list and return it
         return STemp(children2)
     }
 
     //We ignore close tokens
     override fun visitTempTail(ctx: SlimeParser.TempTailContext): SVari? = null
 
+    //In case of temp text, we gather the SText from the terminal nodes into a list
     override fun visitTempText(ctx: SlimeParser.TempTextContext): SList<SText> =
         SList(visitChildren(ctx).map { it as SText }.toMutableList())
 
+    //In case of EXTE
     override fun visitExte(ctx: SlimeParser.ExteContext): SList<SText> = visitExteBody(ctx.exteBody())
 
+    //We ignore open brackets
     override fun visitExteHead(ctx: SlimeParser.ExteHeadContext): SVari? = null
 
+    //In case of EXTE body we simply gather the return values of the body parts.
     override fun visitExteBody(ctx: SlimeParser.ExteBodyContext): SList<SText> =
         SList(ctx.exteBodyPart().map { visitExteBodyPart(it) }.toMutableList())
-
+    //In case of EXTE body part we transfer the variable into an SText
     override fun visitExteBodyPart(ctx: SlimeParser.ExteBodyPartContext): SText =
         if (ctx.childCount == 1) {
             SText(visitVari(ctx.vari()).extend())
@@ -147,43 +160,54 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //We ignore close tokens
     override fun visitExteTail(ctx: SlimeParser.ExteTailContext): SVari? = null
 
+    //In case of PLUS
     override fun visitPlus(ctx: SlimeParser.PlusContext): SVari = visitPlusBody(ctx.plusBody())
 
+    //We ignore open brackets
     override fun visitPlusHead(ctx: SlimeParser.PlusHeadContext): SVari? = null
 
+    //In case of PLUS body we simply gather the return values of the body parts.
     override fun visitPlusBody(ctx: SlimeParser.PlusBodyContext): SList<SVari> =
         SList(ctx.plusBodyPart().map { visitPlusBodyPart(it) })
-
+    //In case of PLUS body part we inicialize the left and right variables and plus the right to the left returning the return value
     override fun visitPlusBodyPart(ctx: SlimeParser.PlusBodyPartContext): SVari {
-        val vari1 = visitVari(ctx.vari(0))[0]
-        val vari2 = visitVari(ctx.vari(1))[0]
+        val variLeft = visitVari(ctx.vari(0))[0]
+        val variRight = visitVari(ctx.vari(1))[0]
         return if (ctx.childCount == 3) {
-            vari1.plus(vari2, SList(mutableListOf()), SList(mutableListOf()))
+            variLeft.plus(variRight, SList(mutableListOf()), SList(mutableListOf()))
         } else {
+            //In some cases PLUS has pair list to define
+            // witch attribute of the left attribute add to
+            // witch attribute of the right variable.
+            //We have to make the Plus for every pair.
             ctx.plusElement().map { visitPlusElement(it) }
                 .forEach {
-                    vari1.get(it[0].map { it2 -> SName(it2) }.toSList())
+                    variLeft.get(it[0].map { it2 -> SName(it2) }.toSList())
                         .plus(
-                            vari2.get(it[1].map { it2 -> SName(it2) }.toSList())
+                            variRight.get(it[1].map { it2 -> SName(it2) }.toSList())
                         )
                 }
-            vari1
+            variLeft
         }
     }
 
+    //In case of PLUS element we gather the attribute name pairs into a list
     override fun visitPlusElement(ctx: SlimeParser.PlusElementContext): SList<SList<SText>> =
         SList(ctx.variPath().map { visitVariPath(it) }.toMutableList())
 
     //We ignore close tokens
     override fun visitPlusTail(ctx: SlimeParser.PlusTailContext): SVari? = null
 
+    //In case of SPEC
     override fun visitDele(ctx: SlimeParser.DeleContext): SVari? {
         visitDeleBody(ctx.deleBody())
         return null
     }
 
+    //We ignore open brackets
     override fun visitDeleHead(ctx: SlimeParser.DeleHeadContext): SVari? = null
 
+    //In case of DELE body we have to delete the variables on the given paths and the variables with paths matching the Regex-s
     override fun visitDeleBody(ctx: SlimeParser.DeleBodyContext): SVari? {
         for (vp in ctx.variPath())
             DataContainer.focus?.delete(visitVariPath(vp).map { it2 -> SName(it2) }.toSList())
@@ -196,19 +220,23 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //We ignore close tokens
     override fun visitDeleTail(ctx: SlimeParser.DeleTailContext): SVari? = null
 
+    //In case of DECL
     override fun visitDecl(ctx: SlimeParser.DeclContext): SVari = visitDeclBody(ctx.declBody())
 
+    //We ignore open brackets
     override fun visitDeclHead(ctx: SlimeParser.DeclHeadContext): SVari? = null
 
+    //In case of DECL neck we gather the names and Type names into two lists
     override fun visitDeclNeck(ctx: SlimeParser.DeclNeckContext): SList<SList<SText>> =
         if (ctx.childCount == 4)
             SList(mutableListOf(visitTypeName(ctx.typeName()), visitListName(ctx.listName())))
         else
             SList(mutableListOf(visitTypeName(ctx.typeName())))
 
+    //In case of DECL body we simply gather the return values of the body parts.
     override fun visitDeclBody(ctx: SlimeParser.DeclBodyContext): SList<SVari> =
         SList(ctx.declBodyPart().map { visitDeclBodyPart(it) }.toMutableList())
-
+    //In case of DECL body part we gather the meta data and the value and declare a variable with the given name type and values
     override fun visitDeclBodyPart(ctx: SlimeParser.DeclBodyPartContext): SVari {
         val neck = visitDeclNeck(ctx.declNeck())
         val names: List<SName> =
@@ -399,6 +427,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //We ignore close tokens
     override fun visitDeclTail(ctx: SlimeParser.DeclTailContext): SVari? = null
 
+    //In case of name value pairs we gather the names and the values into SInst variables with NameValue type
     override fun visitNameValue(ctx: SlimeParser.NameValueContext): SInst {
         val result = SInst("NameValue")
         result()[0] = visitListName(ctx.listName())
@@ -406,12 +435,14 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         return result
     }
 
+    //In case of name type pairs we gather the names and the typenames into two separate lists
     override fun visitNameType(ctx: SlimeParser.NameTypeContext): SList<SList<SText>> =
         SList(mutableListOf(visitListName(ctx.listName()), visitTypeName(ctx.typeName())))
 
-
+    //In case of vari we visit the children and return it or a list including it
     override fun visitVari(ctx: SlimeParser.VariContext): SList<SVari> =
         when (val prc = (ctx.getChild(0) as ParserRuleContext)) {
+            //In case of a path we get the variable on the given path in a list
             is SlimeParser.VariPathContext -> {
                 SList(
                     mutableListOf(
@@ -424,6 +455,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     )
                 )
             }
+            //In case of a REFE we get the variables matching the Refe
             is SlimeParser.RefeContext -> {
                 SList(visitRefe(prc).listMatchingPaths().map {
                     DataContainer.focus?.get(it)
@@ -434,32 +466,40 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                         )
                 }.toMutableList())
             }
+            //In every other case we just gather the variable
             else -> {
                 val vari = prc.accept(this)
+                //If it is a list we convert it to a typed list
                 if (vari is SList<*>)
                     if (vari.size == 1)
                         SList(mutableListOf(vari[0]))
                     else
                         vari.map { it }.toSList()
+                //If it is not we return it in a list
                 else SList(mutableListOf(vari))
             }
         }
 
+    //In case of list of varis we visit all the vari nodes and return them in a list
     override fun visitListVari(ctx: SlimeParser.ListVariContext): SList<SVari> {
         val result = SList(mutableListOf())
         ctx.vari().forEach { result.addAll(visitVari(it)) }
         return result
     }
 
+    //In case of list of Names we ignore commas and return names as a list of SText
     override fun visitListName(ctx: SlimeParser.ListNameContext): SList<SText> =
         SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(",") != 0 }.toMutableList())
 
+    //In case of list of Names we ignore periods and return names as a list of SText
     override fun visitVariPath(ctx: SlimeParser.VariPathContext): SList<SText> =
         SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(".") != 0 }.toMutableList())
 
+    //In case of list of Names we ignore colons and return names as a list of SText
     override fun visitTypeName(ctx: SlimeParser.TypeNameContext): SList<SText> =
         SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(":") != 0 }.toMutableList())
 
+    //In case of outer text we simply visit it end return the value as SText.
     override fun visitTextOutor(ctx: SlimeParser.TextOutorContext): SText = ctx.TEXT_OUTOR().accept(this) as SText
 
 }
