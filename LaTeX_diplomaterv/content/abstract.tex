@@ -8,7 +8,17 @@
 %----------------------------------------------------------------------------
 \chapter*{Kivonat}\addcontentsline{toc}{chapter}{Kivonat}
 
-Jelen dokumentum egy diplomaterv sablon, amely formai keretet ad a BME Villamosmérnöki és Informatikai Karán végző hallgatók által elkészítendő szakdolgozatnak és diplomatervnek. A sablon használata opcionális. Ez a sablon \LaTeX~alapú, a \emph{TeXLive} \TeX-implementációval és a PDF-\LaTeX~fordítóval működőképes.
+
+A Slime nyelv egy UTLE (Universal Templater Language Extension).
+Olyan nyelvek és nyelvtanok kiegészítésére való, amik nem elég fejlettek, így forrás kódjuk nagyon redundáns.
+Nyelvi elemei a kiegészítendő nyelv vagy nyelvtan sablonjainak hatékony létrehozását, manipulációját és tárolását támogatják.
+A fordítót az ANTLR (ANother Tool for Language Recognition) segítségével valósítottuk meg.
+A Slime elsődlegesen IRTG (Interpreted Regular Tree Grammar) nyelvtanok tömör  és átlátható leírására lett kifejlesztve.
+Az IRTG nyelvtant olyan nyelv fejlesztésére használjuk, ami gráftraszformációkkal állítja elő mondatok szemantikai reprezentációját.
+A nyelvtanokat az Alto (Algebraic Language Toolkit) segítségével futtatjuk.
+A Slime hatékonynak bizonyult az IRTG nyelvtanokra, ahogy az ANTLR lexer nyelvtanaira, android layout leíró XML (Extensible Markup Language) kódokra  és HTML (Hypertext Markup Language) kódokra  is.
+A program teljes forráskódja elérhető az \url{https://github.com/Hollo1996/SlimeAnUTLE} oldalon.
+Itt számos példakódot is lehet találni illetve részletes leírást a Slime szintaxisáról és alapelemeiről.
 
 
 \vfill
@@ -20,7 +30,16 @@ Jelen dokumentum egy diplomaterv sablon, amely formai keretet ad a BME Villamosm
 %----------------------------------------------------------------------------
 \chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
 
-This document is a \LaTeX-based skeleton for BSc/MSc~theses of students at the Electrical Engineering and Informatics Faculty, Budapest University of Technology and Economics. The usage of this skeleton is optional. It has been tested with the \emph{TeXLive} \TeX~implementation, and it requires the PDF-\LaTeX~compiler.
+Slime is a UTLE (Universal Templater Language Extension).
+It is used for extending languages, which are not developed enough, there for their source codes are too redundant.
+Its linguistic elements supports the efficient declaration, manipulation and storage of the extended language.
+We implemented the compiler by the help of ANTLR (ANother Tool for Language Recognition).
+Slime was developped primerly for the compact and clear discription of IRTG (Interpreted Regular Tree Grammar) grammars.
+We used the IRTG for developping a language, which is using graph transformations for generating the semantic representation of sentences.
+We run the grammars with Alto (Algebraic Language Toolkit).
+The Slime is turned out to be efficient in the for IRTG grammars and for ANTLR's lexer grammars, XML (Extensible Markup Language) codes discribing android layouts and HTML (Hypertext Markup Language) codes too.
+You can find the wholes source code on the \url{https://github.com/Hollo1996/SlimeAnUTLE} page.
+You can also find example codes there and a detailed discription if the Slime's syntax and basic elements.
 
 
 \vfill
