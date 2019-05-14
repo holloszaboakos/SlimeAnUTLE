@@ -7,13 +7,19 @@ import parser.SlimeParserBaseVisitor
 import java.lang.Error
 import java.lang.Exception
 
+//My implementation ov the visitor, the heart of the compiler
 class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
+
+    //In case of error. We do not handle errors yet
     override fun visitErrorNode(p0: ErrorNode?): SVari = SText("Error in Syntax")
 
+    //In case of a usual node
     override fun visit(p0: ParseTree?): SVari? = p0?.accept(this)
 
+    //In case of a terminal
     override fun visitTerminal(p0: TerminalNode?): SText? = SText(p0?.text ?: "")
 
+    //visit all children of a node
     override fun visitChildren(p0: RuleNode?): SList<SVari> {
         val result = SList(mutableListOf())
         for (cIx in 0 until (p0?.childCount ?: 0))
@@ -22,6 +28,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         return result
     }
 
+    //In case of the root rule
     override fun visitFile(ctx: SlimeParser.FileContext): SText {
         val grandParentFocus = DataContainer.parentFocus
         DataContainer.parentFocus = DataContainer.focus
@@ -45,29 +52,39 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         return result
     }
 
+    //In case of TEXT
     override fun visitText(ctx: SlimeParser.TextContext): SText = visitTextBody(ctx.textBody())
 
+    //We ignore open brackets
     override fun visitTextHead(ctx: SlimeParser.TextHeadContext): SVari? = null
 
+    //In case of TEXT body
     override fun visitTextBody(ctx: SlimeParser.TextBodyContext): SText = ctx.getChild(0).accept(this) as SText
 
+    //We ignore close tokens
     override fun visitTextTail(ctx: SlimeParser.TextTailContext): SVari? = null
 
+    //In case of REFE
     override fun visitRefe(ctx: SlimeParser.RefeContext): SRefe = visitRefeBody(ctx.refeBody())
 
+    //We ignore open brackets
     override fun visitRefeHead(ctx: SlimeParser.RefeHeadContext): SVari? = null
 
+    //In case of REFE body
     override fun visitRefeBody(ctx: SlimeParser.RefeBodyContext): SRefe =
         SRefe(ctx.children[2].text, visitTypeName(ctx.typeName()))
 
-
+    //We ignore close tokens
     override fun visitRefeTail(ctx: SlimeParser.RefeTailContext): SVari? = null
 
+    //In case of SLOT
     override fun visitSlot(ctx: SlimeParser.SlotContext): SList<SSlot> =
         SList(visitSpslBody(ctx.spslBody()).filter { it is SSlot }.map { it as SSlot }.toMutableList())
 
+    //We ignore open brackets
     override fun visitSlotHead(ctx: SlimeParser.SlotHeadContext): SVari? = null
 
+    //We ignore close tokens
     override fun visitSlotTail(ctx: SlimeParser.SlotTailContext): SVari? = null
 
     override fun visitSpec(ctx: SlimeParser.SpecContext): SList<SSpec> =
@@ -75,6 +92,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     override fun visitSpecHead(ctx: SlimeParser.SpecHeadContext): SVari? = null
 
+    //We ignore close tokens
     override fun visitSpecTail(ctx: SlimeParser.SpecTailContext): SVari? = null
 
     override fun visitSpslBody(ctx: SlimeParser.SpslBodyContext): SList<*> =
@@ -101,6 +119,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         return STemp(children2)
     }
 
+    //We ignore close tokens
     override fun visitTempTail(ctx: SlimeParser.TempTailContext): SVari? = null
 
     override fun visitTempText(ctx: SlimeParser.TempTextContext): SList<SText> =
@@ -125,6 +144,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             SText(visitVari(ctx.vari()).extend(separator))
         }
 
+    //We ignore close tokens
     override fun visitExteTail(ctx: SlimeParser.ExteTailContext): SVari? = null
 
     override fun visitPlus(ctx: SlimeParser.PlusContext): SVari = visitPlusBody(ctx.plusBody())
@@ -154,6 +174,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     override fun visitPlusElement(ctx: SlimeParser.PlusElementContext): SList<SList<SText>> =
         SList(ctx.variPath().map { visitVariPath(it) }.toMutableList())
 
+    //We ignore close tokens
     override fun visitPlusTail(ctx: SlimeParser.PlusTailContext): SVari? = null
 
     override fun visitDele(ctx: SlimeParser.DeleContext): SVari? {
@@ -172,6 +193,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         return null
     }
 
+    //We ignore close tokens
     override fun visitDeleTail(ctx: SlimeParser.DeleTailContext): SVari? = null
 
     override fun visitDecl(ctx: SlimeParser.DeclContext): SVari = visitDeclBody(ctx.declBody())
@@ -374,6 +396,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     }
 
+    //We ignore close tokens
     override fun visitDeclTail(ctx: SlimeParser.DeclTailContext): SVari? = null
 
     override fun visitNameValue(ctx: SlimeParser.NameValueContext): SInst {
