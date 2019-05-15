@@ -4,11 +4,15 @@ import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
 
+
+//The class behind the Refe type
 class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SName> = listOf()) :
     SVari("Refe", names) {
 
+    //You can reach no variables throw a Refe variable
     override fun listPaths(): SList<SList<SName>> = SList()
 
+    //It gathers all path matching the RegEx with a variable with the right type on them
     fun listMatchingPaths(): SList<SList<SName>> {
         val preResult = DataContainer.focus?.listPaths() ?: throw Exception("SFile of reference is not in focus")
         val result = SList(mutableListOf<SList<SName>>())
@@ -23,10 +27,13 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
         return result
     }
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): SRefe = SRefe(pattern, types.toMutableList(), names)
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String = pattern
 
+    //Plusses a new variable to the variable
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -53,6 +60,8 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
             }
         }
 
+    //Returns the variable on the given relative path
+    //Refe is not a Cont it just generates one
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -68,7 +77,9 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) = throw Exception("You can not delete variable form a reference.")
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

@@ -4,6 +4,7 @@ import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
 
+//The class behind the List type
 fun <T : SVari> List<T>.toSList(names: List<SName> = listOf(), owner: SVari? = null): SList<T> =
     SList(this.toMutableList(), names, owner)
 
@@ -39,6 +40,8 @@ class SList<T : SVari>(
 
     constructor(content: List<T>, owner: SVari? = null) : this(content.toMutableList(), owner = owner)
 
+    //Lists the path witch the variables reachable from this variable ar reachable throw this variable
+    //The Refe-s use it
     override fun listPaths(): SList<SList<SName>> {
         val result = listOf<SList<SName>>().toSList()
         for (vari in content) {
@@ -55,6 +58,7 @@ class SList<T : SVari>(
         return result
     }
 
+    //Plusses a new variable to the variable
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -81,8 +85,10 @@ class SList<T : SVari>(
             }
         }
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): SList<T> = content.toList().toSList(names)
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String {
         var result = ""
         for (c in content)
@@ -91,6 +97,8 @@ class SList<T : SVari>(
         return result
     }
 
+    //Returns the variable on the given relative path
+    //List is a Cont
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -114,6 +122,7 @@ class SList<T : SVari>(
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
@@ -136,6 +145,7 @@ class SList<T : SVari>(
         }
     }
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 
 

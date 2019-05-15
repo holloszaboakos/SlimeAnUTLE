@@ -4,12 +4,12 @@
 {#declaration of the template for an IRTG rule with the four interpretation#}
 irtgBase,IB : Temp := 
 	{|
-		<@e;t //[$comm
-		<@e;t <$left  -> [$header
-		<@e;t [string] [$string
-		<@e;t [tree] [$tree
-		<@e;t [ud] [$ud
-		<@e;t [4lang] [$four
+		<@e;t //<$comm
+		<@e;t <$left  -> <$header
+		<@e;t [string] <$string
+		<@e;t [tree] <$tree
+		<@e;t [ud] <$ud
+		<@e;t [4lang]  <$four
 	|}
 
 {#declaration of the datatype for the template#}
@@ -18,20 +18,19 @@ IDB,irtgDataBase : Type  :=  comm, left, header, string, tree, ud, four : Temp
 {#declaration of the data for the template#}
 irtgData1,ID1 : IDB  :=  
 	{|
-		{$comm$};
-		NP;_NP2_{$edge_ud$}_{$arg1$}_{$arg2$}({$arg1$}, {$arg2$}); 
-        	*(?1, ?2);
-		NP2(?1,?2); 
-		merge(f_dep(merge("(r<root> :{$edge_ud$} (d<dep>))",r_dep(?1))),?2);
-		merge(f_dep(merge("(r<root> :{$edge_4lang$}) (d<dep>))",r_dep(?1))),?2)
+		 <$comm
+		;NP
+		;_NP2_<$edge_ud _<$arg1 _<$arg2 (<$arg1 , <$arg2 )
+        	;*(?1, ?2)
+		;NP2(?1,?2) 
+		;merge(f_dep(merge("(r<root> :<$edge_ud  (d<dep>))",r_dep(?1))),?2)
+		;merge(f_dep(merge("(r<root> :<$edge_4lang ) (d<dep>))",r_dep(?1))),?2)
 	|}
 
-irtgData2,ID2 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
-	{|?2|}
-	
+irtgData2,ID2 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5, <|?2
 
 irtgData3,ID3 : IDB  := ID1.0, ID1.1, ID1.2, ID1.3, ID1.4, ID1.5,
-	{|f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))|}
+	[|f_dep(merge(merge(?1, "(HAS / HAS :1 (d<dep>) :2 (r<root>))"), r_dep(?2)))
 
 {#declaration of a templates specialized for NP2 IRTGs#}
 nounPhraseBase1,NPB1 : Temp  :=  <+IB.copy:+ID1
@@ -43,22 +42,22 @@ NPDB,nounPhraseDataBase : Type  :=  comm,  arg1, arg2, edge_ud, edge_4lang : Tex
 
 {#declaration of data for the NP2 IRTG rule templates#}
 datas1,D1 :List:NPDB :=
-	 [=:NPDB:= {"cute cat"}			,{"JJ"}	,{"NN"}		,{"amod"}	,{"0"}
-	,[=:NPDB:= {"electricity charges"}	,{"NN"}	,{"NNS"}	,{"compound"}	,{"0_compound_nouns"}
-	,[=:NPDB:= {"car safety"}		,{"NN"}	,{"NN"}		,{"compound"}	,{"0_compound_nouns"}
-	,[=:NPDB:= {"one dog"}			,{"CD"}	,{"NN"}		,{"nummod"}	,{"0"}
-	,[=:NPDB:= {"three dogs"}		,{"CD"}	,{"NNS"}	,{"nummod"}	,{"0"}
-	,[=:NPDB:= {"cute cats"}		,{"JJ"}	,{"NNS"}	,{"amod"}	,{"0"}
-	,[=:NPDB:= {"John Smith"}		,{"NNP"},{"NNP"}	,{"flat"}	,{"0_flat_name"}
+	 [=:NPDB:= {"cute cat"}			,<"JJ	,<"NN	,<"amod		,<"0
+	,[=:NPDB:= {"electricity charges"}	,<"NN	,<"NNS	,<"compound	,<"0_compound_nouns
+	,[=:NPDB:= {"car safety"}		,<"NN	,<"NN	,<"compound	,<"0_compound_nouns
+	,[=:NPDB:= {"one dog"}			,<"CD	,<"NN	,<"nummod	,<"0
+	,[=:NPDB:= {"three dogs"}		,<"CD	,<"NNS	,<"nummod	,<"0
+	,[=:NPDB:= {"cute cats"}		,<"JJ	,<"NNS	,<"amod		,<"0
+	,[=:NPDB:= {"John Smith"}		,<"NNP	,<"NNP	,<"flat		,<"0_flat_name
 	
 datas2,D2 :List:NPDB :=
-	 [=:NPDB:= {"the Examiner"}	,{"DT"}	,{"NNP"}	,{"det"}
-	,[=:NPDB:= {"a cat"}		,{"DT"}	,{"NN"}		,{"det"}
-	,[=:NPDB:= {"the cats"}		,{"DT"}	,{"NNS"}	,{"det"}
+	 [=:NPDB:= {"the Examiner"}	,<"DT	,<"NNP	,<"det
+	,[=:NPDB:= {"a cat"}		,<"DT	,<"NN	,<"det
+	,[=:NPDB:= {"the cats"}		,<"DT	,<"NNS	,<"det
 	
 datas3,D3 :List:NPDB :=
-	 [=:NPDB:= {"my cat"}		,{"PRPDOLLAR"}	,{"NN"}		,{"nmod:poss"}
-	,[=:NPDB:= {"my cats"}		,{"PRPDOLLAR"}	,{"NNS"}	,{"nmod:poss"}
+	 [=:NPDB:= {"my cat"}	,<"PRPDOLLAR	,<"NN	,<"nmod:poss
+	,[=:NPDB:= {"my cats"}	,<"PRPDOLLAR	,<"NNS	,<"nmod:poss
 
 {#create list for the output out of copies of the NP2 IRTG rule templates#} 
 result1,R1 :List:Temp := <+NPB1:+D1

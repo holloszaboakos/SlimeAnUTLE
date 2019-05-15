@@ -2,6 +2,7 @@ package data
 
 import data.type.*
 
+//Interface for the visitor pattern identifying
 interface Visitor {
     fun visit(h: SFile, mode: String = ""): SVari
     fun visit(h: SSlot, mode: String = ""): SVari

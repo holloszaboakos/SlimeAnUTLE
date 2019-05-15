@@ -8,18 +8,22 @@
 %----------------------------------------------------------------------------
 \chapter*{Kivonat}\addcontentsline{toc}{chapter}{Kivonat}
 
-
-A Slime nyelv egy UTLE (Universal Templater Language Extension).
-Olyan nyelvek és nyelvtanok kiegészítésére való, amik nem elég fejlettek, így forrás kódjuk nagyon redundáns.
-Nyelvi elemei a kiegészítendő nyelv vagy nyelvtan sablonjainak hatékony létrehozását, manipulációját és tárolását támogatják.
-A fordítót az ANTLR (ANother Tool for Language Recognition) segítségével valósítottuk meg.
-A Slime elsődlegesen IRTG (Interpreted Regular Tree Grammar) nyelvtanok tömör  és átlátható leírására lett kifejlesztve.
-Az IRTG nyelvtant olyan nyelv fejlesztésére használjuk, ami gráftraszformációkkal állítja elő mondatok szemantikai reprezentációját.
-A nyelvtanokat az Alto (Algebraic Language Toolkit) segítségével futtatjuk.
-A Slime hatékonynak bizonyult az IRTG nyelvtanokra, ahogy az ANTLR lexer nyelvtanaira, android layout leíró XML (Extensible Markup Language) kódokra  és HTML (Hypertext Markup Language) kódokra  is.
-A program teljes forráskódja elérhető az \url{https://github.com/Hollo1996/SlimeAnUTLE} oldalon.
-Itt számos példakódot is lehet találni illetve részletes leírást a Slime szintaxisáról és alapelemeiről.
-
+A Slime nyelv olyan nyelvek és nyelvtanok kiegészítésére való, melyek szintaxisa nagy mennyiségű redundáns kód írását teszi szükségessé. 
+Nyelvi elemei a kiegészítendő nyelv vagy nyelvtan sablonjainak hatékony létrehozását, manipulációját és tárolását támogatják. 
+A fordítót az ANTLR (ANother Tool for Language Recognition) segítségével valósítottuk meg. 
+A Slime elsődlegesen IRTG (Interpreted Regular Tree Grammar) nyelvtanok tömör és átlátható leírására lett kifejlesztve. 
+Az IRTG-t olyan nyelvtan fejlesztésére használjuk, amely két vagy több formalizmus (nyers szöveg, szintaktikai reprezentációk, szemantikai reprezentációk) közötti konverziót implementál gráftranszformációk segítségével. 
+A Slime nyelvet IRTG nyelvtanok, ANTLR lexer nyelvtanok,  Android layout leíró XML (Extensible Markup Language) kódok és HTML (Hypertext Markup Language) kódok előállítására használtuk. 
+A rekord nyereség egy android layout esetében tapasztaltuk.
+Itt egy egyszerű gombos menü tömörítésére használtuk a Slime nyelvet.
+Itt ugyan csupán 30\%-kal volt kevesebb a sorok száma, de a kód nagy részét a sablonok előkészítése tette ki.
+Az előkészítést követően a gombokat már az addigi átlagosan tizenöt sor helyett három sorban lehetett megadni.
+Ez sokkal több gomb esetén majdnem 80\%-os nyereséget jelent.
+Arról nem is beszélve, hogy az előkészítést lehet külön fájlban végezni, ami utána beimportálható más fájlokhoz is csökkentve költséget.
+IRTG-k esetében az előkészítésen felül két sorra volt szükség az addigi hat sor helyett .
+Egy sor volt ebből az adatok definiálása a másik pedig azok beszúrása a sablonba.
+Ez több IRTG szabály esetén akár 66\%-os nyereséget is jelenthet.
+A program teljes forráskódja, szintaxisának és alapelemeinek leírása és számos példakód elérhető a \texttt{https://github.com/Hollo1996/SlimeAnUTLE} oldalon.
 
 \vfill
 \selectenglish
@@ -30,17 +34,20 @@ Itt számos példakódot is lehet találni illetve részletes leírást a Slime 
 %----------------------------------------------------------------------------
 \chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
 
-Slime is a UTLE (Universal Templater Language Extension).
-It is used for extending languages, which are not developed enough, there for their source codes are too redundant.
-Its linguistic elements supports the efficient declaration, manipulation and storage of the extended language.
-We implemented the compiler by the help of ANTLR (ANother Tool for Language Recognition).
-Slime was developped primerly for the compact and clear discription of IRTG (Interpreted Regular Tree Grammar) grammars.
-We used the IRTG for developping a language, which is using graph transformations for generating the semantic representation of sentences.
-We run the grammars with Alto (Algebraic Language Toolkit).
-The Slime is turned out to be efficient in the for IRTG grammars and for ANTLR's lexer grammars, XML (Extensible Markup Language) codes discribing android layouts and HTML (Hypertext Markup Language) codes too.
-You can find the wholes source code on the \url{https://github.com/Hollo1996/SlimeAnUTLE} page.
-You can also find example codes there and a detailed discription if the Slime's syntax and basic elements.
-
+The Slime language is used for extending languages whose syntax requires the writing of highly redundant source code for certain applications. 
+Its syntax supports efficient declaration, manipulation and storage of templates of the extended language. 
+We implemented the compiler using ANTLR (ANother Tool for Language Recognition). 
+The primary goal of developing Slime was a syntax that facilitates compact and clear formulation of IRTG (Interpreted Regular Tree Grammar) grammars. 
+We use IRTGs to develop grammars which are capable of converting between two or more formalisms, such as raw text, syntactic, and semantic representations via graph transformations. 
+Slime has been tested by implementing templates to generate IRTG grammars, ANTLR lexer grammars, Android layout XML (Extensible Markup Language) and HTML  (Hypertext Markup Language) sources.
+It was the most efficient in case of an android layout.
+However it reduced the amount of lines only with 30\%, the most of the Slime code was the preparation of the templates.
+After preparation we needed only three lines to define the buttons instead of the previous fifteen.
+In case of more buttons this means near 80\% reduction of lines.
+Also the preparation can be done in a separate file so it can be included in other layouts's Slime files, reducing the cost.
+In case of IRTG rules with four interpretation we needed only two lines instead of six (and preparation).
+It can reach near 66\% reduction of lines for larger grammars.
+The source code of the language, the description of its syntax and its basic elements can be found at \texttt{https://github.com/Hollo1996/SlimeAnUTLE} alongside with several examples.
 
 \vfill
 \selectthesislanguage

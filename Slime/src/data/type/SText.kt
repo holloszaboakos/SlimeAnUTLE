@@ -3,19 +3,26 @@ package data.type
 import data.*
 import java.lang.Exception
 
+//The class behind the Text type
 open class SText(private var content: String = "", names: List<SName> = listOf()) : SVari("Text", names) {
 
+    //for easier reach of the inner text
     operator fun invoke(): String = content
     operator fun invoke(s: String): String {
         content = s;return s
     }
 
+    //Lists the path witch the variables reachable from this variable ar reachable throw this variable
+    //The Refe-s use it
     override fun listPaths(): SList<SList<SName>> = SList()
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): SText = SText(content, names.toSList())
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String = content
 
+    //Plusses a new variable to the variable
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -50,6 +57,7 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
             }
         }
 
+    //Returns the variable on the given relative path
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -65,8 +73,10 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) =
         throw Exception("SText dose not contain anything to delete")
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

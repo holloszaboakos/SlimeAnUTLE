@@ -3,8 +3,10 @@ package data.type
 import data.*
 import java.lang.Exception
 
+//The class behind the Spec type
 class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names) {
 
+    //It has an inner Enum class to decode th char names
     enum class Char(val value: String, val names: MutableList<String>) {
         ENTER("\n", mutableListOf("e", "ent", "enter")),
         RENTER("\r", mutableListOf("r", "ren", "renter")),
@@ -18,12 +20,18 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
         SEMICOLON(";", mutableListOf("sc", "sec", "semicolon"))
     }
 
+    //Lists the path witch the variables reachable from this variable ar reachable throw this variable
+    //The Refe-s use it
     override fun listPaths(): SList<SList<SName>> = SList()
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): SVari = SSpec(key, names)
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String = key.value
 
+    //Plusses a new variable to the variable
+    //You can add only names to a Spec
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -50,6 +58,8 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
             }
         }
 
+    //Returns the variable on the given relative path
+    //Spec has no special attributes
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -65,8 +75,10 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) =
         throw Exception("You cannot delete SVari from SSpec SVari:{${names.getOrNull(0) ?: "@nameless"}")
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

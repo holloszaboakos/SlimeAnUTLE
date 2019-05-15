@@ -4,13 +4,16 @@ import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
 
+//The class behind the Temp type
 class STemp(
     val content: MutableList<SVari>,
     names: List<SName> = listOf()
 ) : SVari("Temp", names), Visitor {
 
+    //You can get the slots throw this property
     val slotL: List<SSlot> get() = content.filter { it is SSlot }.map { it as SSlot }
 
+    //register himself as owner of the Slots
     init {
         content.forEach {
             if (!(it is SSlot || it is SText || it is SSpec)) throw Exception("Wrong type variable in template")
@@ -18,6 +21,8 @@ class STemp(
         slotL.forEach { it.owner = this }
     }
 
+    //Lists the path witch the variables reachable from this variable ar reachable throw this variable
+    //The Refe-s use it
     override fun listPaths(): SList<SList<SName>> {
         val result = SList<SList<SName>>(mutableListOf())
         for (slot in slotL) {
@@ -35,20 +40,24 @@ class STemp(
         return result
     }
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): STemp {
         return STemp(content.map { it.copy() }.toMutableList(), names)
     }
 
+    //It lets you achive slots by tag
     operator fun get(name: String): List<SSlot> {
         return slotL.filter { it.tag().compareTo(name) == 0 }
     }
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String {
         var result = ""
         content.forEach { result += it.extend() }
         return result
     }
 
+    //Plusses a new variable to the variable
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -75,6 +84,9 @@ class STemp(
             }
         }
 
+    //Returns the variable on the given relative path
+    //Temp is a Cont
+    //Its variables are available grouped by typename
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -85,11 +97,11 @@ class STemp(
                     "names" -> names.toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "cont" -> content.toSList(owner = this).get(path)
+                    "iter" -> content.toSList(owner = this).iter.get(path)
                     "slots" -> slotL.toSList(owner = this).get(path)
                     "texts" -> content.filter { it is SText }.map { it as SText }.toSList(owner = this).get(path)
                     "specs" -> content.filter { it is SSpec }.map { it as SSpec }.toSList(owner = this).get(path)
-                    "cont" -> content.toSList(owner = this).get(path)
-                    "iter" -> content.toSList(owner = this).iter.get(path)
                     in slotL.map { it.tag() } -> {
                         val matchingSlots = get(next)
                         if (matchingSlots.size == 1)
@@ -104,6 +116,7 @@ class STemp(
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
@@ -136,6 +149,7 @@ class STemp(
         }
     }
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 
     override fun visit(h: SSlot, mode: String): SVari =

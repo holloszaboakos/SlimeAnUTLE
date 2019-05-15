@@ -238,17 +238,21 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
         SList(ctx.declBodyPart().map { visitDeclBodyPart(it) }.toMutableList())
     //In case of DECL body part we gather the meta data and the value and declare a variable with the given name type and values
     override fun visitDeclBodyPart(ctx: SlimeParser.DeclBodyPartContext): SVari {
-        val neck = visitDeclNeck(ctx.declNeck())
+        //We gather meta data into two lists of SText
+        val meta = visitDeclNeck(ctx.declNeck())
+        //Then we gather the names
         val names: List<SName> =
-            if (neck.size == 2) neck[1].toList().map { it2 -> SName(it2) }
+            if (meta.size == 2) meta[1].toList().map { it2 -> SName(it2) }
             else listOf()
+        //Then we create the variable with the right type, adding the names and return it
         when (val typeIndicator =
-            VariableFactory.getEmptyVariableByTypeList(VariableFactory.NameL2TypeL(neck[0]))) {
+            VariableFactory.getEmptyVariableByTypeList(VariableFactory.NameL2TypeL(meta[0]))) {
             is SText -> {
                 when (ctx.children[1]) {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize text by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize text by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize text by list of name-value pairs.")
+                    //The only way to define the value of a Text is using an other Text variable
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for text initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -262,6 +266,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize special char by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize special char by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize special char by list of name-value pairs.")
+                    //The only way to define the value of a Spec is using an other Spec variable
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for special char initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -275,6 +280,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize slot by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize slot by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize slot by list of name-value pairs.")
+                    //The only way to define the value of a Slot is using an other Slot variable
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for slot initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -288,6 +294,9 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize slot by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize slot by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize slot by list of name-value pairs.")
+                    //There are two ways to declare a Temp variable
+                    //You can define the value by an other Temp variable
+                    //Or you can use a list of Text Spec and Slot variables
                     is SlimeParser.ListVariContext -> {
                         val varis = ctx.children.filter { it is SlimeParser.ListVariContext }
                             .map { visitListVari(it as SlimeParser.ListVariContext) }
@@ -305,6 +314,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             is SType -> {
                 when (ctx.children[1]) {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize type by list of names.")
+                    //You can define a new type with a list of name and type list pairs
                     is SlimeParser.NameTypeContext -> {
                         val datas = ctx.nameType().map { visitNameType(it) }
                         val nameValues = mutableListOf<SType.NameType>()
@@ -318,6 +328,8 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                         )
                     }
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize type by list of name-value pairs.")
+                    //Or you can define the value with an other Type
+                    //Or with two lists made out of other variables
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for type initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -330,6 +342,9 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                 when (ctx.children[1]) {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize inst by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize inst by list of types.")
+                    //You can inicialize an Inst with a list of name-value pairs,
+                    //where the names are the names of the attributes of the Inst.
+                    //Order those not matter and you are allowed to  have not initialized attributes
                     is SlimeParser.NameValueContext -> {
                         val inst = SInst(typeIndicator.typeName, names)
                         val datas = ctx.nameValue().map { visitNameValue(it) }
@@ -343,6 +358,8 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                         }
                         return inst
                     }
+                    //You can also use another Inst or a list of values to define the value
+                    //In the last case the values will be loaded into the attributes with the same index
                     is SlimeParser.ListVariContext -> {
                         val varis = ctx.children.filter { it is SlimeParser.ListVariContext }
                             .map { visitListVari(it as SlimeParser.ListVariContext) }[0]
@@ -360,6 +377,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize reference by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize reference by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize reference by list of name-value pairs.")
+                    //The only way to define the value of a Refe is using an other Refe variable
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for reference initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -373,6 +391,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> throw Error("Can not initialize file by list of names.")
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize file by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize file by list of name-value pairs.")
+                    //You can define the value of a File with an other File or with a Text of the path to the slime file
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) throw Error("two many arguments for file initialization.")
                         val vari = visitListVari(ctx.listVari())
@@ -390,6 +409,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> return SList(visitListName(ctx.listName()), names)
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize list by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize list by list of name-value pairs.")
+                    //You can define the value of a List with an other List or with a list of values with the right type
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) {
                             return visitListVari(ctx.listVari()).addNames(names)
@@ -407,6 +427,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.ListNameContext -> return SList(visitListName(ctx.listName()), names).iter
                     is SlimeParser.NameTypeContext -> throw Error("Can not initialize list by list of types.")
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize list by list of name-value pairs.")
+                    //You can define the value of a Iter with an other Iter or with a List or with a list of values with the right type
                     is SlimeParser.ListVariContext -> {
                         if (ctx.childCount != 2) {
                             return (visitListVari(ctx.listVari()).addNames(names) as SList<*>).iter
@@ -420,6 +441,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                 }
             }
         }
+        //If non of the scenarios occur, There was a mistake made by the programmer... or me..
         throw Exception("An variable supposed to be created")
 
     }

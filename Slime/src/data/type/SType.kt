@@ -4,53 +4,64 @@ import data.*
 import java.lang.Error
 import java.lang.Exception
 
+//The class behind the Type type
+//It has no names only a tag for taking the first name given
+//It is always identified by that only
 data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type", listOf()) {
 
+    //Inner class for name-type list pairs
     data class NameType(val name: String, val type: List<SText>)
 
+    //It hes a static map of the existing types
+    //It is initialized by th
     companion object {
         private var typesReady = false
-        private val names = NameType("names", listOf(SText("List"), SText("Text")))
         val types = mutableMapOf(
             Pair(
                 "NameValue",
                 SType(
                     "NameValue",
                     listOf(
-                        NameType("names", listOf(SText("List"), SText("Text"))),
+                        NameType("names", listOf(SText("List"), SText("Name"))),
                         NameType("values", listOf(SText("List"), SText("Vari")))
                     )
                 )
             ),
-            Pair("List", SType("List", listOf(names, NameType("copy", listOf(SText("List")))))),
-            Pair("Refe", SType("Refe", listOf(names, NameType("copy", listOf(SText("Refe")))))),
-            Pair("Slot", SType("Slot", listOf(names, NameType("copy", listOf(SText("Slot")))))),
-            Pair("Spec", SType("Spec", listOf(names, NameType("copy", listOf(SText("Spec")))))),
-            Pair("Temp", SType("Temp", listOf(names, NameType("copy", listOf(SText("Temp")))))),
-            Pair("Text", SType("Text", listOf(names, NameType("copy", listOf(SText("Text")))))),
-            Pair("Name", SType("Name", listOf(names, NameType("copy", listOf(SText("Name")))))),
-            Pair("File", SType("File", listOf(names, NameType("copy", listOf(SText("File")))))),
-            Pair("Vari", SType("Vari", listOf(names, NameType("copy", listOf(SText("Vari")))))),
-            Pair("Iter", SType("Iter", listOf(names, NameType("copy", listOf(SText("Iter")))))),
-            Pair("Type", SType("Type", listOf(names, NameType("copy", listOf(SText("Type"))))))
+            Pair("List", SType("List", listOf())),
+            Pair("Refe", SType("Refe", listOf())),
+            Pair("Slot", SType("Slot", listOf())),
+            Pair("Spec", SType("Spec", listOf())),
+            Pair("Temp", SType("Temp", listOf())),
+            Pair("Text", SType("Text", listOf())),
+            Pair("Name", SType("Name", listOf())),
+            Pair("File", SType("File", listOf())),
+            Pair("Vari", SType("Vari", listOf())),
+            Pair("Iter", SType("Iter", listOf())),
+            Pair("Type", SType("Type", listOf()))
         )
 
         operator fun get(name: String): SType =
             types[name] ?: throw Error("No type exists with name $name")
     }
 
+    //Every type registers itself after initialization
     init {
         if (typesReady && !types.containsKey(tag))
             types[tag] = this
         typesReady = typesReady || (!typesReady && tag.compareTo("Type") == 0)
     }
 
+    //There is no reason to gather path-es reachable throw a type variable since it no Type can not be referenced by path
+    //It cab be if an Inst has a Type attribute but who would ever do it :,,,,,,,,DDDDD
+    //Or throw other variables Type attribute... but who .... yayks
     override fun listPaths(): SList<SList<SName>> = SList()
 
+    //You can not copy a Type variable
     override fun copy(names: List<SName>): SType {
         return this
     }
 
+    //You can not extend it
     override fun extend(divider: String): String {
         var result = "struct ${names.getOrNull(0)?:"@nameless"}{$divider"
         for (a in attributes)
@@ -59,6 +70,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         return result
     }
 
+    //You can add only names
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -86,6 +98,7 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
             }
         }
 
+    //You can reach only the basic attributes except, but names are an exception
     override fun get(path: SList<SName>): SVari =
     when {
         path.isEmpty() -> this
@@ -101,8 +114,10 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
         }
     }
 
+    //You can not delete from a Type variable
     override fun delete(path: SList<SName>): Unit =
         throw Exception("You can not delete from a Structure type SVari")
 
+    //visitor pattern ...
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }

@@ -4,12 +4,16 @@ import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
 
+//The class behind the Inst type
 class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, names) {
 
+    //It simply stores the value of the attributes of the list
     private val content: MutableList<SVari?> = MutableList(SType[typeName].attributes.size) { null }
-
+    //For easier reach of the content
     operator fun invoke(): MutableList<SVari?> = content
 
+    //Lists the path witch the variables reachable from this variable ar reachable throw this variable
+    //The Refe-s use it
     override fun listPaths(): SList<SList<SName>> {
         val result = SList<SList<SName>>(mutableListOf())
         for (vari in content) {
@@ -27,6 +31,7 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         return result
     }
 
+    //Makes a copy from the variable
     override fun copy(names: List<SName>): SInst {
         val result = SInst(typeName, names)
 
@@ -35,6 +40,7 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         return result
     }
 
+    //Makes a copy from the variable dividing its elements by a given String
     override fun extend(divider: String): String {
         var result = ""
         for (d in content)
@@ -43,6 +49,7 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         return result
     }
 
+    //Plusses a new variable to the variable
     override fun plus(
         v: SVari,
         path: SList<SName>,
@@ -69,6 +76,9 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         }
     }
 
+    //Returns the variable on the given relative path
+    //Inst is a Cont
+    //Its attributes are available by name
     override fun get(path: SList<SName>): SVari =
         when {
             path.isEmpty() -> this
@@ -94,6 +104,7 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
             }
         }
 
+    //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
@@ -128,5 +139,6 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         }
     }
 
+    //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
 }
