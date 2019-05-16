@@ -9,6 +9,7 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
 
     //It simply stores the value of the attributes of the list
     private val content: MutableList<SVari?> = MutableList(SType[typeName].attributes.size) { null }
+
     //For easier reach of the content
     operator fun invoke(): MutableList<SVari?> = content
 
@@ -28,6 +29,27 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
                 result.add(SList(mutableListOf(variName)))
             }
         }
+        result.addAll(
+            SList(
+                mutableListOf(
+                    SList(mutableListOf(SName("names"))),
+                    SList(mutableListOf(SName("self"))),
+                    SList(mutableListOf(SName("copy"))),
+                    SList(mutableListOf(SName("type")))
+
+                )
+            )
+        )
+        for (i in 0 until content.size) {
+            val root = SName(i.toString())
+            val pathL = content[i]?.listPaths() ?: mutableListOf<SList<SName>>()
+            for (p in pathL) {
+                p.add(0, root)
+                result.add(p)
+            }
+        }
+        result.addAll(content.filter { it is SVari }.map { it as SVari }
+            .toSList().listPaths().map { it.add(0, SName("cont")); it })
         return result
     }
 
@@ -55,26 +77,31 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
         path: SList<SName>,
         pairs: SList<SList<SName>>
     ): SVari =
-    when {
-        path.isEmpty() -> {this}
-        else -> {
-            val next = path[0]()
-            path.removeAt(0)
-            when (next) {
-                "names"-> {
-                    when {
-                        v is SList<*> && v.size !=0 && v[0] is SName
-                        -> addNames(v.filter { it is SName }.map { it as SName })
-                        v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
-                        -> addNames(v.owner.filter { it is SName }.map { it as SName })
-                        v is SName -> addNames(SList(mutableListOf(v)))
+        when {
+            path.isEmpty() -> {
+                this
+            }
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names" -> {
+                        when {
+                            v is SList<*> && v.size != 0 && v[0] is SName
+                            -> addNames(v.filter { it is SName }.map { it as SName })
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
+                            -> addNames(v.owner.filter { it is SName }.map { it as SName })
+                            v is SName -> addNames(SList(mutableListOf(v)))
+                        }
+                        this
                     }
-                    this
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
-                else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
             }
         }
-    }
 
     //Returns the variable on the given relative path
     //Inst is a Cont
@@ -86,9 +113,11 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No Name in this namespace!")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "type" -> ctype
                     "cont" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this).get(path)
                     "iter" -> content.filter { it != null }.map { it as SVari }.toSList(owner = this).iter.get(path)
                     in ctype.attributes.map { it.name } ->
@@ -108,7 +137,8 @@ class SInst(metaName: String, names: List<SName> = listOf()) : SVari(metaName, n
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from STemp: ${names.getOrNull(0) ?: "@nameless"}"
+                "path shouldn't be empty when deleting from STemp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
             path.size == 1 -> {
                 val next = path[0]()

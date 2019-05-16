@@ -3,6 +3,7 @@ package data.type
 import data.*
 import java.lang.Exception
 import java.util.regex.Pattern
+import kotlin.system.measureTimeMillis
 
 //The class behind the List type
 fun <T : SVari> List<T>.toSList(names: List<SName> = listOf(), owner: SVari? = null): SList<T> =
@@ -15,10 +16,23 @@ class SList<T : SVari>(
     private val owner: SVari? = null
 ) : SVari("List", names), MutableList<T> {
 
-    class SIter<T : SVari>(val owner: SList<T>) : SVari("Iter", listOf()) {
-        override fun listPaths(): SList<SList<SName>> = owner.listPaths()
-        override fun copy(names: List<SName>): SVari = owner.copy(names).iter
+    //Inner class for iterator
+    class SIter<T : SVari>(val owner: SList<T>,names: List<SName> = listOf()) : SVari("Iter", names) {
+        //Matching pathes throw iterators is not allowed at the moment
+        override fun listPaths(): SList<SList<SName>> =
+            throw Exception("Regex patterns do not match path-s throw iterators")
+
+        //makes a copy with the given names
+        override fun copy(names: List<SName>): SVari {
+            val result = SIter(owner)
+            result.addNames(names)
+            return result
+        }
+
+        //returns the owner as text
         override fun extend(divider: String): String = owner.extend(divider)
+
+        //pluses the variable to all elements of the owner
         override fun plus(
             v: SVari,
             path: SList<SName>,
@@ -28,16 +42,22 @@ class SList<T : SVari>(
             return owner.owner ?: owner
         }
 
+        //gathers all attributes on the path from the elements of the owner
         override fun get(path: SList<SName>): SVari =
             if (path.isEmpty()) this
             else owner.content.map { it.get(path) }.toSList()
 
+        //deletes all variables on the given path from the elements of the owner
         override fun delete(path: SList<SName>): Unit = owner.forEach { it.delete(path) }
+
+        //Visitor pattern
         override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)
     }
 
+    //Iterator of the list
     val iter = SIter(this)
 
+    //It makes a more compact declaration possible
     constructor(content: List<T>, owner: SVari? = null) : this(content.toMutableList(), owner = owner)
 
     //Lists the path witch the variables reachable from this variable ar reachable throw this variable
@@ -55,6 +75,23 @@ class SList<T : SVari>(
             result.content.add(SList(mutableListOf(variName)))
 
         }
+        result.addAll(
+            SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+
+            ))
+        )
+        for (i in 0 until content.size){
+            val root=SName(i.toString())
+            val pathL=content[i].listPaths()
+            for(p in pathL){
+                p.add(0,root)
+                result.add(p)
+            }
+        }
         return result
     }
 
@@ -65,22 +102,27 @@ class SList<T : SVari>(
         pairs: SList<SList<SName>>
     ): SVari =
         when {
-            path.isEmpty() -> {this}
+            path.isEmpty() -> {
+                this
+            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
@@ -106,9 +148,11 @@ class SList<T : SVari>(
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No Name in this namespace")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "type" -> ctype
                     "cont" -> content.toSList(owner = this).get(path)
                     "iter" -> iter.get(path)
                     in ctype.attributes.map { it.name } ->
@@ -126,7 +170,8 @@ class SList<T : SVari>(
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from STemp: ${names.getOrNull(0) ?: "@nameless"}"
+                "path shouldn't be empty when deleting from STemp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
             path.size == 1 -> {
                 val next = path[0]()

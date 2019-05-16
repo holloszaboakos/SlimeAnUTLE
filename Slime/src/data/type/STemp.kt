@@ -35,8 +35,26 @@ class STemp(
                     result.plus(SList(mutableListOf(slot.tag)), SList(mutableListOf()), SList(mutableListOf()))
                 }
             }
-
         }
+        result.addAll(
+            SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+
+            ))
+        )
+        for (i in 0 until content.size){
+            val root=SName(i.toString())
+            val pathL=content[i].listPaths()
+            for(p in pathL){
+                p.add(0,root)
+                result.add(p)
+            }
+        }
+        result.addAll(content.toSList().listPaths().map { it.add(0,SName("cont")); it})
+
         return result
     }
 
@@ -64,22 +82,25 @@ class STemp(
         pairs: SList<SList<SName>>
     ): SVari =
         when {
-            path.isEmpty() -> v.accept(this,"@plus")
+            path.isEmpty() -> v.accept(this, "@plus")
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
@@ -94,9 +115,11 @@ class STemp(
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No Name in this namespace")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "type" -> ctype
                     "cont" -> content.toSList(owner = this).get(path)
                     "iter" -> content.toSList(owner = this).iter.get(path)
                     "slots" -> slotL.toSList(owner = this).get(path)
@@ -120,7 +143,8 @@ class STemp(
     override fun delete(path: SList<SName>) {
         when {
             path.isEmpty() -> throw Exception(
-                "path shouldn't be empty when deleting from Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "path shouldn't be empty when deleting from Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
             path.size == 1 -> {
                 val next = path[0]()
@@ -158,7 +182,8 @@ class STemp(
                 h.owner = this;content.add(h); this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -168,12 +193,16 @@ class STemp(
                 content.add(h); this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
     override fun visit(h: SType, mode: String)
-            : SVari = throw Exception("You can not plus type into Temp: ${names.getOrNull(0) ?: "@nameless"}")
+            : SVari = throw Exception(
+        "You can not plus type into Temp: ${names[DataContainer.focus
+            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+    )
 
     override fun visit(h: SInst, mode: String): SVari =
         when (mode) {
@@ -183,8 +212,7 @@ class STemp(
                         val a = h.ctype.attributes.find { it.name.compareTo(slot.tag()) == 0 }
                             ?: throw Exception("attribute disappeared")
                         slot.plus(
-                            h()[h.ctype.attributes.indexOf(a)] ?:
-                            throw Exception("attribute ${a.name} has no value"),
+                            h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value"),
                             SList(mutableListOf()),
                             SList(mutableListOf())
                         )
@@ -192,7 +220,8 @@ class STemp(
                 this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -203,7 +232,8 @@ class STemp(
                 this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -214,7 +244,8 @@ class STemp(
                 this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -225,7 +256,8 @@ class STemp(
                 this
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -252,7 +284,8 @@ class STemp(
                 }
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
@@ -276,12 +309,16 @@ class STemp(
                 }
             }
             else -> throw Exception(
-                "wrong variable or in wrong mode visiting Temp: ${names.getOrNull(0) ?: "@nameless"}"
+                "wrong variable or in wrong mode visiting Temp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
         }
 
 
     override fun visit(h: SFile, mode: String)
-            : SVari = throw Exception("You can not add File Temp:  ${names.getOrNull(0) ?: "@nameless"}")
+            : SVari = throw Exception(
+        "You can not add File Temp:  ${names[DataContainer.focus ?: throw Exception("No file in focus!")]?.getOrNull(0)
+            ?: "@nameless"}"
+    )
 
 }

@@ -1,11 +1,13 @@
 package data.type
 
+import data.DataContainer
 import data.SVari
 import data.Visitor
 import java.util.regex.Pattern
 
 //The class behind the File type
-class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(), var output:String="") : SVari("File", names) {
+class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(), var output: String = "") :
+    SVari("File", names) {
 
     //Lists the path witch the variables reachable from this variable ar reachable throw this variable
     //The Refe-s use it
@@ -22,6 +24,24 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
             result.add(SList(mutableListOf(SName(key))))
 
         }
+        result.addAll(
+            SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+
+            ))
+        )
+        for (i in 0 until content.size){
+            val root=SName(i.toString())
+            val pathL=content.values.toList()[i].listPaths()
+            for(p in pathL){
+                p.add(0,root)
+                result.add(p)
+            }
+        }
+        result.addAll(content.values.toList().toSList().listPaths().map { it.add(0,SName("cont")); it})
         return result
     }
 
@@ -37,8 +57,8 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
     override fun extend(divider: String): String {
         var result = ""
         for (c in content.values)
-            result += (divider+c.extend())
-        result=result.substring(divider.length)
+            result += (divider + c.extend())
+        result = result.substring(divider.length)
         return result
     }
 
@@ -50,23 +70,26 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
         pairs: SList<SList<SName>>
     ): SVari =
         when {
-            path.isEmpty() -> {this}
+            path.isEmpty() -> {
+                this
+            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  java.lang.Exception(
-                        "unknown keyword for special char: ${names.getOrNull(0) ?: "@nameless"}"
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
                     )
                 }
             }
@@ -83,9 +106,11 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No name in this namespace")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "type" -> ctype
                     "cont" -> content.values.toList().toSList(owner = this).get(path)
                     "iter" -> content.values.toList().toSList(owner = this).iter.get(path)
                     "outp" -> SText(output)
@@ -102,8 +127,9 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
     //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) {
         when {
-            path.isEmpty() -> throw java.lang.Exception(
-                "path shouldn't be empty when deleting from STemp: ${names.getOrNull(0) ?: "@nameless"}"
+            path.isEmpty() -> throw Exception(
+                "path shouldn't be empty when deleting from STemp: ${names[DataContainer.focus
+                    ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
             )
             path.size == 1 -> {
                 val next = path[0]()

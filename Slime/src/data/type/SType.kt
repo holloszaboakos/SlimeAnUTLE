@@ -63,7 +63,8 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
 
     //You can not extend it
     override fun extend(divider: String): String {
-        var result = "struct ${names.getOrNull(0)?:"@nameless"}{$divider"
+        var result = "struct ${names[DataContainer.focus ?: throw Exception("No file in focus!")]?.getOrNull(0)
+            ?: "@nameless"}{$divider"
         for (a in attributes)
             result += "\t${a.name}:${a.type}$divider"
         result += "}"
@@ -83,36 +84,45 @@ data class SType(val tag: String, val attributes: List<NameType>) : SVari("Type"
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
 
     //You can reach only the basic attributes except, but names are an exception
     override fun get(path: SList<SName>): SVari =
-    when {
-        path.isEmpty() -> this
-        else -> {
-            val next = path[0]()
-            path.removeAt(0)
-            when (next) {
-                "names"-> names.toSList(owner = this).get(path)
-                "self" -> this.get(path)
-                "copy" -> copy().get(path)
-                else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+        when {
+            path.isEmpty() -> this
+            else -> {
+                val next = path[0]()
+                path.removeAt(0)
+                when (next) {
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No names in this namespace")).toSList(owner = this).get(path)
+                    "self" -> this.get(path)
+                    "copy" -> copy().get(path)
+                    "type" -> ctype
+                    "tag" -> SText(tag)
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
+                }
             }
         }
-    }
 
     //You can not delete from a Type variable
     override fun delete(path: SList<SName>): Unit =

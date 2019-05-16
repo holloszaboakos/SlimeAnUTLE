@@ -22,7 +22,14 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
 
     //Lists the path witch the variables reachable from this variable ar reachable throw this variable
     //The Refe-s use it
-    override fun listPaths(): SList<SList<SName>> = SList()
+    override fun listPaths(): SList<SList<SName>> =
+        SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+            ))
+
 
     //Makes a copy from the variable
     override fun copy(names: List<SName>): SVari = SSpec(key, names)
@@ -38,22 +45,27 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
         pairs: SList<SList<SName>>
     ): SVari =
         when {
-            path.isEmpty() -> {this}
+            path.isEmpty() -> {
+                this
+            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
@@ -67,17 +79,26 @@ class SSpec(val key: Char, names: List<SName> = listOf()) : SVari("Spec", names)
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No Name in this namespace")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0) ?: "@nameless"}")
+                    "type" -> ctype
+                    "key" -> SText(key.toString())
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
 
     //Deletes the reference on the given relative path
     override fun delete(path: SList<SName>) =
-        throw Exception("You cannot delete SVari from SSpec SVari:{${names.getOrNull(0) ?: "@nameless"}")
+        throw Exception(
+            "You cannot delete SVari from SSpec SVari:{${names[DataContainer.focus
+                ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+        )
 
     //Visitor pattern
     override fun accept(v: Visitor, mod: String): SVari = v.visit(this, mod)

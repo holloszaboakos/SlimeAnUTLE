@@ -8,13 +8,20 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
 
     //for easier reach of the inner text
     operator fun invoke(): String = content
+
     operator fun invoke(s: String): String {
         content = s;return s
     }
 
     //Lists the path witch the variables reachable from this variable ar reachable throw this variable
     //The Refe-s use it
-    override fun listPaths(): SList<SList<SName>> = SList()
+    override fun listPaths(): SList<SList<SName>> =
+        SList(mutableListOf(
+            SList(mutableListOf(SName("names"))),
+            SList(mutableListOf(SName("self"))),
+            SList(mutableListOf(SName("copy"))),
+            SList(mutableListOf(SName("type")))
+        ))
 
     //Makes a copy from the variable
     override fun copy(names: List<SName>): SText = SText(content, names.toSList())
@@ -31,28 +38,32 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
         when {
             path.isEmpty() -> {
                 when {
-                    v is SList<*> && v.size !=0 && v[0] is SText
-                    -> v.filter { it is SText }.map { it as SText }.forEach{content+=it.content}
-                    v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
-                    -> v.owner.filter { it is SText }.map { it as SText }.forEach{content+=it.content}
-                    v is SText -> content+=v.content
+                    v is SList<*> && v.size != 0 && v[0] is SText
+                    -> v.filter { it is SText }.map { it as SText }.forEach { content += it.content }
+                    v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
+                    -> v.owner.filter { it is SText }.map { it as SText }.forEach { content += it.content }
+                    v is SText -> content += v.content
                 }
-                this}
+                this
+            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
@@ -65,10 +76,16 @@ open class SText(private var content: String = "", names: List<SName> = listOf()
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus
+                        ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No name in this namespace")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0) ?: "@nameless"}")
+                    "type" -> ctype
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }

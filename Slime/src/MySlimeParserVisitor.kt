@@ -30,11 +30,12 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     //In case of the root rule
     override fun visitFile(ctx: SlimeParser.FileContext): SText {
+        val file=SFile(mutableMapOf())
+        if (DataContainer.root == null) DataContainer.root = file
         val grandParentFocus = DataContainer.parentFocus
         DataContainer.parentFocus = DataContainer.focus
-        DataContainer.focus = SFile(mutableMapOf())
+        DataContainer.focus = file
         DataContainer.childFocus = null
-        if (DataContainer.root == null) DataContainer.root = DataContainer.focus
         val result = SText()
         for (c in ctx.children)
             when (c) {

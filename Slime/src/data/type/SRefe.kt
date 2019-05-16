@@ -24,6 +24,14 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
             if (Pattern.matches(pattern, text))
                 result.add(path)
         }
+        result.addAll(
+            SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+            ))
+        )
         return result
     }
 
@@ -40,22 +48,27 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
         pairs: SList<SList<SName>>
     ): SVari =
         when {
-            path.isEmpty() -> {this}
+            path.isEmpty() -> {
+                this
+            }
             else -> {
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names"-> {
+                    "names" -> {
                         when {
-                            v is SList<*> && v.size !=0 && v[0] is SName
+                            v is SList<*> && v.size != 0 && v[0] is SName
                             -> addNames(v.filter { it is SName }.map { it as SName })
-                            v is SList.SIter<*> && v.owner.size !=0 && v.owner[0] is SName
+                            v is SList.SIter<*> && v.owner.size != 0 && v.owner[0] is SName
                             -> addNames(v.owner.filter { it is SName }.map { it as SName })
                             v is SName -> addNames(SList(mutableListOf(v)))
                         }
                         this
                     }
-                    else -> throw  Exception("unknown keyword for special char: ${names.getOrNull(0)?:"@nameless"}")
+                    else -> throw  Exception(
+                        "unknown keyword for special char: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }
@@ -69,10 +82,15 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No name in this namespace!")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
-                    else -> throw  Exception("unknown keyword for slot: ${names.getOrNull(0) ?: "@nameless"}")
+                    "type" -> ctype
+                    else -> throw  Exception(
+                        "unknown keyword for slot: ${names[DataContainer.focus
+                            ?: throw Exception("No file in focus!")]?.getOrNull(0) ?: "@nameless"}"
+                    )
                 }
             }
         }

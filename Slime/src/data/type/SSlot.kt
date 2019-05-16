@@ -11,7 +11,20 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
 
     //Lists the path witch the variables reachable from this variable ar reachable throw this variable
     //The Refe-s use it
-    override fun listPaths(): SList<SList<SName>> = content?.listPaths() ?: SList()
+    override fun listPaths(): SList<SList<SName>> {
+        val result = content?.listPaths() ?: SList()
+        result.addAll(
+            SList(
+                mutableListOf(
+                    SList(mutableListOf(SName("names"))),
+                    SList(mutableListOf(SName("self"))),
+                    SList(mutableListOf(SName("copy"))),
+                    SList(mutableListOf(SName("type")))
+                )
+            )
+        )
+        return result
+    }
 
     //Makes a copy from the variable
     override fun copy(names: List<SName>): SSlot {
@@ -63,9 +76,11 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
                 val next = path[0]()
                 path.removeAt(0)
                 when (next) {
-                    "names" -> names.toSList(owner = this).get(path)
+                    "names" -> (names[DataContainer.focus ?: throw Exception("No file in focus!")]
+                        ?: throw Exception("No Name in this namespace!")).toSList(owner = this).get(path)
                     "self" -> this.get(path)
                     "copy" -> copy().get(path)
+                    "type" -> ctype
                     "cont" -> content?.get(path) ?: throw Exception(
                         "no Template in slot: ${tag()}"
                     )
@@ -158,7 +173,7 @@ class SSlot(val tag: SName, names: List<SName> = listOf()) : SVari("Slot", names
             "@plus" -> {
                 val list = h.listMatchingPaths().map { DataContainer.focus?.get(it) }
                     .filter { it is SVari }.map { it as SVari }.toSList()
-                visit(list,mode)
+                visit(list, mode)
             }
             else -> throw Exception(
                 "wrong variable or in wrong mode visiting Slot: ${tag()}"
