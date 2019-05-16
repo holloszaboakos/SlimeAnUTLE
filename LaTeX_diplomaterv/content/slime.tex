@@ -15,9 +15,9 @@ A fejlesztés során az IRTG kiegészítése volt az elsődleges cél, de ezt a 
 Ennek több oka volt: először is az IRTG-nek a legtöbb hiányossága későbbi fejlesztés során megszűnhet a nyelv későbbi kiegészítésével (lásd~\ref{sec:shortcomming}).
 A kiegészítéshez a belső működés módosítására nincs feltétlenül szükség. 
 Az Alto-t ugyan viszonylag könnyű kiegészíteni és módosítani, mivel kellően objektum orientált és nyílt forráskódú,
-ugyanakkor állandó fejlesztés alatt áll, ezért a forráskód módosítása és kiegészítése is verziókövetést igényel. 
+de állandó fejlesztés alatt áll, ezért a forráskód módosítása és kiegészítése is verziókövetést igényel. 
 A függőséggel arányosan nő a karbantartási költség. 
-Az Alto fejlődésével sok kód feleslegessé válik, ezért külső megoldást igényel. 
+Az Alto fejlődésével sok kódunk feleslegessé válik, ezért külső megoldást igényel. 
  
 A Slime küldetése az, hogy növelje a kódok átláthatóságát, strukturáltságát és kiirtsa a feleslegesen repetitív kódrészeket.
 
@@ -33,14 +33,15 @@ Kerüli a függőséget minden felette lévő rétegtől is.
 A réteges architektúra és egyirányú viszony miatt a kiegészített nyelvre \texttt{alárendelt nyelv}ként (subordinate language) fogok hivatkozni.
 A template-ek esetében megszokott terminológia \texttt{master document}ként hivatkozik az alárendelt nyelv sablonjaira, ezzel ellentétben \texttt{alárendelt dokumentum}ként (subordinate document) fogok hivatkozni rá. 
 
-A Slime még fejlesztés alatt áll, így a Slime-ban is megjelennek még azok a jelenségek, amiket elkerülni igyekszik. 
-A kódjában legtöbbször könnyű, de nem mindig elkerülhető a repetitivitás. 
+A Slime még egy fiatal nyelv, így benne is megjelennek természetesen az elkerülni kívánt jelenségek. 
+Nem mindig elkerülhető a kódok repetitivitás, és a zárójelezések miatt is sok a felesleges karakter. 
 Nem haladja meg azt a funkcionalitást, amire tervezve lett, közel sem Turing-teljes. 
 Nem tartalmazza a legalapvetőbb aritmetikai műveleteket sem. 
-Csak a template-eléshez és strukturáláshoz szükséges alapfunkciókat implementálja (lásd ~\ref{sec:SStatesOfDevelopment}). 
-További fejlesztést igényel, ezekre a problémákra és tervezett megoldásaikra a későbbiekben fogok kitérni. 
+Csak a template-eléshez és strukturáláshoz szükséges funkciókat implementálja (lásd ~\ref{sec:SStatesOfDevelopment}). 
+További fejlesztést igényel és a szintaxis letisztulását.
+Ezekre a problémákra és tervezett megoldásaikra a későbbiekben fogok kitérni. 
 A Slime így is jelentős fejlődést jelent olyan nyelvek számára, amelyekben ezek a problémák sokkal nagyobb mértékben jelentkeznek. 
-Ilyen az IRTG, HTML, XML és ironikusan annak az ANTLR-nek a \texttt{lexer} és parser nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (lásd ~\ref{sec:SEIRTG}). 
+Ilyen az IRTG, HTML, XML és ironikusan annak az ANTLR-nek a \texttt{lexer} és \texttt{parser} nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (lásd ~\ref{sec:SEIRTG}). 
 Tehát végső soron a Slime egy olyan nyelv, ami saját magának az implementálását is határozottan könnyebbé tette volna.
 
 
