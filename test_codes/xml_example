@@ -66,12 +66,12 @@ consDataList, CDL : D4B :=
 	,[+ <+CLTL.2.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+b5, 3:+p
 {#declaration of the datas of the buttons#}
 buttDatas, BD : List:BDT :=
-	 [=:BDT:= <|contine	,<*ID.b1 ,<|176	,<|0	,<|1	,<|1 
-	,[=:BDT:= <|connect	,<*ID.b2 ,<|52	,<|0	,<|1	,<|1 
-	,[=:BDT:= <|achivements	,<*ID.b3 ,<|52	,<|8	,<|0.03	,<|1 
-	,[=:BDT:= <|new_game	,<*ID.b4 ,<|176	,<|0	,<|1	,<|1 
-	,[=:BDT:= <|options	,<*ID.b5 ,<|52	,<|0	,<|1	,<|1 
-	,[=:BDT:= <|records	,<*ID.b6 ,<|52	,<|0	,<|0.03	,<|1 
+	 [=:BDT:= <|contine	,<*ID.b1 ,<|176	,<|0	,<|1	,<| 
+	,[=:BDT:= <|connect	,<*ID.b2 ,<|52	,<|0	,<|1	,<| 
+	,[=:BDT:= <|achivements	,<*ID.b3 ,<|52	,<|8	,<|0.03	,<| 
+	,[=:BDT:= <|new_game	,<*ID.b4 ,<|176	,<|0	,<|1	,<| 
+	,[=:BDT:= <|options	,<*ID.b5 ,<|52	,<|0	,<|1	,<| 
+	,[=:BDT:= <|records	,<*ID.b6 ,<|52	,<|0	,<|0.03	,<| 
 =}
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout

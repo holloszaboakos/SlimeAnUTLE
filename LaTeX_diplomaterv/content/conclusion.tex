@@ -1,38 +1,31 @@
 %----------------------------------------------------------------------------
-\chapter{Összefoglalás}
+\chapter{Összefoglalás és jövőbeli tervek}
 \label{sec:conclusion}
 %----------------------------------------------------------------------------
 
 
 Szakdolgozatom keretében kifejlesztettem a Slime nyelvet, ami más nyelvek kiegészítésére való.
-Célja, hogy az alárendelt nyelv kódja tömörebb és átláthatóbb és struktúráltabb legyen.
-Ezt első sorban template-léssel valósítja meg, de más alapvető funkciókat is megvalósít.
-Behozza a nyelvekbe az importálást, típusos változó deklarációt, típus deklarációt, tároló típusokat, iterációt stb. .
-Ezen kívül számos egyedi megoldást is bevezet, mint például a "referencia" vagy a több nevő változók.
-Előbbi egy hivatkozás, ami mindig kilistázza a rá illeszkedő változókat.
-Ez valósítja meg a témakiírás egyik főtételét is.
+Célja, hogy az alárendelt nyelv kódja tömörebb, átláthatóbb és struktúráltabb legyen.
+Ezt elsősorban template-eléssel valósítja meg, de más alapvető funkciókat is megvalósít.
+Behozza a nyelvekbe az importálást, típusos változó deklarációt, típusdeklarációt, tároló típusokat, iterációt stb.
+Ezen kívül számos egyedi megoldást is bevezet, mint például a "referencia" vagy a több nevű változók.
+Előbbi egy hivatkozás, ami mindig kilistázza a rá illeszkedő változókat, ez valósítja meg a témakiírás egyik fő tételét is.
 
 A kiírás szerint az elsődleges cél az IRTG nyelvtan kiegészítése volt.
-A szakdolgozatban részletes írok ennek a nyelvtannak a szakmai hátteréről és működéséről is.
-Ez alatt ki is elemeztem a nyelvtan és futtató környezete kapcsán felmerülő problémákat.
+A szakdolgozatban részletesen írok ennek a nyelvtannak a szakmai hátteréről és működéséről is.
+Ez alatt ki is elemeztem a nyelvtan és futtatókörnyezete kapcsán felmerülő problémákat.
 Úgy vélem, hogy ezek többségét maguk a fejlesztők is könnyen orvosolhatják hosszú távon, 
 ezért bővítettem a feladat fókuszát és álltam elő egy univerzális megoldással.
 
-A Slime ugyan akár 66\%-os sor redukciót is képes elérni az IRTG-k általunk kezelt típusa esetén, még így is sok benne a redundancia.
-A működés sincs kellő hatékonysággal tesztelve.
-Éppen ezért a következő iterációkban három célt fogok szem előtt tartani.
+A Slime ugyan akár 66\%-os sor-redukciót is képes elérni az IRTG-k általunk kezelt típusa esetén, még így is sok benne a redundancia.
+A működés sincs kellő hatékonysággal tesztelve, éppen ezért a következő iterációkban három célt fogok szem előtt tartani.
 Az első a letisztultság növelése.
-Törölni fogom a kizárólag nevek kezelésére használatos Name osztályt és elő fogok állni egy sokkal kézenfekfőbb megoldással, ami a neveket is Text ként kezeli.
+Törölni fogom a kizárólag nevek kezelésére használatos Name osztályt és elő fogok állni egy sokkal kézenfekfőbb megoldással, ami a neveket is Text-ként kezeli.
 Lehetőséget fogok rá biztosítani, hogy Slot-ba szúrás esetén a Slot megszűnjön.
-Létre fogokhozni egy ősosztályt a Cont változók egységes kezelésére.
-Ezt követően fogok a praktikus kódolásra összpontosítani.
-Opcionálissá fogom tenni a legtöbb csupán a tagolás átláthatóságát segítő jelölést.
+Létre fogok hozni egy ősosztályt a Cont változók egységes kezelésére.
+Ezt követőena praktikus kódolásra összpontosítok majd.
+Opcionálissá fogom tenni a legtöbb, csupán a tagolás átláthatóságát segítő jelölést.
 Lehetővé fogom tenni a műveletek láncolását és az operátor zárójelek összevonását.
-Ezeket követően kerül majd sor a teljes körű validációra.
-A cél a 100\%-os teszt lefedettség mint kód mint funkcionalitás tekintetében.
-Ekkor várhatóan már 85\%-os sorredukcióra is képes lesz és az átláthatoság is látványosan fog javulni.
-
-Ezeket követően beszélhetünk majd a nyelv első realise verziójáról.
-A szakdolgozatban részletesen leírom a feljebb említett mérföldköveket és számos a jövőre vonatkozó ötletet.
-Végleges formájában a Slime egy olyan nyelv lesz, ami minden nemű felesleges redundanciát hatékonyan semlegesít.
-Legfontosabb cél az, hogy mindezt átláthatóan, egyszerűen és hatékonyan tegye.
+Ezeket követően kerül majd sor a teljeskörű validációra.
+A cél a 100\%-os tesztlefedettség mind kód, mind funkcionalitás tekintetében.
+Ekkor várhatóan már 85\%-os sorredukcióra is képes lesz, és az átláthatoság is látványosan javul majd. Végleges formájában a Slime egy olyan nyelv lesz, ami mindennemű felesleges redundanciát hatékonyan semlegesít. A legfontosabb cél az, hogy mindezt átláthatóan, egyszerűen és hatékonyan tegye.

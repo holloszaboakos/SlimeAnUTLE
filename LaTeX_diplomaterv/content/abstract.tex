@@ -13,16 +13,9 @@ Nyelvi elemei a kiegészítendő nyelv vagy nyelvtan sablonjainak hatékony lét
 A fordítót az ANTLR (ANother Tool for Language Recognition) segítségével valósítottuk meg. 
 A Slime elsődlegesen IRTG (Interpreted Regular Tree Grammar) nyelvtanok tömör és átlátható leírására lett kifejlesztve. 
 Az IRTG-t olyan nyelvtan fejlesztésére használjuk, amely két vagy több formalizmus (nyers szöveg, szintaktikai reprezentációk, szemantikai reprezentációk) közötti konverziót implementál gráftranszformációk segítségével. 
-A Slime nyelvet IRTG nyelvtanok, ANTLR lexer nyelvtanok,  Android layout leíró XML (Extensible Markup Language) kódok és HTML (Hypertext Markup Language) kódok előállítására használtuk. 
-A rekord nyereség egy android layout esetében tapasztaltuk.
-Itt egy egyszerű gombos menü tömörítésére használtuk a Slime nyelvet.
-Itt ugyan csupán 30\%-kal volt kevesebb a sorok száma, de a kód nagy részét a sablonok előkészítése tette ki.
-Az előkészítést követően a gombokat már az addigi átlagosan tizenöt sor helyett három sorban lehetett megadni.
-Ez sokkal több gomb esetén majdnem 80\%-os nyereséget jelent.
-Arról nem is beszélve, hogy az előkészítést lehet külön fájlban végezni, ami utána beimportálható más fájlokhoz is csökkentve költséget.
-IRTG-k esetében az előkészítésen felül két sorra volt szükség az addigi hat sor helyett .
-Egy sor volt ebből az adatok definiálása a másik pedig azok beszúrása a sablonba.
-Ez több IRTG szabály esetén akár 66\%-os nyereséget is jelenthet.
+A Slime nyelvet IRTG nyelvtanok, ANTLR lexer nyelvtanok,  Android layout leíró XML kódok és HTML kódok előállítására használtuk. 
+A legnagyobb nyereséget egy android layout esetében tapasztaltuk, ahol egy egyszerű gombos menü tömörítésére használtuk a Slime nyelvet: 30\%-kal lett kevesebb a sorok száma, de a kód nagy részét a sablonok előkészítése tette ki. Az előkészítést követően a gombokat már az addigi átlagosan tizenöt sor helyett három sorban lehetett megadni, ez sokkal több gomb esetén majdnem 80\%-os nyereséget jelent.
+IRTG-k esetében az előkészítésen felül két sorra volt szükség az addigi hat sor helyett: egy sor az adatok definiálása, a másik pedig azok beszúrása a sablonba. Ez több IRTG szabály esetén akár 66\%-os nyereséget is jelenthet.
 A program teljes forráskódja, szintaxisának és alapelemeinek leírása és számos példakód elérhető a \texttt{https://github.com/Hollo1996/SlimeAnUTLE} oldalon.
 
 \vfill
@@ -39,14 +32,10 @@ Its syntax supports efficient declaration, manipulation and storage of templates
 We implemented the compiler using ANTLR (ANother Tool for Language Recognition). 
 The primary goal of developing Slime was a syntax that facilitates compact and clear formulation of IRTG (Interpreted Regular Tree Grammar) grammars. 
 We use IRTGs to develop grammars which are capable of converting between two or more formalisms, such as raw text, syntactic, and semantic representations via graph transformations. 
-Slime has been tested by implementing templates to generate IRTG grammars, ANTLR lexer grammars, Android layout XML (Extensible Markup Language) and HTML  (Hypertext Markup Language) sources.
-It was the most efficient in case of an android layout.
-However it reduced the amount of lines only with 30\%, the most of the Slime code was the preparation of the templates.
-After preparation we needed only three lines to define the buttons instead of the previous fifteen.
-In case of more buttons this means near 80\% reduction of lines.
-Also the preparation can be done in a separate file so it can be included in other layouts's Slime files, reducing the cost.
-In case of IRTG rules with four interpretation we needed only two lines instead of six (and preparation).
-It can reach near 66\% reduction of lines for larger grammars.
+Slime has been tested by implementing templates to generate IRTG grammars, ANTLR lexer grammars, Android layout XML and HTML sources.
+Our Slime templates were most effective at generating Android layout code. Here we have managed to achieve a 30\% reduction in the lines of code needed
+for implementing a menu. Most of the template content was initialization code, apart from which we only needed three lines of code per menu item as opposed to the avarage fifteen lines of code necessary in XML. This can result in even an 80\% reduction in necessary lines when implementing menus with a large number of items. In the case of generatating IRTG files, apart from the initialization code we only needed two lines of code per IRTG rule instead of the six in plain IRTG format. For an IRTG file with many rules this can mean a 66\% reduction in lines of code.
+
 The source code of the language, the description of its syntax and its basic elements can be found at \texttt{https://github.com/Hollo1996/SlimeAnUTLE} alongside with several examples.
 
 \vfill

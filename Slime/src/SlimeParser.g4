@@ -32,9 +32,9 @@ spslBody:NAME (SC NAME)*  ;
 temp: tempHead tempBody tempTail;
 tempHead:(BOB_TEMP|OLB_TEMP|COB_TEMP);
 tempBody:(tempBodyPart SC)* tempBodyPart;
-tempBodyPart:(text|slot|spec|tempText|LINE_DIVIDER)+;
+tempBodyPart:(text|slot|spec|tempText)*;
 tempTail:(BCB_TEMP|NL_TEMP|NW_TEMP);
-tempText:(TEXT_LINE LINE_DIVIDER)* TEXT_LINE;
+tempText:(TEXT_LINE)+;
 //EXTE
 exte: exteHead exteBody exteTail;
 exteHead:(BOB_EXTE|OLB_EXTE|COB_EXTE);

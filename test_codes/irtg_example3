@@ -32,16 +32,16 @@ TDB,termDataBase : Type  :=  word_class, word, concept : Temp
 
 {#declaration of data for the trerminal IRTG template#}
 datas,D :List:TDB :=
-	 [=:TDB:= [|NN;dog;dog 
-	,[=:TDB:= [|NN;cat;cat 
-	,[=:TDB:= [|NN;owl;owl 
-	,[=:TDB:= [|NN;fox;fox 
-	,[=:TDB:= [|NN;fish;fish 
-	,[=:TDB:= [|NN;lion;lion 
-	,[=:TDB:= [|NN;bird;bird 
-	,[=:TDB:= [|NN;mouse;mouse 
-	,[=:TDB:= [|NN;tiger;tiger 
-	,[=:TDB:= [|NN;monkey;monkey 
+	 [=:TDB:= [|NN;dog;dog
+	,[=:TDB:= [|NN;cat;cat
+	,[=:TDB:= [|NN;owl;owl
+	,[=:TDB:= [|NN;fox;fox
+	,[=:TDB:= [|NN;fish;fish
+	,[=:TDB:= [|NN;lion;lion
+	,[=:TDB:= [|NN;bird;bird
+	,[=:TDB:= [|NN;mouse;mouse
+	,[=:TDB:= [|NN;tiger;tiger
+	,[=:TDB:= [|NN;monkey;monkey
 
 {#create list for the output out of copies of the terminal IRTG rule template#} 
 result,R :List:Temp := <+TB:+D 
@@ -62,66 +62,65 @@ R :+ D :
 +}:<@e 
 
 {#
-OUTPUT:
-//TERMINAL RULES
+OUTPUT://TERMINAL RULES
 
 	NN -> dog_NN
 	[string] dog
 	[tree] NN(dog)
 	[ud] "(dog<root>\dog)"
-	[4lang] "(dog <root>\dog )"
+	[4lang] "(dog<root>\dog)"
 
 	NN -> cat_NN
 	[string] cat
 	[tree] NN(cat)
 	[ud] "(cat<root>\cat)"
-	[4lang] "(cat <root>\cat )"
+	[4lang] "(cat<root>\cat)"
 
 	NN -> owl_NN
 	[string] owl
 	[tree] NN(owl)
 	[ud] "(owl<root>\owl)"
-	[4lang] "(owl <root>\owl )"
+	[4lang] "(owl<root>\owl)"
 
 	NN -> fox_NN
 	[string] fox
 	[tree] NN(fox)
 	[ud] "(fox<root>\fox)"
-	[4lang] "(fox <root>\fox )"
+	[4lang] "(fox<root>\fox)"
 
 	NN -> fish_NN
 	[string] fish
 	[tree] NN(fish)
 	[ud] "(fish<root>\fish)"
-	[4lang] "(fish <root>\fish )"
+	[4lang] "(fish<root>\fish)"
 
 	NN -> lion_NN
 	[string] lion
 	[tree] NN(lion)
 	[ud] "(lion<root>\lion)"
-	[4lang] "(lion <root>\lion )"
+	[4lang] "(lion<root>\lion)"
 
 	NN -> bird_NN
 	[string] bird
 	[tree] NN(bird)
 	[ud] "(bird<root>\bird)"
-	[4lang] "(bird <root>\bird )"
+	[4lang] "(bird<root>\bird)"
 
 	NN -> mouse_NN
 	[string] mouse
 	[tree] NN(mouse)
 	[ud] "(mouse<root>\mouse)"
-	[4lang] "(mouse <root>\mouse )"
+	[4lang] "(mouse<root>\mouse)"
 
 	NN -> tiger_NN
 	[string] tiger
 	[tree] NN(tiger)
 	[ud] "(tiger<root>\tiger)"
-	[4lang] "(tiger <root>\tiger )"
+	[4lang] "(tiger<root>\tiger)"
 
 	NN -> monkey_NN
 	[string] monkey
 	[tree] NN(monkey)
 	[ud] "(monkey<root>\monkey)"
-	[4lang] "(monkey <root>\monkey )"
+	[4lang] "(monkey<root>\monkey)"
 #}

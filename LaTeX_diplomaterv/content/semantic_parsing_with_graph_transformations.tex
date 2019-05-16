@@ -31,9 +31,9 @@ A lehetséges levezetési fákon kivehető az egyes nemterminális szimbólumtí
 \begin{figure}[h]
 \texttt{S( NP( NNP( John ) ), VP( VBZ( loves ),  NP( NNP( Mary ) ) ) ) )} :
 \begin{itemize}
-\item$S \to NP VP$ .
+\item$S \to NP, VP$ 
 \item$NP \to NNP$
-\item$VP \to VBZ NP$
+\item$VP \to VBZ, NP$
 \item$NNP \to John | Mary$
 \item$VBZ \to loves$
 \end{itemize}
@@ -63,7 +63,7 @@ A dependencia-alapú megközelítés szerint a szintaktikai szerkezet lexikai el
 
 A dependencianyelvtanok az információt egy DAO gráfon szemléltetik, amelyek csúcsai a szavak, és élei pedig a szavak közötti viszonyok. Az ilyen függőségi gráfok leírására többféle formalizmus létezik. Mi a kutatásunk során az \texttt{UD}-t (Universal Dependencies)\cite{deMarneffe:2014} használtuk.
 
-Az UD projekt egy nyelvek közötti konzisztens annotációs rendszer és fa-adatbázis hatvannál is több nyelvre. Kategóriák és annotációk univerzális készletét nyújtja, miközben megenged nyelvfüggő kiterjesztéseket is. Az UD a Stanford Dependencies-ből \cite{deMarneffe:2008} fejlődött ki, és lehetővé teszi nyelvfüggetlen dependenciaparszerek kiértékelését.
+Az UD projekt\footnote{\url{http://universaldependencies.org/}} egy nyelvek közötti konzisztens annotációs rendszer és fa-adatbázis hatvannál is több nyelvre. Kategóriák és annotációk univerzális készletét nyújtja, miközben megenged nyelvfüggő kiterjesztéseket is. Az UD a Stanford Dependencies-ből \cite{deMarneffe:2008} fejlődött ki, és lehetővé teszi nyelvfüggetlen dependenciaparszerek kiértékelését.
 
 \begin{figure}[h]
 \centering 
@@ -110,7 +110,7 @@ Az UD projekt egy nyelvek közötti konzisztens annotációs rendszer és fa-ada
 \label{fig:deptreeHU}  
 \end{figure}
 
-Ebből a két példából is jól látszik az UD nyelvfüggetlensége. A mondat angol és magyar verziójában a szavakat megfeleltetve az élek is könnyen megfeleltethetőek.
+A~\ref{fig:deptreeEN} és~\ref{fig:deptreeHU} ábrákon jól látszik az UD nyelvfüggetlensége. A mondat angol és magyar verziójában a szavakat megfeleltetve az élek is könnyen megfeleltethetőek.
 Itt az élek jelentése a következő:
 \begin{itemize}
 \item \emph{punct : } 
@@ -148,12 +148,12 @@ A \texttt{4lang}  \cite{Kornai:2015} egy formalizmus, ami irányított gráfokat
 
 A csúcsokat háromféle él kapcsolhatja össze:
 0-él reprezentálja a tulajdonságokat. Például \edge{virág}{0}{szép}, az \textit{$IS\_A$} viszony \edge{virág}{0}{növény} és unáris predikáció \edge{virág}{0}{bimbózás}.
-1 és 2-élek bináris predikációkat kapcsolnak az argumentumaikhoz. Például \bin{szeretet}{James}{kutya}.
+Az 1 és 2-élek bináris predikációkat kapcsolnak az argumentumaikhoz, például \bin{szeretet}{James}{kutya}.
 
-Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \twoedges{$w_1$}{1}{0}{$w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I’am writing.}(\textit{Én éppen írok})  mondatot az \edge{i}{0}{write} 4lang gráffal és az \textit{I’am writing a letter}(\textit{Én egy levelet írok éppen}) mondatot az \bin{write}{i}{letter} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. \cite{Recski:2018}
+Létezik egy másik élkonfiguráció is, ami megjelenhet 4lang gráfban, \twoedges{$w_1$}{1}{0}{$w_2$} . Erre azért van szükség, hogy konzisztensen lehessen jelölni a tárgy és predikátum közötti viszonyt. Vegyük például a \textit{I am writing} (\textit{Én éppen írok})  mondatot az \edge{i}{0}{write} 4lang gráffal és az \textit{I am writing a letter} (\textit{Én egy levelet írok éppen}) mondatot az \bin{write}{i}{letter} gráffal . Ez a két példa a dupla él nélkül azt jelentené, hogy  az \textit{I} és a \textit{write} között attól függ a viszony, hogy adott-e a tárgy vagy sem. \cite{Recski:2018}
 
-A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_ to\_ 4lang, dict\_ to\_ 4lang). A dep\_ to\_ 4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser \cite{deMarneffe:2008} kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
-4lang a neve egy kézzel alkotott  fogalmi szótárnak is, amely négy nyelven tartalmaz több mint 2000 fogalom nyelvfüggetlen definícióját (magyar, angol, latin, lengyel). \cite{Kornai:2013}
+A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat építeni nyers szövegből és szótári definíciókból (text\_to\_4lang, dict\_to\_4lang). A dep\_to\_4lang 4lang viszonyokat nyer ki szövegből a Stanford Parser \cite{deMarneffe:2008} kimenetének a feldolgozásával és a Stanford függőségek 4lang részgráfokká való leképezésével.
+4lang a neve egy kézzel alkotott  fogalmi szótárnak is, amely négy nyelven (magyar, angol, latin, lengyel) tartalmazza több mint 2000 fogalom nyelvfüggetlen definícióját. \cite{Kornai:2013}
 
 
 %----------------------------------------------------------------------------
@@ -162,51 +162,39 @@ A 4lang könyvtár tartalmaz eszközöket, amelyek képesek 4lang gráfokat ép�
 %----------------------------------------------------------------------------
 A munkánk során, mint majd alaposabban is bemutatom a nyelvtan generálásánál, alaposan kihasználtuk a 4lang és az UD közötti hasonlóságot. Mindkét esetben irányított gráfokról beszélünk: a csúcsok megfeleltethetőek a szavaknak, és az élek a szavak közötti viszonyokat jelölik, ezek a viszonyok sok esetben megfeleltethetőek egymásnak: például az \texttt{amod} dependencia leképezhető a \edge{$w_1$}{0}{$w_2$} 4lang-éltípusra.
 
-A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikáját (jelentését). Az UD-ben a csúcsok maguk a szavak, míg 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai kapcsolatokat. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak és a 4lang-beli fogalmak között is. Ez azt jelenti, hogy az UD közvetetten tartalmazza a szemantikára vonatkozó információkat is.
+A kettő között ugyanakkor fontos elméleti és jelölésbeli különbségek vannak. Az UD a mondatok szintaxisát reprezentálja, míg a 4lang a szemantikáját (jelentését). Az UD-ben a csúcsok maguk a szavak, míg a 4lang-ban a szavaknak megfeleltethető fogalmak. Az UD élei a szavak közötti nyelvtani viszonyt jelölik, a 4lang élek pedig a szavak közötti szemantikai kapcsolatokat. A 4lang élek és az UD függőségek között egy a többhöz viszony áll fenn, ahogy a szavak és a 4lang-beli fogalmak között is. Ez azt jelenti, hogy az UD közvetetten tartalmazza a szemantikára vonatkozó információkat is.
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{lc}
-        \toprule
-        UD dependencia & 4lang él \\
-        \midrule
-        amod & \multirow{7}{*}{\edge{$w_1$}{0}{$w_2$}} \\
-        advmod & \\
-        npadvmod & \\
-        acomp & \\
-        dep & \\
-        num & \\
-        prt & \\
-        \midrule
-        nsubj & \multirow{4}{*}{\twoedges{$w_1$}{1}{0}{$w_2$}} \\
-        csubj & \\
-        xsubj & \\
-        agent & \\
-        \midrule
-        dobj & \multirow{6}{*}{\edge{$w_1$}{2}{$w_2$}} \\
-        pobj & \\
-        nsubjpass & \\
-        csubjpass & \\
-        pcomp & \\ 
-        xcomp & \\
-        \midrule
-        appos & \twoedges{$w_1$}{0}{0}{$w_2$} \\
-        \midrule
-        poss & \multirow{2}{*}{$w_2\xleftarrow1$ \texttt{HAS} $\xrightarrow2w_1$} \\
-        prep\_of & \\
-        \midrule
-        tmod & $w_1\xleftarrow1$ \texttt{AT} $\xrightarrow2w_2$ \\
-        \midrule
-        prep\_with & $w_1\xleftarrow1$ \texttt{INSTRUMENT} $\xrightarrow2w_2$ \\
-        \midrule
-        prep\_without & $w_1\xleftarrow1$ \texttt{LACK} $\xrightarrow2w_2$ \\
-        \midrule
-        prep\_P & $w_1\xleftarrow1$ \texttt{P} $\xrightarrow2w_2$ \\
-        \bottomrule                         
-    \end{tabular}
-    \caption{UD függőségek leképezése 4lang részgráfokra \cite[p. 12.]{Recski:2018}}
-    \label{table:deps}
-    \end{table}
+    \begin{table}
+      \centering
+      \begin{tabular}{ll}
+      \textbf{UD dependencia} & \textbf{4lang él}                 \\ \hline
+      advcl               & \edge{$w_1$}{0}{$w_2$}        \\
+      advmod              &                               \\
+      amod                &                               \\
+      nmod                &                               \\
+      nummod              &                               \\ \hline
+      appos               & \twoedges{$w_1$}{0}{0}{$w_2$} \\
+      dislocated          &                               \\ \hline
+      csubj               & \twoedges{$w_1$}{1}{0}{$w_2$} \\
+      nsubj               &                               \\ \hline
+      ccomp               & \edge{$w_1$}{2}{$w_2$}        \\
+      obj                 &                               \\
+      xcomp               &                               \\ \hline
+  
+      \multicolumn{2}{l}{\textbf{A \texttt{case} kezelése}}      \\ \hline
+      case + nmod         & $w_1\xleftarrow1$ $w_3$ $\xrightarrow2w_2$ \\
+      case + nsubj        &                                            \\
+      case + obl          &                                            \\ \hline
+  
+      \multicolumn{2}{l}{\textbf{Angol nyelvspecifikus altípusok}}                           \\ \hline
+      obl:npmod           & \edge{$w_1$}{0}{$w_2$}                            \\ \hline
+      nmod:tmod           & $w_1\xleftarrow1$ \texttt{AT} $\xrightarrow2w_2$  \\
+      obl:tmod            &                                                   \\ \hline
+      nmod:poss           & $w_2\xleftarrow1$ \texttt{HAS} $\xrightarrow2w_1$
+      \end{tabular}
+      \caption{UD dependenciák leképezése 4lang részgráfokra (\cite{Acs:2019}, \cite{Recski:2018} alapján).}
+      \label{table:deps}
+      \end{table}
 
 Bár a mondat UD gráfjából a 4lang gráfja levezethető, a két formalizmus tartalma mégsem ekvivalens. A 4lang gráfból már nem mindig vezethető le egyértelműen az UD.
 
@@ -241,19 +229,19 @@ A~\ref{fig:thewhitecat}. ábra szemlélteti, hogy az \textit{amod} él megfelelt
 \label{sec:goals}
 %----------------------------------------------------------------------------
 
-A kutatásunk célja az, hogy a nyers szöveg és a feljebb leírt interpretációk bármelyikéből le tudjuk a többit generálni. Ha az egyik interpretációhoz a másikból több is tartozik, akkor képesek akarunk lenni az összes verziót legenerálni és a legalkalmasabbat automatikusan kiválasztani valószínűségi súlyozás segítségével. Minél kevesebb nyelvet szeretnénk használni, és minél kevesebb módszertant. Ez utóbbi szemponttól azt várjuk, hogy könnyebb lesz a kódot karbantartani és bővíteni további interpretációkkal. Mindezt hatékonyan is szeretnénk csinálni. E téren az alap célunk egy négyzetes lefutási idő a bemenet méretének függvényében. Ezeknek a megkötéseknek az IRTG nyelv eleget tesz, hiszen nagyon eltérő interpretációk esetében is legfeljebb interpretációk száma plusz egy nyelvet kell használnunk. Ugyanakkor, ha kiegészítjük az IRTG-t egy összetettebb gráfalgebrával, az képes lehet minden interpretáció hatékony leírására és mindehhez két nyelvet kellene használnia.
+A kutatásunk célja az, hogy a nyers szöveg és a fent leírt interpretációk bármelyikéből le tudjuk a többit generálni. Ha az egyik interpretációhoz a másikból több is tartozik, akkor képesek akarunk lenni az összes verziót legenerálni és a legalkalmasabbat automatikusan kiválasztani valószínűségi súlyozás segítségével. Minél kevesebb nyelvet szeretnénk használni, és minél kevesebb módszertant. Ez utóbbi szemponttól azt várjuk, hogy könnyebb lesz a kódot karbantartani és bővíteni további interpretációkkal. Mindezt hatékonyan is szeretnénk csinálni. E téren az alap célunk egy négyzetes lefutási idő a bemenet méretének függvényében. Ezeknek a megkötéseknek az IRTG eleget tesz, hiszen nagyon eltérő interpretációk esetében is legfeljebb interpretációk száma plusz egy nyelvet kell használnunk. Ugyanakkor, ha kiegészítjük az IRTG-t egy összetettebb gráfalgebrával, az képes lehet minden interpretáció hatékony leírására és mindehhez két nyelvet kellene használnia.
 
 %----------------------------------------------------------------------------
 \section{Az IRTG és az alárendelt algebrák}
 \label{sec:aists}
 %----------------------------------------------------------------------------
-Ebben a fejezetben a kutatás során használt környezetről (Alto), formalizmusról (IRTG), algebrákról(SA,TTA,SGA), hátrányaikról és az ezeket kiküszöbölő ideiglenes megoldásainkról lesz szó.
+Ebben a fejezetben a kutatás során használt környezetről (Alto), formalizmusról (IRTG), algebrákról(SA, TTA, SGA), hátrányaikról és az ezeket kiküszöbölő ideiglenes megoldásainkról lesz szó.
 
 %----------------------------------------------------------------------------
 \subsection{Az Alto}
-\label{sec:alto}
+\label{sec:Alto}
 %----------------------------------------------------------------------------
-A kutatás során a kódot az Alto-val\footnote{\url{https://github.com/coli-saar/alto}} (Algebraic Language Toolkit) fordítjuk és futtatjuk. Az Alto egy nyílt forrású parszer, többféle algebrát is megvalósít, amelyek IRTG-be ágyazva használhatók, mint például az \texttt{s-graph} és a \texttt{tag tree} algebrák. Ezen kívül is szabadon bővíthető új algebrákkal. Már korábban is használták gráftranszformációra és szemantikai elemzésre is, lásd \cite{Koller:2015}, \cite{Groschwitz:2015}. Nagy előnyt jelent, hogy Java-ban lett implementálva, így szinte bármely platformon futtatható. Rendelkezik grafikus és konzolos felhasználói felülettel is.
+A kutatás során a kódot az Alto-val\footnote{\url{https://github.com/coli-saar/Alto}} (Algebraic Language Toolkit) fordítjuk és futtatjuk. Az Alto egy nyílt forrású parszer, többféle algebrát is megvalósít, amelyek IRTG-be ágyazva használhatók, mint például az \texttt{s-graph} és a \texttt{tag tree} algebrák. Ezen kívül is szabadon bővíthető új algebrákkal. Már korábban is használták gráftranszformációra és szemantikai elemzésre is, lásd \cite{Koller:2015}, \cite{Groschwitz:2015}. Nagy előnyt jelent, hogy Java-ban lett implementálva, így szinte bármely platformon futtatható. Rendelkezik grafikus és konzolos felhasználói felülettel is.
 
 
 %----------------------------------------------------------------------------
@@ -274,16 +262,16 @@ NP -> _NP2_amod_JJ_NN(JJ, NN)
 \label{fig:amod_irtg}
 \end{figure}
 
-A szabálysorok egy környezetfüggetlen nyelvtan átírási szabályait adják meg. A szabályok feldolgozásakor először egy \texttt{levezetési fa} (derivation tree) épül, amelyek a nonterminálisokat lecserélő szabályokat tartalmazzák. Egy szabályt a következő módon lehet definiálni (a sablonban a változó részeket \{\$ \$\}zárójellel jelöltem, ahol a \$ a Slot kifejezésből ered, a \{\} pedig a nem szöveg elemeket jelöli):
+A szabálysorok egy környezetfüggetlen nyelvtan átírási szabályait adják meg. A szabályok feldolgozásakor először egy \texttt{levezetési fa} (derivation tree) épül, amelyek a nonterminálisokat lecserélő szabályokat tartalmazzák. Egy szabályt a következő módon lehet definiálni (a sablonban a változó részeket \{\$ \$\} zárójellel jelöltem, ahol a \$ a Slot kifejezésből ered, a \{\} pedig a nem szöveg elemeket jelöli):
 \begin{verbatim}
 [{$ interpretáció neve $}] {$ interpretáció lépése $}
 \end{verbatim}
-A interpretációk nyelve és kimenete többféle is lehet.  Választható például a szöveg kimenetű \texttt{string algebra}, a csúcssorrendet tartó, fa kimenetű \texttt{tag tree algebra}, vagy  az irányított gráf kimenetű \texttt{s-graph algebra}. Az algebrák és az interpretációk között egy a többhöz kapcsolat van. Az interpretációk egymástól teljesen függetlenek. Egy szabályban minden interpretációt meg kell adni. Minden átírás során, minden interpretációra vonatkozó derivációba beszúródnak az alkalmazott szabályban az interpretációhoz tartozó lépések. A beszúrás helyét ?{$  szám $}-ként jelölik minden interpretációban. Itt a szám annak a jobb oldali nemterminálisnak a sorszáma, amely átírása során szúródik be az alkalmazott átírási szabálynak az interpretációhoz tartozó lépése. Az IRTG futtatásakor bármelyik interpretáció lehet a bemenet. Az ALTO a bemeneti interpretáció algebrájának megfelelő formátumú bemenetet vár. A futás során az ALTO keres a bemenethez egy olyan levezetést, ami megfelel a környezetfüggetlen nyelvtannak és a bemenetet adja eredményül. Ezt követően a levezetési fa szerint felépíti a többi interpretációt is, és végrehajtva őket, előállítja a kimeneteket.
+A interpretációk nyelve és kimenete többféle is lehet.  Választható például a szöveg kimenetű \texttt{string algebra}, a csúcssorrendet tartó, fa kimenetű \texttt{tag tree algebra}, vagy  az irányított gráf kimenetű \texttt{s-graph algebra}. Az algebrák és az interpretációk között egy a többhöz kapcsolat van. Az interpretációk egymástól teljesen függetlenek. Egy szabályban minden interpretációt meg kell adni. Minden átírás során, minden interpretációra vonatkozó derivációba beszúródnak az alkalmazott szabályban az interpretációhoz tartozó lépések. A beszúrás helyét ?{\$ szám \$}-ként jelölik minden interpretációban. Itt a szám annak a jobb oldali nemterminálisnak a sorszáma, amely átírása során szúródik be az alkalmazott átírási szabálynak az interpretációhoz tartozó lépése. Az IRTG futtatásakor bármelyik interpretáció lehet a bemenet. Az Alto a bemeneti interpretáció algebrájának megfelelő formátumú bemenetet vár. A futás során az Alto keres a bemenethez egy olyan levezetést, ami megfelel a környezetfüggetlen nyelvtannak és a bemenetet adja eredményül. Ezt követően a levezetési fa szerint felépíti a többi interpretációt is, és végrehajtva őket, előállítja a kimeneteket.
 
-Tekintsük az 1.ábrán bemutatott szabályt. Ez a szabály egy melléknévből (adjective, JJ) és egy főnévből(noun, NN) készít egy két gyermekű főnévi kifejezést (noun phrase, NP). A két szó között melléknévi módosítói (adjectival modifier, amod) viszony áll fenn az UD gráfban. Ennek megfelelően neveztük el a szabályt “\_ NP2\_ amod\_ JJ\_ NN”-nek. Az interpretációk sorban a nyers szöveg, a szintaktikai fa, az UD gráf és a 4lang gráf.
-Itt minden reprezentációban a “?1” és “?2” az, ahova a “JJ” és “NN” jobb oldali nemterminális szimbólumok átírásánál keletkező kifejezések kerülnek. Ezek az interpretációk bemenetei. Jelen esetben a “?1” a “JJ” és a “?2” az “NN” szimbólum interpretációinak a helye. A két jobb oldali nemterminális kiértékelése után minden interpretációba a vele azonos interpretáció kimenete kerül, stringé a stringbe stb.
+Tekintsük az 1.ábrán bemutatott szabályt. Ez a szabály egy melléknévből (adjective, JJ) és egy főnévből (noun, NN) készít egy két gyermekű főnévi kifejezést (noun phrase, NP). A két szó között melléknévi módosítói (adjectival modifier, amod) viszony áll fenn az UD gráfban. Ennek megfelelően neveztük el a szabályt \texttt{\_NP2\_amod\_JJ\_NN}-nek. Az interpretációk sorban a nyers szöveg, a szintaktikai fa, az UD gráf és a 4lang gráf.
+Itt minden reprezentációban a \texttt{?1} és \texttt{?2} az, ahova a \texttt{JJ} és \texttt{NN} jobb oldali nemterminális szimbólumok átírásánál keletkező kifejezések kerülnek. Ezek az interpretációk bemenetei. Jelen esetben a \texttt{?1} a \texttt{JJ} és a \texttt{?2} az \texttt{NN} szimbólum interpretációinak a helye. A két jobb oldali nemterminális kiértékelése után minden interpretációba a vele azonos interpretáció kimenete kerül, stringé a stringbe stb.
 
-A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti két szót fűzi össze. A tree interpretációhoz a tag tree algebra tartozik, ami egy “NP2” címkéjű csúcs alá szúrja be a két bemenetet. Ez az algebra állítja elő a szintaktikai fát. A bemenete két-két csúcs.  A negyedik és ötödik sorhoz is az s-graph algebra tartozik. Mindkettő irányított éllel köti össze a két bemenetet. Az UD egy \textit{amod}, a 4lang pedig egy \textit{0} címkéjű éllel. Itt mindkét esetben mindkét bemenet csak egy címkézett csúcs. A nevüknek megfelelő gráfokat állítják elő. Magasabb szintű szabályoknál már az UD és 4lang bemenetek összetett irányított gráfok lesznek. Mi elsősorban az előbb említett három algebrát használjuk, de ezeken kívül más algebra is használható az IRTG nyelvben, mint például a wide string algebra, a tree with arities algebra vagy a set algebra. Ezek nem részei a dolgozat fókuszának.
+A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti két szót fűzi össze. A tree interpretációhoz a tag tree algebra tartozik, ami egy \texttt{NP2} címkéjű csúcs alá szúrja be a két bemenetet. Ez az algebra állítja elő a szintaktikai fát. A bemenete két-két csúcs.  A negyedik és ötödik sorhoz is az s-graph algebra tartozik. Mindkettő irányított éllel köti össze a két bemenetet. Az UD egy \texttt{amod}, a 4lang pedig egy \texttt{0} címkéjű éllel. Itt mindkét esetben mindkét bemenet csak egy címkézett csúcs. A nevüknek megfelelő gráfokat állítják elő. Magasabb szintű szabályoknál már az UD és 4lang bemenetek összetett irányított gráfok lesznek. Mi elsősorban az előbb említett három algebrát használjuk, de ezeken kívül más algebra is használható az IRTG nyelvben, mint például a \texttt{wide string algebra}, a \texttt{tree with arities algebra} vagy a \texttt{set algebra}\footnote{\url{https://bitbucket.org/tclup/alto/wiki/Algebras}}. Ezek nem részei a dolgozat fókuszának.
 
 
 
@@ -291,25 +279,24 @@ A string interpretációhoz a string algebra tartozik. Jelen esetben a bemeneti 
 \subsection{A string algebra}
 \label{sec:sa}
 %----------------------------------------------------------------------------
-Az SA (\texttt{string algebra}) kétségtelenül az összes IRTG alatt elérhető algebra közül a legegyszerűbb. Itt csak szövegek konkatenációjára (összefűzésére) van lehetőség. A bemenet és kimenet nem tartalmaz slotokat vagy egyéb nyelvi elemeket. A műveletet a következő formátumban lehet megadni:
+Az SA (\texttt{string algebra} az összes IRTG alatt elérhető algebra közül a legegyszerűbb. Itt csak szövegek konkatenációjára (összefűzésére) van lehetőség. A bemenet és kimenet nem tartalmaz slotokat vagy egyéb nyelvi elemeket. A műveletet a következő formátumban lehet megadni:
 \begin{verbatim}
-*( {$  szöveg1 $}, {$  szöveg2 $} )
+*( {$ szöveg1 $}, {$ szöveg2 $} )
 \end{verbatim}
 
 Egymásba is ágyazható több konkatenáció:
 \begin{verbatim}
-*( {$  szöveg1 $}, *( {$  szöveg2 $}, {$  szöveg3 $} ) )
+*( {$ szöveg1 $}, *( {$ szöveg2 $}, {$ szöveg3 $} ) )
 \end{verbatim}
 
-Például a \textit{*( "Every mouse”, *( “loves”, “cheese.” ) )} kifejezés az \textit{Every mouse loves cheese.}(\textit{“Minden egér szereti a sajtot.}) szöveget adja vissza. Ez a konkatenáció kommutatív és asszociatív.
-
+Például a \textit{*( "Every mouse”, *( “loves”, “cheese.” ) )} kifejezés az \textit{Every mouse loves cheese.} szöveget adja vissza. Ez a konkatenáció kommutatív és asszociatív.
 
 
 %----------------------------------------------------------------------------
 \subsection{A tag tree algebra}
 \label{sec:tta}
 %----------------------------------------------------------------------------
-A TTA (\texttt{tag tree algebra})-nak, mint az SA-nak, csak egy művelete van, a \textit{merge} (egyesítés). A TTA esetében viszont  már a bemenetek nem nyers szövegek, hanem csúcs sorrend tartó fa gráfok. Tartalmazhatnak slot-okat, amiket TTA esetében \textit{hole}-nak(lyuk) nevezünk. A hole-okat ‘*’-gal jelöljük. Nem lehet őket címkékkel vagy más módon megkülönböztetni, sem eltörölni. A gráf csúcsaiba helyezhetőek. Az ilyen slot-okat tartalmazó fákat nevezzük \textit{tag tree}-nek. A TTA merge műveletének két operandusa van. Mindkét operandus egy tag tree. A jobb oldali fát szúrjuk be a bal oldali fa minden hole-jába a merge során. A merge jele a ‘@’ szimbólum, és se nem kommutatív, se nem asszociatív. A fákat zárójelekkel adjuk meg. Egy csúcs közvetlen gyermekeit és az azok alatti részfát a tőle jobb oldali zárójelben kell megadni vesszőkkel elválasztva. Például így írható le a \textit{John loves Mary} (\textit{János szereti Marit.}) mondat szintaktikai fája:
+A TTA (\texttt{tag tree algebra})-nak, mint az SA-nak, csak egy művelete van, a \textit{merge} (egyesítés). A TTA esetében viszont  már a bemenetek nem nyers szövegek, hanem csúcs sorrend tartó fa gráfok. Tartalmazhatnak slot-okat, amiket TTA esetében \textit{hole}-nak(lyuk) nevezünk. A hole-okat ‘*’-gal jelöljük. Nem lehet őket címkékkel vagy más módon megkülönböztetni, sem eltörölni. A gráf csúcsaiba helyezhetőek. Az ilyen slot-okat tartalmazó fákat nevezzük \textit{tag tree}-nek. A TTA merge műveletének két operandusa van. Mindkét operandus egy tag tree. A jobb oldali fát szúrjuk be a bal oldali fa minden hole-jába a merge során. A merge jele a ‘@’ szimbólum, és se nem kommutatív, se nem asszociatív. A fákat zárójelekkel adjuk meg. Egy csúcs közvetlen gyermekeit és az azok alatti részfát a tőle jobb oldali zárójelben kell megadni vesszőkkel elválasztva. Például így írható le a \textit{John loves Mary} mondat szintaktikai fája:
 
 S3( NP1( NNP( John ) ), VP2( VBZ( loves ),  NP1( NNP( Mary ) ) ), .( . ) )
 
@@ -341,24 +328,24 @@ S3( NP1( NNP( John ) ), VP2( NNP( John ),  NP1( NNP( John )) ), NNP( John ) )
 
 fát kapjuk. 
 Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. 
-Lásd példa~\ref{sec:example1}.
+lásd~\ref{sec:example1}.
 
-Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank szintaktikai fáiban.  Ilyen a \textit{the black cat} (\textit{a fekete macska}) főnévi kifejezés is, aminek a szintaktikai fája az:
+Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank (\cite{Marcus:1993}) szintaktikai fáiban.  Ilyen a \textit{the black cat} főnévi kifejezés is, aminek a szintaktikai fája a következő:
 
 NP3( DT( the ), JJ( black ), NN( cat ) ).
 
-A fát merge nélkül praktikusan csak három bemenetű szabállyal lehetséges implementálni, lásd példa~\ref{sec:example2}.
+A fát merge nélkül praktikusan csak három bemenetű szabállyal lehetséges implementálni, lásd~\ref{sec:example2}.
 
-Merge segítségével sokkal optimálisabban is megoldható, lásd példa~\ref{sec:example3}.
+Merge segítségével sokkal optimálisabban is megoldható, lásd~\ref{sec:example3}.
 
 Négy gyermekű főneves kifejezések esetében ez már nem lehetséges. 
 Ilyen például a \textit{this British industrial conglomerate}, amihez  a:
 
 NP4( DT( this), JJ( British), JJ( industrial), NN( conglomerate) )
 
-fa tartozik. Ezt a fenti logikával nem tudjuk helyesen megoldani. Lásd példa~\ref{sec:example4}.
+fa tartozik. Ezt a fenti logikával nem tudjuk helyesen megoldani. lásd~\ref{sec:example4}.
 
-Itt a második NP\_BAR elkészítésekor, a merge művelet során a JJ  mindkét lyukba beszúródik, így a: NP4( DT( this), JJ( British), JJ( British), NN( conglomerate) )
+Itt a második N\_BAR elkészítésekor, a merge művelet során a JJ  mindkét lyukba beszúródik, így a NP4( DT( this), JJ( British), JJ( British), NN( conglomerate)) fa jönne létre.
 
 Ezt a TTA korlátai miatt nem tudjuk megkerülni.
 
@@ -371,7 +358,7 @@ Az SGA (\texttt{s-graph algebra}) a legbonyolultabb algebra, amit használunk. T
 
 “(ROOT :root (loves/loves :nsubj (John/John) :dobj (Mary/Mary) ) )”
 
-a “John Loves Mary.” mondat UD Gráfját írja le, ami így néz ki:
+a “John Loves Mary.” mondat UD gráfját írja le, ami így néz ki:
 \begin{figure}[h]
 \centering
 \graphicspath{./}
@@ -386,9 +373,9 @@ A nyelvtan legfontosabb három művelete a \texttt{forget} (elfelejt), \texttt{r
 \begin{verbatim}
 r_{$ régi_jelölés $}_{$ új_jelölés $}( {$ gráf $} )
 \end{verbatim}
-formátumban lehet megadni. A rename esetén a leváltandó jelölés neve elhagyható és abban az esetben a “root” jelölésű csúcsokon fogja végrehajtani. A merge formátuma hasonlít leginkább a közismert programozási nyelvek függvényhívásaira.: merge(\{\$ gráf1 \$\}, \{\$ gráf2 \$\}) Lásd példa~\ref{sec:example5}.
+formátumban lehet megadni. A rename esetén a leváltandó jelölés neve elhagyható és abban az esetben a \texttt{root} jelölésű csúcsokon fogja végrehajtani. A merge formátuma hasonlít leginkább a közismert programozási nyelvek függvényhívásaira: merge(\{\$ gráf1 \$\}, \{\$ gráf2 \$\}) lásd~\ref{sec:example5}.
 
-A példa sok szabálya megfeleltethető a tree reprezentáció esetében használttal. Ennek oka az, hogy a nyelvtanokat úgy írtuk meg, hogy azokat könnyű legyen összeilleszteni. Általában a szintaktikai fa egy csúcsát vagy egy három gyermekű csúcsának a felét rakjuk össze egy szabály alatt, és az UD gráfba kerülő élek és a jobb oldali nemterminális szimbólumok szerint nevezzük el a szabályokat. Mivel az UD gráfban és 4lang gráfban sok a hasonlóság, azt is hozzá adom az egyesített nyelvtan példában. Lásd példa~\ref{sec:example6}.
+A példa sok szabálya megfeleltethető a tree interpretáció esetében használttal. Ennek oka az, hogy a nyelvtanokat úgy írtuk meg, hogy azokat könnyű legyen összeilleszteni. Általában a szintaktikai fa egy csúcsát vagy egy három gyermekű csúcsának a felét rakjuk össze egy szabály alatt, és az UD gráfba kerülő élek és a jobb oldali nemterminális szimbólumok szerint nevezzük el a szabályokat. Mivel az UD gráfban és 4lang gráfban sok a hasonlóság, azt is hozzá adom az egyesített nyelvtan példában. lásd~\ref{sec:example6}.
 
 Az s-graph algebra egy jól használható nyelv, de módosítani és javítani is nehéz. Ennek elsődleges oka a bonyolult szintaxis.
 
@@ -397,13 +384,13 @@ A műveletek nehezen átláthatóak. A legtöbb művelet jele egy-egy betű, és
 Ha már a nyelv célja egyértelműen a tömörség, akkor a merge lehetne \textit{‘@’} a TTA-hoz hasonlóan. A forget és a rename is lehetne pl. \textit{‘\&’}, mint reference, \textit{‘\#’}, \textit{‘\%’} vagy egyszerűen egy \textit{‘R’}, ahol a forget egyszerűen egy olyan rename, ahol az új jelölés hiányzik és nem a régi.
 
 A \textit{':'} semmilyen asszociatív viszonyban nincsen az irányított élekkel. A \textit{‘:’}-ot lehetne például \textit{-\{\$ él\_ címke \$\}-}-re cserélni irányfüggően kacsacsőrökkel a végén.
-A csúcsok deklarációjában az attribútumok egymástól teljesen eltérő szintaxissal vannak jelölve teljesen feleslegesen. A csúcsok adatai is mehetnének egy szögletes zárójelbe. A zárójelen belül \textit{[n=\{\$ name \$\} , t=\{\$ tag \$\} , m=\{\$ mark \$\}]}formában egyértelmű is lenne, hogy melyik melyik. Így a sorrendjük lehet cserélhető. Így bármelyikük elhagyható anélkül, hogy zavaróvá válna. Itt attribútumok felsorolásáról van szó, így a kis betű sem zavaró. Adott sorrend mellett a kis betűk is elhagyhatóak:
+A csúcsok deklarációjában az attribútumok egymástól teljesen eltérő szintaxissal vannak jelölve teljesen feleslegesen. A csúcsok adatai is mehetnének egy szögletes zárójelbe. A zárójelen belül \textit{[n=\{\$ name \$\} , t=\{\$ tag \$\} , m=\{\$ mark \$\}]}formában egyértelmű is lenne, hogy melyik melyik. Így a sorrendjük lehet cserélhető. Így bármelyikük elhagyható anélkül, hogy zavaróvá válna. Itt attribútumok felsorolásáról van szó, így a kisbetű sem zavaró. Adott sorrend mellett a kisbetűk is elhagyhatóak:
 \begin{verbatim}
 [{$ name $} | {$ tag $} | {$ mark $}].
 \end{verbatim}
- Lásd példa~\ref{sec:example7}.
+ lásd~\ref{sec:example7}.
 
-Véleményem szerint ez sokkal tisztább módja lenne és tördelni is sokkal egyszerűbb. Ha az egyik forget vagy rename műveletetre nincs szükség, akkor csak elhagyjuk a hozzá tartozó attribútumokat . Még ennél is szebb lenne, ha a műveleteket operációs jelek jelölnék. Lásd példa~\ref{sec:example8}.
+Véleményem szerint ez sokkal tisztább módja lenne és tördelni is sokkal egyszerűbb. Ha az egyik forget vagy rename műveletetre nincs szükség, akkor csak elhagyjuk a hozzá tartozó attribútumokat. Még ennél is szebb lenne, ha a műveleteket operációs jelek jelölnék. lásd~\ref{sec:example8}.
 
 Ugyanakkor ez már túlzottan eltér a gráfleíró nyelvek hagyományos stílusától, és tördelni is nehézkesebb. Operátoros esetben pedig szükség lenne egy sorrendiségre is, ami nem lenne mindenki számára triviális. Arról nem is beszélve, hogy a rename művelet három bemenetű, így nem lehet egy operátorral elvégezni, ahogy az összetett merge négy operátorát is erőltetetten hat.
 
@@ -421,70 +408,108 @@ Ebben a fejezetben az IRTG és az Alto hiányosságairól kívánok részletes �
 Az IRTG nem egy programozási nyelv, hanem egy nyelvtan. A szabályok egymás alatt adhatóak meg és csak backspace karakterekkel és kommentekkel tagolhatóak. Egy nyelvtan több fájlra nem szedhető szét. A fájl elején fel kell sorolni az interpretációkat, és egyik interpretáció sem hagyható el egyik szabályból sem, még akkor sem, ha semmit sem adnak vissza. A kutatás során egy olyan nyelvtant készítettünk, ami 2700 szabályból áll és négy interpretációból. Ez ha a szabályokat üres sorokkal választjuk el, akkor 16204 sor kódot jelent egyetlen fájlban. Egy ekkora kódot nehéz karbantartani, átlátni, fejleszteni. Tehát szükség van IRTG-ben az importálásra.
 
 
-Rengeteg esetben a szabályok alig egy-egy szóban térnek el. Lásd példa~\ref{sec:example6}.
-Itt a \textit{John} és a \textit{Mary} szóhoz tartozó terminális szabályok között csupán maguk a szavak jelentik a különbséget. A string interpretációban is csak maga a szó jelenik meg. Más szófajú szavak esetében is csak a szabály sort és tree reprezentációt kell még módosítani. Az ilyen esetek miatt nagy kár, hogy az IRTG-ben nem lehet szabályokat egymásból vagy egy közös ősből származtatni.
+Rengeteg esetben a szabályok alig egy-egy szóban térnek el. lásd~\ref{sec:example6}.
+Itt a \textit{John} és a \textit{Mary} szóhoz tartozó terminális szabályok között csupán maguk a szavak jelentik a különbséget. A string interpretációban is csak maga a szó jelenik meg. Más szófajú szavak esetében is csak a szabálysort és tree reprezentációt kell még módosítani. Az ilyen esetek miatt nagy kár, hogy az IRTG-ben nem lehet szabályokat egymásból vagy egy közös ősből származtatni.
 
 
-Sokszor egy szó szófaja egy másik szófaj alkategóriája. Ilyen például az NNP (proper noun, tulajdonnév), ami az N (noun, főnév) alketegórája. Az egy főkategóriába tartozó szófajok sok esetben ugyanúgy viselkednek. Például egy NP-ben, ami egy N-ből és egy JJ-ből áll, minden esetben a két szó között egy amod él lesz az UD gráfban. Ugyanakkor vannak olyan esetek is, amikor az alkategóriáknak csak egy részhalmaza viselkedik hasonlóan. Egy alkategória esetében kétféleképpen lehet megoldani ezt. Az egyik verzióban általánosítunk, tehát az alkategóriákat ugyanúgy kezeljük. Ekkor jelentős áldozatot hozunk a pontosság terén. Más esetben minden egyes alfajra előállítunk minden szabályt, amivel előfordul. Ekkor jelentős áldozatot hozunk hatékonyság terén, mivel sokkal több szabályon kell végigiterálnia az ALTO-nak az IRTG futtatásakor. Erre jó megoldás lenne, ha egy szabálysorban minden olyan nemterminális szimbólumot meg tudnánk adni, amire a szabálynak minden interpretációhoz ugyanaz a lépés tartozik. Erre jó megoldás lenne, ha a szabálysorban RegEx-szel lehetne megadni mindegyik jobb oldali nemterminális szimbólumot.
+Sokszor egy szó szófaja egy másik szófaj alkategóriája. Ilyen például az NNP (proper noun, tulajdonnév), ami az N (noun, főnév) alketegórája. Az egy főkategóriába tartozó szófajok sok esetben ugyanúgy viselkednek. Például egy NP-ben, ami egy N-ből és egy JJ-ből áll, minden esetben a két szó között egy \texttt{amod} él lesz az UD gráfban. Ugyanakkor vannak olyan esetek is, amikor az alkategóriáknak csak egy részhalmaza viselkedik hasonlóan. Egy alkategória esetében kétféleképpen lehet megoldani ezt. Az egyik verzióban általánosítunk, tehát az alkategóriákat ugyanúgy kezeljük. Ekkor jelentős áldozatot hozunk a pontosság terén. Más esetben minden egyes alfajra előállítunk minden szabályt, amivel előfordul. Ekkor jelentős áldozatot hozunk hatékonyság terén, mivel sokkal több szabályon kell végigiterálnia az Alto-nak az IRTG futtatásakor. Erre jó megoldás lenne, ha egy szabálysorban minden olyan nemterminális szimbólumot meg tudnánk adni, amire a szabálynak minden interpretációhoz ugyanaz a lépés tartozik. Erre jó megoldás lenne, ha a szabálysorban RegEx-szel lehetne megadni mindegyik jobb oldali nemterminális szimbólumot.
 
 
-Az IRTG szabályokban mindenre más és más algebrát használunk más és más nyelvvel. Ennek az az oka, hogy mint már az algebráknál részleteztem, minden algebrának vannak hiányosságai. Az IRTG maga lehet önmagában átlátható, de ha az algebrái sokfélék, és némelyiket önmagában is nehéz átlátni, akkor az az IRTG-re is közvetlen hatással lesz (lásd s-graph algebra). Hiába a sokféleség, ha egyes feladatokra csak egy olyan algebra létezik, ami megfelel a célnak és az is erősen korlátozott. Egy algebrára van csak szükség. Egy olyan algebrára, ami az s-graph algebra szintjén van, de átlátható és képes mint a csúcsok sorrendjét kezelni, mint a címkék konkatenációját. Elvégre a szöveg is kezelhető egyetlen csúcs ként. Egy ilyen algebrában az is fontos, hogy ne kelljen az egyszerű műveleteket sokkal terjedelmesebben megoldani, mint ha azt az egyszerű algebrákkal végeznénk. Az s-graph javítására az algebra kapcsán mutattam példát, de egy ilyen univerzális algebra már szemantikai változtatásokat is igényelne.
+Az IRTG szabályokban mindenre más és más algebrát használunk más és más nyelvvel. Ennek az az oka, hogy mint már az algebráknál részleteztem, minden algebrának vannak hiányosságai. Az IRTG maga lehet önmagában átlátható, de ha az algebrái sokfélék, és némelyiket önmagában is nehéz átlátni, akkor az az IRTG-re is közvetlen hatással lesz (lásd s-graph algebra). Hiába a sokféleség, ha egyes feladatokra csak egy olyan algebra létezik, ami megfelel a célnak és az is erősen korlátozott. Egy algebrára van csak szükség. Egy olyan algebrára, ami az s-graph algebra szintjén van, de átlátható és képes mint a csúcsok sorrendjét kezelni, mint a címkék konkatenációját. Elvégre a szöveg is kezelhető egyetlen csúcsként. Egy ilyen algebrában az is fontos, hogy ne kelljen az egyszerű műveleteket sokkal terjedelmesebben megoldani, mint ha azt az egyszerű algebrákkal végeznénk. Az s-graph javítására az algebra kapcsán mutattam példát, de egy ilyen univerzális algebra már szemantikai változtatásokat is igényelne.
 
 
-Gyakori az IRTG-ben az, hogy kulcsszavak ütköznek pár változónak a nevével, ami felesleges errort okoz a feldolgozás során. Például az \textit{interpretation} szóhoz generált terminális szabályunk ütközött az interpretation szóval, amivel kezdődnek az IRTG fájlok elején az interpretációkat definiáló sorok. Ha a szabálynak így kezdődik a neve, akkor már nem fogadja el a futtatókörnyezet. Erre a legegyszerűbb megoldás az, ha a nyelvben megjelenik a szöktetés, vagy a kulcsszavakat úgy módosítjuk, hogy ritka speciális karaktereket is tartalmazzanak. Például, ha az \textit{interpretation} helyett \textit{<interpretation>} lenne a kulcsszó. Persze a prőblémát az is megoldaná, ha az ALTO lexerje kellően inteligens lenne a pozíció függő tokenezéshez.
+Gyakori az IRTG-ben az, hogy kulcsszavak ütköznek pár változónak a nevével, ami felesleges errort okoz a feldolgozás során. 
+Például az \textit{interpretation} szóhoz generált terminális szabályunk ütközött az interpretation szóval, amivel kezdődnek az IRTG fájlok elején az interpretációkat definiáló sorok. 
+Ha a szabálynak így kezdődik a neve, akkor már nem fogadja el a futtatókörnyezet. 
+Erre a legegyszerűbb megoldás az, ha a nyelvben megjelenik a szöktetés, vagy a kulcsszavakat úgy módosítjuk, hogy ritka speciális karaktereket is tartalmazzanak. 
+Például, ha az \textit{interpretation} helyett \textit{<interpretation>} lenne a kulcsszó. 
+Persze a problémát az is megoldaná, ha az Alto lexerje kellően intelligens lenne a pozíciófüggő tokenezéshez.
 
 %----------------------------------------------------------------------------
-\subsection{Az ALTO hiányosságai}
-\label{sec:ALTOshortcomming}
+\subsection{Az Alto hiányosságai}
+\label{sec:Altoshortcomming}
 %----------------------------------------------------------------------------
 
-Az ALTO működése iteratív. Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. Ezt hívják \textit{optimalizált DFS Parsing}-nak
+Az Alto működése iteratív. 
+Végigiterál az összes lehetséges levezetési fán a környezetfüggetlen nyelvtanban, és kiválogatja a bemenetre illeszkedőeket. 
+Ez alatt persze különböző módszerekkel igyekszik elkerülni azokat a lehetséges levezetéseket, amiről már tudja, hogy biztos rosszak lesznek. 
+Erre az egyik legegyszerűbb módszer az, ha a levezetési fákat fentről lefelé generáljuk és kihagyjuk azokat a lehetőségeket, amik már magasabb szinten olyan élet vagy csúcsot vagy azok olyan halmazát vesznek be a derivációba, ami a bemenetben nem szerepel. 
+Ezt hívják \textit{optimalizált DFS Parsing}-nak
 
-Az elvi működés és a megvalósítás következtében az ALTO rendkívül lassú. A feljebb említett 2700 szabályos és négy interpretációs nyelvtan $10^5$ nagyságrendű adaton nagyjából 30 óráig futott, pedig a rendelkezésünkre álló tanszéki szerveren futtattuk. Ez a mi feladatunk esetében elfogadhatatlan. Ezért nem ártana egy hatékonyabb C++ verzió az ilyen méretű munkákhoz. Ma már a C++17 és a hamarosan érkező C++20 is kényelmes programozási nyelv, és nem nagy ördöngösség az alap platformokon futtatható verziókat legenerálni a nyílt forráskódból. Egy könyvtár formájában pythonból is elérhető lenne ez a verzió.
+Az elvi működés és a megvalósítás következtében az Alto rendkívül lassú. 
+A feljebb említett 2700 szabályos és négy interpretációs nyelvtan nagyjából 200000 adaton bő 30 óráig futott, pedig a rendelkezésünkre álló tanszéki szerveren futtattuk. 
+Ez a mi feladatunk esetében elfogadhatatlan. 
+Ezért nem ártana egy hatékonyabb C++ verzió az ilyen méretű munkákhoz. 
+Már a C++17 és a hamarosan érkező C++20 is Programozó barát, kényelmes programozási nyelvek.
+Nem nehéz az alap platformokon futtatható verziókat legenerálni a nyílt forráskódból. 
+Egy könyvtár formájában Pythonból is elérhető lehetne ez a verzió.
 
-Az ALTO rengeteg felesleges munkát végez, mivel azokat a megoldásokat is kigenerálja a bemenetből, ami más interpretációk derivációjában errorhoz vezet. Az ilyen eseteket is ki lehetne szűrni már a derivációs fa magasabb szintjének az iterációja során. Persze ez debuggolás szempontjából káros, mivel az ilyen esetek kiszámítása nélkül nem tudjuk megfejteni, hogy mi okozta a hibát, de mérvadó méretű adatot nem is akkor fogunk futtatni. Jó lenne, ha ez opció ként lenne elérhető.
+Az Alto rengeteg felesleges munkát végez, mivel azokat a megoldásokat is kigenerálja a bemenetből, ami más interpretációk derivációjában errorhoz vezet. 
+Az ilyen eseteket is ki lehetne szűrni már a derivációs fa magasabb szintjének az iterációja során. 
+Ugyan ez nehezítené a nyelvtanok javítását, mivel nem tudnánk az errort okozó eseteket rendesen kianalizálni, de nem is a nyelvtan javítása során szeretnénk ilyen méretes adathalmazokat futtatni. 
+Jó lenne, ha ez opció ként lenne elérhető. 
 
-Az ALTO mindennek ellenére a jelenlegi legfejlettebb program az IRTG futtatására, és állandó fejlesztés alatt áll. A pontos működését még nem ismerjük. A módosítások többsége viszont a belső működés alapos átdolgozását igényli. Erre jelenleg még nincs erőforrásunk.
+Az Alto mindennek ellenére a jelenlegi legfejlettebb program az IRTG futtatására, és állandó fejlesztés alatt áll. 
+A pontos működését még nem ismerjük. 
+A módosítások többsége viszont a belső működés alapos átdolgozását igényli. 
+Erre jelenleg még nincs erőforrásunk.
 
 %----------------------------------------------------------------------------
 \section{IRTG automatikus generálása}
 \label{sec:solutions}
 %----------------------------------------------------------------------------
-A kutatás során az IRTG-t illető problémák többségét kód generálás segítségével küszöböltük ki. 
-Két implementáció készült python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. 
+A kutatás során az IRTG-t illető problémák többségét kódgenerálás segítségével küszöböltük ki. 
+Két implementáció készült Python nyelven, amik bemeneti adatokból generáltak irtg szabályokat. 
 Kezdetben csak NP-k feldolgozása volt a cél, majd onnan terjesztettük ki az implementációkat VP-k és ADJP-k re. 
-A generátor kódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. 
-Nem tudtunk többen párhuzamosan fejleszteni, mert egyikünk sem értette a másik megoldását kellő mélységben.
-Mindkét megoldás a Pann Tree bank szintaktikai fáit és az abból a Stanford Parserral kapott UD gráfokat kapja bemenet ként, amiket python scriptekkel készítettünk elő . 
+A generátorkódos megoldások legfőbb hátránya a fejlesztőhöz kötöttség volt. 
+Mindkét megoldás a Penn Treebank szintaktikai fáit és az abból a Stanford Parserrel kapott UD gráfokat kapja bemenetként, amiket Python scriptekkel készítettünk elő. 
 Ezek a scriptek végezték a fákból a megfelelő kifejezések részfáinak a kiszedését, a részfák rendezését típus szerint és a fák UD gráfjainak a generálását a Stanford Parserrel.
 
-Az első generátort én készítettem el 2018 augusztusában. 
-Ez egy objektumorientált megoldás volt. 
-Képes volt kommenteket is generálni, kezelni a rövidítéseket és könnyen bővíthető volt. 
-Ugyanakkor rush development során keletkezett a szakmai gyakorlatom végén, így a kód még nincsen se letisztázva, se alaposan dokumentálva.
+Az első generátort én készítettem el 2018 augusztusában, ez egy objektumorientált megoldás volt. 
+Képes volt kommenteket is generálni, kezelni a rövidítéseket és könnyen bővíthető volt, ugyanakkor rush development során keletkezett a szakmai gyakorlatom végén, így a kód még nincsen se letisztázva, se alaposan dokumentálva.
 
 Külön osztályban tárolta a nyers szöveg szavait, a fát és az UD-t, majd ezeket rendezte egy közös osztályba. 
-A közös osztály a Data, a nyers szövegé a Terminal, a fáé a Tree, az UD-é és a 4lang-é a Dependency. 
-Az összes osztály rendelkezett saját szöveg bemenetű konstruktorral, ami közvetlen a bemeneti adatok formátumából inicializálja az osztájt.
+A közös osztály a \texttt{Data}, a nyers szövegé a \texttt{Terminal}, a fáé a \texttt{Tree}, az UD-é és a 4lang-é a \texttt{Dependency}. 
+Az összes osztály rendelkezett saját szöveg bemenetű konstruktorral, ami közvetlenül a bemeneti adatok formátumából inicializálja az osztályt.
 
-A Terminal egy szót tárolt és annak a szófaját. 
-A Tree tartalmazta a részfát a Stanford parser formátumában, a TTA formátumában, a TTA formátumában levelek nélkül és külön a szavakat. 
+A \texttt{Terminal} egy szót tárolt és annak a szófaját. 
+A \texttt{Tree} tartalmazta a részfát a Stanford Parser formátumában, a TTA formátumában, a TTA formátumában levelek nélkül és külön a szavakat. 
 A Tree legtöbb formátuma csak a kommentek generálásához volt hasznos, de ideiglenesen mindegyiket generálta a program a kommentek végleges formátumától függetlenül. 
-A Dependency tárolta a fej-szót, a dependens-szót, az él UD típusát és az él 4lang típusát. 
-Az UD él 4lang-ra vetítését a Fourlang enum és egy dictionary segítségével végezte. 
+A \texttt{Dependency} tárolta a fej-szót, a dependens-szót, az él UD típusát és az él 4lang típusát. 
+Az UD él 4lang-ra vetítését a \texttt{Fourlang} enum és egy dictionary segítségével végezte. 
 Mint korábban említettem, a szavak és 4lang fogalmak megfeleltetésével még mai napig sem foglalkozunk, de az is ebbe az osztályba került volna és feltételezhetően szintén egy dictionary és enum segítségével.
 
-A generálás innentől szövegkonkatenációból áll az adatok függvényében.
-A kifejezés generátor függvények először betöltötték az adatokat a Data osztályokba, majd kiszűrte az egyedi adatokat a levél nélküli fák és UD élek alapján. A komment első sorát aszerint generálta, hogy van-e kapcsolat a szavak között, és hogy a fej vagy a dependens van-e  előrébb. Ez a sor azt írta le, hogy milyen kifejezést milyen típusú szavakból épít a szabály és, hogy a dependens milyen szerepet lát el a mondatban. Ehhez az adatok rövidítéseit a Short2Long osztály segítségével oldotta fel, aminek a betöltendő adatai  a viszonylag kevés szófaj- és éltípus okán kézzel készültek. A következő két komment a szintaktikai fa első példányát tartalmazta a TTA és Stanford Parser formátumában. 
+Maga a generálás az adatok függvényében történő szövegkonkatenációból állt.
+Minden egyes IRTG típus generálása külön függvényben történt.
+A kifejezés generátor függvények először betöltötték az adatokat a \texttt{Data} osztályokba, majd kiszűrte az egyedi adatokat a levél nélküli fák és UD élek alapján. 
+A komment első sorát aszerint generálta, hogy van-e kapcsolat a szavak között, és hogy a fej vagy a dependens van-e előrébb. 
+Ez a sor azt írta le, hogy milyen kifejezést milyen típusú szavakból épít a szabály és, hogy a dependens milyen szerepet lát el a mondatban. 
+Ehhez az adatok rövidítéseit a \texttt{Short2Long} osztály segítségével oldotta fel, aminek a betöltendő adatai  a viszonylag kevés szófaj- és éltípus okán kézzel készültek. 
+A következő két komment a szintaktikai fa első példányát tartalmazta a TTA és Stanford Parser formátumában. 
 
-A szabálysort az adatokból nem volt nehéz legenerálni, mivel a szabályok neveit eredetileg is a bemenetek TT interpretációjának gyökere és az UD élek alapján képeztük. A string és tree sorok csak a szabály bal oldali nemterminális szimbólumától függenek, így azok konstans szövegek voltak. Az UD-nél a szövegbe csak az él nevét kellett beszúrni attól függően más sablonba, hogy a csúcsok között van-e kapcsolat, megjelenik-e mindkettő az UD gráfban (a \textit{the},\textit{a} és \textit{an} szavak például nem), és hogy ha van köztük kapcsolat, akkor melyik a fej. A fourlangnak ezek a tulajdonságok már bele voltak kódolva az enum alapú típusába, így itt csak egy else-if ágazaton kellett végigmenni (mivel pythonban nincsen switch case).
+A szabálysort az adatokból nem volt nehéz legenerálni, mivel a szabályok neveit eredetileg is a bemenetek TT interpretációjának gyökere és az UD élek alapján képeztük. 
+A string és tree sorok csak a szabály bal oldali nemterminális szimbólumától függenek, így azok konstans szövegek voltak. 
+Az UD-nél a szövegbe csak az él nevét kellett beszúrni attól függően más sablonba, hogy a csúcsok között van-e kapcsolat, megjelenik-e mindkettő a 4lang gráfban (a \textit{the},\textit{a} és \textit{an} szavak például nem), és hogy ha van köztük kapcsolat, akkor melyik a fej. 
+A 4langnak ezek a tulajdonságok már bele voltak kódolva az enum alapú típusába, így itt csak egy else-if ágazaton kellett végigmenni (mivel Pythonban nincsen switch case).
 
-Már itt is látszott, hogy számos lehetőség van optimalizációra. Például a kódba ágyazott adatokat is ki lehetett volna szervezni txt fájlokba. Így a fourlang if-else ágai is megoldhatóak lettek volna egy dictionary-vel és karbantarthatóbbak lettek volna az adatok. A kettő magas kifejezések részfái között rengeteg volt a hasonlóság, így könnyedén össze lehetett volna a generáló függvényeiket vonni. A magasabb kifejezés részfákat se lett volna sokkal nehezebb ugyanabban a függvényben generálni. Az adatok feldolgozását és tárolását egy osztályban is meg lehetett volna oldani, ha a bemeneti adatok egy közös fájlban vannak. A nagyon sokadlagos adatokat, mint a fák stanford és 4lang formátuma, nem kellett volna eltárolni. Elég lett volna, ha a többi adatból származtató függvényeket is tartalmazza az egy darab Data osztály. Ezzel azt a duplikációt is elkerülhettük volna hátrány nélkül, hogy a terminálisokat majdnem mindegyik adatstruktúra eltárolta.
+Már itt is látszott, hogy számos lehetőség van optimalizációra. 
+Például a kódba ágyazott adatokat is ki lehetett volna szervezni txt fájlokba. 
+Így a fourlang if-else ágai is megoldhatóak lettek volna egy dictionary-vel és karbantarthatóbbak lettek volna az adatok. 
+A kettő magas kifejezések részfái között rengeteg volt a hasonlóság, így könnyedén össze lehetett volna a generáló függvényeiket vonni. 
+A magasabb kifejezés részfákat se lett volna sokkal nehezebb ugyanabban a függvényben generálni. 
+Az adatok feldolgozását és tárolását egy osztályban is meg lehetett volna oldani. 
+A könnyen származtatható adatokat, mint a fák Stanford formátuma és és a 4lang részgráf típusok, nem kellett volna eltárolni. 
+Elég lett volna, ha a többi adatból származtató függvényeket is tartalmazza az egy darab \texttt{Data} osztály. 
+Ezzel azt a duplikációt is elkerülhettük volna hátrány nélkül, hogy a terminálisokat majdnem mindegyik adatstruktúra eltárolta.
 
-Végeredményben viszont még ekkor is egy olyan programunk lett volna, ami az IRTG kódot csak generálja. Végső soron template-elést használt volna, de az IRTG nyelvhez kötött szinten. Az új szabály egyre több kódot jelentett volna, és nehéz lett volna a hibákat meghatározni bárkinek, aki nem dolgozott a program elkészítésén és nem tanulmányozta hosszabb távon.
+Végeredményben viszont még ekkor is egy olyan programunk lett volna, ami az IRTG kódot csak generálja. 
+Végső soron template-elést használt volna, de az IRTG nyelvhez kötött szinten. 
+Az új szabályok egyre több kódot jelentettek volna, és nehéz lett volna a hibákat meghatározni bárkinek, aki nem dolgozott a program elkészítésén és nem tanulmányozta hosszabb ideig.
 
-Jelenleg egy másik programmal generálunk IRTG-t, amely stringmanipulációk helyett strukturált adatból generálja a szabályokat, ez még fejlesztés alatt áll.
+Jelenleg egy másik programmal generálunk IRTG-t, amely szintén a Penn Treebank-formátumú fák és dependenciaparszolt változatuk összehasonlítása alapján állítja össze a szabályokat. 
+Futása során az egyes dependenciákhoz tartozó szavakat reprezentáló leveleket kikeresi a fából, majd ezek közös őse és a levelek felé vezető út mentén található közvetlen leszármazottak konfigurációja alapján hozza létre a megfelelő IRTG szabályokat.
 
-A Slime első verziója nem lesz képes gráfműveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető, mindezt minimális overhead-del, így csak a bemeneti adatokat szükséges generálni hozzá. 
+Az általam fejlesztett nyelv, a \texttt{Slime} első verziója nem lesz képes gráfműveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető, mindezt minimális overhead-del.
+Csak a bemeneti adatokat szükséges generálni hozzá. 
 Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz RegEx és template-elés segítségével, a sorrend sem jelent majd problémát.
-Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a második generátor kombinációja.
+Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a jelenlegi generátor kombinációja..

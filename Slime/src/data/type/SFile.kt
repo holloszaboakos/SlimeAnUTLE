@@ -24,6 +24,7 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
             result.add(SList(mutableListOf(SName(key))))
 
         }
+
         result.addAll(
             SList(mutableListOf(
                 SList(mutableListOf(SName("names"))),
@@ -33,6 +34,7 @@ class SFile(val content: MutableMap<String, SVari>, names: List<SName> = listOf(
 
             ))
         )
+
         for (i in 0 until content.size){
             val root=SName(i.toString())
             val pathL=content.values.toList()[i].listPaths()

@@ -9,12 +9,25 @@ import java.util.regex.Pattern
 class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SName> = listOf()) :
     SVari("Refe", names) {
 
+    val owner=DataContainer.focus?:throw Exception("No file in focus!")
+
     //You can reach no variables throw a Refe variable
-    override fun listPaths(): SList<SList<SName>> = SList()
+    override fun listPaths(): SList<SList<SName>> {
+        val result= mutableListOf<SList<SName>>()
+        result.addAll(
+            SList(mutableListOf(
+                SList(mutableListOf(SName("names"))),
+                SList(mutableListOf(SName("self"))),
+                SList(mutableListOf(SName("copy"))),
+                SList(mutableListOf(SName("type")))
+            ))
+        )
+        return result.toSList()
+    }
 
     //It gathers all path matching the RegEx with a variable with the right type on them
     fun listMatchingPaths(): SList<SList<SName>> {
-        val preResult = DataContainer.focus?.listPaths() ?: throw Exception("SFile of reference is not in focus")
+        val preResult = owner.listPaths()
         val result = SList(mutableListOf<SList<SName>>())
         for (path in preResult) {
             var text = ""
@@ -24,14 +37,6 @@ class SRefe(val pattern: String, val types: MutableList<SText>, names: List<SNam
             if (Pattern.matches(pattern, text))
                 result.add(path)
         }
-        result.addAll(
-            SList(mutableListOf(
-                SList(mutableListOf(SName("names"))),
-                SList(mutableListOf(SName("self"))),
-                SList(mutableListOf(SName("copy"))),
-                SList(mutableListOf(SName("type")))
-            ))
-        )
         return result
     }
 

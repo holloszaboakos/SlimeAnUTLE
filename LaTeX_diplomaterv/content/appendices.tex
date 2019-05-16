@@ -17,6 +17,7 @@
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 S! -> S_NP_S_BAR(NP, S_BAR)
 [tree] @(?2,?1)
@@ -56,6 +57,7 @@ PUNCT -> punct_PUNCT
 \end{figure}
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 @(
 	S3( *, VP2( VBZ( loves ),  NP1( NNP( Mary ) ) ), .( . ) ), 
@@ -66,14 +68,15 @@ PUNCT -> punct_PUNCT
 \label{cod:example1output}
 \end{figure}
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 2}
 \label{sec:example2}
 %----------------------------------------------------------------------------
 
-\begin{figure}[h]
+\begin{figure}[h!]
+\small
 \begin{verbatim}
 S! -> NP( DT, JJ, NN )
 [tree] NP3(?1,?2,?3)
@@ -100,15 +103,16 @@ VB -> cat_VB
 \end{figure}
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 NP3( DT( the ), JJ( black ), NN( cat ) )
 \end{verbatim}
-\caption{~\ref{sec:example2}-ben leírt IRTG tree interpretációjának kimenete \textit{the black cat} szószerkezet TT-jére. A kimenet maga a  \textit{the black cat} szószerkezet TT-je. }
+\caption{~\ref{sec:example2}-ben leírt IRTG tree interpretációjának kimenete \textit{the black cat} szószerkezet TT-jére. A kimenet maga a \textit{the black cat} szószerkezet TT-je. }
 \label{cod:example2output}
 \end{figure}
 
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 3}
@@ -116,6 +120,7 @@ NP3( DT( the ), JJ( black ), NN( cat ) )
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 S! -> NP_DT_NP_BAR( DT, NP_BAR)
 [tree] @(?2,?1)
@@ -144,16 +149,16 @@ VB -> cat_VB
 \label{fig:example3}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{verbatim}
 @(  NP3( *, JJ( black ), NN( cat ) ), DT( the ) )
 \end{verbatim}
-\caption{~\ref{sec:example3}-ben leírt IRTG tree interpretációjának kimenete \textit{the black cat} szószerkezet TT-jére.}
+\caption{~\ref{sec:example3}-ben leírt IRTG tree interpretációjának kimenete a \textit{the black cat} szószerkezet TT-jére.}
 \label{cod:example3output}
 \end{figure}
 
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 4}
@@ -161,6 +166,7 @@ VB -> cat_VB
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 S! -> NP_DT_NP_BAR( DT, NP_BAR)
 [tree] @(?2,?1)
@@ -177,26 +183,26 @@ DT -> this_DT
 JJ -> British_JJ
 [tree] JJ(British)
 
-JJ -> indastrial_JJ
-[tree] JJ(indastrial)
+JJ -> industrial_JJ
+[tree] JJ(industrial)
 
 NN -> conglomerate_NN
 [tree] NN(conglomerate)
 \end{verbatim}
-\caption{Egyszerű IRTG a \textit{this British indastrial conglomerate} szószerkezet TT-jének generálására}
+\caption{Egyszerű IRTG a \textit{this British industrial conglomerate} szószerkezet TT-jének generálására}
 \label{cod:example4}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example4.png}
-\caption{~\ref{sec:example4}-ben leírt IRTG által generált levezetési fa a \textit{this British indastrial conglomerate} szószerkezet TT-jére.}
+\caption{~\ref{sec:example4}-ben leírt IRTG által generált levezetési fa a \textit{this British industrial conglomerate} szószerkezet TT-jére.}
 \label{fig:example4}
 \end{figure}
 
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 5}
@@ -204,6 +210,7 @@ NN -> conglomerate_NN
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 S! -> root_nsubj_NP_S_BAR(NP, S_BAR)
 [ud] merge(
@@ -233,7 +240,7 @@ VB -> loves_VBZ
 PUNCT -> punct_PUNCT
 [ud] "(punct<root> / punct)"
 \end{verbatim}
-\caption{Egyszerű IRTG a \textit{John Loves Mary.} mondat ud gráfjánek generálására}
+\caption{Egyszerű IRTG a \textit{John Loves Mary.} mondat UD gráfjának generálására}
 \label{cod:example5}
 \end{figure}
 
@@ -241,11 +248,12 @@ PUNCT -> punct_PUNCT
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example5_1.png}
-\caption{~\ref{sec:example5}-ben leírt IRTG által generált levezetési fa a \textit{John loves Mary.} szószerkezet ud-jét leíró s-graph-ra}
+\caption{~\ref{sec:example5}-ben leírt IRTG által generált levezetési fa a \textit{John loves Mary.} szószerkezet UD gráfját leíró s-graph-ra}
 \label{fig:example5.1}
 \end{figure}
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 merge(
 	f_dep( merge(
@@ -261,7 +269,7 @@ merge(
 		)
 	)
 \end{verbatim}
-\caption{~\ref{sec:example5} ud interpretációjának kimenete}
+\caption{~\ref{sec:example5} UD interpretációjának kimenete}
 \label{fig:example5ud}
 \end{figure}
 
@@ -269,7 +277,7 @@ merge(
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.4]{figures/dots/example5_2.png}
-\caption{~\ref{sec:example5}-ben leírt IRTG ud interpretációja által generált s-graph kifejezés műveleti fája}
+\caption{~\ref{sec:example5}-ben leírt IRTG UD interpretációja által generált s-graph kifejezés műveleti fája}
 \label{fig:example5.2}
 \end{figure}
 
@@ -277,20 +285,21 @@ merge(
 \centering
 \graphicspath{./}
 \includegraphics[scale=0.5]{figures/dots/example5_3.png}
-\caption{~\ref{sec:example5}-ben leírt IRTG ud interpretációja által generált s-graph kifejezés végeredménye.
+\caption{~\ref{sec:example5}-ben leírt IRTG UD interpretációja által generált s-graph kifejezés végeredménye.
 		Ez SGA formátumában így néz ki: "(Root/Root :root loves<root>/loves :nsubj (John/John) :dobj (Mary/Mary))"}
 \label{fig:example5.3}
 \end{figure}
 
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 6}
 \label{sec:example6}
 %----------------------------------------------------------------------------
 
-\begin{figure}[h]
+\begin{figure}[h!]
+\footnotesize
 \begin{verbatim}
 S! -> root_nsubj_NP_S_BAR(NP, S_BAR)
 [tree] @(?2,?1)
@@ -324,7 +333,6 @@ NP -> NP_NN(NN)
 [ud] ?1
 [fourlang] ?1
 
-
 NN -> John_NNP
 [tree] NNP(John)
 [ud] "(John<root> / John)"
@@ -345,7 +353,7 @@ PUNCT -> punct_PUNCT
 [ud] "(punct<root> / punct)"
 [fourlang] "(punct<root> / punct)"
 \end{verbatim}
-\caption{IRTG három algebrával a \textit{John Loves Mary.} mondat szintaktikai fájának, ud gráfjának és 4lang gráfjának generálására}
+\caption{IRTG három algebrával a \textit{John Loves Mary.} mondat szintaktikai fájának, UD gráfjának és 4lang gráfjának generálására}
 \label{cod:example6}
 \end{figure}
 
@@ -358,6 +366,7 @@ PUNCT -> punct_PUNCT
 \end{figure}
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 merge(
 	f_dep( 
@@ -402,7 +411,7 @@ merge(
 \end{figure}
 
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 7}
@@ -410,6 +419,7 @@ merge(
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 //merge start
 @(																				
@@ -450,12 +460,12 @@ merge(
 //merge end
 )									
 \end{verbatim}
-\caption{Példa kód az SGA fejlesztésével kapcsolatos koncepció szemléltetésére.
+\caption{Példakód az SGA fejlesztésével kapcsolatos koncepció szemléltetésére.
 			A példa a \textit{John loves Mary.} mondat UD-gráfjára adott kimenetet dolgozza fel az új szintaxissal.}
 \label{cod:example7}
 \end{figure}
 
-
+\clearpage
 
 %----------------------------------------------------------------------------
 \section{Példa 8}
@@ -463,6 +473,7 @@ merge(
 %----------------------------------------------------------------------------
 
 \begin{figure}[h]
+\small
 \begin{verbatim}
 //merge the root of the left graph with root of the right graph
 ( 
@@ -487,7 +498,7 @@ merge(
 
 )
 \end{verbatim}
-\caption{Példa kód az SGA operátoros verziójával kapcsolatos koncepció szemléltetésére.
+\caption{Példakód az SGA operátoros verziójával kapcsolatos koncepció szemléltetésére.
 			A példa a \textit{John loves Mary.} mondat UD-gráfjára adott kimenetet dolgozza fel az új szintaxissal.}
 \label{cod:example8}
 \end{figure}

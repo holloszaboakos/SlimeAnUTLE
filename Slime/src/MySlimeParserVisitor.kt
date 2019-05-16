@@ -2,6 +2,7 @@ import data.*
 import data.type.*
 import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.tree.*
+import org.stringtemplate.v4.ST
 import parser.SlimeParser
 import parser.SlimeParserBaseVisitor
 import java.lang.Error
@@ -30,7 +31,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     //In case of the root rule
     override fun visitFile(ctx: SlimeParser.FileContext): SText {
-        val file=SFile(mutableMapOf())
+        val file = SFile(mutableMapOf())
         if (DataContainer.root == null) DataContainer.root = file
         val grandParentFocus = DataContainer.parentFocus
         DataContainer.parentFocus = DataContainer.focus
@@ -101,7 +102,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //In case of SLOT and SPEC body we check if the parent node is slot or spec
     override fun visitSpslBody(ctx: SlimeParser.SpslBodyContext): SList<*> =
         if (ctx.parent.ruleIndex == SlimeParser.RULE_spec)
-            //In case of SPEC parent we remove semicolons and transform the names to SSpec instances
+        //In case of SPEC parent we remove semicolons and transform the names to SSpec instances
             SList(visitChildren(ctx).map { (it as SText) }.filter { it() != ";" }
                 .map {
                     SSpec(SSpec.Char.values().first { it2 -> it2.names.any { it3 -> it3.compareTo(it()) == 0 } })
@@ -145,6 +146,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //In case of EXTE body we simply gather the return values of the body parts.
     override fun visitExteBody(ctx: SlimeParser.ExteBodyContext): SList<SText> =
         SList(ctx.exteBodyPart().map { visitExteBodyPart(it) }.toMutableList())
+
     //In case of EXTE body part we transfer the variable into an SText
     override fun visitExteBodyPart(ctx: SlimeParser.ExteBodyPartContext): SText =
         if (ctx.childCount == 1) {
@@ -170,6 +172,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //In case of PLUS body we simply gather the return values of the body parts.
     override fun visitPlusBody(ctx: SlimeParser.PlusBodyContext): SList<SVari> =
         SList(ctx.plusBodyPart().map { visitPlusBodyPart(it) })
+
     //In case of PLUS body part we inicialize the left and right variables and plus the right to the left returning the return value
     override fun visitPlusBodyPart(ctx: SlimeParser.PlusBodyPartContext): SVari {
         val variLeft = visitVari(ctx.vari(0))[0]
@@ -237,6 +240,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
     //In case of DECL body we simply gather the return values of the body parts.
     override fun visitDeclBody(ctx: SlimeParser.DeclBodyContext): SList<SVari> =
         SList(ctx.declBodyPart().map { visitDeclBodyPart(it) }.toMutableList())
+
     //In case of DECL body part we gather the meta data and the value and declare a variable with the given name type and values
     override fun visitDeclBodyPart(ctx: SlimeParser.DeclBodyPartContext): SVari {
         //We gather meta data into two lists of SText
@@ -332,8 +336,37 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     //Or you can define the value with an other Type
                     //Or with two lists made out of other variables
                     is SlimeParser.ListVariContext -> {
-                        if (ctx.childCount != 2) throw Error("two many arguments for type initialization.")
                         val vari = visitListVari(ctx.listVari())
+                        if (ctx.childCount > 2 && vari.size == 2 && vari[0] is SList<*> && vari[1] is SList<*>) {
+                            val list1 = (vari[0] as SList<*>).filter { it is SText }.map { it as SText }.toSList()
+                            val list2 = (vari[0] as SList<*>).filter { it is SList<*> }.map {
+                                (it as SList<*>).filter { it2 -> it2 is SType }
+                                    .map { it2 -> SText((it2 as SType).tag) }
+                            }
+                            if (list1.size == list2.size && list1.size != 0 && list2.all { it.size >= 0 }) {
+                                val attributes = mutableListOf<SType.NameType>()
+                                for (i in 0 until list1.size)
+                                    attributes.add(SType.NameType(list1[i](), list2[i]))
+                                return SType(
+                                    (names)[0](),
+                                    attributes
+                                )
+                            }
+                        }
+                        if (vari.size != 0 && vari.all { it is SList<*> }) {
+                            val list = vari.map { it as SList<*> }
+                            if (list.all { it.size == 2 && it[0] is SText && it[1] is SList<*> && (it[1] as SList<*>).all { it2 -> it2 is SType } }) {
+                                return SType(
+                                    (names)[0](),
+                                    list.map {
+                                        SType.NameType(
+                                            (it[0] as SText)(),
+                                            (it[1] as SList<*>).map { it2 -> SText((it2 as SType).tag) })
+                                    }
+                                )
+                            }
+
+                        }
                         if (vari.size == 1 && vari[0] is SType)
                             return (vari[0].addNames(names) as SType)
                     }
@@ -394,7 +427,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
                     is SlimeParser.NameValueContext -> throw Error("Can not initialize file by list of name-value pairs.")
                     //You can define the value of a File with an other File or with a Text of the path to the slime file
                     is SlimeParser.ListVariContext -> {
-                        if (ctx.childCount != 2) throw Error("two many arguments for file initialization.")
+                        if (ctx.childCount > 2) throw Error("Too many arguments for declaring a File variable!")
                         val vari = visitListVari(ctx.listVari())
                         if (vari.size == 1 && vari[0] is SFile)
                             return (vari[0] as SFile).copy(names)
@@ -480,14 +513,12 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
             }
             //In case of a REFE we get the variables matching the Refe
             is SlimeParser.RefeContext -> {
-                SList(visitRefe(prc).listMatchingPaths().map {
-                    DataContainer.focus?.get(it)
-                        ?: throw Exception(
-                            "Can not reach variable at Path ${(visitRefe(prc)).extend(
-                                "/"
-                            )}"
-                        )
-                }.toMutableList())
+                val refe = visitRefe(prc)
+                SList(
+                    refe.listMatchingPaths().map {
+                        refe.owner.get(it)
+                    }.toMutableList()
+                )
             }
             //In every other case we just gather the variable
             else -> {

@@ -6,55 +6,41 @@
 \section{Bemutatkozás}
 \label{sec:SIntro}
 %----------------------------------------------------------------------------
-A szakdolgozatomban a Slime nyelv kidolgozásával foglalkoztam.
-A Slime egy UTLE (Universal Templater Language Extension), 
-avagy egy más nyelvek fölé szánt univerzális bővítmény, ami template-elést használ.
+A szakdolgozatomban a \texttt{Slime} nyelv kidolgozásával foglalkoztam, amely egy más nyelvek fölé szánt univerzális bővítmény, ami templatelést használ.
+Fontosnak tartottuk, hogy legyen neve annak a szemléletnek, amit a Slime képvisel, hogy könnyebben lehessen beszélni később a Slime és a templater enginek közötti különbségről. 
+Mivel ilyen megoldás nem létezett eddig, ezért mi jöttünk föl az \texttt{Universal Templater Language Extention} avagy \texttt{UTLE} kifejezéssel.
+
 
 A fejlesztés során az IRTG kiegészítése volt az elsődleges cél, de ezt a sok iteráció alatt kinőtte a koncepció. 
-Ennek több oka volt. 
-Először is az IRTG-nek a legtöbb hiányossága későbbi fejlesztés során megszűnhet a nyelv későbbi kiegészítésével (Lásd fejezet ~\ref{sec:sec:SEIRTG}).
-A kiegészítéshez a belső működés módosítására nincs feltétlen szükség. 
-Az ALTO-t ugyan viszonylag könnyű kiegészíteni és módosítani, mivel kellően objektum orientált és nyílt forráskódú,
+Ennek több oka volt: először is az IRTG-nek a legtöbb hiányossága későbbi fejlesztés során megszűnhet a nyelv későbbi kiegészítésével (lásd~\ref{sec:shortcomming}).
+A kiegészítéshez a belső működés módosítására nincs feltétlenül szükség. 
+Az Alto-t ugyan viszonylag könnyű kiegészíteni és módosítani, mivel kellően objektum orientált és nyílt forráskódú,
 ugyanakkor állandó fejlesztés alatt áll, ezért a forráskód módosítása és kiegészítése is verziókövetést igényel. 
 A függőséggel arányosan nő a karbantartási költség. 
-Az ALTO fejlődésével sok kód feleslegessé válik. 
-Ezért külső megoldás igényel. 
-Minden nyelv fejlődik, de mindig lesznek fejletlen nyelvek is, amik felett a Slime hasznos lesz.
+Az Alto fejlődésével sok kód feleslegessé válik, ezért külső megoldást igényel. 
+ 
+A Slime küldetése az, hogy növelje a kódok átláthatóságát, strukturáltságát és kiirtsa a feleslegesen repetitív kódrészeket.
 
-Programozási és adatleíró nyelveknek széles rétege alul fejlett. 
-Ennek egyik válfaját alkotják azok a nyelvek, amik még fiatalok és egyszerűen nem jutottak még el a kellő érettségig. 
-A másik típus pedig azok a nyelvek, amiknek túlzottan célorientáltak a bennük rejlő lehetőségekhez képest.
-A fejlesztőknek sokszor nem éri meg az összes alapfunkcionalitást implementálni. 
-Jó kérdés, hogy az IRTG a két kategóriából melyikbe esik vagy nem esik. 
-A Slime küldetése az, hogy ezeket a nyelveket felemelje egy magasabb szintre azok módosítása nélkül. 
-Növelje a kódok átláthatóságát, struktúráltságát, és kiírtsa a repetitív kódrészeket.
-
-Az univerzalitást szem előtt tartva egy olyan módszert kell alkalmazni, ami független a kiegészített nyelv fordítójától és szintaxisától. 
-Erre a legpraktikusabb megoldás a template-elés. 
+Az univerzalitást szem előtt tartva egy olyan módszert kell alkalmazni, ami független a kiegészített nyelv fordítójától és szintaxisától, erre a legpraktikusabb megoldás a template-elés. 
 Először a kiegészített nyelvre generáljuk a kódot és azt futtatjuk a nyelv saját fordítójával. 
 Ez ugyan egy új lépést jelent, de párhuzamosítással áttetszővé válhat a Slime könnyű súlyának köszönhetően. 
-Az ötlet persze nem teljesen egyedi. 
-Eddig is sokféle template processzort és enginet használtak(Lásd fejezet~\ref{sec:SAlternatives}) adatleíró nyelvekhez. 
-Ugyanakkor ezek inkább könyvtárak, mintsem nyelvek.
-Legtöbbször egy magasabb szintű nyelvből lehet kezelni őket, amiknek a támogatása is szükséges. 
-Céljuk tipikusan HTML vagy épp CSS kódok folytonos manipulációja. 
-A Slimeból sem nehéz könyvtárat készíteni, de hosszú távú célja az abszolút önállóság. 
+Az ötlet persze nem teljesen egyedi, eddig is sokféle template processzort és engine-t használtak (lásd ~\ref{sec:SAlternatives}) adatleíró nyelvekhez. 
+Ugyanakkor ezek inkább könyvtárak, mintsem nyelvek: legtöbbször egy magasabb szintű nyelvből lehet kezelni őket, amiknek a támogatása is szükséges. 
+Céljuk tipikusan HTML vagy CSS kódok folytonos manipulációja. 
+A Slime-ból sem nehéz könyvtárat készíteni, de hosszú távú célja az abszolút önállóság. 
 Kerüli a függőséget minden felette lévő rétegtől is.
 
-A réteges architektúra és egyirányú viszony miatt a kiegészített nyelvre \textit{alárendelt nyelv}ként (subordinate language) fogok hivatkozni.
-A templatek esetében megszokott terminológia ``master document''-ként hivatkozik az alárendelt nyelv sablonjaira.
-Ezzel ellentétben mi \textit{alárendelt dokumentum}ként (subordinate document) fogok hivatkozni rá. 
+A réteges architektúra és egyirányú viszony miatt a kiegészített nyelvre \texttt{alárendelt nyelv}ként (subordinate language) fogok hivatkozni.
+A template-ek esetében megszokott terminológia \texttt{master document}ként hivatkozik az alárendelt nyelv sablonjaira, ezzel ellentétben \texttt{alárendelt dokumentum}ként (subordinate document) fogok hivatkozni rá. 
 
-A Slime fiatal, így a Slime-ban is megjelennek még azok a jelenségek, amiket elkerülni igyekszik. 
+A Slime még fejlesztés alatt áll, így a Slime-ban is megjelennek még azok a jelenségek, amiket elkerülni igyekszik. 
 A kódjában legtöbbször könnyű, de nem mindig elkerülhető a repetitivitás. 
-Nem haladja meg azt a funkcionalitást, amire tervezve lett. 
-Közel sem Turing teljes. 
+Nem haladja meg azt a funkcionalitást, amire tervezve lett, közel sem Turing-teljes. 
 Nem tartalmazza a legalapvetőbb aritmetikai műveleteket sem. 
-Csak a templateléshez és struktúráláshoz szükséges alapfunkciókat implementálja (Lásd fejezet ~\ref{sec:SStatesOfDevelopment}). 
-További fejlesztéseket igényel
-Ezekre a problémákra és tervezett megoldásaikra a későbbiekben fogok kitérni. 
-A Slime így is jelentős fejlődést jelent olyan nyelvek számára, amikben a tünetek sokkal súlyosabban jelentkeznek. 
-Ilyen nyelv az IRTG, HTML, XML és irónikusan annak az ANTLR-nek a \textit{lexer} és parser nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (lást Példák ~\ref{sec:SEIRTG}). 
+Csak a template-eléshez és strukturáláshoz szükséges alapfunkciókat implementálja (lásd ~\ref{sec:SStatesOfDevelopment}). 
+További fejlesztést igényel, ezekre a problémákra és tervezett megoldásaikra a későbbiekben fogok kitérni. 
+A Slime így is jelentős fejlődést jelent olyan nyelvek számára, amelyekben ezek a problémák sokkal nagyobb mértékben jelentkeznek. 
+Ilyen az IRTG, HTML, XML és ironikusan annak az ANTLR-nek a \texttt{lexer} és parser nyelvtan leíró nyelve, amit a Slime jelenlegi fordítója használ (lásd ~\ref{sec:SEIRTG}). 
 Tehát végső soron a Slime egy olyan nyelv, ami saját magának az implementálását is határozottan könnyebbé tette volna.
 
 
@@ -76,7 +62,7 @@ A Slime a következőkre összpontosít:
 \end{itemize}
 
 Eddig a nyelvektől való függetlenséget emeltük ki. 
-Ecélból a nyelv külön fordítót, templatelést és szöktetést használ e célból.
+E célból a nyelv külön fordítót, template-elést és szöktetést használ.
 
 A könnyű súlyt könnyen parszolható szintaxissal és egyszerű műveletekkel támogatja. 
 Később a túlsúlyos külső könyvtárak elhagyása is sokat fog segíteni.
@@ -84,31 +70,25 @@ Később a túlsúlyos külső könyvtárak elhagyása is sokat fog segíteni.
 A platformfüggetlenség okán Kotlinban készült az első fordító, ami JVM-en fut. 
 A könnyen bővíthetőséget modularitással és egységes szintaxissal támogatja.
 
-Az esztétikum és felismerhetőség is első sorban a szintaxisra vonatkozik. 
+Az esztétikum és felismerhetőség elsősorban a szintaxisra vonatkozik. 
 Cél az átláthatóság. 
 Fontos, hogy szép kódunk legyen, amiben a nyelvi elemek jól felismerhetőek.
-Ugyanakkor az is fontos, hogy a Slime kódja kitűnjön az alárendelt nyelv kódjából. (lásd fejezet ~\ref{sec:SBaseSyntax})
+Ugyanakkor az is fontos, hogy a Slime kódja kitűnjön az alárendelt nyelv kódjából. (lásd ~\ref{sec:SBaseSyntax})
 
-A szabad tördelhetőségben segítenek sokat a zárójelek, változók és az importálás megvalósítása. (lásd Példák ~\ref{sec:SEIRTG}) 
-A könnyen tanulhatóságot a beszédes, de tömör jelölések, kevés, de sok oldalú műveletek és következetes működés, valamint a kódok átláthatósága is segíti.
+A szabad tördelhetőségben segítenek sokat a zárójelek, változók és az importálás megvalósítása. (lásd ~\ref{sec:SEIRTG}) 
+A könnyen tanulhatóságot a beszédes, de tömör jelölések, kevés, de sokoldalú művelet és következetes működés, valamint a kódok átláthatósága is segíti.
 
 A hatékony programozást a tömörített kifejezések és a szükségtelen jelölések elhagyása segítik.
 
-Sokszor kellett kompromisszumokat kötni a szempontok között. 
-Ezeket a döntéseket ugyanakkor legtöbbször inkább elkerültük. 
-Fontos rugalmasnak lenni, és engedni a programozót a saját stílusát követni. 
-A nyelv hemzseg a zárójelektől a könnyű parszolás és átláthatóság érdekében.
-Ugyanakkor van lehetőség a csukó zárójelek esetenkénti elhagyására.
+Sokszor kellett kompromisszumokat kötni a szempontok között, ezeket a döntéseket ugyanakkor legtöbbször inkább elkerültük. 
+A nyelv sok zárójelet tartalmaz a könnyű parszolás és átláthatóság érdekében, ugyanakkor van lehetőség a csukó zárójelek esetenkénti elhagyására.
 Sok nyelv az adatot elkülöníti a kódtól. 
-Slimeban a kód tartalmazza a templatet, de külön fájlba szervezéssel elkülöníthetőek. 
-Más templater engine-k könyvtáraival ellentétben nem a Slime-ba ágyazzuk az alárendelt nyelv kódját, hanem  
-az alárendelt nyelv kódjába ágyazzuk a Slime-ot. 
-Így a Slime használatának mennyisége teljesen opcionális. 
-A felhasználó hagyatkozhat teljesen a Slime-ra vagy használhatja csak a legrepetitivebb kódrészek esetén. 
-A Slime esetén akár saját maga is könnyen lehet az alárendelt nyelv. 
-Ezt a szöktető zárójelek nagyban segítik. 
-A reguláris kifejezések(RegEx) esetén például csak egy karaktert lehet szöktetni, így a RegEx-xel RegEx-ben keresni elég nehézkes.
-Ilyenkor ugyanis minden speciális karaktert szöktetni kell. 
+Slime-ban a kód tartalmazza a templatet, de külön fájlba szervezéssel elkülöníthetőek. 
+Más templater engine-ek könyvtáraival ellentétben nem a Slime-ba ágyazzuk az alárendelt nyelv kódját, hanem  
+az alárendelt nyelv kódjába ágyazzuk a Slime-ot, így a Slime használatának mennyisége teljesen opcionális. 
+A felhasználó hagyatkozhat teljesen a Slime-ra, vagy használhatja csak a legrepetitivebb kódrészek esetén. 
+A Slime esetén akár saját maga is könnyen lehet az alárendelt nyelv, ezt a szöktető zárójelek nagyban segítik. 
+A reguláris kifejezések(RegEx) esetén például csak egy karaktert lehet szöktetni, így RegEx-szel RegEx-ben keresni elég nehézkes.
 Slime esetében az alárendelt Slime kód részeket egyszerűen \{” ”\} szöktető zárójelek közé rakjuk.
 
 
@@ -116,15 +96,14 @@ Slime esetében az alárendelt Slime kód részeket egyszerűen \{” ”\} szö
 \section{Alternatívák template-elésre }
 \label{sec:SAlternatives}
 %----------------------------------------------------------------------------
-Rengeteg alternatíva létezik template-elés terén.
-Az itt felsoroltak csak egy ízelítő belőlük.
+Rengeteg alternatíva létezik template-elés terén az itt felsoroltakon kívül is. 
 Azt mutatom be, hogy a ma fellelhető megoldások miben térnek el a Slime-tól.
 Nem kívánom a nyelveket kritizálni.
 Más a céljuk, így természetes, hogy nem tudnak a Slime célkitűzéseinek eleget tenni.
 
 %----------------------------------------------------------------------------
-\subsection[Mustache]{\href{https://mustache.github.io}{Mustache}\footnote{\url{https://mustache.github.io}}}
-\label{sec:mustache}
+\subsection[Mustache]{\href{https://Mustache.github.io}{Mustache}\footnote{\url{https://Mustache.github.io}}}
+\label{sec:Mustache}
 %----------------------------------------------------------------------------
 A Mustache az egyik legtöbb forrással rendelkező templater könyvtár.
 Tömbnyire HTML manipulációra használják.
@@ -133,47 +112,46 @@ A 46 nyelv teljes listája elérhető a hivatalos GitHub oldalukon.
 A Kotlin ugyan még nem szerepel benne, de ami Java alatt elérhető, az Kotlin alatt is.
 Jól működik többek között a TextMate, Vim és Emacs szövegszerkesztőkkel.
 
-Un. \textit{logic-less template}-eket használ.
-Avagy elkülöníti a logikát és a a sablonokat.
-A mezőket dupla kapcsos zárójelekkel jelöli; például: \textit{Dear \{\{ name \}\}}.
-A mezőkre \textit{tag}-ként hivatkozunk esetében.
-A \textit{name} a tag kulcsa.
+Ún. \texttt{logic-less template}-eket használ, vagyis elkülöníti a logikát és a a sablonokat.
+A mezőket dupla kapcsos zárójelekkel jelöli, például \textit{Dear \{\{ name \}\}}.
+A mezőkre \texttt{tag}-ként hivatkozunk esetében.
+A \texttt{name} a tag kulcsa.
 Ezt a kulcsot fogom használni a későbbi példáimban is.
 
-A templatbe kulcsérték párokat lehet beszúrni.
+A template-be kulcs-érték párokat lehet beszúrni.
 Minden tag-be az ő nevéhez tartozó adat szúródik be.
 
 Több fajtája létezik a tag-eknek:
 \begin{itemize}
 \item \emph{Variables:}
-Ezek a legalapabb tag-ek.
-Amikor a template name kulcsú tag-jébe szúrunk bele, akkor az összesbe szúrunk bele.
+Ezek a legalapvetőbb tag-ek.
+Amikor a template \texttt{name} kulcsú tag-jébe szúrunk be, akkor az összesbe szúrunk be.
 Alapvetően szöktetve vannak a HTML-ből.
 Például a \textit{<b>GitHub</b>} helyett \textit{\& lt;b\& gt;GitHub\& lt;/b\& gt;} kerül a kódba.
 Ha szeretnénk, hogy ne legyenek szöktetve, akkor \textit{\{\{\{ name \}\}\}} vagy \textit{\{\{\& name \}\}} módra kell megadnunk őket.
-Például ha a \textit{\{\{\{name\}\}\}} vagy \textit{\{\{\& name\}\}} mezőbe szúrjuk be a \textit{<b>GitHub</b>} szöveget, akkor az \textit{<b>GitHub</b>} ként is lesz beszúrva.
+Például ha a \textit{\{\{\{name\}\}\}} vagy \textit{\{\{\& name\}\}} mezőbe szúrjuk be a \textit{<b>GitHub</b>} szöveget, akkor az \textit{<b>GitHub</b>}ként is lesz beszúrva.
 \item \emph{Sections:}
-Egy section tartalma egy vagy többször is megjelenhet.
+Egy section tartalma egyszer vagy többször is megjelenhet.
 Elejét \textit{\{\{\# name \}\}} és végét \textit{\{\{/ name \}\}} módon jelöljük.
 A kettő között egy sablonrészlet található.
-Egy boolean értéket vagy adat listát lehet a section mezőbe szúrni.
+Egy boolean értéket vagy adatlistát lehet a \texttt{section} mezőbe szúrni.
 Ha false-t vagy üres listát kap, akkor nem jelenik meg.
-True esetén megjelenik egyszer és a tagjeibe a kulcsukhoz tartozó adatot szúrja be.
+True esetén megjelenik egyszer, és a tagjeibe a kulcsukhoz tartozó adatot szúrja be.
 Nem üres lista esetén a belső sablonba a lista minden elemét beszúrja és az eredményeket egymás alá írja ki.
 Ha egy paraméter nélkül hívható objektumot adunk át neki, akkor azt meghívja és a kimenetét szúrja be a Section helyére.
 Ez lehet lambda kifejezés, funktor vagy function is.
 \item \emph{Inverted Sections:}
-Elejét \textit{\{\{$\cap$ name \}\}} és végét \textit{\{\{/ name \}\}} módra jelöljük.
+Elejét \textit{\{\{$\cap$ name \}\}} és végét \textit{\{\{/ name \}\}} módon jelöljük.
 Akkor jelennek meg, ha a kulcsuk a kapott adatban nem létezik, false vagy üres lista.
-Ez például hiányzó kulcsok esetén alkalmas hiba üzenet vagy más visszajelzés megjelenítésére.
+Ez például hiányzó kulcsok esetén alkalmas hibaüzenet vagy más visszajelzés megjelenítésére.
 \item \emph{Comments:}
 Mustache-ben kommentet \textit{\{\{! ignore me \}\}} formátumban írhatunk.
 Ezeket bárhol kezdhetjük a szövegben, de nem kerülhetnek tag-be.
 \item \emph{Partials:}
 A \textit{\{\{> name\}\}} formátumban adhatóak meg.
 Rekurzívak is lehetnek, ha nem tartalmaznak végtelen ciklust.
-Ezzel valósítja meg a mustache az importálást.
-A fenti példa a name nevű mustache fájl tartalmát jelöli.
+Ezzel valósítja meg a Mustache az importálást.
+A fenti példa a name nevű Mustache fájl tartalmát jelöli.
 \item \emph{Set Delimiter:}
 Ezzel a funkcióval új jelölés vezethető be a dupla kapcsos zárójelek helyett.
 Például a \textit{\{\{=<\% \%>=\}\}} a \textit{\{\{ name \}\}} formátumot \textit{<\% name \%>}-re cseréli.
@@ -187,21 +165,19 @@ Nincs szöktetés, csak a tag-ek jelölése állítható dinamikusan.
 Ez ugyanakkor egy olyan képesség, amivel a Slime nem rendelkezik (még). 
 
 
-
 %----------------------------------------------------------------------------
 \subsection[Jade]{\href{https://pugjs.org/api/getting-started.html}{Jade}\footnote{\url{https://pugjs.org/api/getting-started.html}}}
 \label{sec:jade}
 %----------------------------------------------------------------------------
 A Jade az egyik legelterjedtebb templater nyelv.
-2017-ban át lett nevezve pug-gá és az új források is már így hivatkoznak rá.
+2017-ban át lett nevezve \texttt{Pug}gá és az új források is már így hivatkoznak rá.
 Ennek ellenére legtöbben még az eredeti nevén ismerik.
 
 Erősen HTML-re van szakosodva.
-A HTML nyitó jeleket egyszerűbben lehet benne írni.
-És a csukó jel teljes mértékben elhagyható.
+A HTML nyitó jeleket egyszerűbben lehet benne írni, és a csukó jel teljes mértékben elhagyható.
 A tag-ek jelölésére a \#\{ name \} jelölést használja.
 
-attribútumok:
+Attribútumok:
 \begin{verbatim}
 <a ...> ... </a> 
 \end{verbatim}
@@ -224,17 +200,15 @@ input(
 )
 \end{verbatim}
 
-"-" jellel javascript is ágyazható bele.
+"-" jellel JavaScript is ágyazható bele.
 
-class adható meg egyszerűen így is:
+Class adható meg egyszerűen így is:
 \begin{verbatim}
 a.button
 \end{verbatim}
 
-Hosszasan lehetne sorolni a szintaxis belüli változtatásokat és javascript trükköket.
-Összegezve a pug egy nagyon fejlett és összetett nyelv.
-Erősen javascriptre és HTML-re van szakosodva.
-Előtérbe a hatékony kódolást helyezi az átláthatósággal szemben.
+Összegezve a Pug egy nagyon fejlett és összetett nyelv.
+Erősen JavaScriptre és HTML-re van szakosodva, a hatékony kódolást helyezi előtérbe az átláthatósággal szemben.
 
 
 %----------------------------------------------------------------------------
@@ -244,43 +218,36 @@ Előtérbe a hatékony kódolást helyezi az átláthatósággal szemben.
 Onnan kapta a nevét, hogy minden függvény az \_ névtérből érhető el.
 (Én magam is sokszor használtam saját hasonló nevű Java handler osztályokat, hogy átláthatóbbak legyenek a műveleteim. 
 \_ nevű osztályokat persze a Java újabb verzióiban már nem lehet létrehozni.)
-A hivatalos oldalánn is javascript library-nek hívják az \textit{Underscore Templates}-et.
+A hivatalos oldalán is JavaScript library-nek hívják az \textit{Underscore Templates}-et.
 Más alatt nem is elérhető és nem kíván teljes nyelv lenni.
-Az Underscore nem csak templatelésre való.
-Egy általános kiegészítése a javascriptnek.
-Több mint 100 függvényt kínál fel.
+Az Underscore nem csak templatelésre való, hanem a JavaScript egy általános kiegészítése, több mint 100 függvényt kínál fel.
 Funkcionális segédként tartalmaz map-et, filter-t és invoke-ot.
-Ezen kívül tartalmaz function binding-ot, javascript templating-et, quick index-ek készítését, deep equality testing-et.
+Ezen kívül tartalmaz function binding-ot, JavaScript templating-et, quick index-ek készítését és deep equality testing-et.
 
-A templatelésre is számos ügyes megoldást tartalmaz.
+A template-elésre is számos ügyes megoldást tartalmaz.
 <\% name \%> formátumban jelöli a mezőket.
 Ennek is több verziója van, amit a mezőt megelőző karakter jelöl:
 \begin{itemize}
 \item \emph{<\%=name\%>:}
-Ezt interpolate-nak hívják. 
-Ez a legalapvetőbb mező.
+Ezt interpolate-nak hívják, ez a legalapvetőbb mező.
 A beszúrt adatot egy az egyben beszúrja.
 \item \emph{<\%-name\%>:}
-Ezt escape.nek jóhívják.
-A beszúrt adat \texttt{\& < > " ' /} karaktereit HTML skipp-eli.
+Ezt escape.nek hívják.
+A beszúrt adat \texttt{\& < > " ' /} karaktereit HTML skip-eli.
 \item \emph{<\%name\%>:}
-Ezt evaluate-nek hívják.
-Javascript kódrészleteket lehet beleszúrni.
-Például egy foreachet, ami egy listányi adaton végig megy és mindegyiket beleszúrja a mezőkbe, mindegyik beszúrással új példányt hozva létre.
+Ezt evaluate-nek hívják, JavaScript kódrészleteket lehet beleszúrni, például egy forEach-et, ami egy listányi adaton végig megy és mindegyiket beleszúrja a mezőkbe, mindegyik beszúrással új példányt hozva létre.
 Alkalmas elágazások implementálására is.
 Képes metadatokat elérni.
 \end{itemize}
 
 A szintaxis is állítható:\_ .templateSettings = \{interpolate : /$\backslash$ \{$\backslash$\{(.+?)$\backslash$\}$\backslash$\}/g \};
 
-(érdekesség: A mustache hivatalos példáiban azt mutatják be, hogy hogyan lehet az Underscore mező nyitó és csukó zárójeleit használni a mustache helyett a \textit{\{\{=<\% \%>=\}\}} segítségével. Mint feljebb látható, az Uderscore hivatalos példáiban épp a mustache nyitó és csukó zárójeleire váltunk.)
+(érdekesség: A Mustache hivatalos példáiban azt mutatják be, hogy hogyan lehet az Underscore mező nyitó és csukó zárójeleit használni a Mustache helyett a \textit{\{\{=<\% \%>=\}\}} segítségével. Mint feljebb látható, az Uderscore hivatalos példáiban épp a Mustache nyitó és csukó zárójeleire váltunk.)
 
-Az Underscore a Mustache és a Jade(Pug) szemléletét ötvözi.
-Több féle mezőt használ, de megengedi a javascript elemek beszúrását.
-Ezzel pedig bevállalja, hogy a JavaScript-tel erős függőségben legyen.
-Ez persze JavaScript alatt a legelőnyösebb megoldás.
-A lehető legkevesebb új információ mellett lehet hatékonyan template-elni.
-Engedi a szintaxis átállítását is, ami mindig hasznos, ha nincsen a nyelvben hatékony skippelés.
+Az Underscore a Mustache és a Jade (Pug) szemléletét ötvözi.
+Többféle mezőt használ, de megengedi a JavaScript elemek beszúrását, így vállalja, hogy a JavaScripttel erős függőségben legyen.
+JavaScript alatt ez a legelőnyösebb megoldás: a lehető legkevesebb új információ mellett lehet hatékonyan template-elni.
+Engedi a szintaxis átállítását is, ami mindig hasznos, ha nincsen a nyelvben hatékony skipelés.
 
 %----------------------------------------------------------------------------
 \subsection[Embedded JS Templates]{\href{https://github.com/mde/ejs}{Embedded JS Templates}\footnote{\url{https://github.com/mde/ejs}}}
@@ -288,8 +255,7 @@ Engedi a szintaxis átállítását is, ami mindig hasznos, ha nincsen a nyelvbe
 %----------------------------------------------------------------------------
 Ez is egy könyvtár.
 
-Jelölése az Underscore-ra hasonlít.
-Tele van hasznos funkciókkal.
+Jelölése az Underscore-ra hasonlít. Tele van hasznos funkciókkal.
 \textit{<\% \%>}-tel JavaScript ágyazható vele, amivel könnyen megvalósíthatóak vezérlési szerkezetek (ciklusok, if-ek, stb.).
 \textit{<\%= \%>} szöktetett beszúrás végezhető. 
 \textit{<\%-  \%>} szöktetés nélküli beszúrás.
@@ -312,14 +278,13 @@ további jelölései:
 \item \emph{\textit{\%>} :} 'Whitespace Slurping' csukó tag, elhagy minden whitespace karaktert maga után.
 \end{itemize}
 
-Nagy hangsúlyt fektet a whitespacek kezelésére.
-
+Nagy hangsúlyt fektet a whitespace-ek kezelésére.
 
 %----------------------------------------------------------------------------
 \subsection[HandlebarsJS]{\href{https://handlebarsjs.com}{HandlebarsJS}\footnote{\url{https://handlebarsjs.com}}}
 \label{sec:hjs}
 %----------------------------------------------------------------------------
-Ez a megoldás a mustache működéséhez és jelöléseihez közelít.
+Ez a megoldás a Mustache működéséhez és jelöléseihez közelít.
 Handlebar-ként hivatkozunk a HandlebarsJS mezőire.
 A böngészőbe <script> blokkban lehet bevinni.
 
@@ -343,20 +308,17 @@ Egy listányi adatot beleszúrva mindegyikkel elvégzi a beszúrást és egymás
 \subsection[Smarty]{\href{https://www.smarty.net}{Smarty}\footnote{\url{https://www.smarty.net}}}
 \label{sec:smarty}
 %----------------------------------------------------------------------------
-A smarty egy rendkívül fejlett templater engine.
+A Smarty egy rendkívül fejlett templater engine.
 Mint a legtöbb templater, PHP-ra és  HTML-re szakosodott.
 A blokkjait kapcsos zárójellel határolja.
 
-Számos funkcionalitást lehet vele a templaten belül jelölni.
-Ezeknek részletezése nem fér bele a szakdolgozat kereteibe.
-Ezért csak a szintaxis szemléltetésének céljával sorolok fel alapvető nyelvi elemeket:
+Számos funkcionalitást lehet vele a template-en belül jelölni.
+Ezeknek a részletezése nem fér bele a szakdolgozat kereteibe, ezért csak a szintaxis szemléltetésének céljával sorolok fel alapvető nyelvi elemeket:
 
 \begin{itemize}
 \item \emph{variable: }
 \textit{\{\$ name \}}
-A Smarty mezői.
-Ugyanakkor sokkal fejlettebbek annál.
-Ők maguk is tartalmazhatnak más változókat. 
+A Smarty mezői, ők maguk is tartalmazhatnak más változókat. 
 \item \emph{functions: }
 \textit{\{funcname attr1="val1" attr2="val2"\}}
 \item \emph{komment: } 
@@ -370,7 +332,7 @@ Ugyanakkor sokkal fejlettebbek annál.
 </tr>
 \end{verbatim}
 A ciklus megvalósítása. 
-Végig iterál az értékeken.
+Végigiterál az értékeken.
 \item \emph{upper: } 
 \textit{\{\$name|upper\}}
 Nagy betűkkel szúrja be a szöveget.
@@ -381,75 +343,66 @@ Nagy betűkkel szúrja be a szöveget.
 {/foreach}
 \end{verbatim}
 Loops throw the whole array.
-Egy fejlett megoldás, ami sok féle képpen használható.
-Nem részletezem a szakdoga kereteiben.
+Egy fejlett megoldás, ami sokféleképpen használható, nem részletezem a szakdolgozat kereteiben.
 \item \emph{display: } 
-kiír konzolra egy templatet.
+Kiír konzolra egy template-et.
 \end{itemize}
 
 Összefoglalva a Smarty minden műveletet kapcsos zárójelekbe zár.
 Ezeket figyelmen kívül hagyja, ha whitespace-be vannak foglalva.
 A föggvények nevét a kapcsos zárójelekkel jelöli.
 Igyekszik mindent saját nyelvi elemekkel megoldani.
-Érdekes, hogy a Smarty ismerete nélkül, a slime szintaxisa is ebbe az irányba mozdult el.
-A Smarty egy rendkívül fejlett és tartalmas nyelv.
-A Slime ennél egy sokkal egyszerűbb megközelítést követ.
+Érdekes, hogy a Smarty ismerete nélkül a Slime szintaxisa is ebbe az irányba mozdult el, de a Slime ennél egy sokkal egyszerűbb megközelítést követ.
 
 %----------------------------------------------------------------------------
-\section{Az Slime alapjai}
+\section{A Slime alapjai}
 \label{sec:basics}
 %----------------------------------------------------------------------------
-Nincs nyelv, amiben könyebb "Hello World"-öt írni, mint Slime-ban!
-Csak leírod, és a kimenetben benne lesz.
-A Slime egy letisztult nyelv. 
-Összesen tizenegy példányosítható típust és tíz műveletet tartalmaz. 
+A Slime egy letisztult nyelv, összesen tizenegy példányosítható típust és tíz műveletet tartalmaz. 
 Egységes és csak erősen indokolt esetekben tér el a természetes, bevett megoldásoktól.
 A továbbiakban a szintaxist, típusokat és műveleteket összetettség szerinti sorrendben igyekszem leírni.
 \begin{itemize}
 \item Az első alfejezetben a szintaxis alapjait mutatom be.
-\item A második alfejezetben a típusok közös ősével fojtatom.
+\item A második alfejezetben a típusok közös ősével folytatom.
 \item A harmadik alfejezetben a tároló típusok őséről írok.
-\item A negyedik alfejezetben a sablonok szintaxisáról és alkotó elemeiről írok.
+\item A negyedik alfejezetben a sablonok szintaxisáról és alkotóelemeiről írok.
 \item Az ötödik alfejezetben bemutatom a műveleteket és egyszerű eseteiket.
 \item A hatodik alfejezetben mutatom be a tároló típusokat.
 \item A hetediktől a kilencedik alfejezetig a műveletek összetettebb, tároló osztályokat is használó eseteit mutatom be.
 \item A tizedik fejezetben mutatom be a Refe típust, ami a szakdolgozat egyik legfontosabb funkcionalitását valósítja meg.
-\item A tizeneggyedik fejezetben a haladó szintaxisról írok.
+\item A tizenegyedik fejezetben a haladó szintaxisról írok.
 \item Végezetül a tizenkettedik fejezetben mutatom be a Name típust, ami a változók neveinek kezelését teszi lehetővé.
 \end{itemize}
-
-  
+ 
 
 %----------------------------------------------------------------------------
-\subsection{Alap Szintaxis}
+\subsection{Alapvető szintaxis}
 \label{sec:SBaseSyntax}
 %----------------------------------------------------------------------------
-A szintaxis terén volt a legnehezebb megtalálni a hangsúlyt a tömörség, az átláthatóság és a tanulhatóság között. 
-Fontos volt az, hogy a jelölések már bevettek legyenek vagy következetesek, hogy könnyű legyen megtanulni. 
+A szintaxis terén volt a legnehezebb megtalálni az egyensúlyt a tömörség, az átláthatóság és a tanulhatóság között. 
+Fontos volt az, hogy a jelölések már bevettek legyenek, vagy következetesek, hogy könnyű legyen megtanulni. 
 De az átláthatósághoz az is fontos volt, hogy a jelölések egyediek legyenek.
 
 A bevett jelölésekhez népszerű templater enginek, a Kotlin és más C alapú nyelvek szolgáltak alapul.
 \begin{itemize}
 \item \emph{sablon nyelvek:}
-A Smarty-hoz hasonlóan (Lásd fejezet ~\ref{sec:smarty}) a parancsokat az alárendelt kódba ágyazzuk.
+A Smarty-hoz hasonlóan (lásd~\ref{sec:smarty}) a parancsokat az alárendelt kódba ágyazzuk.
 Minden művelet kapcsos zárójelbe kerül, hogy elkülönüljön az alárendelt kódtól.
 Ez rendes tördelés mellett az átláthatóságot is segíti, és használatával a műveleti sorrend is egyértelmű. 
-A Mustache-hoz hasonlóan (Lásd fejezet ~\ref{sec:mustache}) a blokkok típusát a blokkon belül jelöli egy-két karakterrel.
+A Mustache-hoz hasonlóan (lásd~\ref{sec:Mustache}) a blokkok típusát a blokkon belül jelöli egy-két karakterrel.
 Ez is segíti az alárendelt kódtól való elkülönülést.
-Igaz Slime esetén a csukó zárójel előtt is jelöljük a blokk típusát, az átláthatóság kedvéért.
+Slime esetén a csukó zárójel előtt is jelöljük a blokk típusát, az átláthatóság kedvéért.
 \item \emph{Kotlin:}
-Deklarációnál a név, típus érték sorrendet követi.
-Ekkor a nevet és a típust kettősponttal választja el.
+Deklarációnál a név, típus, érték sorrendet követi, ekkor a nevet és a típust kettősponttal választja el.
 \item \emph{C alapú nyelvek:}
-A több parancsot tartalmazó zárójelekben(Lásd bővebben ~\ref{sec:SAdvaSyntax}) a parancsokat pontosvesszűvel választjuk el.
+A több parancsot tartalmazó zárójelekben(lásd bővebben ~\ref{sec:SAdvaSyntax}) a parancsokat pontosvesszővel választjuk el.
 A zárójeleken belül az attribútumokat vesszővel és kettősponttal választjuk el.
 A \textit{':'}-tal tagolja a függőségben lévő attribútumokat és a \textit{','}-tal a függetleneket. 
-Például a kulcs érték párokat \textit{':'} köti össze.
+Például a kulcs-érték párokat \textit{':'} köti össze.
 Ha az attribútumok között összetettebb hierarchia van, azt a kettőspont mellett kerek zárójelek is jelölik. 
 A referenciát a \textit{'\&'} karakter jelöli.
 \end{itemize} 
-Egyes műveletek esetén a főbb attribútum halmazokat saját operátorral is elválasztjuk. 
-Például deklaráció során a létrehozott változó metaadatait leíró részt(nevek és típus) egy \textit{“:=”} zárja.
+Egyes műveletek esetén a főbb attribútumhalmazokat saját operátorral is elválasztjuk, például deklaráció során a létrehozott változó metaadatait leíró részt (nevek és típus) egy \textit{“:=”} zárja.
 A következő fejezetek példái jól szemléltetik ezeket is.
 
 %----------------------------------------------------------------------------
@@ -457,15 +410,13 @@ A következő fejezetek példái jól szemléltetik ezeket is.
 \label{sec:SVariSuper}
 %----------------------------------------------------------------------------
 A Slime egy erősen típusos nyelv.
-Nincsen benne öröklődés, de van két absztrakt ős típus.
+Nincsen benne öröklődés, de van két absztrakt őstípus.
 A Slime összes típusának közös absztrakt őstípusa a Vari(variable).
 
 Minden Vari példánynak lehet akár több, akár nulla neve.
-Ezek a nevek az angol ábc kis-nagy betűit, alulvonást és számokat tartalmazhatnak. 
-Számokkal ugyanakkor nem kezdődhetnek.
+Ezek a nevek az angol abc kis- és nagybetűit, alulvonást és számokat tartalmazhatnak, de számokkal nem kezdődhetnek.
 Egy névtelen változó csak az őt birtokló változókon keresztül érhető el.
-A több név több esetben is hasznos lehet.
-Például az éppen többet használt változókat hivatkozhatjuk a rövidebb nevükön.
+A több név több esetben is hasznos lehet, például az éppen többet használt változókat hivatkozhatjuk a rövidebb nevükön.
 Ritkább használat esetén pedig hivatkozhatjuk őket a hosszabb nevükön.
 Tömören programozunk, és mindig mindent elérünk egyszerre.
 A programozási környezetek gyakran tartalmazzák az automatikus rendezés funkciót.
@@ -475,16 +426,15 @@ Vagy például többen dolgoznak egy projekten, de mindenki más terminológia s
 Ilyenkor mindenki hozzáadhatja a változókhoz azt a nevet, ami neki kényelmesebb.
 
 A Slime-ban van importálás.
-Az importált fájl változói a fájl változójának nevén, mint namespacen keresztül érhetőek el.
-Például az f1 néven importált fájl v1 változója f1.v1 néven érhetőek el.
+Az importált fájl változói a fájl változójának nevén, mint namespace-en keresztül érhetőek el.
+Például az \texttt{f1} néven importált fájl \texttt{v1} változója \texttt{f1.v1} néven érhető el.
 Ez fontos ahhoz, hogy elkerülhessük a váratlan névütközéseket.
-Egy változóhoz nevek később is adhatóak a Name típus segítségével (Lásd fejezet~\ref{sec:SName}).
+Egy változóhoz nevek később is adhatóak a Name típus segítségével (lásd~\ref{sec:SName}).
 Az új nevek annak a Slime fájlnak a namespace-éhez fognak tartozni, amelyikben hozzá lettek adva az adott változóhoz. 
 Így lehet például egy importált fájl változóit könnyebben elérhetővé tenni.
 Ha egy név már foglalt az adott fájlban, akkor egyszerűen felülíródik.
 Erről persze a programozó kap visszajelzést futtatáskor.
-A több név gyakorlatilag a referenciákat helyettesíti.
-Ugyanakkor ez egy sokkal magasabb szintű megoldás.
+A több név gyakorlatilag a referenciákat helyettesíti, ugyanakkor ez egy sokkal magasabb szintű megoldás.
 A változó is tudja, hogy honnan érhető el és milyen név szerint.
 
 Minden Vari-nak létezik a következő négy attribútuma:
@@ -496,9 +446,8 @@ A változó nevei a fájl elérése szerint.
 A változó maga. 
 Ez a "referencia" helyett magára a változóra hivatkozik.
 Ha egy változó közvetlen elérhető, akkor a meghivatkozása nem tartalmaz pontot.
-Bizonyos esetekben a parszer az ilyen meghivatkozást Name típusú változónak tévesztheti.
-Például, ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (Lásd fejezet~\ref{sec:SContDecl}).
-Ilyenkor a self attribútummal egyértelműsíthetjük, hogy a változó elérésre gondoltunk, és nem Name típusú változóra. 
+Bizonyos esetekben a parszer az ilyen meghivatkozást \texttt{Name} típusú változónak tévesztheti, például ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (Lásd fejezet~\ref{sec:SContDecl}).
+Ilyenkor a \texttt{self} attribútummal egyértelműsíthetjük, hogy a változó elérésre gondoltunk, és nem \texttt{Name} típusú változóra. 
 \item \emph{copy:}
 Ez az attribútum a változóból egy új másolatot ad vissza név nélkül.
 Későbbiekben a copy-ból három féle fog létezni. 
@@ -507,7 +456,7 @@ A copyS sekély, a copyD mély és a copy\{\$integer\$\} adott mélységű máso
 Ez az attribútum jegyzi a változók típusát.
 Egy Type típusú változó, ami a változó attribútumait jegyzi az itt felsorolt négy kivételével.
 Ez a változó név szerint nem érhető el, csak vele rendelkező osztályokból.
-Ennek célja, hogy az alap típusok ne szennyezzék a kiindulási fájl a namespace-ét.
+Ennek célja, hogy az alaptípusok ne szennyezzék a kiindulási fájl namespace-ét.
 \end{itemize}
 
 Ezen kívül egyes típusoknak vannak további attribútumai, de metódusai nincsenek. 
@@ -521,29 +470,25 @@ Minden típus példányosítható vele.
 A változó nevei is megadhatóak egyből.
 Képes más műveletek kimenetéből példányosítani.
 \item \emph{törlés:} 
-Törli egy változónak az egyik nevét vagy elveszi egy birtokosától.
+Törli egy változónak az egyik nevét, vagy elveszi egy birtokosától.
 Egy változó csak akkor szabadul fel, ha az összes nevéről törlik és senki sem birtokolja.
-Ha egy változó self attribútumára hívnak törlést, akkor az összes neve szerint törli magát az összes Slime fájlból.
-Ugyanakkor a birtokosai továbbra is elérik.
+Ha egy változó self attribútumára hívnak törlést, akkor az összes neve szerint törli magát az összes Slime fájlból, ugyanakkor a birtokosai továbbra is elérik.
 Akkor lehet igazán hasznos, ha nagyon nagy szöveghalmazzal foglalkozunk, vagy le akarunk tiltani ideiglenesen létrehozott neveket.
 \item \emph{hozzáadás:}
 A hozzáadás egy sokoldalú művelet. 
 Ez végez ugyanis minden konkatenációt, beszúrást és deklaráció utáni értékadást.
 \item \emph{kiterjesztés:}
-A kiterjesztés a C nyelvek ToString műveletének felel meg. 
-Szöveggé alakítja a változókat.
-Ugyanakkor az alárendelt nyelv kódjába ágyazva beilleszti a változó szöveges értékét az alárendelt nyelv kódjába. 
-Ebből az extra funkcionalitásból származik a neve is.
+A kiterjesztés a C nyelvek ToString műveletének felel meg, szöveggé alakítja a változókat.
+Ezen kívül az alárendelt nyelv kódjába ágyazva beilleszti a változó szöveges értékét az alárendelt nyelv kódjába, ebből az extra funkcionalitásból származik a neve is.
 \end{itemize}
 
-Ezek a műveletek nyilvánvalóan alap követelményei a sablon kezelésnek. 
-Ha nem tudunk sablonokat létrehozni, beszúrni egymásba és kiírni, akkor nem látjuk el a nyelv alap funkcióit.
+Ezek a műveletek nyilvánvaló alapkövetelményei a sablonkezelésnek. 
+Ha nem tudunk sablonokat létrehozni, beszúrni egymásba és kiírni, akkor nem látjuk el a nyelv alapfunkcióit.
 A törlés persze másodlagos, de igazán nagy adathalmazok esetén hasznos lehet. 
 Mivel Slime-ban nincs garbage collector, nem szabadulnak fel az adatok maguktól.
 A parancsok sorrendje sem kerül optimalizálásra.
 A törlés az ideiglenesen a változókhoz adott nevek törlésének is kényelmes módja.
-Nagy adatok esetén ugyanolyan fontos a változók hatékony tárolása és kezelése is.
-Ebben segítenek a tároló osztályok.
+Nagy adatok esetén ugyanolyan fontos a változók hatékony tárolása és kezelése is, ebben segítenek a tároló osztályok.
 Az operátorok szintaxisát és pontos működését később részletezem. 
 
 
@@ -560,11 +505,11 @@ Ezek listába (List) szervezve a változó cont attribútuma.
 A lista minden lekérdezéskor újra példányosul.
 \item \emph{iter:} 
 Minden Cont változónak van egy iterátora.
-Ezzel érhető el ciklus szerű viselkedés a Slime-ban.
+Ezzel érhető el ciklusszerű viselkedés a Slime-ban.
 \item \emph{\{\$integer\$\}:} 
 Minden Cont változó indexelhető is.
 Túlindexelés esetén hibát dob.
-Későbbiekben lehetséges lesz hátulról indexelni is és tartományt indexelni.
+A későbbiekben lehetséges lesz hátulról indexelni és tartományt indexelni is.
 Utóbbi esetben egy új Cont változó fog létrejönni.
 \end{itemize}
 
@@ -578,14 +523,12 @@ Egy sablonkezelésre szakosodott nyelvben a legfontosabb, hogy hatékonyan lehes
 
 A Slime-ban a sablonokat a Temp(template) típus segítségével kezeljük. Ez felelős minden sablonművelet megvalósításáért.
 
-A legtöbb nyelvben a sablonoknak két féle komponense van, a szöveg és a mező. (Lásd fejezet ~\ref{sec:mustache})
-A Slime-ban ez nem elegendő.
-Ugyanis a Slime nem különíti el a kódot és az adatot külön fájlba.
+A legtöbb nyelvben a sablonoknak kétféle komponense van, a szöveg és a mező. (lásd ~\ref{sec:Mustache})
+A Slime-ban ez nem elegendő, ugyanis a Slime nem különíti el a kódot és az adatot külön fájlba.
 Nem akarjuk azt, hogy az adat tördelése befolyással legyen a kód tördelésére.
-Például tegyük fel, hogy van egy több soros sablonunk egy másik blokkon belül.
+Például tegyük fel, hogy van egy többsoros sablonunk egy másik blokkon belül.
 Minden sora egy nem whitespace karakterrel kezdődik.
-Nem akarjuk a sablon minden sorát a sor legelején kezdeni.
-Inkább pár tabulátorral beljebb szeretnénk igazítani, hogy jól látszódjon a blokkon belül van.
+Nem akarjuk a sablon minden sorát a sor legelején kezdeni, inkább pár tabulátorral beljebb szeretnénk igazítani, hogy jól látszódjon, hogy a blokkon belül van.
 A sablonokat soronként sem akarjuk kezelni.
 Erre a Slime megoldása a speciális karakterek, mint harmadik komponens.
 
@@ -602,7 +545,7 @@ Ha a Temp egy mezőjébe szúrnak valamit, akkor a mező nem szűnik meg.
 továbbra is elérhető és a beillesztett Temp felülírható.
 \item \emph{Spec:} 
 Ezzel adhatóak meg speciális karakterek 3-3 kódnévvel.
-Jelenleg a Slime 10 féle speciális karaktert kezel:
+Jelenleg a Slime 10-féle speciális karaktert kezel:
 \begin{itemize}
 \item \emph{\textit{$‘\backslash n’$}:} e, ent, enter, 
 \item \emph{\textit{$‘\backslash r’$}:} r, ren, renter, 
@@ -615,13 +558,12 @@ Jelenleg a Slime 10 féle speciális karaktert kezel:
 \item \emph{\textit{‘:’}:} cl, col, colon 
 \item \emph{\textit{‘;’}:} sc, sec, semicolon
 \end{itemize}
-Ez még később ki lesz egészítva a teljes unicode tartományra. Ekkor minden karakter megadható lesz a uni code-ja szerint is.
-Valamint ki lesz egészítve a karakterek legnépszerűbb nyelvekben használt neveivel is.
+Ez még később ki lesz egészítva a teljes unicode tartományra. Ekkor minden karakter megadható lesz a unicode-ja szerint is, valamint ki lesz egészítve a karakterek legnépszerűbb nyelvekben használt neveivel is.
 \end{itemize}
 
 Ezek olyan alapvető típusok, hogy a hatékonyabb deklarációjukat úgynevezett típus zárójelek is segítik. 
 Ezek a zárójelek név nélküli példányokat hoznak létre.
-A zárójelekre a típusok nevének csupa nagy betűs változatával hivatkozok:
+A zárójelekre a típusok nevének csupa nagybetűs változatával hivatkozok:
 
 TEXT: \textit{\{"text"\} pl.: \{" This is a text "\}}
 
@@ -630,12 +572,10 @@ SLOT: \textit{\{\$ tags \$\} pl.: \{\$ tag \$\}}
 SPEC: \textit{\{@ code @\} pl.: \{@ enter @\}}
 
 Ezeken belül az értékadást egyedi szintaxis is segíti.
-Text esetében minden whitespace karakter bent marad a szövegben.
-Éppen ezért a Text zárójelet használjuk szöktetésre is.
-Erre mindenképpen szükség van, ha az alárendelt nyelv és a Slime szintaxisában túl sok a közös.
+Text esetében minden whitespace karakter bent marad a szövegben, ezért a Text zárójelet használjuk szöktetésre is.
+Erre mindenképpen szükség van, ha az alárendelt nyelv és a Slime szintaxisában túl sok a közös vonás.
 A Slot és Spec zárójelekben minden whitespace karakter figyelmen kívül van hagyva.
-A Slot címkéjére és a Spec kódjaira is érvényes a Slime-ban a nevekre vonatkozó formai megkötés.
-(Avagy, hogy angol betűkből, alulvonásból és számokból állnak és nem kezdődhetnek számmal)
+A Slot címkéjére és a Spec kódjaira is érvényes a Slime-ban a nevekre vonatkozó formai megkötés (angol betűkből, alulvonásból és számokból állnak, és nem kezdődhetnek számmal).
 
 A Temp típusnak is van típus zárójele. 
 Ezen belül a szöveg elemeket nem kell TEXT-be zárni, de lehet, ha szöktetni akarunk. 
@@ -654,7 +594,7 @@ vagy:
 \end{verbatim}
 
 Ez ugyan összetettebb, mint más nyelvekben, de a speciális karakterek használata teljesen opcionális.
-A TEMP-ek tömörségéről pedig a haladó szintaxis gondolkodik.( Lásd fejezet ~\ref{sec:SAdvaSyntax})
+A TEMP-ek tömörségéről pedig a haladó szintaxis gondoskodik.(lásd ~\ref{sec:SAdvaSyntax})
 
 
 %----------------------------------------------------------------------------
@@ -662,7 +602,7 @@ A TEMP-ek tömörségéről pedig a haladó szintaxis gondolkodik.( Lásd fejeze
 \label{sec:SOper}
 %----------------------------------------------------------------------------
 Ahogy korábban írtam, a Slime négy alapművelettel rendelkezik: deklaráció, törlés, hozzáadás és kiterjesztés. 
-Ezeket az alábbi operátorokkal lehet elvégezni.
+Ezeket az alábbi operátorokkal lehet elvégezni:
 
 \begin{itemize}
 \item \emph{deklaráció:} 
@@ -690,8 +630,7 @@ Megadható név szerinti meghivatkozás is:
 \item\emph{Spec:} \{= spec2 : Spec := spec1 =\}
 \item\emph{Temp:} \{= temp2 : Temp := temp1 =\}
 \end{itemize}
-Ekkor a változóból nem készül másolat.
-Csak egy új neveket adunk hozzá.
+Ekkor a változóból nem készül másolat, csak új neveket adunk hozzá.
 Másolatot így készíthetünk:
 \begin{itemize}
 \item\emph{Text:} \{= text1\_ copy : Text := text1.copy =\}
@@ -711,19 +650,18 @@ Jele a "X" vagy a "x".
 Dele-ként hivatkozunk rá.
 DELE-ként hivatkozunk a zárójelre.
 A változó elérését kell benne megadni.
-Törli egy változónak az egyik nevét vagy elveszi egy birtokosától.
+Törli egy változónak az egyik nevét, vagy elveszi egy birtokosától.
 Egy változó csak akkor szabadul fel, ha az összes nevéről törlik és senki sem birtokolja.
 Ha egy változó self attribútumára hívnak törlést, akkor az összes neve szerint törli magát az összes Slime fájlból.
 Akkor lehet igazán hasznos, ha nagyon nagy szöveghalmazzal foglalkozunk, vagy le akarunk tiltani ideiglenesen létrehozott neveket.
 A törlés többek között történhet név szerint: \textit{\{X name1 X\}} vagy a birtokoson keresztüli elérési út szerint: \textit{\{x birtokos.attribute1 x\}} 
-Például az előzőleg deklarált text 1 felszabadítható így: \textit{\{X name1 X\}}.
-Ha egy f1 néven importált fájlban lett létrehozva: \textit{\{X f1.name1 X\}}.
+Például az előzőleg deklarált \texttt{text 1} felszabadítható így: \textit{\{X name1 X\}}.
+Ha egy \texttt{f1} néven importált fájlban lett létrehozva: \textit{\{X f1.name1 X\}}.
 \item \emph{hozzáadás:}
 Jele a "+".
 Plus-ként hivatkozunk rá.
 PLUS-ként hivatkozunk a zárójelre
-A hozzáadás egy sok oldalú művelet. 
-Ez végez ugyanis minden konkatenációt, beszúrást és deklaráció utáni értékadást.
+A hozzáadás egy sokoldalú művelet, ez végez ugyanis minden konkatenációt, beszúrást és deklaráció utáni értékadást.
 Lehet vele Slot-ba beszúrni Temp-et, Text, Spec vagy Slot változót: 
 \begin{itemize}
 \item\emph{Text:} \{+ temp1.slot1 :+ \{"This is a text"\} +\}
@@ -740,15 +678,15 @@ A Plus-szal lehet egy Temp-et bővíteni Text-tel, Spec-cel, Slot-tal, Temp-pel:
 \item\emph{Spec:} \{+ temp1 :+ \{@ enter @\} +\}
 \item\emph{Temp:} \{+ temp1 :+ \{|This is a template:\{\$slot\$\}|\} +\}
 \end{itemize} 
-Utóbbi esetben Temp összetevőit egyesével fűzi a Temp végére. 
+Utóbbi esetben a Temp összetevőit egyesével fűzi a Temp végére. 
 
-Ha temp1 eredetileg egy üres Temp volt, akkor a beszúrások után ez lesz belőle:
+Ha \texttt{temp1} eredetileg egy üres Temp volt, akkor a beszúrások után ez lesz belőle:
 
 {|This is a text\{\$ slot1 \$\}\{@ enter @\}This is a template:\{\$slot\$\}|}
 
-Hozzáadás esetén bal oldalt csak változó elérési útja állhat.
+Hozzáadás esetén baloldalt csak változó elérési útja állhat.
 A beszúrni kívánt oldalt viszont típus zárójel helyett megadhatjuk elérési úttal is.
-Lehet bármely művelet kimenete is jobb oldalt.
+Lehet bármely művelet kimenete is jobb oldalon.
 \item \emph{kiterjesztés:}
 jele a '*'.
 Exte-ként hivatkozunk rá.
@@ -763,7 +701,7 @@ Ebből az extra funkcionalitásból származik a neve is.
 \item\emph{Spec:} A kulcsnak megfelelő karakterré alakítja.
 \item\emph{Temp:} Minden elemét sorban kiterjeszti és a szövegeket összekonkatenálja
 \end{itemize}
-Ezek az értékek is megadhatóak elérési úttal vagy típus zárójellel vagy egy műveletként, aminek van visszatérési értéke.
+Ezek az értékek is megadhatóak elérési úttal, vagy típus zárójellel vagy egy műveletként, aminek van visszatérési értéke.
 \end{itemize}
 
 Természetesen minden operátor zárójel figyelmen kívül hagyja a whitespace karaktereket.
@@ -773,7 +711,7 @@ Szintaxis összefoglaló táblázat:
 \begin{center}
   \begin{tabular}{ | l | l | c | c | l |}
     \hline
-    \textbf{Művelet}	& \textbf{Jel}	& \textbf{Kódnév}	& \textbf{Zárójel Neve}	& \textbf{Belső Szintax}	\\ \hline
+    \textbf{Művelet}	& \textbf{Jel}	& \textbf{Kódnév}	& \textbf{Zárójel neve}	& \textbf{Belső szintaxis}	\\ \hline
     deklaráció			& = 			& Decl		 		& DECL					& meta adat := érték		\\ \hline
     törlés				& X vagy x		& Dele		 		& DELE					& változó neve				\\ \hline
     hozzáadás			& + 			& Plus		 		& PLUS					& elérés:+érték				\\ \hline
@@ -785,7 +723,7 @@ Szintaxis összefoglaló táblázat:
 \caption{operátor formátum és hivatkozás összefoglaló táblázat.}
 \end{table}
 
-Ennek a négy műveletnek az összességét Oper ként hivatkozzuk, a zárójeleiket pedig OPER ként.
+Ennek a négy műveletnek az összességét Oper-ként hivatkozzuk, a zárójeleiket pedig OPER-ként.
 
 Kommentelni is lehetséges. Erre a \# -es zárójeleket használjuk:
 
@@ -808,13 +746,11 @@ Ezen kívül a text, slot és spec változói típusonként is lekérhetőek.
 Ekkor a második legalapvetőbb Cont típusba, a List-be rendezve adja vissza őket.
 \item \emph{List:} 
 A List az első a C-ből megszokott tároló osztályokból, ami implementálásra került.
-Később még természetesen bővülni fog a kínálat.
 Mint a legtöbb C nyelvben, itt is típusos.
 A nyelvben az egymásba ágyazott típusokat kettősponttal tagoljuk, így: List:List:Temp
 Ez C++ nyelvekben template-eléssel így néz ki: List<List<Temp> >
 A zárójelezés viszont csak akkor praktikus, ha egy típusba egyszerre több típus is ágyazható. 
-A Slime jelölése viszont kiegészíthető zárójelezéssel. 
-Például, ha bevezetjük majd a dictionary-ket Dict néven:
+A Slime jelölése viszont kiegészíthető zárójelezéssel, például ha bevezetjük majd a dictionary-ket Dict néven:
 
 List:Dict:(Text, List:Temp)
 
@@ -824,20 +760,17 @@ Egy List beágyazott típusa Vari is lehet vagy Cont és akkor bármely Cont vag
 
 A List használata előnyös gyakran változó hosszú adathalmazok tárolására és mozgatására.
 \item \emph{Type:} 
-A Type nem más Vari példányok tárolására lett kitalálva.
-Új típusok bevezetésére való.
-Azoknak metaadatát tárolja.
+A Type nem más Vari példányok tárolására lett kitalálva, hanem új típusok bevezetésére való, azok metaadatát tárolja.
 Ezek a típusok a C struktúráihoz hasonlóan viselkednek.
 Függvényeket ugyan nem tartalmazhatnak, de névvel és típussal rendelkező attribútumaik vannak.
 Két nem módosítható és azonos hosszú List-et tartalmaz.
-Egyik lista tartalmazza az atribútumok neveit (attrs néven).
+Egyik lista tartalmazza az attribútumok neveit (attrs néven).
 Itt az attribútumoknak csak egy neve lehet.
 A másik lista pedig típusok listáiból áll (types néven).
-Azért listáiból, mert így beágyazott típusokkal rendelkező típusokat is képes tartalmazni. 
-Például olyan List-eket, amik Temp-eket tárolnak.
-Ezekbe csak az alap négyen túli attribútumai szerepelnek az új típusnak.
+Azért listáiból, mert így beágyazott típusokkal rendelkező típusokat is tartalmazhat, például olyan List-eket, amik Temp-eket tárolnak.
+Ezekbe csak az alapvető négyen túli attribútumai szerepelnek az új típusnak.
 Az iterátora párhuzamosan megy végig a két listán név-típuslista párokat adva vissza, List:Vari változókban.
-Ezen kívül Type-nak még egy címkéje van tag néven, ami a típusnevét(pl.: Temp) adja vissza.
+Ezen kívül a Type-nak még egy címkéje van tag néven, ami a típusnevét(pl.: Temp) adja vissza.
 Azért nem névként tárolja, mert így nem függ a fájloktól (nem azon a fájlon keresztül érhető el, ami deklarálta a típust).
 Ez azért fontos, hogy az alaptípusok, amikor létrejönnek, ne szennyezzék a fájlok namespace-ét.
 \item \emph{Inst:} 
@@ -846,21 +779,20 @@ Az Inst még absztrakt típusként sem létezik, csak a példányok egységes m�
 Nem példányosítható és nem létezik List:Inst sem.
 Minden Inst-nek a Type-pal deklarált típus a típusa.
 Egy fix méretű List:Vari-t tartalmaznak.
-Ebben tárolják a Vari és Cont ősosztályokon túli attribútumait, avagy amit Type-ja definiál.
-Ezeknek nem vagyunk kötelesek értéket adni.
-Az iterátoruk a nem megadott értékeket egyszerűen átugorja.
+Ebben tárolják a Vari és Cont ősosztályokon túli attribútumait, vagyis amit Type-ja definiál.
+Ezeknek nem kötelező értéket adni, az iterátoruk a nem megadott értékeket egyszerűen átugorja.
 Minden attribútuma lekérdezhető a Type-jában definiált név szerint.
 \item \emph{File:} 
-Slimeban az importálás File típusú változókkal van megvalósítva.
+Slime-ban az importálás File típusú változókkal lett megvalósítva.
 Inicializálásuk után ezek tartalmazzák az importált Slime fájl kimenetét és elérhető változóit.
 A kimenetük egy Text típusú outp változóban érhető el.
 Az aktuális fájlban létrehozott változók is egy File-ban vannak tárolva.
 Az aktuális fájl File változója self néven el is érhető.
 A \textit{names, self, copy, type, cont, iter, \{\$szám\$\} és outp} változók felülírhatatlanul az aktuális File attribútumait jelentik.
-(lásd fejezetek ~\ref{sec:SVariSuper}, \ref{sec:SContSuper})
-Éppen ezért, bár az előbbi nevekkel változókat lehet deklarálni, elérhetetlenek lesznek ezeken a már a File által foglalt neveken. 
+(lásd ~\ref{sec:SVariSuper}, \ref{sec:SContSuper})
+Éppen ezért, bár az előbbi nevekkel változókat lehet deklarálni, elérhetetlenek lesznek ezeken (a már a File által foglalt) neveken. 
 Viszont az aktuális File összes attribútuma a létrehozott változók kivételével nem törölhető.
-Ezért a fenttartott(korábbi felsorolásban szereplő) neveken törölve legalább az azokkal a nevekkel a fájlból létrehozott változók törölhetőek.
+Ezért a fenttartott (korábbi felsorolásban szereplő) neveken törölve legalább az azokkal a nevekkel a fájlból létrehozott változók törölhetőek.
 \end{itemize}
 
 
@@ -868,16 +800,14 @@ Ezért a fenttartott(korábbi felsorolásban szereplő) neveken törölve legal�
 \subsection{Cont típusok Decl művelete}
 \label{sec:SContDecl}
 %----------------------------------------------------------------------------
-Mivel a nyitó és csukó zárójelek rakása körülményes, ezért elég korán be lettek vezetve a több műveletes zárójelek.
+Mivel a nyitó és csukó zárójelek használata körülményes, ezért elég korán be lettek vezetve a több műveletes zárójelek.
 Ez annyit tesz, hogy minden típus és operátor zárójelben többször is el lehet végezni a típusának megfelelő műveletet.
 Ekkor a műveleteket pontosvesszővel választjuk el.
-Ez a jelölés is természetesen a C alapú nyelvekből származik.
+Ez a jelölés is a C alapú nyelvekből származik.
 Ekkor a visszatérési értékkel rendelkező zárójelek List típusú visszatérési értéket adnak.
 Ha a műveletek visszatérési értéke más típusú, akkor ez egy List:Vari. 
-Sok nyelvben megoldották már a pontosvesszők elhagyását.
-Ilyenkor mindig a sortörés karaktereket használták fel.
-A Slime  esetében ez több helyen is problémás lett volna.
-Például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
+Sok nyelvben megoldották már a pontosvesszők elhagyását, ilyenkor mindig a sortörés karaktereket használták fel.
+A Slime esetében ez több helyen is problémás lett volna, például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
 (Későbbiekben persze egyes műveleteknél ki lehet majd váltani a pontosvesszőt sortöréssel)
 
 Cont változókat éppen ezért lehet a beágyazott típusnak megfelelő típus zárójellel is deklarálni:
@@ -923,7 +853,7 @@ Megadható ugyan a nevek és típus listák két listájával is:
 
 De ezeket (egyértelmű okokból) nem használjuk, csak az egységesség okán kerültek implementálásra.
 Ha a típusok egyértelmű esetekben elhagyhatóak lesznek, akkor jelentősen tömörebbek lesznek ezek a formátumok is.
-Elvégre rengeteg kódolást lehet majd spórolni a \textit{:List:Name, List:Type, :List:Vari} részek elhagyásával..
+Elvégre rengeteg kódolást lehet majd spórolni a \textit{:List:Name, List:Type, :List:Vari} részek elhagyásával.
 
 Az Inst-eknél definiálhatjuk, hogy melyik attribútumoknak adunk értéket:
 
@@ -936,7 +866,7 @@ de erre sem vagyunk kötelesek, ha az értékeket sorrendben adjuk meg:
 \{@e@\}, \{@e@\}, \{@e@\}, \{\$slotty\$\}, \{\$slotty\$\} =\}
 
 Nem vagyunk kötelesek minden attribútumnak értéket adni.
-Ha egyes attribútum típusokból az utolsóknak nem kívánunk értéket adni, akkor az a későbbi verziókban kihagyható lesz.
+Ha egyes attribútumtípusokból az utolsóknak nem kívánunk értéket adni, akkor az a későbbi verziókban kihagyható lesz.
 
 A File egy text-tel hozható létre, ami a futtató gépen az elérési útvonalát tartalmazza:
 
@@ -1018,11 +948,11 @@ A kimenetünk az intst1, ekkor már a temp1-gyel az attr1 attribútumában.
 List: \{|ez egy Tempez egy másik Temp1|\}, \{|ez egy Tempez egy másik Temp2|\}, \{|ez egy Tempez egy másik Temp3|\}
 \item \emph{magyarázat:}
 Tehát itt a temp1 ből három másolatot készít, mert a beszúrt lista is három elemű.
-Az első másolat slot1-ébe beszúrja a temp2 Temp-et; a másodikba a temp3-mat és a negyedikbe a temp4-et.
+Az első másolat slot1-ébe beszúrja a temp2 Temp-et; a másodikba a temp3-at és a negyedikbe a temp4-et.
 Ezt követően a három másolatot egy listában téríti vissza.
 \end{itemize}
 
-\item \emph{ Egy Cont változót egy másikhoz adva, a hozzáadást végezhetjük az elemek közöt is:}
+\item \emph{ Egy Cont változót egy másikhoz adva a hozzáadást végezhetjük az elemek között is:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
@@ -1055,11 +985,11 @@ A Temp is Cont, így az is lehet a bal és jobb oldali változók egyike.
 \item \emph{kimenet:}
 List: \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}, \{|text of temp4|\}, \{|text of temp5|\}, \{|text of temp6|\}
 \item \emph{magyarázat:}
-A list2 elemeit egyszerűen a list1 végéhez fűzi és visszatérítis a list1-et.
+A list2 elemeit egyszerűen a list1 végéhez fűzi és visszatéríti a list1-et.
 A Temp-be lista szúrás és Temp-be Inst szúrás kivételek ez a mechanika alól.
 \end{itemize}
 
-\item \emph{ Cont változóhoz egy másik iterátorát adva az előbbihez hozzáadja az utóbbi elemeit:}
+\item \emph{Cont változóhoz egy másik iterátorát adva az előbbihez hozzáadja az utóbbi elemeit:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
@@ -1096,7 +1026,7 @@ A kimenet a list1.
 List: \{|temp1:text of temp4|\}, \{|temp2:text of temp5|\}, \{|temp3:text of temp6|\}
 \item \emph{magyarázat:}
 Ha a két lista egyike rövidebb lenne, akkor a két lista hosszai közül a kisebb darab beszúrás történne.
-Jelen esetben mind két lista három hosszú, ezért történik három beszúrás.
+Jelen esetben mindkét lista három hosszú, ezért történik három beszúrás.
 A list1 első elemébe a list2 első eleme szúródik és így tovább.
 A kimenet a list1.
 \end{itemize}
@@ -1113,7 +1043,7 @@ A kimenet a list1.
 \item \emph{kimenet:}
 List: List: \{|text of temp1text of temp3|\}, \{|text of temp1text of temp4|\}, List: \{|text of temp2text of temp3|\}, \{|text of temp2text of temp4|\}
 \item \emph{magyarázat:}
-Először a list1 első eleménóbe szúródik be a list2, majd a másodikba.
+Először a list1 első elemébe szúródik be a list2, majd a másodikba.
 Mivel mindkét esetben listát adunk hozzá Temp-hez, két listánk keletkezik.
 A kimenet a két lista egy listába rendezve.
 \end{itemize}
@@ -1152,7 +1082,7 @@ Ekkor megadtuk, hogy a temp1 melyik Slot-jába szúrjuk bele az inst1 melyik att
 A visszatérési érték a temp1.
 \end{itemize}
 
-\item \emph{ Ha az Inst megfelelő attribútumainak ugyanaz a neve, mint a Temp megfelelú Slot-jainak, akkor az előző művelet egyszerűbben is elvégezhető:}
+\item \emph{Ha az Inst megfelelő attribútumainak ugyanaz a neve, mint a Temp megfelelú Slot-jainak, akkor az előző művelet egyszerűbben is elvégezhető:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
@@ -1172,7 +1102,7 @@ A visszatérési érték a temp1.
 \end{itemize}
  
 Ezek a műveletek teszik a Cont leszármazottakat igazán hasznossá.
-Ha az adatainkat megfelelő attribútum nevekkel rendelkező Inst-ek List-jében tárolom,
+Ha az adatainkat megfelelő attribútumnevekkel rendelkező Inst-ek List-jében tárolom,
 akkor abból egy sorban legenerálható az összes kimeneti adat:
 
 \{= list2 : List:Temp := \{+ temp1 :+ list1.iter +\} =\}
@@ -1207,13 +1137,13 @@ Ha egy Cont változó tartalmaz egy másikat, akkor az utóbbi elemeit is ugyana
 \label{sec:SRefe}
 %----------------------------------------------------------------------------
 
-A szakdolgozat kiírás egyik legfontosabb pontja az volt, hogy lehessen az IRTG-k bemenetét RegEx kifejezésekkel megadni.
+A szakdolgozatkiírás egyik legfontosabb pontja az volt, hogy lehessen az IRTG-k bemenetét RegEx kifejezésekkel megadni.
 Az volt az elképzelés, hogy ekkor minden arra illeszkedő nem terminális szimbólummal elérhető lesz az átírási szabály.
 Ennek a funkcionalitásnak a megvalósítása a Refe.
 
 A Refe érdekessége, hogy félúton van egy Vari és egy Oper között.
 Egy Cont változóként viselkedik, de nem tárolja el az elemeit.
-Egy típus(typeRest nevű attribútum) megkötésből és egy RegEx(regex nevű attribútum) mintából áll.
+Egy típus (typeRest nevű attribútum) megkötésből és egy RegEx (regex nevű attribútum) mintából áll.
 Deklarációnál is ezt kell megadni vesszővel elválasztva.
 Ez a két attribútum csak név szerint érhető el.
 Nem képzik részét a Refe cont-jának és az iterátor sem érinti őket.
@@ -1246,7 +1176,7 @@ Visszatérési értékéből lista is példányosítható:
 Mindig abból a fájlból kiindulva fog keresni, ahonnan létrehozták.
 Így egy importált fájl változóira a fájlban létrehozott referencia a fájlon kkívülről is helyesen fog működni.
 Segítségével a változók csoportosíthatóak, és a csoportok változnak is új változók létrehozása és régiek törlése esetén.
-Ha például irtg szabályokat tárolunk Temp-ekben, amiknek a nevébe kódoljuk a típusukat(NNrule1, NNrule2 ...),
+Ha például IRTG szabályokat tárolunk Temp-ekben, amiknek a nevébe kódoljuk a típusukat (NNrule1, NNrule2 ...),
 akkor azok egy Refe-vel meghivatkozhatóak:
 
 \{\& Temp :\& NNrule[0-9]+ \&\}
@@ -1280,16 +1210,15 @@ Ekkor a törlés minden név szerint megtörténik.
 
 
 %----------------------------------------------------------------------------
-\subsection{Haladó Szintaxis}
+\subsection{Haladó szintaxis}
 \label{sec:SAdvaSyntax}
 %----------------------------------------------------------------------------
-Persze a zárójelezés jelentős áldozatokat jelent a programozás hatékonyságának terén. 
-Nagyon problémás minden műveletnél egy nyitó és egy csukó zárójelet is rakni. 
-Éppen ezért két lehetőség is van tömörítésre.
+A zárójelezés jelentős áldozatokat jelent a programozás hatékonyságának terén. 
+Nagyon problémás minden műveletnél egy nyitó és egy csukó zárójelet is kitenni, ezért két lehetőség is van tömörítésre.
 
 Az első lehetőség az egysoros és kompakt zárójelek használata. 
 Az egysoros zárójelek a sor végéig tartanak, a kompakt zárójelek pedig az első whitespace karakterig. 
-Így ezeknek végén nem kell csukó zárójelet rakni. 
+Így ezek végén nem kell a csukó zárójelet kitenni. 
 Az egy soros zárójeleket kapcsos helyett szögletes zárójellel jelöljük, a kompakt zárójeleket pedig kacsacsőr zárójellel. 
 Így például a deklaráció \{= … =\} zárójelének az egysoros párja a [= … és a kompakt pedig a <=… zárójelek.
 A kompakt zárójelek jelölésére sokkal alkalmasabb a kerek zárójelnél a kacsacsőr.
@@ -1299,14 +1228,12 @@ Könnyebb észrevenni az alárendelt kódrészletekben.
 (Ismétlés a ~\ref{sec:SCont} fejezetből)
 A második megoldás az, hogy egy zárójelben többet is végezhetünk az annak megfelelő műveletből. 
 Ekkor a műveleteket pontosvesszővel választjuk el.
-Ez a jelölés is természetesen a C alapú nyelvekből származik.
+Ez a jelölés is a C alapú nyelvekből származik.
 Ekkor a visszatérési értékkel rendelkező zárójelek List típusú visszatérési értéket adnak.
 Ha a műveletek visszatérési értéke más típusú, akkor ez egy List:Vari. 
-Sok nyelvben megoldották már a pontosvesszők elhagyását.
-Ilyenkor mindig a sortörés karaktereket használták fel.
-A Slime  esetében ez több helyen is problémás lett volna.
-Például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
-(Későbbiekben persze egyes műveleteknél ki lehet majd váltani a pontosvesszőt sortöréssel)
+Sok nyelvben megoldották már a pontosvesszők elhagyását, ilyenkor mindig a sortörés karaktereket használták fel.
+A Slime esetében ez több helyen is problémás lett volna, például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
+(A későbbiekben persze egyes műveleteknél ki lehet majd váltani a pontosvesszőt sortöréssel.)
 
 A nyelvben létező műveleteket a következőképpen jelöljük:
 \begin{table}
@@ -1333,31 +1260,29 @@ A nyelvben létező műveleteket a következőképpen jelöljük:
 	 	 	
 Érdekesség:
 A Slime nyelv neve onnan ered, hogy a műveletek blokkos jelölése a fantasy irodalom slime fajának példányaira emlékeztetnek.
-Ekkor az művelet típust jelölő karakterek a lény szemei. 
-Az egysoros zárójelekre half slime és a kompaktra pedig slime eye-ként is szoktunk hivatkozni szlengesen.
+Ekkor a művelettípust jelölő karakterek a lény szemei. 
+Az egysoros zárójelekre half slime, a kompaktra pedig slime eye-ként is szoktunk hivatkozni szlengesen.
 
 Azt is jó kihasználni, hogy mindig csak az aktuális zárójel szintaxisa érvényesül.
 Az egymásba ágyazott zárójeleknél a beágyazottak szintaxisa semmiben sem függ a befoglaló zárójel szintaxisától. 
 Így egy kompakt zárójelbe ágyazott egysoros zárójelet továbbra is csak az első sortörés zárja, ahogy a blokkosat is csak a csukó zárójel. 
-Az egy soros zárójel annyi whitespacet tartalmaz, ami nem sor törés, amennyit csak szeretne, ahogy a blokkos is akármilyen whitespace-t. 
+Az egysoros zárójel annyi whitespace-t tartalmaz, ami nem sortörés, amennyit csak szeretne, ahogy a blokkos is akármilyen whitespace-t. 
 Ez persze az egysoros zárójelbe ágyazott blokkos zárójelre is teljesül. 
 Például ez egy Temp-et hoz létre három Spec-ből: <|[@ enter; enter; tabulator
 
 A TEMP nem ér véget az első pár whitespace karakternél, mert az az egysoros SPEC része.
-E helyett mindkettőt a sor végi sortörés zárja.
+Ehelyett mindkettőt a sor végi sortörés zárja.
 
-A whitespace-k kezelése másban is eltérhet zárójeltípusonként. 
-Például az egysoros és kompakt zárójeleknek legtöbbször nem része az őket záró whitespace. 
+A whitespace-ek kezelése másban is eltérhet zárójeltípusonként, például az egysoros és kompakt zárójeleknek legtöbbször nem része az őket záró whitespace. 
 Ezért zár több egymásba ágyazott egysoros zárójelet is a sort záró sortörés. 
-A kompakt Spec és Slot zárójeleknek viszont része az őket záró whitesspace. 
+A kompakt Spec és Slot zárójeleknek viszont része az őket záró whitespace. 
 Általánosságban a zárójelek minden belső whitespace karaktert figyelmen kívül hagynak. 
 Az alárendelt nyelvbe ágyazott minden speciális zárójel előtti whitespace is kimarad a kimenetből. 
 Text zárójelben minden whitespace megmarad. 
-Temp esetében a sor törő, végi és eleji whitespace-k maradnak csak ki. 
+Temp esetében a sortörő, sor végi és sor eleji whitespace-k maradnak csak ki. 
 Temp-ben ezen kívül nincs minden szöveg Text zárójelben. 
 A legtöbb a beágyazott zárójeleken kívül helyezkedik el. 
-Éppen ezért van szükség kompakt Slot és Spec esetén, arra hogy a záró whitespace ne a környezet része legyen. 
-Különben a kompakt zárójelek nagyon beleolvadnának a sablonokba.
+Éppen ezért van szükség kompakt Slot és Spec esetén, arra hogy a záró whitespace ne a környezet része legyen, különben a kompakt zárójelek nagyon beleolvadnának a sablonokba.
 
 
 
@@ -1365,10 +1290,9 @@ Különben a kompakt zárójelek nagyon beleolvadnának a sablonokba.
 \subsection{Nevek}
 \label{sec:SName}
 %----------------------------------------------------------------------------
-A változók nevei a Name nevű változóval manipulálhatóak.
-Igaz már korábban is említettem, hogy ez a típus a következő verzióban már nem fog szerepelni.
+A változók nevei a Name nevű változóval manipulálhatóak, de ez a típus a következő verzióban már nem fog szerepelni.
 Lényegében egy Text.
-A típus különbség csak a fordítót segíti abban, hogy mikor kívánunk név manipulációt végezni.
+A típuskülönbség csak a fordítót segíti abban, hogy mikor kívánunk névmanipulációt végezni.
 Például, ha egy Temp-be egy List:Text-et szúrunk, akkor az alapjáraton a végéhez konkatenálódik.
 Onnan tudja a fordító, hogy új neveket akarunk valójában a Temp-hez adni, hogy List:Name típusú, nem List:Text.
 
@@ -1390,104 +1314,96 @@ Egy Vari-hoz hozzáadhatóak a nevek egyesével is meg listával is:
 
 \{+ vari += nList +\}
 
-Mind két esetben a nevek fel is regisztrálódnak az aktuális fájlba, amiből hozzá lettek adva a változóhoz.
-
-
+Mindkét esetben a nevek fel is regisztrálódnak az aktuális fájlba, amiből hozzá lettek adva a változóhoz.
 
 %----------------------------------------------------------------------------
 \section{Implementáció}
 \label{sec:SImplementation}
 %----------------------------------------------------------------------------
-A fordító jelenlegi implementációja \textit{Kotlin}-ban\footnote{\url{https://kotlinlang.org}} készült.
+A fordító jelenlegi implementációja \texttt{Kotlin}-ban\footnote{\url{https://kotlinlang.org}} készült.
 A Kotlin Java-ra fordul és JVM-en fut.
 Szintaxisa leginkább a Scala nyelvén alapszik, de sok hasznos megoldást gyűjtött össze más nyelvekből is.
-Sok újítást is behozott.
-Az egyik legfontosabb a nullsafty.
-Avagy, hogy a változók értéke nem lehet null, csak ha azt a típusban '?'-lel jelöljük (pl.: String?).
+Sok újítást is behozott, az egyik legfontosabb a null safety: a változók értéke nem lehet null, csak ha azt a típusban '?'-lel jelöljük (pl.: String?).
 Az ilyen változókat nullable-nek is hívjuk.
 Ezzel biztosítja, hogy ne érhesse a programozót váratlan nullpointer exception.
 Ehhez hasonlóan a tárolók tartalma alapértelmezetten nem módosítható.
-Ugyanakkor minden tárolónak van egy mutable verziója is, ami már szabadon módosítható.
-Így nem tűnhet el adat anélkül, hogy számolnánk vele.
+Ugyanakkor minden tárolónak van egy mutable verziója is, ami már szabadon módosítható, így nem tűnhet el adat anélkül, hogy számolnánk vele.
 Kotlinban nem kell pontosvesszőket raknunk.
 Kotlinban az egyszerű osztályokat egyetlen sorban is megírhatjuk és legtöbbször meg se kell adnunk az új változók típusát, mert azokra a fordító magától is képes rájönni.
 Mára már az egész Android platform átállt Kotlinra.
-Arról is hallani híreket, hogy hamarosan elhagyja a JVM-et.
-Ettől a lépéstől jelentős teljesítmény javulás várható.
+Arról is hallani híreket, hogy hamarosan elhagyja a JVM-et, ettől a lépéstől jelentős teljesítményjavulás várható.
 
-A Slime implementáció ANTLR-t (ANother Tool for Language Recognition)\footnote{\url{https://www.antlr.org}} használ a parszoláshoz.
+A Slime implementáció \texttt{ANTLR}-t (ANother Tool for Language Recognition)\footnote{\url{https://www.antlr.org}} használ a parszoláshoz.
 Ez egy robosztus könyvtár fordítók implementálásához, ami sok nyelven képes kódot generálni. 
 Az ANTLR a szintaktikai elemzés során feltokenezi a szöveget és szintaktikai fát épít. 
-A tokenezéshez szüksége van egy \textit{lexer grammar}-re (SlimeLexer.g4), és a fa felépítéséhez egy \textit{\textit{parser grammar}}-re(SlimeParser.g4). 
-Ezek tartalmazzák a nyelv nyelvtanának átírási szabályait és a tokenezéshez szükséges RegEx szerű, de annál fejlettebb mintákat. 
+A tokenezéshez szüksége van egy \texttt{lexer grammar}-re (SlimeLexer.g4), és a fa felépítéséhez egy \texttt{parser grammar}-re (SlimeParser.g4). 
+Ezek tartalmazzák a nyelv nyelvtanának átírási szabályait és a tokenezéshez szükséges RegEx-szerű, de annál fejlettebb mintákat. 
 Az ANTLR ezekből a nyelvtanokból osztályokat generál. 
-Sok nyelvben képes erre. 
-Ugyanakkor Kotlinban még nem képes, így Java osztályokat generáltatunk vele. 
-Ezek az osztályok végzik a tokenezést (SlimeLexer) és a parszolást(SlimeParser). 
+Sok nyelvben képes erre, de Kotlinban még nem, így Java osztályokat generáltatunk vele. 
+Ezek az osztályok végzik a tokenezést (SlimeLexer) és a parszolást (SlimeParser). 
 Ezen kívül olyan osztályokat is generál, amik alapul szolgálnak a  szemantika megvalósításához. 
-Ehhez a fa bejárásának két módja a listeneres(SlimeParserBaseListener) és visitoros(SlimeParserBaseVisitor).
-Én a visitoros bejárást választottam. 
-Ennek az a lényege, hogy van egy Visitor osztályunk, ami parseTree összes csúcsát meg tudja különböztetni Visitor Pattern segítségével.
-Ez után az egyes csúcsokat a visit függvények fordítják műveletekre.
+Ehhez a fa bejárásának két módja a listeneres (SlimeParserBaseListener) és visitoros SlimeParserBaseVisitor).
+Én a visitoros bejárást választottam, ennek az a lényege, hogy van egy Visitor osztályunk, ami a parseTree összes csúcsát meg tudja különböztetni Visitor Pattern segítségével.
+Ezután az egyes csúcsokat a visit függvények fordítják műveletekre.
 
-A \textit{lexer} nyelvtan \textit{fragment}-ekből és \textit{lexer} rule-okból áll. 
-A \textit{fragment}-ek önmagukban nem azonosítanak tokent, de részei lehetnek \textit{lexer} szabályoknak. 
+A \texttt{lexer} nyelvtan \texttt{fragment}-ekből és \texttt{lexer rule}-okból áll. 
+A \texttt{fragment}-ek önmagukban nem azonosítanak tokent, de részei lehetnek lexer szabályoknak. 
 Többek között arra jók, hogy tömörebben írhassunk le hasonló szabályokat, vagy olyan szabályokat, amikben sok az ismétlés. 
 Ehhez viszont nem mindig nyújtanak hatékony megoldást.
 
-A \textit{lexer} szabályok azonosítják a tokeneket
-A Slime esetén a tokeneket az alárendelt nyelv kód részei, a nyitó és csukó zárójelek, elválasztó karakterek és változó nevek teszik ki.
+A lexer szabályok azonosítják a tokeneket
+A Slime esetén a tokeneket az alárendelt nyelv kódrészei, a nyitó és csukó zárójelek, elválasztó karakterek és változónevek teszik ki.
 
-A \textit{lexer} képes váltogatni módok között, amikben más \textit{lexer} szabályok lesznek érvényesek. 
+A \texttt{lexer} képes váltogatni módok között, amikben más lexer szabályok lesznek érvényesek. 
 A módokat verem módjára kezeli az ANTLR. 
 Megadható, hogy mely tokenek esetén menjen be egy adott módba és az is, hogy annak a módnak mely tokenjei esetén térjen vissza. 
-Például ilyen, hogy “\{|” esetén belépünk a Temp belsejében érvényes szintaxis \textit{lexer} módjába és “|\}” esetén pedig visszatérünk. 
-A parser és \textit{lexer} nyelvtan össze is vonható, de vegyes nyelvtanban nem lehet a lexernek több módja.
+Például ilyen, hogy “\{|” esetén belépünk a Temp belsejében érvényes szintaxis lexer módjába és “|\}” esetén pedig visszatérünk. 
+A parser és lexer nyelvtan össze is vonható, de vegyes nyelvtanban nem lehet a lexernek több módja.
 Így a Slime nem lett volna megvalósítható.
 Nagy gyengesége a nyelvnek, hogy nem tartozhatnak a szabályok több módhoz is. 
 Így a Slot nyitó zárójelét is hét különböző token kezeli attól függően, hogy melyik módból akarjuk elérni. 
-Ugyanakkor a \textit{fragment}ek  minden mode alatt elérhetőek. 
-Használjuk is őket, de nem jelent tömörítést, ha a “\{|” zárójelet egy minimum két karakteres nevű \textit{fragment}-be csomagoljuk.
+Ugyanakkor a \texttt{fragment}ek  minden mode alatt elérhetőek. 
+Használjuk is őket, de nem jelent tömörítést, ha a “\{|” zárójelet egy minimum két karakteres nevű \texttt{fragment}-be csomagoljuk.
 Minden speciális zárójelnek külön módja van, kivéve a 4 operátor zárójelnek (OPER) és a SLOT-SPEC párosának (SLSP). 
-Ezen kívül minden módnak be kellett vezetni egy egysoros és kompakt változatát is, mert másképp nem megoldható a whitespace-k egyedi kezelése.
+Ezen kívül minden módnak be kellett vezetni egy egysoros és kompakt változatát is, mert másképp nem megoldható a whitespace-ek egyedi kezelése.
 
 Erre is jó megoldást nyújt a Slime. 
 Van a kódban 27 nem üres sor a nyitó zárójelek kezelésére, ami négyszer is előfordul.
 Előfordulásonként a szabályok nevének pár karaktere tér el, és önmagában is sok ismétlést tartalmaz. 
 Ennek karbantartása már template-eléssel nem jelentene problémát. 
-Sőt template-eléssel a \textit{fragment}ek is teljes mértékben kiválthatóak.
+Sőt template-eléssel a fragmentek is teljes mértékben kiválthatóak.
 
-A parser szabályok már a \textit{lexer} és más parser szabályokból építkeznek. 
+A parser szabályok már a lexer és más parser szabályokból építkeznek. 
 Ezek feladata felismerni az egyes műveleteket és beazonosítani az attribútumokat. 
-Az egységesség céljából minden művelet parser szabálya \textit{head}, \textit{body} és \textit{tail} részből áll.
-Ebből a head és a tail csak a nyitó és csukó zárójelek és csukó whitespacek. 
+Az egységesség céljából minden művelet parser szabálya \texttt{head}, \texttt{body} és \texttt{tail} részből áll.
+Ebből a head és a tail csak a nyitó és csukó zárójelek, és csukó whitespace-ek. 
 Az összetettebb zárójeleknél, mint Decl, Exte vagy Plus, a body további bodyPart-okra van bontva. 
 Az ANTLR minden parser szabályra generál egy leszármazottat az elemzési fája csúcsából. 
 Ezekre az osztályokra tartalmaz a visitor osztály visit függvényeket. 
 A Slime esetében ez a visitor alap a SlimeParserBaseVisitor.
 A belőle származtatott osztályom, a MySlimeParserVisitor valósítja meg a fordító legfőbb funkcionalitását. 
 Minden zárójel parszer szabályának a body-ja állítja elő a valódi kimenetet.
-A zárójel visit függvénye csak továbbítja hozzá tartozó body visit függvényének kimenetét. 
+A zárójel visit függvénye csak továbbítja a hozzá tartozó body visit függvényének kimenetét. 
 Összetettebb esetekben a body is csak a bodyPart-ok végeredményének az összegzését végzi. 
-Ez a kimenet pedig mindig valamilyen a Slime-ban létező típussal rendelkezik.
+Ez a kimenet pedig mindig valamilyen, a Slime-ban létező típussal rendelkezik.
 
 A fordító a parancsok végrehajtási sorrendjét nem optimalizálja.
 Szekvenciálisan hajtja végre azokat végig látogatva mindet, egyesével.
 
 A Slime típusainak mind létezik a háttérben megfelelő osztály, ami S{$ typeName $} módra van elnevezve. 
 Mindegyik az SVari absztrakt ősosztályból származik.
-Az SVari tartalmazza a változó neveit és a Slime beli típusának a nevét.
+Az SVari tartalmazza a változó neveit és a Slime-beli típusának a nevét.
 Biztosítja, hogy a változó elérhető legyen a nevein keresztül.
 Minden változónak lekérhetőek a nevei (names), önmaga (self), a névtelen másolata (copy) és típusa (type).
 Az SVari az alap működéshez szükséges függvények absztraktjait is tartalmazza. 
 \begin{itemize}
 \item \emph{listPaths:} Kilistázza az adott változóból elérhető összes változó onnan viszonyított útját.
 \item \emph{copy:} Lemásolja az adott változót adott néven
-\item \emph{extend:}Megvalósítja az EXTE zárójel funkcióját.
-\item \emph{plus:}Megvalósítja a PLUS zárójel funkcióját
-\item \emph{get:}Lekérdez egy path-on lévő változót
-\item \emph{delete:}Töröl egy path-ról egy változót
-\item \emph{accept:}Megvalósítja a visitor patternt
+\item \emph{extend:} Megvalósítja az EXTE zárójel funkcióját.
+\item \emph{plus:} Megvalósítja a PLUS zárójel funkcióját
+\item \emph{get:} Lekérdez egy path-on lévő változót
+\item \emph{delete:} Töröl egy path-ról egy változót
+\item \emph{accept:} Megvalósítja a visitor patternt
 \end{itemize}
 
 Az osztályok mindegyike egyedien épül fel és működik:
@@ -1508,7 +1424,7 @@ Az iter attribútuma az előbb említett SList iter-jét adja vissza.
 Amikor lekérdezik belőle a Text-eket, a Spec-eket vagy a Slot-okat, akkor azt ebből a listából szűri ki mindig újra.
 \item \emph{SList:}
 Egy mutable List leszármazott.
-Templatet használ a beágyazott típus kezelésére.
+Template-et használ a beágyazott típus kezelésére.
 Egy mutable List-ben tárolja az elemeit.
 Minden függvényt felülír és átírányítja a belső Mutable List-nek.
 Belső osztályként valósítja meg az SIter-t. 
@@ -1530,8 +1446,7 @@ Ha a birtokló elemeinek továbbít,akkor az eredményt összegzi is.
 Csak a RegEx mintát tárolja egy String-ben, és a típus megkötést egy List<SType> ban.
 Van egy listMatchingPaths függvénye, amin keresztül lekérdezhetőek a rá illeszkedő a megkötéseknek megfelelő változók.
 \item \emph{SName:} 
-Annyira azonos a funkcionalitása a SText-tel, hogy közvetlen belőle származik.
-íNem ír felül semmit.
+Annyira azonos a funkcionalitása a SText-tel, hogy közvetlenül belőle származik. Nem ír felül semmit.
 Csak egy konstruktort tartalmaz, ami STextet konvertál SName-mé.
 \end{itemize}
 
@@ -1545,12 +1460,12 @@ A Cont típusokat az SList kezeli csak Cont ként.
 \section{A fejlesztés fázisai}
 \label{sec:SStatesOfDevelopment}
 %----------------------------------------------------------------------------
-A Slime sok iteráción ment keresztül és még sok iteráción is fog végig menni. 
+A Slime sok iteráción ment keresztül és még sok iteráción is fog végigmenni. 
 A fejlesztés fázisai nagyon tudatos sorrendben követik egymást kisebb-nagyobb átfedésekkel.
 Egy olyan nyelv a cél, ami hatékony és mégis könnyen bővíthető.
 Mindig figyelemmel követjük ehhez a modern nyelvek szintaxisát és megoldásait.
 Idővel szeretnénk minden alapvető funkcionalitást behozni a Slime-ba.
-Mérföld kövekről van szó, nem verziókról, mivel az egyes fázisok között lehetnek időbeli átfedések.
+Mérföldkövekről van szó, nem verziókról, mivel az egyes fázisok között lehetnek időbeli átfedések.
 Éppen ezért nem is verzió számmal hivatkozunk a fázisokra, hanem a céljukat összefoglaló kódnevekkel.
 
 \begin{itemize}
@@ -1562,7 +1477,7 @@ Nem jelennek meg sem a giten, sem jegyzetekben.
 \item \emph{base:}
 Legfőbb célja az alapvető működésnek a megvalósítása volt. 
 Csupán a TEXT, SPEC, SLOT, TEMP, DECL, DELE, PLUS és EXTE zárójeleket tartalmazta.
-Típusok közül is csak a négy típus jelölő zárójelhez tartozó típusokat jelölte.
+Típusok közül is csak a négy típusjelölő zárójelhez tartozó típusokat jelölte.
 Nem volt lehetséges sem importálni, se referenciát használni, sem a neveket manipulálni.
 Sokkal inkább volt egy proof of concept, mint valós nyelv. 
 Sok jelölés eltért a véglegestől
@@ -1576,9 +1491,8 @@ hatékony generálására.
 A szintaxison innentől csak igazításokat végeztünk.
 A nyelvet innentől minősíthetjük használhatónak.
 \item \emph{full:}
-Itt jelent meg az Iter, File és Name.
-Illetve itt jelentek meg az egysoros és kompakt zárójelek.
-Az eddigi IRTG generáló kódok harmadukra estek össze.
+Itt jelent meg az Iter, File és Name, illetve itt jelentek meg az egysoros és kompakt zárójelek.
+Az eddigi IRTG-generáló kódok harmadukra estek össze.
 Innentől a nyelvnek már az összes kezdetektől tervezett funkcionalitása meg van valósítva.
 Ekkora alakult ki a szintaxis végleges formája.
 Minden jövőbeli szintaxis ezzel már visszafele kompatibilis lesz.
@@ -1597,17 +1511,16 @@ A Cont-oknak az implementációban is lesz egy közös őse, az SCont.
 Lehetséges lesz egy Slime fájlból több kimeneti fájl generálása.
 \item \emph{comf:}
 A nyelv kényelmes használatának érdekében sok egyszerűsítés fog történni.
-Elhagyhatóak lesznek a a feleslegestípus megadások.
+Elhagyhatóak lesznek a a felesleges típusmegadások.
 A zárójelek által visszatérített Vari-kból egyből lekérdezhetőek lesznek az attribútumaik. 
-Összevonható lesz a négy alapművelet.
-Így minden művelet eredménye egyből kiírható lesz.
+Összevonható lesz a négy alapművelet, így minden művelet eredménye egyből kiírható lesz.
 \item \emph{test:}
-A nyelv teljes teszt lefedettségének megvalósítása.
-A teszt fájlokból részletes dokumentáció is készülni fog.
+A nyelv teljes tesztlefedettségének megvalósítása.
+A tesztfájlokból részletes dokumentáció is készülni fog.
 \item \emph{text:}
-Ebben a fázisban ki fogjuk bővíteni a szöveg kezelési műveleteket.
-A szöveget karakter-láncként fogjuk látni, és tudni fogjuk kezelni.
-A templateket is szövegként fogjuk látni, ahol minden Spec és Slot egy karakternyi helyet foglal.
+Ebben a fázisban ki fogjuk bővíteni a szövegkezelési műveleteket.
+A szöveget karakterláncként fogjuk látni, és tudni fogjuk kezelni.
+A template-eket is szövegként fogjuk látni, ahol minden Spec és Slot egy karakternyi helyet foglal.
 Bejön a replace, substring és minden a C nyelvekből ismert String művelet.
 \end{itemize}
 
@@ -1621,7 +1534,7 @@ Szándék és erőforrás is van arra, hogy megvalósuljanak pár éven belül.
 Be akarjuk vezetni az alap vezérlési elemeket.
 Ezekre mindenképp szükség van egy hatékony nyelvhez.
 If-else helyett a kotlinos when struktúrából fog kiindulni.
-Avagy egy zárójelben lesznek a feltétel-, következménypárok.
+Avagy egy zárójelben lesznek a feltétel- és következménypárok.
 Ezek közül fog az első igazra kiértékelődő feltétel következménye teljesülni.
 E mellé fog készülni egy if verzió is, ami minden igazra teljesülő feltétel következményét végrehajtja.
 Az iterátorokat tovább fejlesztve az alapvető ciklusok minden típusát tartalmazni fogja.
@@ -1632,50 +1545,46 @@ A tároláshoz is be lesznek vezetve új Cont típusok.
 Ez a kódnév azt rövidíti, hogy \textit{data oriented slime version}
 Fontos, hogy a Slime fordítása hatékony legyen.
 Ezért be akarjuk vezetni a data oriented programminget.
-Minden eddigi Vari osztály egyesítve lesz egy Vari osztályá.
-Meg lesz valósítva Egy saját tároló típus, ami az összes többit helyettesíti.
+Minden eddigi Vari osztály egyesítve lesz egy Vari osztállyá.
+Meg lesz valósítva egy saját tároló típus, ami az összes többit helyettesíti.
 A legtöbb Vari tulajdonság általánosítva lesz minden típusra.
 Például minden típusnak lesz Cont és Iter attribútuma, legfeljebb üres lesz.
-Ezektől azt reméljük, hogy sokat fogunk spórolni a típus vizsgálatok és kód ismétlések elhagyásával.
+Ezektől azt reméljük, hogy sokat fogunk spórolni a típusvizsgálatok és kódismétlések elhagyásával.
 
 \item \emph{vers:}
 A letisztított és áthangolt nyelvből több verziót is akarunk készíteni.
 Készülni fog egy optimalizált c++20 verzió, mivel sokkal hatékonyabb minden magasabb szintű nyelvnél.
 A Python is csak a hátterében lévő C++ könyvtárakkal tud hatékony Deep Learning tool lenni.
 Ezt egy Kotlin és c++20 library fogja követni.
-Ez azért fontos, hogy a Slime tágabb körben is alkalmazható legyen.
-Így HTML és XML esetben is hatékony eszközzé válik.
+Ez azért fontos, hogy a Slime tágabb körben is alkalmazható legyen, így HTML és XML esetben is hatékony eszközzé válik.
 A Kotlin verzióból is el lesz hagyva minden túlsúlyos könyvtár.
-Ez ugyan azt jelenti, hogy a parsolást is ANTLR nélkül kell megoldani, de egy saját parszer kis áldozat a potenciális teljesítményért.
+Ez ugyan azt jelenti, hogy a parszolást is ANTLR nélkül kell megoldani, de egy saját parszer kis áldozat a potenciális teljesítményért.
 A Slime-ra az ANTLR által alkalmazottaknál jóval hatékonyabb módszerek is léteznek.
 Ez persze főleg a sűrű zárójelezésnek köszönhető.
 \end{itemize}
 
 \item \emph{Távlati koncepciók:}
-Azok a lépések, amik meghaladják a jelenlegi erőforrásokat.
-Vagy túl sok vagy túl bonyolult módosításokat igényelnek.
-Éppen ezért csak sokadlagos jelentőséggel bírnak.
-Ugyanakkor még így is hatással vannak a nyelvre.
-Amikor két túl hasonló design irány között kell dönteni, ezeknek a funkcionalitásoknak a tervezett bevezetését is szem előtt tartjuk.
+Azok a lépések, amik meghaladják a jelenlegi erőforrásokat: vagy túl sok időt, vagy túl bonyolult módosításokat igényelnek.
+Éppen ezért csak sokadlagos jelentőséggel bírnak, ugyanakkor még így is hatással vannak a nyelvre.
+Amikor két túl hasonló design-irány között kell dönteni, ezeknek a funkcionalitásoknak a tervezett bevezetését is szem előtt tartjuk.
 Ilyenkor kényelmes a döntést a koncepció kódnevével indokolni.
 \begin{itemize}
 \item \emph{alge:}
-A templatelés folyamata felfogható egy fa felépítéseként is, ahol a csúcsok a sablonok, és a csúcsoknak annyi gyermeke lehet, ahány mező van a sablonban.
-Ebben az ismétlődő részfákat összevonva már egy irányított kör mentes gráfot kezelünk.
+A template-elés folyamata felfogható egy fa felépítéseként is, ahol a csúcsok a sablonok, és a csúcsoknak annyi gyermeke lehet, ahány mező van a sablonban.
+Ebben az ismétlődő részfákat összevonva már egy irányított körmentes gráfot kezelünk.
 Ezért hasznos lenne bevezetni egy saját gráfalgebrát, ami az SGA javítása lesz.
 Ezeknek bejárására és kezelésére is számos módot tesz majd lehetővé a Slime.
-Ezen kívül az indexek és más szám adatok is nehezen kezelhetőek a Slime-ban.
+Ezen kívül az indexek és más számadatok is nehezen kezelhetőek a Slime-ban.
 Hasznos lenne, ha a számokat kezelni lehetne.
-Ez történhetne lebegő pontos és egészként is.
-A Slime irányzatát követve, nyilván célszerűbb lesz egy típussal kezelni a számokat. 
+Ez történhetne lebegőpontos és egészként is.
+A Slime irányzatát követve nyilván célszerűbb lesz egy típussal kezelni a számokat. 
 \item \emph{func:}
-Hasznos lenne egy függvény szerű mechanizmus.
-Sokat csökkentene a Slime redundanciáján.
+Hasznos lenne egy függvényszerű mechanizmus, sokat csökkentene a Slime redundanciáján.
 Ennek lényege az lenne, hogy a Slime kódot tároló Temp-ek (vagy azok alpján nyugvó új osztály) futtathatóak lesznek.
 Ez azt jelenti, hogy hívásnál a függvény bemeneteit beillesztjük a slotokba és futtatjuk a kimenetet fájlként.
 Ez a névterekkel és Inst-ekkel együtt már egy osztályok fele hajló struktúrát fog alkotni.
 \item \emph{irtg:}
-Lehetséges lesz templatelés szinkronizálása környezet független nyelvtanokkal.
+Lehetséges lesz template-elés szinkronizálása környezetfüggetlen nyelvtanokkal.
 Ez azt jelentené, hogy a Slime egy az IRTG-t meghaladó nyelv lesz, ami az IRTG funkcionalitásait is megvalósítja.
 Ezeknek a funkcionalitásoknak a használata viszont nem lesz kötelező, így továbbra is függetlenek maradunk az IRTGtől.
 A többféle algebra kimenetét lehetséges lesz külön fájlba, vagy más bemenetre irányítani.
@@ -1709,38 +1618,30 @@ A nyelvtanok közül hármat kívánok bemutatni.
 Mind a három ugyanazt a feladatot látja el, de a nyelv más szintjén.
 
 Az első nyelvtan közvetlen a base fázis utáni állapothoz készült.
-Csak a legalapvetőbb zárójel típusokat tartalmazta.
-Például tárolókból is kizárólag a Temp-et.
-(lásd fájl \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example1}})
+Csak a legalapvetőbb zárójeltípusokat tartalmazta, például tárolókból is kizárólag a Temp-et.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example1}}
 
 A második már a nyelvet egy mechanikailag fejlett szinten mutatja be.
-Az adatokkat is külön fájlba rendezi.
-Szintaxisból viszont csak a legalapvetőbb megoldásokat tartalmazza.
-(lásd fájl 
-\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example2}}
-\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example2data}})
-Fontos! Az első fájl a másodikat a Slime programhoz viszzonyított ../test\_codes/irtg\_example2data mappában keresi.
+Az adatokat is külön fájlba rendezi.
+Szintaxisból viszont csak a legalapvetőbb megoldásokat tartalmazza.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example2}},\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example2data}}
+Fontos! Az első fájl a másodikat a Slime programhoz viszonyított \texttt{../test\_codes/irtg\_example2data} mappában keresi.
 Ha nem ennek megfelelően helyezzük el a második fájlt, akkor nem lesz sikeres a futtatás.
 
 A harmadik megoldás a fejlett szintaxis szemléltetését célozza meg.
 Az adatokat egy fájlban tárolja a műveletekkel, de egy sokkal tömörebb formában.
-Alkalmaz minden elérhetőfunkciót a Slime-ból, ami indokolt.
-(lásd fájl \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example3}})
+Alkalmaz minden elérhető funkciót a Slime-ból, ami indokolt.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example3}}
 
 Ezeken kívül jelenleg is dolgozunk egy megoldáson, hogy beépítjük a Slime-ot a jelenlegi IRTG generátorba.
 Itt a generált nyelvtan átlátását segíti elsősorban.
 A példa a két gyermekű NP-kre íródott és adata ezeknek egy pici részhalmazát fedi le.
-A legfejlettebb szintaxist és módszereket használja.
-(lásd fájl \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example4}})
+A legfejlettebb szintaxist és módszereket használja.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/irtg_example4}}
 
 %----------------------------------------------------------------------------
 \subsection{ANTLR}
 \label{sec:SEANTLR}
 %----------------------------------------------------------------------------
-Az ANTLR esetében a legkézreesőbb példát hozom, a Slime \textit{lexer} nyelvtanát. 
-Ezen ugyan tudtunk egyszerűsíteni, de amennyit nyertünk, annyit vesztettünk a parser egyszerűsítéséhez bevezetett type() műveletekkel.
-A lexeren belül is egy kisebb részt, a nyitó és csukó speciális zárójelek szabályait fogom leírni.
-(lásd file \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/antlr_example}})
+Az ANTLR esetében a legkézreesőbb példát hozom, a Slime \texttt{lexer} nyelvtanát. 
+Ezen ugyan tudtunk egyszerűsíteni, de amennyit nyertünk, annyit vesztettünk a parszer egyszerűsítéséhez bevezetett type() műveletekkel.
+A lexeren belül is egy kisebb részt, a nyitó és csukó speciális zárójelek szabályait fogom leírni.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/antlr_example}}
 
 Így ezek a kódrészek közel negyedükre estek össze.
 
@@ -1750,12 +1651,11 @@ A lexeren belül is egy kisebb részt, a nyitó és csukó speciális zárójele
 \label{sec:SEHTML}
 %----------------------------------------------------------------------------
 A HTML-ek hatékony kezelésére számos templater engine létezik.
-Mivel specialitásuk a HTML-re általánosan hatékonyabbak is a Slime-nál.
+Mivel specialitásuk, a HTML-re általánosan hatékonyabbak is a Slime-nál.
 Ennek elsődleges oka az, hogy elérhetőek libraryként egy magasabb nyelvből, és onnan vezérelhetőek, vagy egy magasabb nyelv ágyazható beléjük.
-Ebben a példában azt kívánom szemléltetni, hogy a kész adatok esetén, hogyan érhetőek el a Mustache-hoz hasonló technikák.
-(lásd file \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/html_example}})
+Ebben a példában azt kívánom szemléltetni, hogy a kész adatok esetén, hogyan érhetőek el a Mustache-hoz hasonló technikák.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/html_example}}
 
-Hiszek benne, hogy a Slime hamar versenyképes lesz más templater enginekkel szemben is.
+Hiszek benne, hogy a Slime hamar versenyképes lesz más templater engine-ekkel szemben is.
 Nem cél egy, az összes többinél hatékonyabb megoldást nyújtani.
 A cél egy univerzális, könnyen tanulható megközelítése a feladatnak.
 
@@ -1767,8 +1667,7 @@ A cél egy univerzális, könnyen tanulható megközelítése a feladatnak.
  XML-lel gyakran találkozunk Android fejlesztés terén.
  Egyes gombos menük esetén is nagyon hasonló beállításokkal látjuk el a gombjainkat.
  Ezeket pedig, ha csak nem szervezzük külső fájlokba, akkor minden egyes gomb esetén kötelesek vagyunk megadni.
- Ez Slime-mal is elkerülhető.
- (lásd file \footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/xml_example}})
+ Ez Slime-mal is elkerülhető.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/xml_example}}
 
 
 

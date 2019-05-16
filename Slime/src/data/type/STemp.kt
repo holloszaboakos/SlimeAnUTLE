@@ -211,8 +211,11 @@ class STemp(
                     if (h.ctype.attributes.any { it.name.compareTo(slot.tag()) == 0 }) {
                         val a = h.ctype.attributes.find { it.name.compareTo(slot.tag()) == 0 }
                             ?: throw Exception("attribute disappeared")
+                        val v = h()[h.ctype.attributes.indexOf(a)]
+
+                        if(v!=null)
                         slot.plus(
-                            h()[h.ctype.attributes.indexOf(a)] ?: throw Exception("attribute ${a.name} has no value"),
+                            v,
                             SList(mutableListOf()),
                             SList(mutableListOf())
                         )

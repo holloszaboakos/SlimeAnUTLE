@@ -42,11 +42,7 @@ dataBasicBloc, DBB	:List:Temp := [+ DB.0 :+ MD9
 dataBasicOnel, DBO	:List:Temp := [+ DB.1 :+ MD9
 dataBasicComp, DBC	:List:Temp := [+ DB.2 :+ MD9
 =}
-{*
-{&List:Temp:&DB[BOC]&}
-{@e@}
-*}
-
+[* DBB DBO DBC {@e@}
 {# generation of rules for the OPER and TEMP lexer modes #}
 {=
 datasLong, DL		: List:Temp := [+ LRB.fromM :+ FMD
@@ -79,14 +75,15 @@ DLCTBloc, DLCTB: List:Temp := [+ DLCT.0 :+ MD3
 DLCTOnel, DLCTO: List:Temp := [+ DLCT.1 :+ MD3
 DLCTComp, DLCTC: List:Temp := [+ DLCT.2 :+ MD3
 =}
+
 {*
-	{&List:Temp:&DLBO[BOC]&}{@e@}
-	{&List:Temp:&DLOO[BOC]&}{@e@}
-	{&List:Temp:&DLCO[BOC]&}{@e@}
+	DLBOB DLBOO DLBOC {@e@}
+	DLOOB DLOOO DLOOC {@e@}
+	DLCOB DLCOO DLCOC {@e@}
 	{@e@}
-	{&List:Temp:&DLBT[BOC]&}{@e@}
-	{&List:Temp:&DLOT[BOC]&}{@e@}
-	{&List:Temp:&DLCT[BOC]&}{@e@}
+	DLBTB DLBTO DLBTC {@e@}
+	DLOTB DLOTO DLOTC {@e@}
+	DLCTB DLCTO DLCTC {@e@}
 *}
 
 
