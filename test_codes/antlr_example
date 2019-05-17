@@ -9,18 +9,18 @@ longRuleBase, LRB    	:Temp := {|<$typeB _<$typeM _<$fromB _<$fromM  : '<$pattB;
 
 {# data type and data for the three bracket types (block, one line, compact) #}
 BDB,bracDataBase : Type := typeB, pattB, modeB :Temp
-bracDatas,BD :List:BDB :=
+bracDatas,BD :List<BDB :=
 	 [=:BDB:= [|BOB;{;B
 	,[=:BDB:= [|OLB;[;O
 	,[=:BDB:= [|COB;<;C
 
 {# data type and data for the nine mode types (refe,exte,plus,decl,dele,text,temp) #}
 MDB,modeDataBase : Type := typeM, pattM, modeM, wrap :Temp
-modeDatas3,MD3 :List:MDB :=
+modeDatas3,MD3 :List<MDB :=
 	 [=:MDB:= [|SLOT;$;SLSP;<@e 
 	,[=:MDB:= [|SPEC;@;SLSP;<@e 
 	,[=:MDB:= [|TEXT;";TEXT;<@e;e 
-modeDatas9,MD9 :List:MDB := MD3.0, MD3.1
+modeDatas9,MD9 :List<MDB := MD3.0, MD3.1
 	,[=:MDB:= [|REFE;&;REFE;<@e 
 	,[=:MDB:= [|EXTE;*;OPER;<@e 
 	,[=:MDB:= [|PLUS;+;OPER;<@e 
@@ -30,50 +30,50 @@ modeDatas9,MD9 :List:MDB := MD3.0, MD3.1
 	,[=:MDB:= [|TEMP;|;TEMP;<@e;e 
 
 {# lexer mode dependent data #}
-fromBData ,FBD	:List:Temp := [|B;O;C
-fromMData ,FMD	:List:Temp := [|O;T
+fromBData ,FBD	:List<Temp := [|B;O;C
+fromMData ,FMD	:List<Temp := [|O;T
 =}
 
 {# generation of rules for the default lexer mode #}
 {=
-datasBasic, DB	: List:Temp := [+SRB:+BD
+datasBasic, DB	: List<Temp := [+SRB:+BD
 
-dataBasicBloc, DBB	:List:Temp := [+ DB.0 :+ MD9
-dataBasicOnel, DBO	:List:Temp := [+ DB.1 :+ MD9
-dataBasicComp, DBC	:List:Temp := [+ DB.2 :+ MD9
+dataBasicBloc, DBB	:List<Temp := [+ DB.0 :+ MD9
+dataBasicOnel, DBO	:List<Temp := [+ DB.1 :+ MD9
+dataBasicComp, DBC	:List<Temp := [+ DB.2 :+ MD9
 =}
 [* DBB DBO DBC {@e@}
 {# generation of rules for the OPER and TEMP lexer modes #}
 {=
-datasLong, DL		: List:Temp := [+ LRB.fromM :+ FMD
-DLOper, DLO	: List:Temp := [+ DL.0.fromB :+ FBD
-DLTemp, DLT	: List:Temp := [+ DL.1.fromB :+ FBD
+datasLong, DL		: List<Temp := [+ LRB.fromM :+ FMD
+DLOper, DLO	: List<Temp := [+ DL.0.fromB :+ FBD
+DLTemp, DLT	: List<Temp := [+ DL.1.fromB :+ FBD
 
-DLBlocOper, DLBO: List:Temp := [+ DLO.0 :+ BD
-DLOnelOper, DLOO: List:Temp := [+ DLO.1 :+ BD
-DLCompOper, DLCO: List:Temp := [+ DLO.2 :+ BD
-DLBlocTemp, DLBT: List:Temp := [+ DLT.0 :+ BD
-DLOnelTemp, DLOT: List:Temp := [+ DLT.1 :+ BD
-DLCompTemp, DLCT: List:Temp := [+ DLT.2 :+ BD
+DLBlocOper, DLBO: List<Temp := [+ DLO.0 :+ BD
+DLOnelOper, DLOO: List<Temp := [+ DLO.1 :+ BD
+DLCompOper, DLCO: List<Temp := [+ DLO.2 :+ BD
+DLBlocTemp, DLBT: List<Temp := [+ DLT.0 :+ BD
+DLOnelTemp, DLOT: List<Temp := [+ DLT.1 :+ BD
+DLCompTemp, DLCT: List<Temp := [+ DLT.2 :+ BD
  
-DLBOBloc, DLBOB: List:Temp := [+ DLBO.0 :+ MD9
-DLBOOnel, DLBOO: List:Temp := [+ DLBO.1 :+ MD9
-DLBOComp, DLBOC: List:Temp := [+ DLBO.2 :+ MD9
-DLOOBloc, DLOOB: List:Temp := [+ DLOO.0 :+ MD9
-DLOOOnel, DLOOO: List:Temp := [+ DLOO.1 :+ MD9
-DLOOComp, DLOOC: List:Temp := [+ DLOO.2 :+ MD9
-DLCOBloc, DLCOB: List:Temp := [+ DLCO.0 :+ MD9
-DLCOOnel, DLCOO: List:Temp := [+ DLCO.1 :+ MD9
-DLCOComp, DLCOC: List:Temp := [+ DLCO.2 :+ MD9
-DLBTBloc, DLBTB: List:Temp := [+ DLBT.0 :+ MD3
-DLBTOnel, DLBTO: List:Temp := [+ DLBT.1 :+ MD3
-DLBTComp, DLBTC: List:Temp := [+ DLBT.2 :+ MD3
-DLOTBloc, DLOTB: List:Temp := [+ DLOT.0 :+ MD3
-DLOTOnel, DLOTO: List:Temp := [+ DLOT.1 :+ MD3
-DLOTComp, DLOTC: List:Temp := [+ DLOT.2 :+ MD3
-DLCTBloc, DLCTB: List:Temp := [+ DLCT.0 :+ MD3
-DLCTOnel, DLCTO: List:Temp := [+ DLCT.1 :+ MD3
-DLCTComp, DLCTC: List:Temp := [+ DLCT.2 :+ MD3
+DLBOBloc, DLBOB: List<Temp := [+ DLBO.0 :+ MD9
+DLBOOnel, DLBOO: List<Temp := [+ DLBO.1 :+ MD9
+DLBOComp, DLBOC: List<Temp := [+ DLBO.2 :+ MD9
+DLOOBloc, DLOOB: List<Temp := [+ DLOO.0 :+ MD9
+DLOOOnel, DLOOO: List<Temp := [+ DLOO.1 :+ MD9
+DLOOComp, DLOOC: List<Temp := [+ DLOO.2 :+ MD9
+DLCOBloc, DLCOB: List<Temp := [+ DLCO.0 :+ MD9
+DLCOOnel, DLCOO: List<Temp := [+ DLCO.1 :+ MD9
+DLCOComp, DLCOC: List<Temp := [+ DLCO.2 :+ MD9
+DLBTBloc, DLBTB: List<Temp := [+ DLBT.0 :+ MD3
+DLBTOnel, DLBTO: List<Temp := [+ DLBT.1 :+ MD3
+DLBTComp, DLBTC: List<Temp := [+ DLBT.2 :+ MD3
+DLOTBloc, DLOTB: List<Temp := [+ DLOT.0 :+ MD3
+DLOTOnel, DLOTO: List<Temp := [+ DLOT.1 :+ MD3
+DLOTComp, DLOTC: List<Temp := [+ DLOT.2 :+ MD3
+DLCTBloc, DLCTB: List<Temp := [+ DLCT.0 :+ MD3
+DLCTOnel, DLCTO: List<Temp := [+ DLCT.1 :+ MD3
+DLCTComp, DLCTC: List<Temp := [+ DLCT.2 :+ MD3
 =}
 
 {*

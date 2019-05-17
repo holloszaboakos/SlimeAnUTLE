@@ -77,7 +77,7 @@ variPath: ((NAME|INTE) PE)* (NAME|INTE);
 //declaring value to values
 listName: (NAME CO)* NAME;
 //type with type embedding
-typeName: (NAME CL)* NAME;
+typeName: (NAME LS)* NAME;
 
 //subordinate language
 textOutor:TEXT_OUTOR;

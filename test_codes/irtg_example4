@@ -41,7 +41,7 @@ nounPhraseBase1,NPB3 : Temp  :=  <+IB.copy:+ID3
 NPDB,nounPhraseDataBase : Type  :=  comm,  arg1, arg2, edge_ud, edge_4lang : Text
 
 {#declaration of data for the NP2 IRTG rule templates#}
-datas1,D1 :List:NPDB :=
+datas1,D1 :List<NPDB :=
 	 [=:NPDB:= {"cute cat"}			,<"JJ	,<"NN	,<"amod		,<"0
 	,[=:NPDB:= {"electricity charges"}	,<"NN	,<"NNS	,<"compound	,<"0_compound_nouns
 	,[=:NPDB:= {"car safety"}		,<"NN	,<"NN	,<"compound	,<"0_compound_nouns
@@ -50,19 +50,19 @@ datas1,D1 :List:NPDB :=
 	,[=:NPDB:= {"cute cats"}		,<"JJ	,<"NNS	,<"amod		,<"0
 	,[=:NPDB:= {"John Smith"}		,<"NNP	,<"NNP	,<"flat		,<"0_flat_name
 	
-datas2,D2 :List:NPDB :=
+datas2,D2 :List<NPDB :=
 	 [=:NPDB:= {"the Examiner"}	,<"DT	,<"NNP	,<"det
 	,[=:NPDB:= {"a cat"}		,<"DT	,<"NN	,<"det
 	,[=:NPDB:= {"the cats"}		,<"DT	,<"NNS	,<"det
 	
-datas3,D3 :List:NPDB :=
+datas3,D3 :List<NPDB :=
 	 [=:NPDB:= {"my cat"}	,<"PRPDOLLAR	,<"NN	,<"nmod:poss
 	,[=:NPDB:= {"my cats"}	,<"PRPDOLLAR	,<"NNS	,<"nmod:poss
 
 {#create list for the output out of copies of the NP2 IRTG rule templates#} 
-result1,R1 :List:Temp := <+NPB1:+D1
-result2,R2 :List:Temp := <+NPB2:+D2
-result3,R3 :List:Temp := <+NPB3:+D3
+result1,R1 :List<Temp := <+NPB1:+D1
+result2,R2 :List<Temp := <+NPB2:+D2
+result3,R3 :List<Temp := <+NPB3:+D3
 =}
 {#adding data to copies of the template end extend it to the surroundings#}
 <*{+ 

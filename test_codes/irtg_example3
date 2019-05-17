@@ -31,7 +31,7 @@ termBase,TB : Temp  :=  <+IB:+ID
 TDB,termDataBase : Type  :=  word_class, word, concept : Temp
 
 {#declaration of data for the trerminal IRTG template#}
-datas,D :List:TDB :=
+datas,D :List<TDB :=
 	 [=:TDB:= [|NN;dog;dog
 	,[=:TDB:= [|NN;cat;cat
 	,[=:TDB:= [|NN;owl;owl
@@ -44,7 +44,7 @@ datas,D :List:TDB :=
 	,[=:TDB:= [|NN;monkey;monkey
 
 {#create list for the output out of copies of the terminal IRTG rule template#} 
-result,R :List:Temp := <+TB:+D 
+result,R :List<Temp := <+TB:+D 
 =}
 {#adding data to copies of the template end extend it to the surroundings#}
 <*{+ 

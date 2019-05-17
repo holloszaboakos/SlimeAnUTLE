@@ -12,7 +12,7 @@
 
 	;irtgDataBase : Type := left, header, string, syntax_tree, ud_graph, fourlang_graph : Temp
 	
-	;termDataBase : List:Temp := [|NN;<$word _NN ;<$word ;NN( <$word );"(<$word <root>/<$word )";"(<$word <root>/<$word )"
+	;termDataBase : List<Temp := [|NN;<$word _NN ;<$word ;NN( <$word );"(<$word <root>/<$word )";"(<$word <root>/<$word )"
 
 	;termData1 : irtgDataBase := termDataBase.0.copy 
 		,[+ termDataBase.1.copy.word 	  :+ <"dog 
@@ -36,10 +36,10 @@
 		,[+ termDataBase.4.copy.word.iter :+ <"fish 
 		,[+ termDataBase.5.copy.word.iter :+ <"fish
 
-	;datas1 : List:Temp := termData1.self, termData2.self, termData3.self
+	;datas1 : List<Temp := termData1.self, termData2.self, termData3.self
 	
 	[# I have to mark that this is a reference given by a regex
-	;datas2 : List:Temp := [& irtgDataBase :& ^termData[123]$
+	;datas2 : List<Temp := [& irtgDataBase :& ^termData[123]$
 =}
 
 

@@ -6,7 +6,7 @@ CTDT, ConsTypeDataType :Type	:= what, whatTo :Temp
 WODT, WhatOfDataType :Type	:= whatOf :Text
 
 {#declaration of templates for all the warients of constrain lists and a type to add data easier#}
-consListTypeList,   CLTL : List:Temp   := <|<$stst;enst;toto ;<$stst;enst;tobo ;<$stst;enst;tobo;bobo 
+consListTypeList,   CLTL : List<Temp   := <|<$stst;enst;toto ;<$stst;enst;tobo ;<$stst;enst;tobo;bobo 
 CLDT, consListDataType :Type	:= stst, sten, enst, enen, toto, tobo, boto, bobo :Temp
 
 {#declaration of template for a button and two types to add data easier#}
@@ -43,7 +43,7 @@ SDT, SideDataType : Type := s,e,t,b : Temp
 sides,S : SDT := [|Start;End;Top;Button
 
 {#declaration of struct out of all possible constrain type#}
-consListDatasList, CLDL :List:Temp := [+CBT :+ {=:List:CTDT:= 
+consListDatasList, CLDL :List<Temp := [+CBT :+ {=:List<CTDT:= 
 		 <=:CTDT:=S.s,S.s 
 		,<=:CTDT:=S.s,S.e 
 		,<=:CTDT:=S.e,S.s 
@@ -65,7 +65,7 @@ consDataList, CDL : D4B :=
 	,[+ <+CLTL.1.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+b4
 	,[+ <+CLTL.2.copy:+CLD.copy	:+ ID :0:+g2, 1:+g2, 2:+b5, 3:+p
 {#declaration of the datas of the buttons#}
-buttDatas, BD : List:BDT :=
+buttDatas, BD : List<BDT :=
 	 [=:BDT:= <|contine	,<*ID.b1 ,<|176	,<|0	,<|1	,<| 
 	,[=:BDT:= <|connect	,<*ID.b2 ,<|52	,<|0	,<|1	,<| 
 	,[=:BDT:= <|achivements	,<*ID.b3 ,<|52	,<|8	,<|0.03	,<| 

@@ -95,12 +95,12 @@ BCB_REFE  : '&}' -> popMode ;
 
 //We separate type restriction from RegEx by &:
 REOP:':&';
-//We devide types by colon
-CL_B_R:':'-> type(CL);
+//We devide embedded types by less
+LS_B_R:'<'-> type(LS);
 //variable names consist of english letters, underscore and numbers but can not start by number
 NAME_B_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
 //Everything else is part of the regex
-REGEX : {_input.LA(-1) == '&'}? ( ~[&\n\r\t :] | '&' (~[}\n\r\t ]|EOF))+;
+REGEX : {_input.LA(-1) == '&'}? ( ~[&\n\r\t ] | '&' (~[}\n\r\t ]|EOF))+;
 
 mode O_REFE;
 //We skip all comments and not closer whitespaces
@@ -111,8 +111,8 @@ NL_REFE  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r'}?) -> popMode ;
 
 //We separate type restriction from RegEx by &:
 REOP_O_R:':&' -> type(REOP);
-//We devide types by colon
-CL_O_R:':'-> type(CL);
+//We devide embedded types by less
+LS_O_R:'<'-> type(LS);
 //variable names consist of english letters, underscore and numbers but can not start by number
 NAME_O_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
 //Everything else is part of the regex
@@ -126,12 +126,12 @@ NW_REFE  : ({_input.LA(1) == '\n' || _input.LA(1) == '\r' || _input.LA(1) == '\t
 
 //We separate type restriction from RegEx by &:
 REOP_C_R:':&' -> type(REOP);
-//We devide types by colon
-CL_C_R:':'-> type(CL);
+//We devide embedded types by less
+LS_C_R:'<'-> type(LS);
 //variable names consist of english letters, underscore and numbers but can not start by number
 NAME_C_R: [a-zA-Z_][a-zA-Z_0-9]* -> type(NAME);
 //Everything else is part of the regex
-REGEX_C_R : ( ~[\n\r\t :&] )+ ->type(REGEX);
+REGEX_C_R : ( ~[\n\r\t ] )+ ->type(REGEX);
 
 
 
@@ -188,8 +188,10 @@ PLOP:':+';
 PE:'.';
 //We devide independent elements by comma
 CO:',';
-//We devide types and pairs by colon
+//We devide pairs by colon
 CL:':';
+//We devide embedded types by less
+LS:'<';
 //You can make more of the action divided by semicolons
 SC:';';
 
@@ -247,8 +249,10 @@ PLOP_O_O:':+'-> type(PLOP);
 PE_O_O:'.'-> type(PE);
 //We devide independent elements by colum
 CO_O_O:','-> type(CO);
-//We devide types and pairs by colon
+//We devide pairs by colon
 CL_O_O:':'-> type(CL);
+//We devide embedded types by less
+LS_O_O:'<'-> type(LS);
 //You can make more of the action divided by semicolons
 SC_O_O:';'-> type(SC);
 
@@ -303,8 +307,10 @@ PLOP_C_O:':+'-> type(PLOP);
 PE_C_O:'.'-> type(PE);
 //We devide independent elements by
 CO_C_O:','-> type(CO);
-//We devide types and pairs by colon
+//We devide pairs by colon
 CL_C_O:':'-> type(CL);
+//We devide embedded types by less
+LS_C_O:'<'-> type(LS);
 //You can make more of the action divided by semicolons
 SC_C_O:';'-> type(SC);
 

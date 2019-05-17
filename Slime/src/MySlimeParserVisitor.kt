@@ -551,7 +551,7 @@ class MySlimeParserVisitor : SlimeParserBaseVisitor<SVari>() {
 
     //In case of list of Names we ignore colons and return names as a list of SText
     override fun visitTypeName(ctx: SlimeParser.TypeNameContext): SList<SText> =
-        SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo(":") != 0 }.toMutableList())
+        SList(visitChildren(ctx).map { it as SText }.filter { it().compareTo("<") != 0 }.toMutableList())
 
     //In case of outer text we simply visit it end return the value as SText.
     override fun visitTextOutor(ctx: SlimeParser.TextOutorContext): SText = ctx.TEXT_OUTOR().accept(this) as SText

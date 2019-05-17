@@ -12,7 +12,7 @@ hDT :Type := wrap,attrL:Temp, level,text:Text
 =}
 
 {#create and print HTML site#}
-<*[+html:+[=:htmlDT:= <|MyFirstHTMLDocument ,<*{=:List:Temp:=
+<*[+html:+[=:htmlDT:= <|MyFirstHTMLDocument ,<*{=:List<Temp:=
 	 <+h.copy:+<=:hDT:=[|<@t ; ;1;Chapter1
 	,<+p.copy:+<=:pDT:=[|<@t;t ; ;this is a paragraph introducing the content of the chapter
 	,<+h.copy:+<=:hDT:=[|<@t;t ; ;2;Section1

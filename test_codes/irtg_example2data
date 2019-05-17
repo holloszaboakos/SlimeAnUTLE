@@ -30,7 +30,7 @@ termBase : Temp  :=  {+ irtgBase.copy :+ irtgData +};
 termDataBase : Type  :=  word_class, word, concept : Temp;
 
 {#declaration of data for the trerminal IRTG template#}
-datas :List:termDataBase :=
+datas :List<termDataBase :=
 	{= :termDataBase  := 	{|NN|}, {|dog|},   {|dog|} 	=},
 	{= :termDataBase  := 	{|NN|}, {|cat|},   {|cat|} 	=},
 	{= :termDataBase  := 	{|NN|}, {|fish|},  {|fish|} 	=},

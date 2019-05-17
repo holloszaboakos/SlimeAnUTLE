@@ -26,10 +26,10 @@ public class SlimeParser extends Parser {
 		NL_SLSP=37, COMM_C_S=38, NW_SLSP=39, COMM_REFE=40, WS_B_R=41, BCB_REFE=42, 
 		REOP=43, REGEX=44, COMM_O_R=45, WS_O_R=46, NL_REFE=47, COMM_C_R=48, NW_REFE=49, 
 		COMM_B_O=50, WS_B_O=51, BCB_EXTE=52, BCB_PLUS=53, BCB_DECL=54, BCB_DELE=55, 
-		EQOP=56, PLOP=57, PE=58, CO=59, CL=60, SC=61, NAME=62, INTE=63, COMM_O_O=64, 
-		WS_O_O=65, NL_OPER=66, COMM_C_O=67, NW_OPER=68, BCB_TEXT=69, IN_B_T=70, 
-		NL_TEXT=71, NW_TEXT=72, BCB_TEMP=73, LINE_DIVIDER=74, TEXT_LINE=75, NL_TEMP=76, 
-		NW_TEMP=77, SC_B_S=78, CL_B_R=79;
+		EQOP=56, PLOP=57, PE=58, CO=59, CL=60, LS=61, SC=62, NAME=63, INTE=64, 
+		COMM_O_O=65, WS_O_O=66, NL_OPER=67, COMM_C_O=68, NW_OPER=69, BCB_TEXT=70, 
+		IN_B_T=71, NL_TEXT=72, NW_TEXT=73, BCB_TEMP=74, LINE_DIVIDER=75, TEXT_LINE=76, 
+		NL_TEMP=77, NW_TEMP=78, SC_B_S=79, LS_B_R=80;
 	public static final int
 		RULE_file = 0, RULE_text = 1, RULE_textHead = 2, RULE_textBody = 3, RULE_textTail = 4, 
 		RULE_refe = 5, RULE_refeHead = 6, RULE_refeBody = 7, RULE_refeTail = 8, 
@@ -66,8 +66,8 @@ public class SlimeParser extends Parser {
 			"'<\"'", "'<|'", null, null, null, "'$}'", "'@}'", null, null, null, 
 			null, null, null, null, "'&}'", null, null, null, null, null, null, null, 
 			null, null, "'*}'", "'+}'", "'=}'", null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, "'\"}'", null, null, 
-			null, "'|}'"
+			null, null, null, null, null, null, null, null, null, "'\"}'", null, 
+			null, null, "'|}'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -82,9 +82,9 @@ public class SlimeParser extends Parser {
 			"COMM_C_S", "NW_SLSP", "COMM_REFE", "WS_B_R", "BCB_REFE", "REOP", "REGEX", 
 			"COMM_O_R", "WS_O_R", "NL_REFE", "COMM_C_R", "NW_REFE", "COMM_B_O", "WS_B_O", 
 			"BCB_EXTE", "BCB_PLUS", "BCB_DECL", "BCB_DELE", "EQOP", "PLOP", "PE", 
-			"CO", "CL", "SC", "NAME", "INTE", "COMM_O_O", "WS_O_O", "NL_OPER", "COMM_C_O", 
-			"NW_OPER", "BCB_TEXT", "IN_B_T", "NL_TEXT", "NW_TEXT", "BCB_TEMP", "LINE_DIVIDER", 
-			"TEXT_LINE", "NL_TEMP", "NW_TEMP", "SC_B_S", "CL_B_R"
+			"CO", "CL", "LS", "SC", "NAME", "INTE", "COMM_O_O", "WS_O_O", "NL_OPER", 
+			"COMM_C_O", "NW_OPER", "BCB_TEXT", "IN_B_T", "NL_TEXT", "NW_TEXT", "BCB_TEMP", 
+			"LINE_DIVIDER", "TEXT_LINE", "NL_TEMP", "NW_TEMP", "SC_B_S", "LS_B_R"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -505,7 +505,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(127);
 			_la = _input.LA(1);
-			if ( !(((((_la - 69)) & ~0x3f) == 0 && ((1L << (_la - 69)) & ((1L << (BCB_TEXT - 69)) | (1L << (NL_TEXT - 69)) | (1L << (NW_TEXT - 69)))) != 0)) ) {
+			if ( !(((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (BCB_TEXT - 70)) | (1L << (NL_TEXT - 70)) | (1L << (NW_TEXT - 70)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1441,7 +1441,7 @@ public class SlimeParser extends Parser {
 			{
 			setState(190);
 			_la = _input.LA(1);
-			if ( !(((((_la - 73)) & ~0x3f) == 0 && ((1L << (_la - 73)) & ((1L << (BCB_TEMP - 73)) | (1L << (NL_TEMP - 73)) | (1L << (NW_TEMP - 73)))) != 0)) ) {
+			if ( !(((((_la - 74)) & ~0x3f) == 0 && ((1L << (_la - 74)) & ((1L << (BCB_TEMP - 74)) | (1L << (NL_TEMP - 74)) | (1L << (NW_TEMP - 74)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -3441,9 +3441,9 @@ public class SlimeParser extends Parser {
 		public TerminalNode NAME(int i) {
 			return getToken(SlimeParser.NAME, i);
 		}
-		public List<TerminalNode> CL() { return getTokens(SlimeParser.CL); }
-		public TerminalNode CL(int i) {
-			return getToken(SlimeParser.CL, i);
+		public List<TerminalNode> LS() { return getTokens(SlimeParser.LS); }
+		public TerminalNode LS(int i) {
+			return getToken(SlimeParser.LS, i);
 		}
 		public TypeNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3481,7 +3481,7 @@ public class SlimeParser extends Parser {
 					setState(382);
 					match(NAME);
 					setState(383);
-					match(CL);
+					match(LS);
 					}
 					} 
 				}
@@ -3547,7 +3547,7 @@ public class SlimeParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3Q\u018c\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3R\u018c\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -3577,10 +3577,10 @@ public class SlimeParser extends Parser {
 		"\62\3\62\3\62\3\63\3\63\7\63\u0183\n\63\f\63\16\63\u0186\13\63\3\63\3"+
 		"\63\3\64\3\64\3\64\2\2\65\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&"+
 		"(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdf\2\25\5\2\f\f\25\25\36\36\4\2"+
-		"GGIJ\5\2\7\7\20\20\31\31\5\2,,\61\61\63\63\5\2\5\5\16\16\27\27\5\2##\'"+
-		"\'))\5\2\6\6\17\17\30\30\5\2$$\'\'))\5\2\r\r\26\26\37\37\4\2KKNO\5\2\b"+
-		"\b\21\21\32\32\5\2\66\66DDFF\5\2\t\t\22\22\33\33\5\2\67\67DDFF\5\2\13"+
-		"\13\24\24\35\35\5\299DDFF\5\2\n\n\23\23\34\34\5\288DDFF\3\2@A\2\u018b"+
+		"HHJK\5\2\7\7\20\20\31\31\5\2,,\61\61\63\63\5\2\5\5\16\16\27\27\5\2##\'"+
+		"\'))\5\2\6\6\17\17\30\30\5\2$$\'\'))\5\2\r\r\26\26\37\37\4\2LLOP\5\2\b"+
+		"\b\21\21\32\32\5\2\66\66EEGG\5\2\t\t\22\22\33\33\5\2\67\67EEGG\5\2\13"+
+		"\13\24\24\35\35\5\299EEGG\5\2\n\n\23\23\34\34\5\288EEGG\3\2AB\2\u018b"+
 		"\2v\3\2\2\2\4y\3\2\2\2\6}\3\2\2\2\b\177\3\2\2\2\n\u0081\3\2\2\2\f\u0083"+
 		"\3\2\2\2\16\u0087\3\2\2\2\20\u0089\3\2\2\2\22\u008d\3\2\2\2\24\u008f\3"+
 		"\2\2\2\26\u0093\3\2\2\2\30\u0095\3\2\2\2\32\u0097\3\2\2\2\34\u009b\3\2"+
@@ -3597,7 +3597,7 @@ public class SlimeParser extends Parser {
 		"\3\2\2\2tj\3\2\2\2tk\3\2\2\2tl\3\2\2\2tm\3\2\2\2tn\3\2\2\2to\3\2\2\2t"+
 		"p\3\2\2\2tq\3\2\2\2tr\3\2\2\2ts\3\2\2\2ux\3\2\2\2vt\3\2\2\2vw\3\2\2\2"+
 		"w\3\3\2\2\2xv\3\2\2\2yz\5\6\4\2z{\5\b\5\2{|\5\n\6\2|\5\3\2\2\2}~\t\2\2"+
-		"\2~\7\3\2\2\2\177\u0080\7H\2\2\u0080\t\3\2\2\2\u0081\u0082\t\3\2\2\u0082"+
+		"\2~\7\3\2\2\2\177\u0080\7I\2\2\u0080\t\3\2\2\2\u0081\u0082\t\3\2\2\u0082"+
 		"\13\3\2\2\2\u0083\u0084\5\16\b\2\u0084\u0085\5\20\t\2\u0085\u0086\5\22"+
 		"\n\2\u0086\r\3\2\2\2\u0087\u0088\t\4\2\2\u0088\17\3\2\2\2\u0089\u008a"+
 		"\5d\63\2\u008a\u008b\7-\2\2\u008b\u008c\7.\2\2\u008c\21\3\2\2\2\u008d"+
@@ -3606,21 +3606,21 @@ public class SlimeParser extends Parser {
 		"\3\2\2\2\u0095\u0096\t\7\2\2\u0096\31\3\2\2\2\u0097\u0098\5\34\17\2\u0098"+
 		"\u0099\5 \21\2\u0099\u009a\5\36\20\2\u009a\33\3\2\2\2\u009b\u009c\t\b"+
 		"\2\2\u009c\35\3\2\2\2\u009d\u009e\t\t\2\2\u009e\37\3\2\2\2\u009f\u00a4"+
-		"\7@\2\2\u00a0\u00a1\7?\2\2\u00a1\u00a3\7@\2\2\u00a2\u00a0\3\2\2\2\u00a3"+
+		"\7A\2\2\u00a0\u00a1\7@\2\2\u00a1\u00a3\7A\2\2\u00a2\u00a0\3\2\2\2\u00a3"+
 		"\u00a6\3\2\2\2\u00a4\u00a2\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5!\3\2\2\2"+
 		"\u00a6\u00a4\3\2\2\2\u00a7\u00a8\5$\23\2\u00a8\u00a9\5&\24\2\u00a9\u00aa"+
 		"\5*\26\2\u00aa#\3\2\2\2\u00ab\u00ac\t\n\2\2\u00ac%\3\2\2\2\u00ad\u00ae"+
-		"\5(\25\2\u00ae\u00af\7?\2\2\u00af\u00b1\3\2\2\2\u00b0\u00ad\3\2\2\2\u00b1"+
+		"\5(\25\2\u00ae\u00af\7@\2\2\u00af\u00b1\3\2\2\2\u00b0\u00ad\3\2\2\2\u00b1"+
 		"\u00b4\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b2\u00b3\3\2\2\2\u00b3\u00b5\3\2"+
 		"\2\2\u00b4\u00b2\3\2\2\2\u00b5\u00b6\5(\25\2\u00b6\'\3\2\2\2\u00b7\u00bc"+
 		"\5\4\3\2\u00b8\u00bc\5\24\13\2\u00b9\u00bc\5\32\16\2\u00ba\u00bc\5,\27"+
 		"\2\u00bb\u00b7\3\2\2\2\u00bb\u00b8\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00ba"+
 		"\3\2\2\2\u00bc\u00bf\3\2\2\2\u00bd\u00bb\3\2\2\2\u00bd\u00be\3\2\2\2\u00be"+
 		")\3\2\2\2\u00bf\u00bd\3\2\2\2\u00c0\u00c1\t\13\2\2\u00c1+\3\2\2\2\u00c2"+
-		"\u00c4\7M\2\2\u00c3\u00c2\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c3\3\2"+
+		"\u00c4\7N\2\2\u00c3\u00c2\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c3\3\2"+
 		"\2\2\u00c5\u00c6\3\2\2\2\u00c6-\3\2\2\2\u00c7\u00c8\5\60\31\2\u00c8\u00c9"+
 		"\5\62\32\2\u00c9\u00ca\5\66\34\2\u00ca/\3\2\2\2\u00cb\u00cc\t\f\2\2\u00cc"+
-		"\61\3\2\2\2\u00cd\u00cf\5\64\33\2\u00ce\u00d0\7?\2\2\u00cf\u00ce\3\2\2"+
+		"\61\3\2\2\2\u00cd\u00cf\5\64\33\2\u00ce\u00d0\7@\2\2\u00cf\u00ce\3\2\2"+
 		"\2\u00cf\u00d0\3\2\2\2\u00d0\u00d2\3\2\2\2\u00d1\u00cd\3\2\2\2\u00d2\u00d5"+
 		"\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d3\u00d4\3\2\2\2\u00d4\u00d6\3\2\2\2\u00d5"+
 		"\u00d3\3\2\2\2\u00d6\u00d7\5\64\33\2\u00d7\63\3\2\2\2\u00d8\u00de\5^\60"+
@@ -3629,7 +3629,7 @@ public class SlimeParser extends Parser {
 		"\2\2\u00de\u00df\3\2\2\2\u00df\65\3\2\2\2\u00e0\u00e1\t\r\2\2\u00e1\67"+
 		"\3\2\2\2\u00e2\u00e3\5:\36\2\u00e3\u00e4\5<\37\2\u00e4\u00e5\5B\"\2\u00e5"+
 		"9\3\2\2\2\u00e6\u00e7\t\16\2\2\u00e7;\3\2\2\2\u00e8\u00ea\5> \2\u00e9"+
-		"\u00eb\7?\2\2\u00ea\u00e9\3\2\2\2\u00ea\u00eb\3\2\2\2\u00eb\u00ed\3\2"+
+		"\u00eb\7@\2\2\u00ea\u00e9\3\2\2\2\u00ea\u00eb\3\2\2\2\u00eb\u00ed\3\2"+
 		"\2\2\u00ec\u00e8\3\2\2\2\u00ed\u00f0\3\2\2\2\u00ee\u00ec\3\2\2\2\u00ee"+
 		"\u00ef\3\2\2\2\u00ef\u00f1\3\2\2\2\u00f0\u00ee\3\2\2\2\u00f1\u00f2\5>"+
 		" \2\u00f2=\3\2\2\2\u00f3\u00f4\5^\60\2\u00f4\u00f5\7;\2\2\u00f5\u0100"+
@@ -3641,7 +3641,7 @@ public class SlimeParser extends Parser {
 		"\u0107\t\17\2\2\u0107C\3\2\2\2\u0108\u0109\5F$\2\u0109\u010a\5H%\2\u010a"+
 		"\u010b\5J&\2\u010bE\3\2\2\2\u010c\u010d\t\20\2\2\u010dG\3\2\2\2\u010e"+
 		"\u0111\5`\61\2\u010f\u0111\5\f\7\2\u0110\u010e\3\2\2\2\u0110\u010f\3\2"+
-		"\2\2\u0111\u0113\3\2\2\2\u0112\u0114\7?\2\2\u0113\u0112\3\2\2\2\u0113"+
+		"\2\2\u0111\u0113\3\2\2\2\u0112\u0114\7@\2\2\u0113\u0112\3\2\2\2\u0113"+
 		"\u0114\3\2\2\2\u0114\u0116\3\2\2\2\u0115\u0110\3\2\2\2\u0116\u0119\3\2"+
 		"\2\2\u0117\u0115\3\2\2\2\u0117\u0118\3\2\2\2\u0118\u011c\3\2\2\2\u0119"+
 		"\u0117\3\2\2\2\u011a\u011d\5`\61\2\u011b\u011d\5\f\7\2\u011c\u011a\3\2"+
@@ -3650,7 +3650,7 @@ public class SlimeParser extends Parser {
 		"\2\2\2\u0124\u0125\t\22\2\2\u0125O\3\2\2\2\u0126\u0128\5b\62\2\u0127\u0126"+
 		"\3\2\2\2\u0127\u0128\3\2\2\2\u0128\u0129\3\2\2\2\u0129\u012a\7>\2\2\u012a"+
 		"\u012b\5d\63\2\u012b\u012c\7:\2\2\u012cQ\3\2\2\2\u012d\u012f\5T+\2\u012e"+
-		"\u0130\7?\2\2\u012f\u012e\3\2\2\2\u012f\u0130\3\2\2\2\u0130\u0132\3\2"+
+		"\u0130\7@\2\2\u012f\u012e\3\2\2\2\u012f\u0130\3\2\2\2\u0130\u0132\3\2"+
 		"\2\2\u0131\u012d\3\2\2\2\u0132\u0135\3\2\2\2\u0133\u0131\3\2\2\2\u0133"+
 		"\u0134\3\2\2\2\u0134\u0136\3\2\2\2\u0135\u0133\3\2\2\2\u0136\u0137\5T"+
 		"+\2\u0137S\3\2\2\2\u0138\u014d\5P)\2\u0139\u014e\5b\62\2\u013a\u014e\5"+
@@ -3674,12 +3674,12 @@ public class SlimeParser extends Parser {
 		"\u016a\3\2\2\2\u016c\u016b\3\2\2\2\u016d_\3\2\2\2\u016e\u016f\t\24\2\2"+
 		"\u016f\u0171\7<\2\2\u0170\u016e\3\2\2\2\u0171\u0174\3\2\2\2\u0172\u0170"+
 		"\3\2\2\2\u0172\u0173\3\2\2\2\u0173\u0175\3\2\2\2\u0174\u0172\3\2\2\2\u0175"+
-		"\u0176\t\24\2\2\u0176a\3\2\2\2\u0177\u0178\7@\2\2\u0178\u017a\7=\2\2\u0179"+
+		"\u0176\t\24\2\2\u0176a\3\2\2\2\u0177\u0178\7A\2\2\u0178\u017a\7=\2\2\u0179"+
 		"\u0177\3\2\2\2\u017a\u017d\3\2\2\2\u017b\u0179\3\2\2\2\u017b\u017c\3\2"+
-		"\2\2\u017c\u017e\3\2\2\2\u017d\u017b\3\2\2\2\u017e\u017f\7@\2\2\u017f"+
-		"c\3\2\2\2\u0180\u0181\7@\2\2\u0181\u0183\7>\2\2\u0182\u0180\3\2\2\2\u0183"+
+		"\2\2\u017c\u017e\3\2\2\2\u017d\u017b\3\2\2\2\u017e\u017f\7A\2\2\u017f"+
+		"c\3\2\2\2\u0180\u0181\7A\2\2\u0181\u0183\7?\2\2\u0182\u0180\3\2\2\2\u0183"+
 		"\u0186\3\2\2\2\u0184\u0182\3\2\2\2\u0184\u0185\3\2\2\2\u0185\u0187\3\2"+
-		"\2\2\u0186\u0184\3\2\2\2\u0187\u0188\7@\2\2\u0188e\3\2\2\2\u0189\u018a"+
+		"\2\2\u0186\u0184\3\2\2\2\u0187\u0188\7A\2\2\u0188e\3\2\2\2\u0189\u018a"+
 		"\7 \2\2\u018ag\3\2\2\2 tv\u00a4\u00b2\u00bb\u00bd\u00c5\u00cf\u00d3\u00dc"+
 		"\u00de\u00ea\u00ee\u00fc\u0100\u0110\u0113\u0117\u011c\u0127\u012f\u0133"+
 		"\u0140\u0149\u014d\u015e\u016c\u0172\u017b\u0184";

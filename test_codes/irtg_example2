@@ -4,7 +4,7 @@
 {#import file#} 
 dataFile :File := {"../test_codes/irtg_example2data"};
 {#create list for the output out of copies of the terminal IRTG rule template#} 
-result :List:Temp := {+ dataFile.termBase :+ dataFile.datas +} 
+result :List<Temp := {+ dataFile.termBase :+ dataFile.datas +} 
 =}
 {#add data to copies of the terminal IRTG rule template and extend it to the surroundings#} 
 {*

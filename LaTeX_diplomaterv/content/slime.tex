@@ -382,7 +382,7 @@ A továbbiakban a szintaxist, típusokat és műveleteket összetettség szerint
 %----------------------------------------------------------------------------
 A szintaxis terén volt a legnehezebb megtalálni az egyensúlyt a tömörség, az átláthatóság és a tanulhatóság között. 
 Fontos volt az, hogy a jelölések már bevettek legyenek, vagy következetesek, hogy könnyű legyen megtanulni. 
-De az átláthatósághoz az is fontos volt, hogy a jelölések egyediek legyenek.
+De az átláthatósághoz az is fontos volt, hogy a jelölések egyediek legyenek és így felismerhetőek az alárendelt kódban.
 
 A bevett jelölésekhez népszerű templater enginek, a Kotlin és más C alapú nyelvek szolgáltak alapul.
 \begin{itemize}
@@ -425,6 +425,7 @@ Egy Slime környezet lehetővé tehetné, hogy a változó meghivatkozásainál 
 Így a programozó gyorsan kódol és néhány gombnyomásra érthetővé teheti a gyorsan leírt kódot.
 Vagy például többen dolgoznak egy projekten, de mindenki más terminológia szerint dolgozik.
 Ilyenkor mindenki hozzáadhatja a változókhoz azt a nevet, ami neki kényelmesebb.
+Mivel ezek a nevek törölhetőek, mindenki el is távolíthatja az általa bevezetett neveket, hogy ne szennyezze a többiek namespace-ét.
 
 A Slime-ban van importálás.
 Az importált fájl változói a fájl változójának nevén, mint namespace-en keresztül érhetőek el.
@@ -447,12 +448,10 @@ A változó nevei a fájl elérése szerint.
 A változó maga. 
 Ez a "referencia" helyett magára a változóra hivatkozik.
 Ha egy változó közvetlen elérhető, akkor a meghivatkozása nem tartalmaz pontot.
-Bizonyos esetekben a parszer az ilyen meghivatkozást \texttt{Name} típusú változónak tévesztheti, például ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (Lásd fejezet~\ref{sec:SContDecl}).
+Bizonyos esetekben a parszer az ilyen meghivatkozást \texttt{Name} típusú változónak tévesztheti, például ha egy listát készítünk, és vesszővel felsoroljuk az elemeit (Lásd fejezet~\ref{sec:SContDecl}), akkor azt vesszők listájának tévesztheti.
 Ilyenkor a \texttt{self} attribútummal egyértelműsíthetjük, hogy a változó elérésre gondoltunk, és nem \texttt{Name} típusú változóra. 
 \item \emph{copy:}
 Ez az attribútum a változóból egy új másolatot ad vissza név nélkül.
-Későbbiekben a copy-ból három féle fog létezni. 
-A copyS sekély, a copyD mély és a copy\{\$integer\$\} adott mélységű másolatot fog visszaadni.
 \item \emph{type:}
 Ez az attribútum jegyzi a változók típusát.
 Egy Type típusú változó, ami a változó attribútumait jegyzi az itt felsorolt négy kivételével.
@@ -513,8 +512,6 @@ Túlindexelés esetén hibát dob.
 A későbbiekben lehetséges lesz hátulról indexelni és tartományt indexelni is.
 Utóbbi esetben egy új Cont változó fog létrejönni.
 \end{itemize}
-
-Az egyes Cont leszármazottak működését később részletezem.
 
 %----------------------------------------------------------------------------
 \subsection{Sablon típusa és alkotóelemei}
@@ -728,7 +725,7 @@ Ennek a négy műveletnek az összességét Oper-ként hivatkozzuk, a zárójele
 
 Kommentelni is lehetséges. Erre a \# -es zárójeleket használjuk:
 
-\{\# Ez egy komment, ami nem jelenik meg sehol \#\}
+\{\# Ez egy komment, ami nem jelenik meg a generált kódban \#\}
 
 Műveleti zárójelekben szinte bárhol lehet kommentet írni, bármelyik két attribútum és elválasztó jel között.
 A Típus zárójelek közül is bármelyikbe a Text kivételével, ami természetesen szökteti a komment zárójelet is.
@@ -748,16 +745,12 @@ Ekkor a második legalapvetőbb Cont típusba, a List-be rendezve adja vissza ő
 \item \emph{List:} 
 A List az első a C-ből megszokott tároló osztályokból, ami implementálásra került.
 Mint a legtöbb C nyelvben, itt is típusos.
-A nyelvben az egymásba ágyazott típusokat kettősponttal tagoljuk, így: List:List:Temp
+A nyelvben az egymásba ágyazott típusokat '<'-tel tagoljuk, így: List<List<Temp
 Ez C++ nyelvekben template-eléssel így néz ki: List<List<Temp> >
-A zárójelezés viszont csak akkor praktikus, ha egy típusba egyszerre több típus is ágyazható. 
-A Slime jelölése viszont kiegészíthető zárójelezéssel, például ha bevezetjük majd a dictionary-ket Dict néven:
+A záró zárójelek használata viszont csak akkor praktikus, ha egy típusba több másik is be van ágyazva.
+A Slime jelölése kiegészíthető zárójelezéssel, például ha bevezetjük majd a dictionary-ket Dict néven:
 
-List:Dict:(Text, List:Temp)
-
-Itt azért nem a "kacsacsőr" zárójeleket használjuk, mert azokkal már a kompakt zárójelezést jelöljük. (Lásd fejezet ~\ref{sec:SAdvaSyntax})
-
-Egy List beágyazott típusa Vari is lehet vagy Cont és akkor bármely Cont vagy Vari tárolására képes.
+List<Dict< Text, List<Temp> >
 
 A List használata előnyös gyakran változó hosszú adathalmazok tárolására és mozgatására.
 \item \emph{Type:} 
@@ -770,16 +763,16 @@ Itt az attribútumoknak csak egy neve lehet.
 A másik lista pedig típusok listáiból áll (types néven).
 Azért listáiból, mert így beágyazott típusokkal rendelkező típusokat is tartalmazhat, például olyan List-eket, amik Temp-eket tárolnak.
 Ezekbe csak az alapvető négyen túli attribútumai szerepelnek az új típusnak.
-Az iterátora párhuzamosan megy végig a két listán név-típuslista párokat adva vissza, List:Vari változókban.
+Az iterátora párhuzamosan megy végig a két listán név-típuslista párokat adva vissza, List<Vari változókban.
 Ezen kívül a Type-nak még egy címkéje van tag néven, ami a típusnevét(pl.: Temp) adja vissza.
 Azért nem névként tárolja, mert így nem függ a fájloktól (nem azon a fájlon keresztül érhető el, ami deklarálta a típust).
 Ez azért fontos, hogy az alaptípusok, amikor létrejönnek, ne szennyezzék a fájlok namespace-ét.
 \item \emph{Inst:} 
 Az Inst a Type-pal a programozó által létrehozott típusok példányainak összessége.
 Az Inst még absztrakt típusként sem létezik, csak a példányok egységes működését valósítja meg.
-Nem példányosítható és nem létezik List:Inst sem.
+Nem példányosítható és nem létezik List<Inst sem.
 Minden Inst-nek a Type-pal deklarált típus a típusa.
-Egy fix méretű List:Vari-t tartalmaznak.
+Egy fix méretű List<Vari-t tartalmaznak.
 Ebben tárolják a Vari és Cont ősosztályokon túli attribútumait, vagyis amit Type-ja definiál.
 Ezeknek nem kötelező értéket adni, az iterátoruk a nem megadott értékeket egyszerűen átugorja.
 Minden attribútuma lekérdezhető a Type-jában definiált név szerint.
@@ -806,18 +799,18 @@ Ez annyit tesz, hogy minden típus és operátor zárójelben többször is el l
 Ekkor a műveleteket pontosvesszővel választjuk el.
 Ez a jelölés is a C alapú nyelvekből származik.
 Ekkor a visszatérési értékkel rendelkező zárójelek List típusú visszatérési értéket adnak.
-Ha a műveletek visszatérési értéke más típusú, akkor ez egy List:Vari. 
+Ha a műveletek visszatérési értéke más típusú, akkor ez egy List<Vari. 
 Sok nyelvben megoldották már a pontosvesszők elhagyását, ilyenkor mindig a sortörés karaktereket használták fel.
 A Slime esetében ez több helyen is problémás lett volna, például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
 (Későbbiekben persze egyes műveleteknél ki lehet majd váltani a pontosvesszőt sortöréssel)
 
 Cont változókat éppen ezért lehet a beágyazott típusnak megfelelő típus zárójellel is deklarálni:
 
-\{= specL1 : List:Spec := \{@ e;t @\} =\}
+\{= specL1 : List<Spec := \{@ e;t @\} =\}
 
 Ugyanakkor mindig megadhatóak egyszerűen az elemeik felsorolásával is:
 
-\{= specL1 : List:Spec := \{@ e @\}, \{@ t @\} =\}
+\{= specL1 : List<Spec := \{@ e @\}, \{@ t @\} =\}
 
 vagy pl.:
 
@@ -840,21 +833,21 @@ Ugyanakkor azonos típust attribútumoknál elég a típust egyszer jelölni:
 
 Megadható ugyan a nevek és típus listák két listájával is:
 
-\{= tempi : Type := \{= :List:Name := te1, te2, ... =\}, 
+\{= tempi : Type := \{= :List<Name := te1, te2, ... =\}, 
 
-\{= :List:List:Type := \{= :List:Type := Text =\}, \{= :List:Type := Text =\}, .... =\} =\}
+\{= :List<List<Type := \{= :List<Type := Text =\}, \{= :List<Type := Text =\}, .... =\} =\}
 
-(Az utóbbi azért listák listája, hogy a beágyazott típusokat, mint \textit{List:Temp} esetében a \textit{Temp}, is kezelni tudja)  
+(Az utóbbi azért listák listája, hogy a beágyazott típusokat, mint \textit{List<Temp} esetében a \textit{Temp}, is kezelni tudja)  
 
 és a név$--$típus párok mint listák listájaként:
 
-\{= tempi : Type := \{= :List:Vari := te1, \{= List:Type := Text =\} =\}, 
+\{= tempi : Type := \{= :List<Vari := te1, \{= List<Type := Text =\} =\}, 
 
-\{= :List:List:Type := te2, \{= List:Type := Text =\} =\} ... =\}
+\{= :List<List<Type := te2, \{= List<Type := Text =\} =\} ... =\}
 
 De ezeket (egyértelmű okokból) nem használjuk, csak az egységesség okán kerültek implementálásra.
 Ha a típusok egyértelmű esetekben elhagyhatóak lesznek, akkor jelentősen tömörebbek lesznek ezek a formátumok is.
-Elvégre rengeteg kódolást lehet majd spórolni a \textit{:List:Name, List:Type, :List:Vari} részek elhagyásával.
+Elvégre rengeteg kódolást lehet majd spórolni a \textit{:List<Name, List<Type, :List<Vari} részek elhagyásával.
 
 Az Inst-eknél definiálhatjuk, hogy melyik attribútumoknak adunk értéket:
 
@@ -887,7 +880,7 @@ A létrehozott változóiból viszont csak a nem törölt változói lesznek el�
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp := \{|ez egy Temp|\}=\}
+\item \{= list1 : List<Temp := \{|ez egy Temp|\}=\}
 \item \{= temp1 : Temp := \{|ez egy másik Temp|\}=\}
 \end{itemize}
 \item \emph{művelet:}
@@ -903,7 +896,7 @@ A visszatérési érték maga a lista.
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp := \{|ez egy Temp|\}, \{|ez is egy Temp|\}=\}
+\item \{= list1 : List<Temp := \{|ez egy Temp|\}, \{|ez is egy Temp|\}=\}
 \item \{= temp1 : Temp := \{|ez egy másik Temp|\}=\}
 \end{itemize}
 \item \emph{művelet:}
@@ -934,7 +927,7 @@ Mivel a type1-ben megadott meta adat szerint ez egy Temp, az értékül adás si
 A kimenetünk az intst1, ekkor már a temp1-gyel az attr1 attribútumában.
 \end{itemize}
 
-\item \emph{Egy Temp Slot-jába List:Temp-et szúrva a lista minden elemére elvégzi a beszúrást:}
+\item \emph{Egy Temp Slot-jába List<Temp-et szúrva a lista minden elemére elvégzi a beszúrást:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
@@ -944,7 +937,7 @@ A kimenetünk az intst1, ekkor már a temp1-gyel az attr1 attribútumában.
 \item \{= temp4 : Temp  := \{|ez egy másik Temp3|\}=\}
 \end{itemize}
 \item \emph{művelet:}
-\{+ temp1.slot1 :+ \{= :List:Temp :+ temp2, temp3, temp4 =\} +\} 
+\{+ temp1.slot1 :+ \{= :List<Temp :+ temp2, temp3, temp4 =\} +\} 
 \item \emph{kimenet:}
 List: \{|ez egy Tempez egy másik Temp1|\}, \{|ez egy Tempez egy másik Temp2|\}, \{|ez egy Tempez egy másik Temp3|\}
 \item \emph{magyarázat:}
@@ -963,7 +956,7 @@ Ezt követően a három másolatot egy listában téríti vissza.
 \item \{= temp4 : Temp  := \{|ez egy másik Temp3|\}=\}
 \end{itemize}
 \item \emph{művelet:}
-\{+ temp1 :+ \{= :List:Temp :+ temp2, temp3, temp4 =\}
+\{+ temp1 :+ \{= :List<Temp :+ temp2, temp3, temp4 =\}
 
 : slot1 :+ 2 , slot2 :+ 1, slot3 :+ 0   +\} 
 \item \emph{kimenet:}
@@ -978,8 +971,8 @@ A Temp is Cont, így az is lehet a bal és jobb oldali változók egyike.
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
-\item \{= list2 : List:Temp  := \{|text of temp4|\}, \{|text of temp5|\}, \{|text of temp6|\}=\}
+\item \{= list1 : List<Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
+\item \{= list2 : List<Temp  := \{|text of temp4|\}, \{|text of temp5|\}, \{|text of temp6|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ list1 :+ list2 +\}
@@ -994,12 +987,12 @@ A Temp-be lista szúrás és Temp-be Inst szúrás kivételek ez a mechanika al�
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
-\item \{= list2 : List:List:Temp  := 
+\item \{= list1 : List<Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
+\item \{= list2 : List<List<Temp  := 
 
-		\{= : List:Temp :=\{|text of temp4|\}, \{|text of temp5|\}=\},
+		\{= : List<Temp :=\{|text of temp4|\}, \{|text of temp5|\}=\},
 		
-	 	\{= : List:Temp := \{|text of temp6|\}, \{|text of temp7|\}=\}
+	 	\{= : List<Temp := \{|text of temp6|\}, \{|text of temp7|\}=\}
 	 	
 	 	=\}
 \end{itemize}
@@ -1014,30 +1007,30 @@ Ha list2 Temp-ekből állna, akkor a működés nem különbözne semmiben az el
 A kimenet a list1.
 \end{itemize}
 
-\item \emph{ Egy Cont változó iterátorához egy másikét adva az előbbi minden eleméhez hozzáadnja az utóbbi azonos indexű elemét:}
+\item \emph{ Egy Cont változó iterátorához egy másikét adva az előbbi minden eleméhez hozzáadnja az utóbbi összes elemét:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
-\item \{= list2 : List:Temp  := \{|text of temp4|\}, \{|text of temp5|\}, \{|text of temp6|\}=\}
+\item \{= list1 : List<Temp  := \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}=\}
+\item \{= list2 : List<Temp  := \{|text of temp4|\}, \{|text of temp5|\}, \{|text of temp6|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ list1.iter :+ list2.iter +\}
 \item \emph{kimenet:}
-List: \{|temp1:text of temp4|\}, \{|temp2:text of temp5|\}, \{|temp3:text of temp6|\}
+List: \{|temp1:\{\$slot1\$\}|\}, \{|temp2:\{\$slot1\$\}|\}, \{|temp3:\{\$slot1\$\}|\}
 \item \emph{magyarázat:}
-Ha a két lista egyike rövidebb lenne, akkor a két lista hosszai közül a kisebb darab beszúrás történne.
-Jelen esetben mindkét lista három hosszú, ezért történik három beszúrás.
-A list1 első elemébe a list2 első eleme szúródik és így tovább.
-A kimenet a list1.
+Sajnálatos mód ugyan ilyenkor elvégzi a műveletet, de hibásan az előbbi listát téríti vissza.
+Ez később még javítva lesz.
+Egy másik elképzelés, hogy ilyenkor a két lista elemeit párosával illessze egymásba.
+Ha azt megoldanánk, akkor a sablonba beszúrni kívánt adatok definiálását és beszúrását egy sorban el lehetne végezni.
 \end{itemize}
 
 \item \emph{ Egy Cont változó iterátorához egy másik Contot adva az előbbi minden eleméhez hozzáadja az utóbbit:}
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp  := \{|text of temp1|\}, \{|text of temp2|\}=\}
-\item \{= list2 : List:Temp  := \{|text of temp3|\}, \{|text of temp4|\}=\}
+\item \{= list1 : List<Temp  := \{|text of temp1|\}, \{|text of temp2|\}=\}
+\item \{= list2 : List<Temp  := \{|text of temp3|\}, \{|text of temp4|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ list1.iter :+ list2 +\}
@@ -1053,8 +1046,8 @@ A kimenet a két lista egy listába rendezve.
 \begin{itemize}
 \item \emph{változók:}
 \begin{itemize}
-\item \{= list1 : List:Temp  := \{|text of temp1|\}, \{|text of temp2|\}=\}
-\item \{= list2 : List:Temp  := \{|text of temp3|\}, \{|text of temp4|\}=\}
+\item \{= list1 : List<Temp  := \{|text of temp1|\}, \{|text of temp2|\}=\}
+\item \{= list2 : List<Temp  := \{|text of temp3|\}, \{|text of temp4|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ list1.1 :+ list2 +\}
@@ -1072,7 +1065,7 @@ A kimenet a list1.
 \begin{itemize}
 \item \{= type1 : Type  := at1, at2 : Temp=\}
 \item \{= inst1 : type1  := {|ez egy Temp|}, {|ez is egy Temp|}=\}
-\item \{= temp1 : List:Temp  := \{|\{\$sl1\$\}\{\$sl2\$\}|\}=\}
+\item \{= temp1 : List<Temp  := \{|\{\$sl1\$\}\{\$sl2\$\}|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ temp1 :+ inst1 : sl1 :+ at1 , sl2 :+ at2+\}
@@ -1089,7 +1082,7 @@ A visszatérési érték a temp1.
 \begin{itemize}
 \item \{= type1 : Type  := sl1, sl2 : Temp=\}
 \item \{= inst1 : type1  := {|ez egy Temp|}, {|ez is egy Temp|}=\}
-\item \{= temp1 : List:Temp  := \{|\{\$sl1\$\}\{\$sl2\$\}|\}=\}
+\item \{= temp1 : List<Temp  := \{|\{\$sl1\$\}\{\$sl2\$\}|\}=\}
 \end{itemize}
 \item \emph{művelet:}
 \{+ temp1 :+ inst1 +\}
@@ -1106,7 +1099,7 @@ Ezek a műveletek teszik a Cont leszármazottakat igazán hasznossá.
 Ha az adatainkat megfelelő attribútumnevekkel rendelkező Inst-ek List-jében tárolom,
 akkor abból egy sorban legenerálható az összes kimeneti adat:
 
-\{= list2 : List:Temp := \{+ temp1 :+ list1.iter +\} =\}
+\{= list2 : List<Temp := \{+ temp1 :+ list1.iter +\} =\}
 
 Ez a list1 elemeit egyesével fogja hozzáadni a temp1-hez.
 Mivel a list1 elemei Inst-ek a megfelelő adatokkal, minden beszúrás a megfelelő mezőkön fog történni.
@@ -1166,7 +1159,7 @@ Ha viszont egy Refe típusú Vari-nak adjuk értékként, akkor az felismeri, ho
 
 Visszatérési értékéből lista is példányosítható:
 
-\{= specL1 : List:Spec := \{\&Spec :\& $\land$ spec[123]\$\&\} =\}
+\{= specL1 : List<Spec := \{\&Spec :\& $\land$ spec[123]\$\&\} =\}
 
 és minden, ami listával inicializálható:
 
@@ -1186,13 +1179,13 @@ Ha még csak az NNrule-oknak alapul szolgáló Temp létezik NNruleBase néven,
 és az abba beszúrandó adatok  NNdataBase típusú Inst-ekben (NNdata1, NNdata2 ...),
 akkor a Tempek elkészítése és listába mentése is tömören elvégezhető:
 
-\{= NNrules : List:Temp := 
+\{= NNrules : List<Temp := 
 
 \{+ NNruleBase +: 
 
 \{= :Iter:NNdataBase := 
 
-\{\# Összegyűjti az NNdataBase típusú Inst-eket, amiknek a neve illeszkedik a \textit{NNdata[0-9]+} regexre egy List:NNdataBase-be.\#\}
+\{\# Összegyűjti az NNdataBase típusú Inst-eket, amiknek a neve illeszkedik a \textit{NNdata[0-9]+} regexre egy List<NNdataBase-be.\#\}
 
 \{\& NNdataBase :\& NNdata[0-9]+ \&\} 
 
@@ -1231,7 +1224,7 @@ A második megoldás az, hogy egy zárójelben többet is végezhetünk az annak
 Ekkor a műveleteket pontosvesszővel választjuk el.
 Ez a jelölés is a C alapú nyelvekből származik.
 Ekkor a visszatérési értékkel rendelkező zárójelek List típusú visszatérési értéket adnak.
-Ha a műveletek visszatérési értéke más típusú, akkor ez egy List:Vari. 
+Ha a műveletek visszatérési értéke más típusú, akkor ez egy List<Vari. 
 Sok nyelvben megoldották már a pontosvesszők elhagyását, ilyenkor mindig a sortörés karaktereket használták fel.
 A Slime esetében ez több helyen is problémás lett volna, például a sablonoknál sem akarjuk a több soros sablonokat mindig egy sorban megadni
 (A későbbiekben persze egyes műveleteknél ki lehet majd váltani a pontosvesszőt sortöréssel.)
@@ -1294,8 +1287,8 @@ A legtöbb a beágyazott zárójeleken kívül helyezkedik el.
 A változók nevei a Name nevű változóval manipulálhatóak, de ez a típus a következő verzióban már nem fog szerepelni.
 Lényegében egy Text.
 A típuskülönbség csak a fordítót segíti abban, hogy mikor kívánunk névmanipulációt végezni.
-Például, ha egy Temp-be egy List:Text-et szúrunk, akkor az alapjáraton a végéhez konkatenálódik.
-Onnan tudja a fordító, hogy új neveket akarunk valójában a Temp-hez adni, hogy List:Name típusú, nem List:Text.
+Például, ha egy Temp-be egy List<Text-et szúrunk, akkor az alapjáraton a végéhez konkatenálódik.
+Onnan tudja a fordító, hogy új neveket akarunk valójában a Temp-hez adni, hogy List<Name típusú, nem List<Text.
 
 Deklarálni ugyanazokon a módokon lehet:
 
@@ -1307,7 +1300,7 @@ vagy
 
 Lista viszont készíthető belőle így is:
 
-\{= nList : List:Name := name1, name2, name3 =\}
+\{= nList : List<Name := name1, name2, name3 =\}
 
 Egy Vari-hoz hozzáadhatóak a nevek egyesével is meg listával is:
 
@@ -1506,15 +1499,17 @@ Csupán a szakdolgozatra jutott időkeret szűkössége miatt nem valósultak me
 \item \emph{clean:}
 A szűk fejlesztési határidő miatt sok ideiglenes megoldás került a nyelvbe.
 Ezeknek letisztitására kerül sor az első tervezett fázisban.
-A Name típus meg fog szűnni.
+A Name típus meg fog szűnni és implementálva lesz a plus művelet két operátoros esete.
 Ha Slot-ba Temp-et, Text-et, Slot-ot, Spec-et szúrunk, az az összes tulajdonosában le fogja magát cserélni magát annak a Temp-nek a tartalmára.
 A Cont-oknak az implementációban is lesz egy közös őse, az SCont.
-Lehetséges lesz egy Slime fájlból több kimeneti fájl generálása.
 \item \emph{comf:}
 A nyelv kényelmes használatának érdekében sok egyszerűsítés fog történni.
 Elhagyhatóak lesznek a a felesleges típusmegadások.
 A zárójelek által visszatérített Vari-kból egyből lekérdezhetőek lesznek az attribútumaik. 
 Összevonható lesz a négy alapművelet, így minden művelet eredménye egyből kiírható lesz.
+Lehetséges lesz egy Slime fájlból több kimeneti fájl generálása.
+Deklarációnál az adatokat egy darab fában is meg lehet majd adni, amit a művelet a várt típus függvényében dolgoz fel.
+Így a többszörösen egymásba ágyazott deklarációs zárójeleket és rengeteg felesleges karaktert el lehet nómajd kerülni.
 \item \emph{test:}
 A nyelv teljes tesztlefedettségének megvalósítása.
 A tesztfájlokból részletes dokumentáció is készülni fog.
@@ -1652,9 +1647,9 @@ A lexeren belül is egy kisebb részt, a nyitó és csukó speciális zárójele
 \label{sec:SEHTML}
 %----------------------------------------------------------------------------
 A HTML-ek hatékony kezelésére számos templater engine létezik.
-Mivel specialitásuk, a HTML-re általánosan hatékonyabbak is a Slime-nál.
+Mivel specialitásuk, a HTML általánosan hatékonyabbak is a Slime-nál.
 Ennek elsődleges oka az, hogy elérhetőek libraryként egy magasabb nyelvből, és onnan vezérelhetőek, vagy egy magasabb nyelv ágyazható beléjük.
-Ebben a példában azt kívánom szemléltetni, hogy a kész adatok esetén, hogyan érhetőek el a Mustache-hoz hasonló technikák.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/html_example}}
+Ebben a példában azt kívánom szemléltetni, hogy a kész adatok esetén, hogyan érhetőek el a Jade-hoz~\ref{sec:jade} hasonló technikák. A comf~\ref{sec:SStatesOfDevelopment} mérföldkő elérése után már itt is elkerülhetőek lesznek az egymásba ágyazott deklarációs zárójelek.\footnote{\url{https://github.com/Hollo1996/SlimeAnUTLE/blob/master/test_codes/html_example}}
 
 Hiszek benne, hogy a Slime hamar versenyképes lesz más templater engine-ekkel szemben is.
 Nem cél egy, az összes többinél hatékonyabb megoldást nyújtani.
