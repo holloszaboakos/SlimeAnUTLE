@@ -330,7 +330,7 @@ fát kapjuk.
 Éppen ezért a interpretációs lépések segítségével kell összerakni szabályról szabályra ezt a fát. 
 lásd~\ref{sec:example1}.
 
-Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank (\cite{Marcus:1993}) szintaktikai fáiban.  Ilyen a \textit{the black cat} főnévi kifejezés is, aminek a szintaktikai fája a következő:
+Ez a példa is jól mutatja, hogy egy két gyerekű csúcsot, mint a VP2, össze tudunk rakni egy két bemenetű szabályban. Egy három gyerekűt, mint az S3, már nem, hiszen a három gyereket nem tudja mind megkapni egyszerre. Ekkor kénytelenek vagyunk két szabály alatt előállítani a szerkezetet merge használatával. Az ilyen három gyermekű csúcsok gyakoriak a Penn Treebank \cite{Marcus:1993} szintaktikai fáiban.  Ilyen a \textit{the black cat} főnévi kifejezés is, aminek a szintaktikai fája a következő:
 
 NP3( DT( the ), JJ( black ), NN( cat ) ).
 
@@ -473,7 +473,7 @@ A közös osztály a \texttt{Data}, a nyers szövegé a \texttt{Terminal}, a fá
 Az összes osztály rendelkezett saját szöveg bemenetű konstruktorral, ami közvetlenül a bemeneti adatok formátumából inicializálja az osztályt.
 
 A \texttt{Terminal} egy szót tárolt és annak a szófaját. 
-A \texttt{Tree} tartalmazta a részfát a Stanford Parser formátumában, a TTA formátumában, a TTA formátumában levelek nélkül és külön a szavakat. 
+A \texttt{Tree} tartalmazta a részfát a Stanford Parser formátumában, a Penn Treebank formátumában, a Penn Treebank formátumában levelek nélkül és külön a szavakat. 
 A Tree legtöbb formátuma csak a kommentek generálásához volt hasznos, de ideiglenesen mindegyiket generálta a program a kommentek végleges formátumától függetlenül. 
 A \texttt{Dependency} tárolta a fej-szót, a dependens-szót, az él UD típusát és az él 4lang típusát. 
 Az UD él 4lang-ra vetítését a \texttt{Fourlang} enum és egy dictionary segítségével végezte. 
@@ -485,7 +485,7 @@ A kifejezés generátor függvények először betöltötték az adatokat a \tex
 A komment első sorát aszerint generálta, hogy van-e kapcsolat a szavak között, és hogy a fej vagy a dependens van-e előrébb. 
 Ez a sor azt írta le, hogy milyen kifejezést milyen típusú szavakból épít a szabály és, hogy a dependens milyen szerepet lát el a mondatban. 
 Ehhez az adatok rövidítéseit a \texttt{Short2Long} osztály segítségével oldotta fel, aminek a betöltendő adatai  a viszonylag kevés szófaj- és éltípus okán kézzel készültek. 
-A következő két komment a szintaktikai fa első példányát tartalmazta a TTA és Stanford Parser formátumában. 
+A következő két komment a szintaktikai fa első példányát tartalmazta a Penn Treebank és Stanford Parser formátumában. 
 
 A szabálysort az adatokból nem volt nehéz legenerálni, mivel a szabályok neveit eredetileg is a bemenetek TT interpretációjának gyökere és az UD élek alapján képeztük. 
 A string és tree sorok csak a szabály bal oldali nemterminális szimbólumától függenek, így azok konstans szövegek voltak. 
@@ -512,4 +512,4 @@ Futása során az egyes dependenciákhoz tartozó szavakat reprezentáló levele
 Az általam fejlesztett nyelv, a \texttt{Slime} első verziója nem lesz képes gráfműveletekre, de könnyű lesz benne olyan kódot készíteni, ami mindenki számára érthető, mindezt minimális overhead-del.
 Csak a bemeneti adatokat szükséges generálni hozzá. 
 Mivel az alkategóriákon belül a legtöbb szabály összevonható lesz RegEx és template-elés segítségével, a sorrend sem jelent majd problémát.
-Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a jelenlegi generátor kombinációja..
+Jelenleg úgy tűnik, hogy a teljesen hatékony megoldás a Slime és a jelenlegi generátor kombinációja.
